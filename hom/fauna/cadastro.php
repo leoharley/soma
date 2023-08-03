@@ -1,7 +1,7 @@
 <?php
 function save($dados){
 	try{
-		$pdo = new PDO("mysql:host=127.0.0.1; dbname=projetocadastro;", "root", "123456",[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+		$pdo = new PDO("mysql:host=localhost; dbname=u699148595_inventario_hom;", "u699148595_u699148595_som", "5;K+5qbi",[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 		$sql = 'INSERT INTO tb_clientes(nome, cpf, telefone, email, nascimento, estado, cidade, bairro, rua, numero) VALUES (:nome, :cpf, :telefone, :email, :nascimento, :estado, :cidade, :bairro, :rua, :numero);';
 		$stmt = $pdo->prepare($sql);
 		$stmt->bindValue(':nome', $dados['nome']);
