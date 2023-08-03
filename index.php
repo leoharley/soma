@@ -1,7 +1,7 @@
 <?php
 
 
-die("Only a test");
+die("Only a tesdst");
 
 
 
