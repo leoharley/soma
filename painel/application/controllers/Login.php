@@ -85,8 +85,8 @@ class Login extends BaseController
     {
         $this->load->library('form_validation');
         
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[128]|trim');
-        $this->form_validation->set_rules('password', 'Password', 'required|max_length[32]');
+        $this->form_validation->set_rules('usuario', 'Usuário', 'required|valid_email|max_length[128]|trim');
+        $this->form_validation->set_rules('senha', 'Senha', 'required|max_length[32]');
 
         if($this->form_validation->run() == FALSE)
         {
@@ -94,8 +94,8 @@ class Login extends BaseController
         }
         else
         {
-            $email = $this->security->xss_clean($this->input->post('email'));
-            $password = $this->input->post('password');
+            $usuario = $this->security->xss_clean($this->input->post('usuario'));
+            $senha = $this->input->post('senha');
             
             $result = $this->login_model->loginMe($email, $password);
             
@@ -108,11 +108,11 @@ class Login extends BaseController
                     $process = 'Conecte-se';
                     $processFunction = 'Login/loginMe';
 
-                    $sessionArray = array('userId'=>$res->userId,                    
-                                            'role'=>$res->roleId,
-                                            'roleText'=>$res->role,
-                                            'name'=>$res->name,
-                                            'lastLogin'=> $lastLogin->createdDtm,
+                    $sessionArray = array('id'=>$res->usuarioId,                    
+                                        //    'role'=>$res->roleId,
+                                        //    'roleText'=>$res->role,
+                                            'nome'=>$res->nome,
+                                        //    'lastLogin'=> $lastLogin->createdDtm,
                                             'status'=> $res->status,
                                             'isLoggedIn' => TRUE
                                     );
