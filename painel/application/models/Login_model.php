@@ -20,8 +20,6 @@ class Login_model extends CI_Model
         
         $usuario = $query->result();
 
-        var_dump($usuario);exit;
-        
         if(!empty($usuario)){
             if($senha == $usuario[0]->senha){
                 return $usuario;
