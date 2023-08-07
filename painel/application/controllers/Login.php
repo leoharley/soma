@@ -94,10 +94,10 @@ class Login extends BaseController
         }
         else
         {
-            $usuario = $this->security->xss_clean($this->input->post('usuario'));
+            $cpf = $this->security->xss_clean($this->input->post('cpf'));
             $senha = $this->input->post('senha');
             
-            $result = $this->login_model->loginMe($usuario, $senha);
+            $result = $this->login_model->loginMe($cpf, $senha);
             
             if(count($result) > 0)
             {
