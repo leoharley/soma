@@ -23,7 +23,7 @@ class Login_model extends CI_Model
         var_dump($usuario);exit;
         
         if(!empty($usuario)){
-            if($senha == $usuario[0]->ds_senha){
+            if($senha == $usuario[0]->senha){
                 return $usuario;
             } else {
                 return array();
