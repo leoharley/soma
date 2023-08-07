@@ -85,7 +85,7 @@ class Login extends BaseController
     {
         $this->load->library('form_validation');
         
-        $this->form_validation->set_rules('usuario', 'Usuário', 'required|max_length[128]|trim');
+        //$this->form_validation->set_rules('usuario', 'Usuário', 'required|max_length[128]|trim');
         $this->form_validation->set_rules('senha', 'Senha', 'required|max_length[32]');
 
         if($this->form_validation->run() == FALSE)
