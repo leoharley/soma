@@ -8,22 +8,22 @@ class Login_model extends CI_Model
      * @param string $email : This is email of the user
      * @param string $password : This is encrypted password of the user
      */
-    function loginMe($email, $password)
+    function loginMe($usuario, $senha)
     {
-        $this->db->select('cadpessoa.co_seq_cadastro_pessoa as userId, acesso.ds_senha as password, cadpessoa.ds_nome as name,
-        status.ds_status as status, "1" as roleId, "Admin" as role');
+        $this->db->select('cadpessoa.co_seq_cadastro_pessoa as id_usuario, acesso.ds_senha as senha, cadpessoa.ds_nome as nome,
+        status.ds_status as status, "1" as id_perfil, "Admin" as ds_perfil');
         $this->db->from('tb_cadastro_pessoa as cadpessoa');
         $this->db->join('tb_acesso as acesso','acesso.nu_cpf = cadpessoa.nu_cpf');
         $this->db->join('tb_status_cadastro as status','status.co_seq_status_cadastro = cadpessoa.co_status_cadastro');
-        $this->db->where('cadpessoa.ds_email', $email);
+        $this->db->where('cadpessoa.nu_cpf', $usuario);
         $this->db->where('acesso.st_registro_ativo', 'S');
         $query = $this->db->get();
         
-        $user = $query->result();
+        $usuario = $query->result();
         
-        if(!empty($user)){
-            if($password == $user[0]->password){
-                return $user;
+        if(!empty($usuario)){
+            if($senha == $usuario[0]->ds_senha){
+                return $usuario;
             } else {
                 return array();
             }

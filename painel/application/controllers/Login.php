@@ -97,7 +97,7 @@ class Login extends BaseController
             $usuario = $this->security->xss_clean($this->input->post('usuario'));
             $senha = $this->input->post('senha');
             
-            $result = $this->login_model->loginMe($email, $password);
+            $result = $this->login_model->loginMe($usuario, $senha);
             
             if(count($result) > 0)
             {
@@ -108,13 +108,13 @@ class Login extends BaseController
                     $process = 'Conecte-se';
                     $processFunction = 'Login/loginMe';
 
-                    $sessionArray = array('id'=>$res->usuarioId,                    
-                                        //    'role'=>$res->roleId,
-                                        //    'roleText'=>$res->role,
-                                            'nome'=>$res->nome,
-                                        //    'lastLogin'=> $lastLogin->createdDtm,
-                                            'status'=> $res->status,
-                                            'isLoggedIn' => TRUE
+                    $sessionArray = array('userId'=>$res->id_usuario,                    
+                                          'role'=>$res->id_perfil,
+                                          'roleText'=>$res->ds_perfil,
+                                          'nome'=>$res->nome,
+                                          'lastLogin'=> $lastLogin->createdDtm,
+                                          'status'=> $res->status,
+                                          'isLoggedIn' => TRUE
                                     );
 
                     $this->session->set_userdata($sessionArray);
@@ -128,7 +128,7 @@ class Login extends BaseController
             }
             else
             {
-                $this->session->set_flashdata('error', 'Endereço de email ou senha incorretos');
+                $this->session->set_flashdata('error', 'CPF ou senha incorretos');
                 
                 redirect('/login');
             }
