@@ -61,7 +61,7 @@
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Senha" name="password" required />
+            <input type="password" class="form-control" placeholder="Senha" name="senha" required />
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
