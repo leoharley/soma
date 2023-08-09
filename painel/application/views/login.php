@@ -21,6 +21,7 @@
 <body class="login-page" style="background-image: url('<?php echo base_url(); ?>assets/images/bg.jpg'); background-size: cover;">
   <div class="login-box">
     <div class="login-logo">
+      <img src="<?php echo base_url(); ?>assets/images/logo2.png">
       <a href="#">
        <span style="color:white"><b>Painel Administrativo</b></span></a>
     </div>
