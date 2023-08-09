@@ -117,6 +117,8 @@ class Login extends BaseController
                                           'isLoggedIn' => TRUE
                                     );
 
+                    var_dump($sessionArray);exit;         
+
                     $this->session->set_userdata($sessionArray);
                     
                     unset($sessionArray['userId'], $sessionArray['isLoggedIn'], $sessionArray['lastLogin']);
