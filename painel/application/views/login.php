@@ -20,13 +20,13 @@
 
 <body class="login-page" style="background-image: url('<?php echo base_url(); ?>assets/images/bg.jpg'); background-size: cover;">
   <div class="login-box">
-    <div class="login-logo" style="color:white">
+    <div class="login-logo">
       <a href="#">
-        <b>Painel Administrativo</b></a>
+       <span style="color:white"><b>Painel Administrativo</b></span></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg">Login</p>
+      <!--<p class="login-box-msg">Login</p> -->
       <?php $this->load->helper('form'); ?>
       <div class="row">
         <div class="col-md-12">
