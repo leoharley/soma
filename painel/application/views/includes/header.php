@@ -88,7 +88,7 @@
                   <p>
                     <?php echo $name; ?>
                     <small>
-                      <?php echo $role_text; ?>
+                      <?php echo $roleText; ?>
                     </small>
                   </p>
                 </li>
