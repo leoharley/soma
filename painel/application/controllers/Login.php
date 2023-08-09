@@ -112,8 +112,8 @@ class Login extends BaseController
                                           'role'=>$res->id_perfil,
                                           'roleText'=>$res->ds_perfil,
                                           'nome'=>$res->nome,
-                                          'lastLogin'=> $lastLogin->createdDtm,
-                                          'status'=> $res->status,
+                                        // 'lastLogin'=> $lastLogin->createdDtm,
+                                        //  'status'=> $res->status,
                                           'isLoggedIn' => TRUE
                                     );
 
