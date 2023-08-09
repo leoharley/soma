@@ -58,7 +58,7 @@
           
           <div class="form-group has-feedback" style="margin-top:20px!important;">
             <input type="cpf" class="form-control" placeholder="CPF" name="cpf" required />
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <span class="glyphicon glyphicon-modal-window form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
             <input type="password" class="form-control" placeholder="Senha" name="senha" required />
