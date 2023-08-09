@@ -22,12 +22,11 @@
   <div class="login-box">
     <div class="login-logo">
       <a href="#">
-        <b>ADMIN</b>
-        <br>Painel Administrativo</a>
+        <b>Painel Administrativo</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg">Conecte-se</p>
+      <p class="login-box-msg">Login</p>
       <?php $this->load->helper('form'); ?>
       <div class="row">
         <div class="col-md-12">

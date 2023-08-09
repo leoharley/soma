@@ -11,8 +11,9 @@ class Login_model extends CI_Model
     function loginMe($usuario, $senha)
     {
         $this->db->select('cadpessoa.co_seq_cadastro_pessoa as id_usuario, acesso.ds_senha as senha, cadpessoa.ds_nome as nome,
-        "1" as id_perfil, "Admin" as ds_perfil');
+        idPerfil as id_perfil, dsPerfil as ds_perfil');
         $this->db->from('tb_cadastro_pessoa as cadpessoa');
+        $this->db->join('tb_acesso as acesso','acesso.nu_cpf = cadpessoa.nu_cpf');
         $this->db->join('tb_acesso as acesso','acesso.nu_cpf = cadpessoa.nu_cpf');
         $this->db->where('cadpessoa.nu_cpf', $usuario);
         $this->db->where('acesso.st_registro_ativo', 'S');
