@@ -18,12 +18,7 @@
     <![endif]-->
 </head>
 
-<body class="login-page" style="background-image: url('<?php echo base_url(); ?>assets/images/bg.jpg')
-  no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;">
+<body class="login-page" style="background-image: url('<?php echo base_url(); ?>assets/images/bg.jpg'); background-size: auto;">
   <div class="login-box">
     <div class="login-logo">
       <a href="#">
