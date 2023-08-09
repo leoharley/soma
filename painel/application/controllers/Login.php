@@ -111,7 +111,7 @@ class Login extends BaseController
                     $sessionArray = array('userId'=>$res->id_usuario,                    
                                           'role'=>$res->id_perfil,
                                           'roleText'=>$res->ds_perfil,
-                                          'nome'=>$res->nome,
+                                          'name'=>$res->nome,
                                         // 'lastLogin'=> $lastLogin->createdDtm,
                                         //  'status'=> $res->status,
                                           'isLoggedIn' => TRUE
