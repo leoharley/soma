@@ -19,7 +19,7 @@
 </head>
 
 <body class="login-page" style="background-image: url('<?php echo base_url(); ?>assets/images/bg.jpg'); background-size: cover;">
-  <div class="login-box" style="margin-top:100px">
+  <div class="login-box" style="margin-top:60px">
     <div class="login-logo">
       <img src="<?php echo base_url(); ?>assets/images/logo2.png" style="width:60%;height:auto">
       <br/>
