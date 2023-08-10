@@ -1,6 +1,6 @@
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-        <b>ADMIN</b> Painel de gerenciamento | V1.0
+        Painel de gerenciamento | V1.0
     </div>
     <strong>Todos os direitos reservados &copy; 2023
         <a href="<?php echo base_url(); ?>">SOMA SUSTENTABILIDADE</a>
