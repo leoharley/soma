@@ -22,6 +22,9 @@
          folder instead of downloading all of them to reduce the load. -->
   <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
   <style>
+    .navbar { 
+      color: #008d4d33;
+    }
     .error {
       color: red;
       font-weight: normal;
