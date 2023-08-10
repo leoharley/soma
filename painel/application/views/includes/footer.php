@@ -2,9 +2,9 @@
     <div class="pull-right hidden-xs">
         <b>ADMIN</b> Painel de gerenciamento | V1.0
     </div>
-    <strong>Copyright &copy; 2018-2019
-        <a href="<?php echo base_url(); ?>">ADMIN</a>
-    </strong> Leonardo Gonçalves.
+    <strong>Todos os direitos reservados &copy; 2023
+        <a href="<?php echo base_url(); ?>">SOMA SUSTENTABILIDADE</a>
+    </strong>
 </footer>
 
 <!-- jQuery UI 1.11.2 -->
