@@ -23,7 +23,7 @@
   <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
   <style>
     .main-header li.user-header {
-      background-color: #2d6c5d!important;
+      background-color: #1d463c!important;
     }
     .main-header .logo {
       background-color: #2d6c5d!important;
