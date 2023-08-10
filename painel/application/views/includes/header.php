@@ -23,7 +23,7 @@
   <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
   <style>
     .navbar { 
-      color: #008d4d33!important;
+      background-color: #008d4d33!important;
     }
     .error {
       color: red;
