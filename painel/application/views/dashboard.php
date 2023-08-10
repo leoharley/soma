@@ -15,7 +15,7 @@
             <h3>
               <?php if(isset($tasksCount)) { echo $tasksCount; } else { echo '0'; } ?>
             </h3>
-            <p>Atividades</p>
+            <p>Usuários</p>
           </div>
           <div class="icon">
             <i class="fa fa-tasks"></i>
@@ -33,7 +33,7 @@
             <h3>
               <?php if(isset($finishedTasksCount)) { echo $finishedTasksCount; } else { echo '0'; } ?>
             </h3>
-            <p>Inscrições</p>
+            <p>Projetos</p>
           </div>
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
@@ -42,25 +42,7 @@
             <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-yellow">
-          <div class="inner">
-            <h3>
-              <?php if(isset($usersCount)) { echo $usersCount; } else { echo '0'; } ?>
-            </h3>
-            <p>Alunos</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-person"></i>
-          </div>
-          <a href="<?php echo base_url(); ?>userListing" class="small-box-footer">Mais Informações
-            <i class="fa fa-arrow-circle-right"></i>
-          </a>
-        </div>
-      </div>
+      </div>      
       <!-- ./col -->
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
