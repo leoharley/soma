@@ -22,11 +22,14 @@
          folder instead of downloading all of them to reduce the load. -->
   <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
   <style>
+    .main-header li.user-header {
+      background-color: #2d6c5d!important;
+    }
     .main-header .logo {
-      background-color: #008d4d33!important;
+      background-color: #2d6c5d!important;
     }
     .navbar { 
-      background-color: #008d4d33!important;
+      background-color: #2d6c5d!important;
     }
     .error {
       color: red;
