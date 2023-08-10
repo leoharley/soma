@@ -31,6 +31,9 @@
     .navbar { 
       background-color: #2d6c5d!important;
     }
+    .skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
+    border-left-color: #3cbc3c!important;
+    }
     .error {
       color: red;
       font-weight: normal;
