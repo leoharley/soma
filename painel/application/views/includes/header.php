@@ -199,14 +199,14 @@ $(function() {
 
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="cadastro">
 
-                <li>
+                <li class="treeview">
                   <a href="<?php echo base_url(); ?>cadastroPerfil/listar">
                     <i class="fa fa-th" style="margin-right:5px"></i>
                     <span>Perfil</span>
                   </a>
                 </li>
                 
-                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
+                <li class="treeview">
                     <a href="<?php echo base_url(); ?>cadastroPermissao/listar">
                         <i class="fa fa-th" style="margin-right:5px"></i>
                         <span>Permissão</span>
