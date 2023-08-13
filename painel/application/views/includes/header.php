@@ -287,7 +287,7 @@ $(function() {
 
                   <li class="treeview">
                     <a href="<?php echo base_url(); ?>relatorioLogs/listar">
-                        <i class="fa fa-th" style="margin-right:5px!important"></i>
+                        <i class="fa fa-reorder" style="margin-right:5px!important"></i>
                         <span>Logs</span>
                     </a>
                   </li>
