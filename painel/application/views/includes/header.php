@@ -76,7 +76,7 @@ $(function() {
             collapseExample2.collapse("hide");
         }
 
-        const collapseExample3 = $("#auxiliar");
+        const collapseExample3 = $("#relatorio");
         collapseExample3.on("shown.bs.collapse", function() {
             localStorage.setItem("collapseExample3", "show");
         });
@@ -88,20 +88,6 @@ $(function() {
             collapseExample3.collapse("show");
         } else {
             collapseExample3.collapse("hide");
-        }
-
-        const collapseExample4 = $("#pacote");
-        collapseExample4.on("shown.bs.collapse", function() {
-            localStorage.setItem("collapseExample4", "show");
-        });
-        collapseExample4.on("hidden.bs.collapse", function() {
-            localStorage.setItem("collapseExample4", "hide");
-        });
-        const showExampleCollapse4 = localStorage.getItem("collapseExample4");
-        if (showExampleCollapse4 === "show") {
-            collapseExample4.collapse("show");
-        } else {
-            collapseExample4.collapse("hide");
         }
 
       });
@@ -207,49 +193,33 @@ $(function() {
             ?>
             <hr>
 
-            <li class="treeview" data-toggle="collapse" data-target="#cadastro" style="margin-bottom: 10px!important;cursor: pointer!important;">
+            <li class="treeview" data-toggle="collapse" data-target="#usuario" style="margin-bottom: 10px!important;cursor: pointer!important;">
                     
                     <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  CADASTRO</b></h4>
 
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="cadastro">
 
                 <li>
-                  <a href="<?php echo base_url(); ?>cadastroUsuario/listar">
+                  <a href="<?php echo base_url(); ?>cadastroPerfil/listar">
                     <i class="fa fa-th" style="margin-right:5px"></i>
-                    <span>Usuário</span>
+                    <span>Perfil</span>
                   </a>
                 </li>
-                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
-                  <a href="<?php echo base_url(); ?>cadastroEmpresa/listar">
-                    <i class="fa fa-th" style="margin-right:5px"></i>
-                    <span>Empresa</span>
-                  </a>
-                </li>
-                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
-                    <a href="<?php echo base_url(); ?>cadastroPerfil/listar">
-                        <i class="fa fa-th" style="margin-right:5px"></i>
-                        <span>Perfil</span>
-                    </a>
-                </li>
-                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
-                    <a href="<?php echo base_url(); ?>cadastroTelas/listar">
-                        <i class="fa fa-th" style="margin-right:5px"></i>
-                        <span>Telas</span>
-                    </a>
-                </li>
+                
                 <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
                     <a href="<?php echo base_url(); ?>cadastroPermissao/listar">
                         <i class="fa fa-th" style="margin-right:5px"></i>
                         <span>Permissão</span>
                     </a>
                 </li>
-                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
-                    <a href="<?php echo base_url(); ?>cadastroUsuarioEmpresa/listar">
+
+                <li class="treeview">
+                    <a href="<?php echo base_url(); ?>cadastroTelas/listar">
                         <i class="fa fa-th" style="margin-right:5px"></i>
-                        <span>Usuário/Empresa</span>
+                        <span>Usuário</span>
                     </a>
                 </li>
-                
+               
                 </ul>
                 </li>
 
@@ -282,38 +252,17 @@ $(function() {
 
                   <hr>
                   
-                  <li class="treeview" data-toggle="collapse" data-target="#pacote" style="margin-bottom: 10px!important;cursor: pointer!important;<?php if (strpos($_SERVER['REQUEST_URI'], 'homologacao') == FALSE) {echo 'display:none;';}?>">
+                  <li class="treeview" data-toggle="collapse" data-target="#relatorio" style="margin-bottom: 10px!important;cursor: pointer!important;">
                     
-                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  PACOTE</b></h4>
+                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  RELATÓRIO</b></h4>
 
-                    <ul class="nav nav-list collapse" style="margin-top:10px" id="pacote">
+                    <ul class="nav nav-list collapse" style="margin-top:10px" id="relatorio">
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>pacotePacote/listar">
+                    <a href="<?php echo base_url(); ?>relatorioLogs/listar">
                         <i class="fa fa-th" style="margin-right:5px!important"></i>
-                        <span>Pacote</span>
+                        <span>Logs</span>
                     </a>
-                  </li>
-
-                  <li class="treeview">
-                      <a href="<?php echo base_url(); ?>pacoteSubstancia/listar">
-                          <i class="fa fa-th" style="margin-right:5px!important"></i>
-                          <span>Substância</span>
-                      </a>
-                  </li>
-
-                  <li class="treeview">
-                      <a href="<?php echo base_url(); ?>pacoteSetor/listar">
-                          <i class="fa fa-th" style="margin-right:5px!important"></i>
-                          <span>Setor</span>
-                      </a>
-                  </li>
-
-                  <li class="treeview">
-                      <a href="<?php echo base_url(); ?>pacoteExcecaoProcedimento/listar">
-                          <i class="fa fa-th" style="margin-right:5px!important"></i>
-                          <span>Exceção Procedimento</span>
-                      </a>
                   </li>
 
                   </ul>
