@@ -249,7 +249,7 @@ $(function() {
 
                   <li class="treeview">
                       <a href="<?php echo base_url(); ?>principalPlano/listar">
-                          <i class="fa fa-draw-polygon" style="margin-right:5px!important"></i>
+                          <i class="fa fa-vector-polygon" style="margin-right:5px!important"></i>
                           <span>Parcelas</span>
                       </a>
                   </li>
