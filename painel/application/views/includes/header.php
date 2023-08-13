@@ -208,7 +208,7 @@ $(function() {
                 
                 <li class="treeview">
                     <a href="<?php echo base_url(); ?>cadastroPermissao/listar">
-                        <i class="fa fa-th" style="margin-right:5px"></i>
+                        <i class="fa fa-lock" style="margin-right:5px"></i>
                         <span>Permissão</span>
                     </a>
                 </li>
