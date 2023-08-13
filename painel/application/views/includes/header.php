@@ -45,6 +45,68 @@
     var baseURL = "<?php echo base_url(); ?>";
   </script>
 
+
+<script>
+$(function() {
+        const collapseExample = $("#cadastro");
+        collapseExample.on("shown.bs.collapse", function() {
+            localStorage.setItem("collapseExample", "show");
+        });
+        collapseExample.on("hidden.bs.collapse", function() {
+            localStorage.setItem("collapseExample", "hide");
+        });
+        const showExampleCollapse = localStorage.getItem("collapseExample");
+        if (showExampleCollapse === "show") {
+            collapseExample.collapse("show");
+        } else {
+            collapseExample.collapse("hide");
+        }
+
+        const collapseExample2 = $("#principal");
+        collapseExample2.on("shown.bs.collapse", function() {
+            localStorage.setItem("collapseExample2", "show");
+        });
+        collapseExample2.on("hidden.bs.collapse", function() {
+            localStorage.setItem("collapseExample2", "hide");
+        });
+        const showExampleCollapse2 = localStorage.getItem("collapseExample2");
+        if (showExampleCollapse2 === "show") {
+            collapseExample2.collapse("show");
+        } else {
+            collapseExample2.collapse("hide");
+        }
+
+        const collapseExample3 = $("#auxiliar");
+        collapseExample3.on("shown.bs.collapse", function() {
+            localStorage.setItem("collapseExample3", "show");
+        });
+        collapseExample3.on("hidden.bs.collapse", function() {
+            localStorage.setItem("collapseExample3", "hide");
+        });
+        const showExampleCollapse3 = localStorage.getItem("collapseExample3");
+        if (showExampleCollapse3 === "show") {
+            collapseExample3.collapse("show");
+        } else {
+            collapseExample3.collapse("hide");
+        }
+
+        const collapseExample4 = $("#pacote");
+        collapseExample4.on("shown.bs.collapse", function() {
+            localStorage.setItem("collapseExample4", "show");
+        });
+        collapseExample4.on("hidden.bs.collapse", function() {
+            localStorage.setItem("collapseExample4", "hide");
+        });
+        const showExampleCollapse4 = localStorage.getItem("collapseExample4");
+        if (showExampleCollapse4 === "show") {
+            collapseExample4.collapse("show");
+        } else {
+            collapseExample4.collapse("hide");
+        }
+
+      });
+</script>
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -130,107 +192,224 @@
           <li class="header">
           </li>
           <li class="treeview">
-            <a href="<?php echo base_url(); ?>dashboard">
+            <a href="<?php echo base_url(); ?>changePassword">
               <i class="fa fa-dashboard"></i>
-              <span>Página inicial</span>
+              <span>Alterar a senha</span>
               </i>
             </a>
           </li>
-          <?php
-            // Rol definetion in application/config/constants.php
-            if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
-            {
-            ?>
-            <li class="treeview">
-              <a href="<?php echo base_url(); ?>atividades">
-                <i class="fa fa-tasks"></i>
-                <span>Perfis</span>
-              </a>
-            </li>
 
-            <li class="treeview">
-                <a href="<?php echo base_url(); ?>inscricoes">
-                  <i class="fa fa-plus-circle"></i>
-                  <span>Inscrições</span>
-                </a>
-            </li>
 
-            <li class="treeview">
-              <a href="<?php echo base_url(); ?>alunos">
-                <i class="fa fa-plus-circle"></i>
-                <span>Alunos</span>
-              </a>
-            </li>
             <?php
-            }
-            if($role == ROLE_ADMIN)
-            {
+            // Rol definetion in application/config/constants.php
+            // if($role == ROLE_ADMIN)
+           //  {
             ?>
-              <li class="treeview">
-                <a href="<?php echo base_url(); ?>professores">
-                  <i class="fa fa-users"></i>
-                  <span>Professores</span>
-                </a>
-              </li>
-              <li class="treeview">
-                <a href="<?php echo base_url(); ?>locais">
-                  <i class="fa fa-archive"></i>
-                  <span>Locais</span>
-                </a>
-              </li>
+            <hr <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
 
-              <li class="treeview">
-                <a href="<?php echo base_url(); ?>modalidades">
-                  <i class="fa fa-archive"></i>
-                  <span>Modalidades</span>
-                </a>
-              </li>
+            <li class="treeview" data-toggle="collapse" data-target="#cadastro" style="margin-bottom: 10px!important;cursor: pointer!important;<?php if ($this->session->userdata('isAdmin') != 'S') { echo 'display:none'; } ?>">
+                    
+                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  CADASTRO</b></h4>
 
-      
-<ul class="sidebar-menu" style="margin-left:18px;color:#b8c7ce;cursor:pointer;margin-top:10px;margin-bottom:10px">
-              <li class="treeview" data-toggle="collapse" data-target="#test">
-              <i class="fa fa-archive"></i>
-                  <span style="margin-left:5px">Questionários</span>
-                <ul class="nav nav-list collapse" id="test">
-                <li class="treeview">
-                  <a href="<?php echo base_url(); ?>questionario_parq">
-                    <i class="fa fa-upload"></i>
-                    <span style="margin-left:5px">ParQ</span>
+                    <ul class="nav nav-list collapse" style="margin-top:10px" id="cadastro">
+
+                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
+                  <a href="<?php echo base_url(); ?>cadastroUsuario/listar">
+                    <i class="fa fa-th" style="margin-right:5px"></i>
+                    <span>Usuário</span>
                   </a>
                 </li>
-                <li class="treeview">
-                  <a href="<?php echo base_url(); ?>questionario_whoqol">
-                    <i class="fa fa-upload"></i>
-                    <span style="margin-left:5px">WHOQoL</span>
+                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
+                  <a href="<?php echo base_url(); ?>cadastroEmpresa/listar">
+                    <i class="fa fa-th" style="margin-right:5px"></i>
+                    <span>Empresa</span>
                   </a>
                 </li>
-                <li class="treeview">
-                  <a href="<?php echo base_url(); ?>questionario_vigitel">
-                    <i class="fa fa-upload"></i>
-                    <span style="margin-left:5px">Vigitel</span>
-                  </a>
+                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
+                    <a href="<?php echo base_url(); ?>cadastroPerfil/listar">
+                        <i class="fa fa-th" style="margin-right:5px"></i>
+                        <span>Perfil</span>
+                    </a>
                 </li>
+                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
+                    <a href="<?php echo base_url(); ?>cadastroTelas/listar">
+                        <i class="fa fa-th" style="margin-right:5px"></i>
+                        <span>Telas</span>
+                    </a>
+                </li>
+                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
+                    <a href="<?php echo base_url(); ?>cadastroPermissao/listar">
+                        <i class="fa fa-th" style="margin-right:5px"></i>
+                        <span>Permissão</span>
+                    </a>
+                </li>
+                <li class="treeview" <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
+                    <a href="<?php echo base_url(); ?>cadastroUsuarioEmpresa/listar">
+                        <i class="fa fa-th" style="margin-right:5px"></i>
+                        <span>Usuário/Empresa</span>
+                    </a>
+                </li>
+                
                 </ul>
-              </li>
-</ul>        
+                </li>
 
-              <li class="treeview">
-                <a href="<?php echo base_url(); ?>monitoramento">
-                  <i class="fa fa-archive"></i>
-                  <span>Monitoramento</span>
-                </a>
-              </li>
+                <hr>
 
-              <li class="treeview">
-                <a href="<?php echo base_url(); ?>log-history-backup">
-                  <i class="fa fa-archive"></i>
-                  <span>Logs</span>
-                </a>
-              </li>
-              <?php
-            }
+                <li class="treeview" data-toggle="collapse" data-target="#auxiliar" style="margin-bottom: 10px!important;cursor: pointer!important;">
+                    
+                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  AUXILIAR</b></h4>
+
+                    <ul class="nav nav-list collapse" style="margin-top:10px" id="auxiliar">
+
+                  <li >
+                      <a href="<?php echo base_url(); ?>principalIndice/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Índice</span>
+                      </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalFaturamento/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Faturamento</span>
+                      </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalRegra/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Regra</span>
+                      </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalExcecaoValores/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Exceção Valores</span>
+                      </a>
+                  </li>
+
+                <!--  <li class="treeview" style="display:none">
+                      <a href="<?php //echo base_url(); ?>principalIndiceGrupoPro/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Índice Grupo Pro</span>
+                      </a>
+                  </li> -->
+                  
+
+                <!--  <li class="treeview" style="display:none">
+                      <a href="<?php //echo base_url(); ?>principalRegraGruPro/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>RegraGrupoPro</span>
+                      </a>
+                  </li> -->
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalRegraProibicao/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>RegraProibição</span>
+                      </a>
+                  </li>
+
+                <!--  <li class="treeview">
+                      <a href="<?php //echo base_url(); ?>principalFaturamentoItem/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Item Faturamento</span>
+                      </a>
+                  </li> -->
+                  
+                <!--  <li class="treeview">
+                      <a href="<?php //echo base_url(); ?>principalFracaoSimproBra/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Fração Mat/Med</span>
+                      </a>
+                  </li> -->
+                  
+                <!--  <li class="treeview">
+                      <a href="<?php //echo base_url(); ?>principalUnidade/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Unidade</span>
+                      </a>
+                  </li> -->
+
+                <!--
+                  <li class="treeview">
+                      <a href="<?php //echo base_url(); ?>principalProibicao/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Proibição</span>
+                      </a>
+                  </li> -->
+                  </ul>
+                </li>
+
+                <hr>
+
+              <!--  <h4 style="margin-left:18px!important;color:white"><b> PRINCIPAL </b></h4> -->
+
+                <li class="treeview" data-toggle="collapse" data-target="#principal" style="margin-bottom: 10px!important;cursor: pointer!important;">
+                    
+                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  PRINCIPAL</b></h4>
+
+                    <ul class="nav nav-list collapse" style="margin-top:10px" id="principal">
+
+                  <li class="treeview">
+                    <a href="<?php echo base_url(); ?>principalConvenio/listar">
+                        <i class="fa fa-th" style="margin-right:5px!important"></i>
+                        <span>Convênio</span>
+                    </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalPlano/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Plano</span>
+                      </a>
+                  </li>
+
+                  </ul>
+                  </li>
+
+                  <hr>
+                  
+                  <li class="treeview" data-toggle="collapse" data-target="#pacote" style="margin-bottom: 10px!important;cursor: pointer!important;<?php if (strpos($_SERVER['REQUEST_URI'], 'homologacao') == FALSE) {echo 'display:none;';}?>">
+                    
+                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  PACOTE</b></h4>
+
+                    <ul class="nav nav-list collapse" style="margin-top:10px" id="pacote">
+
+                  <li class="treeview">
+                    <a href="<?php echo base_url(); ?>pacotePacote/listar">
+                        <i class="fa fa-th" style="margin-right:5px!important"></i>
+                        <span>Pacote</span>
+                    </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>pacoteSubstancia/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Substância</span>
+                      </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>pacoteSetor/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Setor</span>
+                      </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>pacoteExcecaoProcedimento/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Exceção Procedimento</span>
+                      </a>
+                  </li>
+
+                  </ul>
+                  </li>
+              <hr>
+
             
-            ?>
         </ul>
       </section>
       <!-- /.sidebar -->
