@@ -127,10 +127,8 @@ $(function() {
       <a href="<?php echo base_url(); ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">
-          <b>QLC</b></span>
-        <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg">
-          <b>Qualidade do Cadastro<br/></b>(Convênio)</span>
+          <b>SOMA</b></span>
+        <!-- logo for regular state and mobile devices -->        
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top" role="navigation">
