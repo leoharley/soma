@@ -263,7 +263,7 @@ $(function() {
 
                   <li class="treeview">
                       <a href="<?php echo base_url(); ?>principalPlano/listar">
-                          <i class="fa fa-dove" style="margin-right:5px!important"></i>
+                          <i class="fa fa-bird" style="margin-right:5px!important"></i>
                           <span>Fauna</span>
                       </a>
                   </li>
