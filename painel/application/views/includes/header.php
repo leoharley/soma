@@ -216,7 +216,7 @@ $(function() {
                 <li class="treeview">
                     <a href="<?php echo base_url(); ?>cadastroTelas/listar">
                         <i class="fa fa-user" style="margin-right:5px"></i>
-                        <span>Usuário</span>
+                        <span>Usuários</span>
                     </a>
                 </li>
                
@@ -235,15 +235,22 @@ $(function() {
 
                   <li class="treeview">
                     <a href="<?php echo base_url(); ?>principalConvenio/listar">
-                        <i class="fa fa-th" style="margin-right:5px!important"></i>
-                        <span>Convênio</span>
+                        <i class="fa fa-paste" style="margin-right:5px!important"></i>
+                        <span>Projetos</span>
                     </a>
                   </li>
 
                   <li class="treeview">
                       <a href="<?php echo base_url(); ?>principalPlano/listar">
-                          <i class="fa fa-th" style="margin-right:5px!important"></i>
-                          <span>Plano</span>
+                          <i class="fa fa-map" style="margin-right:5px!important"></i>
+                          <span>Propriedades</span>
+                      </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalPlano/listar">
+                          <i class="fa fa-draw-polygon" style="margin-right:5px!important"></i>
+                          <span>Parcelas</span>
                       </a>
                   </li>
 
