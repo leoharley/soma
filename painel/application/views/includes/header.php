@@ -242,7 +242,7 @@ $(function() {
 
                   <li class="treeview">
                       <a href="<?php echo base_url(); ?>principalPlano/listar">
-                          <i class="fa-solid fa-map-location-dot" style="margin-right:5px!important"></i>
+                          <i class="fas fa-map-marked-alt" style="margin-right:5px!important"></i>
                           <span>Propriedades</span>
                       </a>
                   </li>
