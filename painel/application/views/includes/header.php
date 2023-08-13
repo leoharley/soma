@@ -214,7 +214,7 @@ $(function() {
             // if($role == ROLE_ADMIN)
            //  {
             ?>
-            <hr>
+            <hr <?php if ($this->session->userdata('isAdmin') != 'S') { echo 'style=display:none'; } ?>>
 
             <li class="treeview" data-toggle="collapse" data-target="#cadastro" style="margin-bottom: 10px!important;cursor: pointer!important;<?php if ($this->session->userdata('isAdmin') != 'S') { echo 'display:none'; } ?>">
                     
@@ -261,7 +261,96 @@ $(function() {
                 
                 </ul>
                 </li>
-              
+
+                <hr>
+
+                <li class="treeview" data-toggle="collapse" data-target="#auxiliar" style="margin-bottom: 10px!important;cursor: pointer!important;">
+                    
+                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  AUXILIAR</b></h4>
+
+                    <ul class="nav nav-list collapse" style="margin-top:10px" id="auxiliar">
+
+                  <li >
+                      <a href="<?php echo base_url(); ?>principalIndice/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Índice</span>
+                      </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalFaturamento/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Faturamento</span>
+                      </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalRegra/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Regra</span>
+                      </a>
+                  </li>
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalExcecaoValores/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Exceção Valores</span>
+                      </a>
+                  </li>
+
+                <!--  <li class="treeview" style="display:none">
+                      <a href="<?php //echo base_url(); ?>principalIndiceGrupoPro/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Índice Grupo Pro</span>
+                      </a>
+                  </li> -->
+                  
+
+                <!--  <li class="treeview" style="display:none">
+                      <a href="<?php //echo base_url(); ?>principalRegraGruPro/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>RegraGrupoPro</span>
+                      </a>
+                  </li> -->
+
+                  <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalRegraProibicao/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>RegraProibição</span>
+                      </a>
+                  </li>
+
+                <!--  <li class="treeview">
+                      <a href="<?php //echo base_url(); ?>principalFaturamentoItem/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Item Faturamento</span>
+                      </a>
+                  </li> -->
+                  
+                <!--  <li class="treeview">
+                      <a href="<?php //echo base_url(); ?>principalFracaoSimproBra/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Fração Mat/Med</span>
+                      </a>
+                  </li> -->
+                  
+                <!--  <li class="treeview">
+                      <a href="<?php //echo base_url(); ?>principalUnidade/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Unidade</span>
+                      </a>
+                  </li> -->
+
+                <!--
+                  <li class="treeview">
+                      <a href="<?php //echo base_url(); ?>principalProibicao/listar">
+                          <i class="fa fa-th" style="margin-right:5px!important"></i>
+                          <span>Proibição</span>
+                      </a>
+                  </li> -->
+                  </ul>
+                </li>
+
                 <hr>
 
               <!--  <h4 style="margin-left:18px!important;color:white"><b> PRINCIPAL </b></h4> -->
@@ -291,9 +380,9 @@ $(function() {
 
                   <hr>
                   
-                  <li class="treeview" data-toggle="collapse" data-target="#relatorios" style="margin-bottom: 10px!important;cursor: pointer!important;<?php if (strpos($_SERVER['REQUEST_URI'], 'homologacao') == FALSE) {echo 'display:none;';}?>">
+                  <li class="treeview" data-toggle="collapse" data-target="#pacote" style="margin-bottom: 10px!important;cursor: pointer!important;<?php if (strpos($_SERVER['REQUEST_URI'], 'homologacao') == FALSE) {echo 'display:none;';}?>">
                     
-                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  RELATÓRIOS</b></h4>
+                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  PACOTE</b></h4>
 
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="pacote">
 
@@ -328,8 +417,186 @@ $(function() {
                   </ul>
                   </li>
 
-              <hr>
-                  
+                  <hr style="<?php if (strpos($_SERVER['REQUEST_URI'], 'homologacao') == FALSE) {echo 'display:none;';}?>">  
+
+                <li class="treeview" data-toggle="collapse" data-target="#test" style="margin-bottom: 20px!important;cursor: pointer!important;">
+                    <i class="fa fa-th" style="margin-left:18px;color:white"></i>
+                    <span style="margin-left:5px;color:white">Importação (cargas)</span>
+
+                    <ul class="nav nav-list collapse" style="margin-top:10px" id="test">
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoGrupoPro">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">GrupoPro</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoProFat">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">ProFat</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoTUSS">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">TUSS</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoFatItem">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">FatItem</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoPorteMedico">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Valor porte médico</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoExcecaoValores">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Exceção de valores</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">                       
+                            <a href="<?php echo base_url(); ?>importacaoFracaoSimproBra">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Fração Mat/Med</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoContrato">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Contrato</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoProduto">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Produto</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">                       
+                            <a href="<?php echo base_url(); ?>importacaoProducao">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Produção</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoSimproMsg">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Simpro (Msg)</span>
+                            </a>
+                        </li>
+
+                        <?php
+                        if ($this->session->userdata('isAdmin') == 'S')
+                          {
+                            echo '
+                            <li class="treeview" style="margin-left:22px;">
+                              <a href="'.base_url().'importacaoSimproMae">
+                                  <i class="fa fa-upload"></i>
+                                  <span style="margin-left:5px">Simpro (Carga mãe)</span>
+                              </a>
+                            </li>';
+                          }
+                          ?>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>atualizarFatItemPelaSimpro">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Atualiza Fatitem pela Simpro</span>
+                            </a>
+                        </li>
+                        
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>atualizarFatItemPelaBrasindice">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Atualiza Fatitem pela Brasindice</span>
+                            </a>
+                        </li> 
+
+                       <!-- <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php //echo base_url(); ?>importacaoBrasindiceMsg">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Brasindice (Msg)</span>
+                            </a>
+                        </li> -->
+
+                        <?php
+                        if ($this->session->userdata('isAdmin') == 'S')
+                          {
+                            echo '
+                            <li class="treeview" style="margin-left:22px;">
+                              <a href="'.base_url().'importacaoBrasindiceMae">
+                                  <i class="fa fa-upload"></i>
+                                  <span style="margin-left:5px">Brasindice</span>
+                              </a>
+                            </li>';
+                          }
+                          ?>
+                                                                       
+                        <li class="treeview" style="margin-left:22px;">                       
+                            <a href="<?php echo base_url(); ?>importacaoRegraGruPro">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">RegraGruPro</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoItensEmpacotados">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Itens Empacotados</span>
+                            </a>
+                        </li>
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>importacaoPacote">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Pacote</span>
+                            </a>
+                        </li>
+                                                              
+                    </ul>
+                </li>
+
+                <li class="treeview" data-toggle="collapse" data-target="#test2" style="margin-bottom: 10px!important;cursor: pointer!important;">
+                    <i class="fa fa-th" style="margin-left:18px;color:white"></i>
+                    <span style="margin-left:5px;color:white">Exportação BI</span>
+
+                        <ul class="nav nav-list collapse" style="margin-top:10px" id="test2">
+
+                        <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php echo base_url(); ?>exportacaoBI">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Exportar BI</span>
+                            </a>
+                        </li>
+
+                  <!--      <li class="treeview" style="margin-left:22px;">
+                            <a href="<?php //echo base_url(); ?>exportacaoBI_finalizar">
+                                <i class="fa fa-upload"></i>
+                                <span style="margin-left:5px">Exportar Tabela BI</span>
+                            </a>
+                        </li> -->
+
+                    </ul>
+
+
+                </li>
 
               <!--  <li class="treeview">
                     <a href="<?php //echo base_url(); ?>importacaoDePara">
@@ -338,6 +605,57 @@ $(function() {
                     </a>
                 </li> -->
 
+                <?php
+                if ($this->session->userdata('isAdmin') == 'S')
+                  {
+                    echo '
+                    <li class="treeview">
+                        <a href="'.base_url().'layoutImportacao/listar">
+                            <i class="fa fa-th"></i>
+                            <span style="color:yellow">Conjunto DEPARA</span>
+                        </a>
+                    </li>';
+                  }
+                ?>
+
+                <?php
+                if ($this->session->userdata('isAdmin') == 'S')
+                  {
+                    echo '
+                    <li class="treeview">
+                        <a href="'.base_url().'importacaoDePara/listar">
+                            <i class="fa fa-th"></i>
+                            <span style="color:yellow">Regras de conjunto DEPARA</span>
+                        </a>
+                    </li>';
+                  }
+                ?>
+
+                <?php
+                if ($this->session->userdata('isAdmin') == 'S')
+                  {
+                    echo '
+                    <li class="treeview">
+                        <a href="'.base_url().'exclusaoDeDados">
+                            <i class="fa fa-th"></i>
+                            <span style="color:yellow">Exclusão de dados</span>
+                        </a>
+                    </li>';
+                  }
+                ?>
+
+                <?php
+                if ($this->session->userdata('isAdmin') == 'S')
+                  {
+                    echo '
+                    <li class="treeview">
+                        <a href="'.base_url().'listaNotificacaoCarga">
+                            <i class="fa fa-th"></i>
+                            <span style="color:yellow">Notificação de carga</span>
+                        </a>
+                    </li>';
+                  }
+                ?>
 
                 <?php
 
