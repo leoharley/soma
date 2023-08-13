@@ -256,7 +256,7 @@ $(function() {
 
                   <li class="treeview">
                       <a href="<?php echo base_url(); ?>principalPlano/listar">
-                          <i class="fa fa-leaf" style="margin-right:5px!important"></i>
+                          <i class="fa-solid fa-leaf" style="margin-right:5px!important"></i>
                           <span>Flora</span>
                       </a>
                   </li>
