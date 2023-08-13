@@ -263,14 +263,14 @@ $(function() {
 
                   <li class="treeview">
                       <a href="<?php echo base_url(); ?>principalPlano/listar">
-                          <i class="fa fa-bug" style="margin-right:5px!important"></i>
+                          <i class="fa fa-paw" style="margin-right:5px!important"></i>
                           <span>Fauna</span>
                       </a>
                   </li>
 
                   <li class="treeview">
                       <a href="<?php echo base_url(); ?>principalPlano/listar">
-                          <i class="fa fa-plant-wilt" style="margin-right:5px!important"></i>
+                          <i class="fa fa-tree" style="margin-right:5px!important"></i>
                           <span>Epífetas</span>
                       </a>
                   </li>
