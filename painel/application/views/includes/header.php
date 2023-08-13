@@ -16,69 +16,31 @@
   <!-- Theme style -->
   <link href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
   <!-- Datatables style -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"/>
-  
-  <script src="<?php echo base_url(); ?>assets/js/angular.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"
+  />
   <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
   <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
-
   <style>
+    .main-header li.user-header {
+      background-color: #2d6c5d!important;
+    }
+    .main-header .logo {
+      background-color: #1d463c!important;
+    }
+    .navbar { 
+      background-color: #2d6c5d!important;
+    }
+    .skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
+    border-left-color: #3cbc3c!important;
+    }
     .error {
       color: red;
       font-weight: normal;
     }
-    .box {
-      width: 82vw!important;
-    }
-    li a:hover {
-      color: #000 !important;
-      background-color: #C0C0C0 !important;
-    }
-    .content-wrapper {
-      min-height: 800px !important;
-    }
-    .col-md-2 {
-    width: 15.166667% !important;
-    }
-    .col-md-1 {
-    width: 10.333333% !important;
-    }
-    .form-control[disabled] {
-      background-color: #cfcfcf;
-      color: #646464;
-    }
-    .content-wrapper {
-    min-height: 1200px !important;
-    }
-    .logo-lg {
-    display: block;
-    font-size: 16px;
-    line-height: 22px;
-    margin-top: 4px;
-    }
-    .nome_cliente {
-      color:white;
-      font-size:24px;
-      float:left;
-      left:35%;
-      margin-top:8px;
-      position:absolute
-    }
-    .container {
-      width:100%!important;
-      margin-left:0!important;
-    }
-    .form-control {
-      font-size:13px!important;
-    }
   </style>
   <!-- jQuery 2.1.4 -->
   <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/money-mask/jquery.maskMoney.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/shortcut.js"></script>
-  <script src="https://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js"></script>
   <script type="text/javascript">
     var baseURL = "<?php echo base_url(); ?>";
   </script>
