@@ -193,7 +193,7 @@ $(function() {
             ?>
             <hr>
 
-            <li class="treeview" data-toggle="collapse" data-target="#usuario" style="margin-bottom: 10px!important;cursor: pointer!important;">
+            <li class="treeview" data-toggle="collapse" data-target="#cadastro" style="margin-bottom: 10px!important;cursor: pointer!important;">
                     
                     <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  CADASTRO</b></h4>
 
