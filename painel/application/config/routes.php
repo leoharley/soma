@@ -5,6 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = "login";
 $route['404_override'] = 'login/error';
 
+$route['cadastroPerfil/:any/:any'] = "cadastro/cadastroPerfil/$1/$2";
+$route['cadastroPerfil/:any'] = "cadastro/cadastroPerfil/$1";
+
 
 /*********** USER DEFINED ROUTES *******************/
 
