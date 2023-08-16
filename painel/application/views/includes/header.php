@@ -38,6 +38,9 @@
       color: red;
       font-weight: normal;
     }
+    .content-wrapper{
+      height:580px;
+    }
     @media screen and
     (min-width: 640px) {
       .sidebar-toggle {
