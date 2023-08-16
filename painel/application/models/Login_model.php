@@ -115,7 +115,7 @@ class Login_model extends CI_Model
     function loginsert($logInfo)
     {
         $this->db->trans_start();
-        $this->db->insert('tbl_log', $logInfo);
+        $this->db->insert('tb_log', $logInfo);
         $this->db->trans_complete();
     }
 

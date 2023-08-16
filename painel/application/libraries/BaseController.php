@@ -190,16 +190,16 @@ class BaseController extends CI_Controller {
 	 */
 	function logrecord($process,$processFunction){
 		$this->datas();
-		$logInfo = array("userId"=>$this->vendorId,
-		"userName"=>$this->name,
-		"process"=>$process,
-		"processFunction"=>$processFunction,
-		"userRoleId"=>$this->role,
-		"userRoleText"=>$this->roleText,
-		"userIp"=>$_SERVER['REMOTE_ADDR'],
-		"userAgent"=>getBrowserAgent(),
-		"agentString"=>$this->agent->agent_string(),
-		"platform"=>$this->agent->platform()
+		$logInfo = array("id_acesso"=>$this->vendorId,
+		"nome"=>$this->name,
+		"acao"=>$process,
+		"funcao_acao"=>$processFunction,
+		"id_perfil"=>$this->role,
+		"ds_perfil"=>$this->roleText,
+		"ip"=>$_SERVER['REMOTE_ADDR'],
+		"ds_navegador"=>getBrowserAgent(),
+		"string_navegador"=>$this->agent->agent_string(),
+		"plataforma"=>$this->agent->platform()
 		);
 		
 		$this->load->model('login_model');
