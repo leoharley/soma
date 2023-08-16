@@ -39,7 +39,7 @@
       font-weight: normal;
     }
     .content-wrapper{
-      height:580px;
+      height:580px!important;
     }
     @media screen and
     (min-width: 640px) {
