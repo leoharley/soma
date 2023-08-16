@@ -281,7 +281,7 @@ class Cadastro extends BaseController
 
                 $returns = $this->paginationCompress ( "cadastroPerfil/listar", $count, 10 );
                 
-                $data['registrosPerfis'] = $this->CadastroModel->listaPerfis($this->session->userdata('userId'), $searchText, $returns["page"], $returns["segment"]);
+                $data['registrosPerfis'] = $this->CadastroModel->listaPerfis($searchText, $returns["page"], $returns["segment"]);
                 
                 $process = 'Listar perfis';
                 $processFunction = 'Cadastro/cadastroPerfil';

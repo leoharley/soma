@@ -162,7 +162,7 @@ function listaPerfis($searchText = '', $page, $segment)
 {
     $this->db->select('Perfis.id_perfil, Perfis.ds_perfil');
     $this->db->from('tb_perfil as Perfis');
-//     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
+    
     if(!empty($searchText)) {
         $likeCriteria = "(Perfis.ds_perfil  LIKE '%".$searchText."%')";
         $this->db->where($likeCriteria);
