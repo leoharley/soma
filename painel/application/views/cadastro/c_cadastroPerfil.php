@@ -45,9 +45,9 @@ if(!empty($infoPerfil))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Ds_Perfil">Descrição</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('Ds_Perfil') : $Ds_Perfil ; ?>" id="Ds_Perfil" name="Ds_Perfil" maxlength="128">
-                                        <input type="hidden" value="<?php echo $Id_CdPerfil; ?>" name="Id_CdPerfil" id="Id_CdPerfil" />
+                                        <label for="ds_perfil">Descrição</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_perfil') : $ds_perfil ; ?>" id="ds_perfil" name="ds_perfil" maxlength="128">
+                                        <input type="hidden" value="<?php echo $id_perfil; ?>" name="id_perfil" id="id_perfil" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
