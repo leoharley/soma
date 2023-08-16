@@ -65,11 +65,11 @@ class Cadastro extends BaseController
 
                 $this->global['pageTitle'] = 'QUALICAD : Lista de Usuário';
                 
-                $this->loadViews("qualicad/cadastro/l_cadastroUsuario", $this->global, $data, NULL);
+                $this->loadViews("cadastro/l_cadastroUsuario", $this->global, $data, NULL);
             }
             else if ($tpTela == 'cadastrar') {
                 $this->global['pageTitle'] = 'QUALICAD : Cadastro de Usuário';
-                $this->loadViews("qualicad/cadastro/c_cadastroUsuario", $this->global, $data, NULL); 
+                $this->loadViews("cadastro/c_cadastroUsuario", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
                 $IdUsuario = $this->uri->segment(3);
@@ -79,7 +79,7 @@ class Cadastro extends BaseController
                 }
                 $data['infoUsuario'] = $this->CadastroModel->carregaInfoUsuario($IdUsuario);
                 $this->global['pageTitle'] = 'QUALICAD : Editar usuário';      
-                $this->loadViews("qualicad/cadastro/c_cadastroUsuario", $this->global, $data, NULL);
+                $this->loadViews("cadastro/c_cadastroUsuario", $this->global, $data, NULL);
             }
     }
 
@@ -289,11 +289,11 @@ class Cadastro extends BaseController
 
                 $this->global['pageTitle'] = 'QUALICAD : Lista de Perfil';
                 
-                $this->loadViews("qualicad/cadastro/l_cadastroPerfil", $this->global, $data, NULL);
+                $this->loadViews("cadastro/l_cadastroPerfil", $this->global, $data, NULL);
             }
             else if ($tpTela == 'cadastrar') {
                 $this->global['pageTitle'] = 'QUALICAD : Cadastro de Perfil';
-                $this->loadViews("qualicad/cadastro/c_cadastroPerfil", $this->global, $data, NULL); 
+                $this->loadViews("cadastro/c_cadastroPerfil", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
                 $IdPerfil = $this->uri->segment(3);
@@ -303,7 +303,7 @@ class Cadastro extends BaseController
                 }
                 $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfil($IdPerfil);
                 $this->global['pageTitle'] = 'QUALICAD : Editar Perfil';      
-                $this->loadViews("qualicad/cadastro/c_cadastroPerfil", $this->global, $data, NULL);
+                $this->loadViews("cadastro/c_cadastroPerfil", $this->global, $data, NULL);
             }
     }
 
@@ -489,7 +489,7 @@ class Cadastro extends BaseController
 
                 $this->global['pageTitle'] = 'QUALICAD : Lista de Telas';
                 
-                $this->loadViews("qualicad/cadastro/l_cadastroTelas", $this->global, $data, NULL);
+                $this->loadViews("cadastro/l_cadastroTelas", $this->global, $data, NULL);
             }
             else if ($tpTela == 'editar') {
                 $IdTelas = $this->uri->segment(3);
@@ -499,7 +499,7 @@ class Cadastro extends BaseController
                 }
                 $data['infoTelas'] = $this->CadastroModel->carregaInfoTelas($IdTelas);
                 $this->global['pageTitle'] = 'QUALICAD : Editar Telas';      
-                $this->loadViews("qualicad/cadastro/c_cadastroTelas", $this->global, $data, NULL);
+                $this->loadViews("cadastro/c_cadastroTelas", $this->global, $data, NULL);
             }
     }
 
@@ -594,7 +594,7 @@ function cadastroPermissao()
 
             $this->global['pageTitle'] = 'QUALICAD : Lista de Permissões';
             
-            $this->loadViews("qualicad/cadastro/l_cadastroPermissao", $this->global, $data, NULL);
+            $this->loadViews("cadastro/l_cadastroPermissao", $this->global, $data, NULL);
         }
         else if ($tpTela == 'editar') {
             $IdPermissao = $this->uri->segment(3);
@@ -604,7 +604,7 @@ function cadastroPermissao()
             }
             $data['infoPermissao'] = $this->CadastroModel->carregaInfoPermissao($IdPermissao);
             $this->global['pageTitle'] = 'QUALICAD : Editar Permissões';      
-            $this->loadViews("qualicad/cadastro/c_cadastroPermissao", $this->global, $data, NULL);
+            $this->loadViews("cadastro/c_cadastroPermissao", $this->global, $data, NULL);
         }
 }
 
@@ -686,7 +686,7 @@ function cadastroUsuarioEmpresa()
 
             $this->global['pageTitle'] = 'QUALICAD : Lista de Usuários/Empresas';
             
-            $this->loadViews("qualicad/cadastro/l_cadastroUsuarioEmpresa", $this->global, $data, NULL);
+            $this->loadViews("cadastro/l_cadastroUsuarioEmpresa", $this->global, $data, NULL);
         }
         else if ($tpTela == 'adicionar') {
            // $data['infoUsuarioEmpresa'] = $this->CadastroModel->carregaInfoUsuarioEmpresa($IdUsuEmp);
@@ -694,7 +694,7 @@ function cadastroUsuarioEmpresa()
             $data['infoEmpresasCriadas'] = $this->CadastroModel->carregaEmpresasCriadas($this->session->userdata('userId'));
             $data['infoPerfis'] = $this->CadastroModel->carregaPerfisCriados($this->session->userdata('userId'));
             $this->global['pageTitle'] = 'QUALICAD : Editar Usuários/Empresas';      
-            $this->loadViews("qualicad/cadastro/c_cadastroUsuarioEmpresa", $this->global, $data, NULL);
+            $this->loadViews("cadastro/c_cadastroUsuarioEmpresa", $this->global, $data, NULL);
         }
 }
 
