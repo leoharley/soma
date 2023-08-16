@@ -108,7 +108,7 @@ class Login extends BaseController
                     $process = 'Conecte-se';
                     $processFunction = 'Login/loginMe';
 
-                    $sessionArray = array('userId'=>$res->id_usuario,                    
+                    $sessionArray = array('userId'=>$res->id_acesso,                    
                                           'role'=>$res->id_perfil,
                                           'roleText'=>$res->ds_perfil,
                                           'name'=>$res->nome,
