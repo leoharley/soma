@@ -329,11 +329,10 @@ class Cadastro extends BaseController
         //{
 
                 $id_perfil = $this->input->post('id_perfil');
-                $ds_perfil = ucwords(strtolower($this->security->xss_clean($this->input->post('ds_perfil'))));
+                $ds_perfil = $this->input->post('ds_perfil');
                 $st_admin = $this->input->post('st_admin');
                 
-                $infoPerfil = array('Ds_Perfil'=> $Ds_Perfil, 'CriadoPor'=>$this->vendorId, 'Dt_Ativo'=>$Dt_Ativo,
-                                    'PerfilAdmin'=>$PerfilAdmin, 'Tp_Ativo'=>$Tp_Ativo);
+                $infoPerfil = array('id_perfil'=> $id_perfil,'ds_perfil'=>$ds_perfil,'st_admin'=>$st_admin);
                                     
                 $resultado = $this->CadastroModel->adicionaPerfil($infoPerfil);
                 

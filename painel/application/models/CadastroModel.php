@@ -131,7 +131,7 @@ class CadastroModel extends CI_Model
                         UsuEmp.TbPerfil_Id_CdPerfil, Perfil.Ds_Perfil');
     $this->db->from('TbUsuEmp as UsuEmp');
     $this->db->join('TbEmpresa as Empresa', 'Empresa.Id_Empresa = UsuEmp.TbEmpresa_Id_Empresa AND Empresa.Deletado <> \'S\' AND Empresa.Tp_Ativo = \'S\'','inner');
-    $this->db->join('TbPerfil as Perfil', 'Perfil.Id_CdPerfil = UsuEmp.TbPerfil_Id_CdPerfil AND Perfil.Deletado <> \'S\' AND Perfil.Tp_Ativo = \'S\'','inner');
+    $this->db->join('tb_perfil as Perfil', 'Perfil.id_perfil = UsuEmp.TbPerfil_Id_CdPerfil AND Perfil.Deletado <> \'S\' AND Perfil.Tp_Ativo = \'S\'','inner');
     $this->db->where('UsuEmp.TabUsuario_Id_Usuario', $IdUsuario);
     $this->db->where('UsuEmp.Deletado', 'N');
 //    $this->db->where('UsuEmp.TbPerfil_Id_CdPerfil <>', '99');
@@ -146,7 +146,7 @@ class CadastroModel extends CI_Model
     $this->db->select('UsuEmp.Id_UsuEmp, UsuEmp.TbEmpresa_Id_Empresa, UsuEmp.TbPerfil_Id_CdPerfil, Perfil.Ds_Perfil, Usuario.Admin');
     $this->db->from('TbUsuEmp as UsuEmp');
     $this->db->join('TbEmpresa as Empresa', 'Empresa.Id_Empresa = UsuEmp.TbEmpresa_Id_Empresa AND Empresa.Deletado <> \'S\' AND Empresa.Tp_Ativo = \'S\'','inner');
-    $this->db->join('TbPerfil as Perfil', 'Perfil.Id_CdPerfil = UsuEmp.TbPerfil_Id_CdPerfil AND Perfil.Deletado <> \'S\' AND Perfil.Tp_Ativo = \'S\'','inner');
+    $this->db->join('tb_perfil as Perfil', 'Perfil.id_perfil = UsuEmp.TbPerfil_Id_CdPerfil AND Perfil.Deletado <> \'S\' AND Perfil.Tp_Ativo = \'S\'','inner');
     $this->db->join('TabUsuario as Usuario', 'Usuario.Id_Usuario = UsuEmp.TabUsuario_Id_Usuario AND Usuario.Deletado <> \'S\' AND Usuario.Tp_Ativo = \'S\'','inner');
     $this->db->where('UsuEmp.TbEmpresa_Id_Empresa', $IdEmpresa);
     $this->db->where('UsuEmp.TabUsuario_Id_Usuario', $IdUsuario);
@@ -177,7 +177,7 @@ function listaPerfis($searchText = '', $page, $segment)
 function adicionaPerfil($infoPerfil)
 {
     $this->db->trans_start();
-    $this->db->insert('TbPerfil', $infoPerfil);
+    $this->db->insert('tb_perfil', $infoPerfil);
     $insert_id = $this->db->insert_id();
     $this->db->trans_complete();
 
@@ -206,19 +206,19 @@ function adicionaPerfil($infoPerfil)
 
 function editaPerfil($infoPerfil, $IdPerfil)
 {
-    $this->db->where('Id_CdPerfil', $IdPerfil);
-    $this->db->update('TbPerfil', $infoPerfil);
+    $this->db->where('id_perfil', $IdPerfil);
+    $this->db->update('tb_perfil', $infoPerfil);
     
     return TRUE;
 }
 
 function apagaPerfil($infoPerfil, $IdPerfil)
 {
-        $this->db->where('TbPerfil_Id_CdPerfil', $IdPerfil);
-        $res1 = $this->db->delete('TbPermissao');
+        $this->db->where('id_perfil', $IdPerfil);
+        $res1 = $this->db->delete('tb_permissao');
 
-        $this->db->where('Id_CdPerfil', $IdPerfil);
-        $res2 = $this->db->delete('TbPerfil');
+        $this->db->where('id_perfil', $IdPerfil);
+        $res2 = $this->db->delete('tb_perfil');
 
         if(!$res1 && !$res2)
         {
@@ -230,19 +230,13 @@ function apagaPerfil($infoPerfil, $IdPerfil)
         {
             return TRUE;
         }
-        
-    // $this->db->where('Id_CdPerfil', $IdPerfil);
-    // $this->db->update('TbPerfil', $infoPerfil);
-    
-    // return $this->db->affected_rows();
 }
 
 function carregaInfoPerfil($IdPerfil)
 {
-    $this->db->select('Id_CdPerfil, Ds_Perfil, PerfilAdmin, PerfilAdmin, CriadoPor, AtualizadoPor, Dt_Atualizacao, Dt_Ativo,
-    Dt_Inativo, Tp_Ativo');
-    $this->db->from('TbPerfil');
-    $this->db->where('Id_CdPerfil', $IdPerfil);
+    $this->db->select('id_perfil, ds_perfil, st_admin');
+    $this->db->from('tb_perfil');
+    $this->db->where('id_perfil', $IdPerfil);
     $query = $this->db->get();
     
     return $query->result();
@@ -256,7 +250,7 @@ function listaPermissao($idUser, $searchText = '', $page, $segment)
     Permissao.Inserir, Permissao.Excluir, Permissao.Consultar, Permissao.Imprimir');
     $this->db->from('TbPermissao as Permissao');
     $this->db->join('TabTela as Telas', 'Telas.Id_Tela = Permissao.TabTela_Id_Tela AND Telas.Tp_Ativo = \'S\'','inner');
-    $this->db->join('TbPerfil as Perfis', 'Perfis.Id_CdPerfil = Permissao.TbPerfil_Id_CdPerfil AND Perfis.Deletado = \'N\' AND Perfis.Tp_Ativo = \'S\'','inner');
+    $this->db->join('tb_perfil as Perfis', 'Perfis.id_perfil = Permissao.TbPerfil_Id_CdPerfil AND Perfis.Deletado = \'N\' AND Perfis.Tp_Ativo = \'S\'','inner');
     if(!empty($searchText)) {
         $likeCriteria = "(Perfis.Ds_Perfil  LIKE '%".$searchText."%'
                         OR  Telas.Ds_Tela  LIKE '%".$searchText."%')";
@@ -284,7 +278,7 @@ function carregaInfoPermissao($IdPermissao)
     Permissao.Inserir, Permissao.Excluir, Permissao.Consultar, Permissao.Imprimir');
     $this->db->from('TbPermissao as Permissao');
     $this->db->join('TabTela as Telas', 'Telas.Id_Tela = Permissao.TabTela_Id_Tela AND Telas.Tp_Ativo = \'S\'','inner');
-    $this->db->join('TbPerfil as Perfis', 'Perfis.Id_CdPerfil = Permissao.TbPerfil_Id_CdPerfil AND Perfis.Deletado <> \'S\' AND Perfis.Tp_Ativo = \'S\'','inner');
+    $this->db->join('tb_perfil as Perfis', 'Perfis.id_perfil = Permissao.TbPerfil_Id_CdPerfil AND Perfis.Deletado <> \'S\' AND Perfis.Tp_Ativo = \'S\'','inner');
     $this->db->where('Id_Permissao', $IdPermissao);
     $query = $this->db->get();
     
@@ -307,8 +301,8 @@ function carregaInfoUsuarioCriados($CriadoPor)
 
 function carregaPerfisCriados($CriadoPor)
 {
-    $this->db->select('Perfis.Id_CdPerfil, Perfis.Ds_Perfil');
-    $this->db->from('TbPerfil as Perfis');
+    $this->db->select('Perfis.id_perfil, Perfis.Ds_Perfil');
+    $this->db->from('tb_perfil as Perfis');
     $this->db->where('Perfis.Deletado <>', 'S');
     $this->db->where('Perfis.Tp_Ativo', 'S');
     $this->db->where('Perfis.CriadoPor', $CriadoPor);
