@@ -328,21 +328,9 @@ class Cadastro extends BaseController
         //    else
         //{
 
-                $Id_CdPerfil = $this->input->post('Id_CdPerfil');
-                $Ds_Perfil = ucwords(strtolower($this->security->xss_clean($this->input->post('Ds_Perfil'))));
-                $Tp_Ativo = $this->input->post('Tp_Ativo');
-                $PerfilAdmin = $this->input->post('PerfilAdmin');
-
-            //    $roleId = $this->input->post('role');
-
-                //SE O USUÁRIO FOR SETADO COMO ATIVO PEGAR DATA ATUAL
-                if ($Tp_Ativo == 'S') 
-                { 
-                    $Dt_Ativo = date('Y-m-d H:i:s');
-                } else
-                {
-                    $Dt_Ativo = null;
-                }
+                $id_perfil = $this->input->post('id_perfil');
+                $ds_perfil = ucwords(strtolower($this->security->xss_clean($this->input->post('ds_perfil'))));
+                $st_admin = $this->input->post('st_admin');
                 
                 $infoPerfil = array('Ds_Perfil'=> $Ds_Perfil, 'CriadoPor'=>$this->vendorId, 'Dt_Ativo'=>$Dt_Ativo,
                                     'PerfilAdmin'=>$PerfilAdmin, 'Tp_Ativo'=>$Tp_Ativo);

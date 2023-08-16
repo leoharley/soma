@@ -1,19 +1,17 @@
 <?php
 
-$Id_CdPerfil  = '';
-$Ds_Perfil = '';
-$Tp_Ativo = '';
-$PerfilAdmin = '';
+$id_perfil  = '';
+$ds_perfil = '';
+$st_admin = '';
 
 if ($this->uri->segment(2) == 'editar') {
 if(!empty($infoPerfil))
 {
     foreach ($infoPerfil as $r)
     {
-        $Id_CdPerfil = $r->Id_CdPerfil;
-        $Ds_Perfil = $r->Ds_Perfil;
-        $Tp_Ativo = $r->Tp_Ativo;
-        $PerfilAdmin = $r->PerfilAdmin;
+        $id_perfil = $r->id_perfil;
+        $ds_perfil = $r->ds_perfil;
+        $st_admin = $r->st_admin;
     }
 }
 }
@@ -54,22 +52,10 @@ if(!empty($infoPerfil))
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Tp_Ativo">Perfil ativo?</label>
-                                        <select class="form-control required" id="Tp_Ativo" name="Tp_Ativo">
-                                            <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $Tp_Ativo == 'S') { echo 'selected'; } else if ($this->uri->segment(2) == 'cadastrar') { echo 'selected'; } ?>>Sim</option>
-                                            <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $Tp_Ativo == 'N') { echo 'selected'; } ?>>Não</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="PerfilAdmin">Perfil Admin?</label>
-                                        <select class="form-control required" id="PerfilAdmin" name="PerfilAdmin">
-                                            <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $PerfilAdmin == 'S') { echo 'selected'; } ?>>Sim</option>
-                                            <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $PerfilAdmin == 'N') { echo 'selected'; } else if ($this->uri->segment(2) == 'cadastrar') { echo 'selected'; } ?>>Não</option>
+                                        <label for="st_admin">Perfil Admin?</label>
+                                        <select class="form-control required" id="st_admin" name="st_admin">
+                                            <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $st_admin == 'S') { echo 'selected'; } ?>>Sim</option>
+                                            <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $st_admin == 'N') { echo 'selected'; } else if ($this->uri->segment(2) == 'cadastrar') { echo 'selected'; } ?>>Não</option>
                                         </select>
                                     </div>
                                 </div>
