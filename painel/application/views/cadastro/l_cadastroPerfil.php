@@ -80,28 +80,19 @@
                       ?>
                     <tr>
                       <td>
-                        <?php echo $registro->Id_CdPerfil ?>
+                        <?php echo $registro->id_perfil ?>
                       </td>
                       <td>
-                        <?php echo $registro->Ds_Perfil ?>
-                      </td>
-                    <!--  <td>
-                        <?php // echo ($registro->Dt_Ativo != null) ? date("d/m/Y", strtotime($registro->Dt_Ativo)) : ''; ?>
-                      </td>
-                      <td>
-                        <?php // echo ($registro->Dt_Inativo != null) ? date("d/m/Y", strtotime($registro->Dt_Inativo)) : ''; ?>
-                      </td> -->
-                      <td>
-                        <?php echo ($registro->Tp_Ativo == 'S') ? 'Sim' : 'Não'; ?>
+                        <?php echo $registro->ds_perfil ?>
                       </td>
                       <td class="text-center">
                         <!--  <a class="btn btn-sm btn-primary" href="<?php //echo base_url().'log-history/'.$record->userId; ?>" title="Log geçmişi">
                               <i class="fa fa-history"></i>
                           </a> -->
-                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'cadastroPerfil/editar/'.$registro->Id_CdPerfil; ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'cadastroPerfil/editar/'.$registro->id_perfil; ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="<?php echo base_url().'apagaPerfil/'.$registro->Id_CdPerfil; ?>" data-userid="<?php echo $registro->Id_CdPerfil; ?>" title="Excluir">
+                          <a class="btn btn-sm btn-danger deleteUser" href="<?php echo base_url().'apagaPerfil/'.$registro->id_perfil; ?>" data-userid="<?php echo $registro->id_perfil; ?>" title="Excluir">
                               <i class="fa fa-trash-o"></i>
                           </a>
                       </td>
