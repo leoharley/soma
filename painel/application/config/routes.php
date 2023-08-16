@@ -9,6 +9,12 @@ $route['cadastroPerfil/:any/:any'] = "cadastro/cadastroPerfil/$1/$2";
 $route['cadastroPerfil/:any'] = "cadastro/cadastroPerfil/$1";
 
 
+/*********** ROUTES PARA AÇÕES DA TELA PERFIL *******************/
+$route['adicionaPerfil'] = "cadastro/adicionaPerfil";
+$route['editaPerfil'] = "cadastro/editaPerfil";
+$route['apagaPerfil/:any'] = "cadastro/apagaPerfil/$1";
+
+
 /*********** USER DEFINED ROUTES *******************/
 
 $route['loginMe'] = 'login/loginMe';
