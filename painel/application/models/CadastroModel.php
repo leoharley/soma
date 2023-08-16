@@ -158,18 +158,15 @@ class CadastroModel extends CI_Model
 // FIM DAS CONSULTAS NA TELA DE USUÁRIO
 
 // INICIO DAS CONSULTAS NA TELA DE PERFIL
-function listaPerfis($idUser, $searchText = '', $page, $segment)
+function listaPerfis($searchText = '', $page, $segment)
 {
-    $this->db->select('Perfis.Id_CdPerfil, Perfis.Ds_Perfil, Perfis.CriadoPor, Perfis.AtualizadoPor, Perfis.Dt_Atualizacao, Perfis.Dt_Ativo, 
-    Perfis.Dt_Inativo, Perfis.Tp_Ativo');
-    $this->db->from('TbPerfil as Perfis');
+    $this->db->select('Perfis.id_perfil, Perfis.ds_perfil');
+    $this->db->from('tb_perfil as Perfis');
 //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
     if(!empty($searchText)) {
-        $likeCriteria = "(Perfis.Ds_Perfil  LIKE '%".$searchText."%')";
+        $likeCriteria = "(Perfis.ds_perfil  LIKE '%".$searchText."%')";
         $this->db->where($likeCriteria);
     }
-    $this->db->where('Perfis.Deletado <>', 'S');
-    $this->db->where('Perfis.CriadoPor', $idUser);
     $this->db->limit($page, $segment);
     $query = $this->db->get();
     
@@ -328,8 +325,8 @@ function carregaPerfisCriados($CriadoPor)
      */
     function carregaPerfisUsuarios()
     {
-        $this->db->select('Id_CdPerfil, Ds_Perfil');
-        $this->db->from('TbPerfil');
+        $this->db->select('id_perfil, ds_perfil');
+        $this->db->from('tb_perfil');
         $query = $this->db->get();
         
         return $query->result();
