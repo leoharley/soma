@@ -65,9 +65,6 @@
                   <tr>
                     <th>Id</th>
                     <th>Nome (Descrição)</th>
-                  <!--  <th>Data ativa</th>
-                    <th>Data inativa</th> -->
-                    <th>Perfil ativo?</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
