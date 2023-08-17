@@ -66,14 +66,14 @@ class Cadastro extends BaseController
                 $processFunction = 'Cadastro/cadastroUsuario';
                 $this->logrecord($process,$processFunction);
 
-                $this->global['pageTitle'] = 'QUALICAD : Lista de Usuário';
+                $this->global['pageTitle'] = 'SOMA : Lista de Usuário';
 
                 $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfil();
                
                 $this->loadViews("cadastro/l_cadastroUsuario", $this->global, $data, NULL);
             }
             else if ($tpTela == 'cadastrar') {
-                $this->global['pageTitle'] = 'QUALICAD : Cadastro de Usuário';
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Usuário';
                 
                 $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfil();
 
@@ -88,7 +88,7 @@ class Cadastro extends BaseController
 
                 $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfil();
                 $data['infoUsuario'] = $this->CadastroModel->carregaInfoUsuario($IdUsuario);
-                $this->global['pageTitle'] = 'QUALICAD : Editar usuário';      
+                $this->global['pageTitle'] = 'SOMA : Editar usuário';      
                 $this->loadViews("cadastro/c_cadastroUsuario", $this->global, $data, NULL);
             }
     }
@@ -269,12 +269,12 @@ class Cadastro extends BaseController
                 $processFunction = 'Cadastro/cadastroPerfil';
                 $this->logrecord($process,$processFunction);
 
-                $this->global['pageTitle'] = 'QUALICAD : Lista de Perfil';
+                $this->global['pageTitle'] = 'SOMA : Lista de Perfil';
                 
                 $this->loadViews("cadastro/l_cadastroPerfil", $this->global, $data, NULL);
             }
             else if ($tpTela == 'cadastrar') {
-                $this->global['pageTitle'] = 'QUALICAD : Cadastro de Perfil';
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Perfil';
                 $this->loadViews("cadastro/c_cadastroPerfil", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
@@ -284,7 +284,7 @@ class Cadastro extends BaseController
                     redirect('cadastroPerfil/listar');
                 }
                 $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfilExistente($IdPerfil);
-                $this->global['pageTitle'] = 'QUALICAD : Editar Perfil';      
+                $this->global['pageTitle'] = 'SOMA : Editar Perfil';      
                 $this->loadViews("cadastro/c_cadastroPerfil", $this->global, $data, NULL);
             }
     }
@@ -303,7 +303,7 @@ class Cadastro extends BaseController
         //    {
 
         //        $data['perfis'] = $this->CadastroModel->carregaPerfisUsuarios();
-        //        $this->global['pageTitle'] = 'QUALICAD : Adicionar usuário';
+        //        $this->global['pageTitle'] = 'SOMA : Adicionar usuário';
         //        $this->loadViews("c_cadastroUsuario", $this->global, $data, NULL);
 
         //    }
@@ -453,7 +453,7 @@ class Cadastro extends BaseController
                 $processFunction = 'Cadastro/cadastroTelas';
                 $this->logrecord($process,$processFunction);
 
-                $this->global['pageTitle'] = 'QUALICAD : Lista de Telas';
+                $this->global['pageTitle'] = 'SOMA : Lista de Telas';
                 
                 $this->loadViews("cadastro/l_cadastroTelas", $this->global, $data, NULL);
             }
@@ -464,7 +464,7 @@ class Cadastro extends BaseController
                     redirect('cadastroTela/listar');
                 }
                 $data['infoTelas'] = $this->CadastroModel->carregaInfoTelas($IdTelas);
-                $this->global['pageTitle'] = 'QUALICAD : Editar Telas';      
+                $this->global['pageTitle'] = 'SOMA : Editar Telas';      
                 $this->loadViews("cadastro/c_cadastroTelas", $this->global, $data, NULL);
             }
     }
@@ -558,7 +558,7 @@ function cadastroPermissao()
             $processFunction = 'Cadastro/cadastroPermissao';
             $this->logrecord($process,$processFunction);
 
-            $this->global['pageTitle'] = 'QUALICAD : Lista de Permissões';
+            $this->global['pageTitle'] = 'SOMA : Lista de Permissões';
             
             $this->loadViews("cadastro/l_cadastroPermissao", $this->global, $data, NULL);
         }
@@ -569,7 +569,7 @@ function cadastroPermissao()
                 redirect('cadastroPermissao/listar');
             }
             $data['infoPermissao'] = $this->CadastroModel->carregaInfoPermissao($IdPermissao);
-            $this->global['pageTitle'] = 'QUALICAD : Editar Permissões';      
+            $this->global['pageTitle'] = 'SOMA : Editar Permissões';      
             $this->loadViews("cadastro/c_cadastroPermissao", $this->global, $data, NULL);
         }
 }
