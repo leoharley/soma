@@ -31,14 +31,14 @@ class Cadastro extends BaseController
             redirect('login');
         }
         
-        else
+    /*    else
         {
             // isAdmin / Admin role control function / This function used admin role control
             if($this->isAdmin() == TRUE)
             {
                 $this->accesslogincontrol();
             }
-        }
+        } */
     }
 
     // INICIO DAS FUNÇÕES DA TELA DE USUÁRIO
