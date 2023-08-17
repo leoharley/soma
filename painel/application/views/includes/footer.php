@@ -43,7 +43,7 @@
                 [10, 15, 25, 50, -1],
                 [10, 15, 25, 50, "Todos"]
             ],
-            "pageLength": 10,
+            "pageLength": 5,
 
             //Dil
             language: {
