@@ -275,7 +275,7 @@ class Cadastro extends BaseController
                 {
                     redirect('cadastroPerfil/listar');
                 }
-                $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfil($IdPerfil);
+                $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfilExistente($IdPerfil);
                 $this->global['pageTitle'] = 'QUALICAD : Editar Perfil';      
                 $this->loadViews("cadastro/c_cadastroPerfil", $this->global, $data, NULL);
             }
@@ -355,7 +355,7 @@ class Cadastro extends BaseController
                 $PerfilAdmin = $this->input->post('PerfilAdmin');
                 $Tp_Ativo = $this->input->post('Tp_Ativo');  
 
-                foreach ($this->CadastroModel->carregaInfoPerfil($IdPerfil) as $data){
+                foreach ($this->CadastroModel->carregaInfoPerfilExistente($IdPerfil) as $data){
                     $Tp_Ativo_Atual = ($data->Tp_Ativo);
                 }
 

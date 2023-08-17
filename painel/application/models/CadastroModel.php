@@ -197,7 +197,7 @@ function apagaPerfil($infoPerfil, $IdPerfil)
         }
 }
 
-function carregaInfoPerfil($IdPerfil)
+function carregaInfoPerfilExistente($IdPerfil)
 {
     $this->db->select('id_perfil, ds_perfil, st_admin');
     $this->db->from('tb_perfil');
