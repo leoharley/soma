@@ -67,6 +67,7 @@
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>E-mail</th>
+                    <th>Perfil</th>
                   <!--  <th>Admin?</th> -->
                   <!--  <th>Data ativo</th>
                     <th>Data inativo</th> -->                    
@@ -92,6 +93,9 @@
                       </td>
                       <td>
                         <?php echo $registro->ds_email ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->ds_perfil ?>
                       </td>
                     <!--  <td>
                         <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>

@@ -6,8 +6,9 @@ class CadastroModel extends CI_Model
 // INICIO DAS CONSULTAS NA TELA DE USUÁRIO
     function listaUsuarios($idUser, $idEmpresa, $searchText = '', $page, $segment)
     {
-        $this->db->select('Usuarios.co_seq_cadastro_pessoa, Usuarios.ds_nome, Usuarios.st_admin, Usuarios.nu_cpf, Usuarios.ds_email');
-        $this->db->from('tb_cadastro_pessoa as Usuarios');        
+        $this->db->select('Usuarios.co_seq_cadastro_pessoa, Perfil.ds_perfil, Usuarios.ds_nome, Usuarios.st_admin, Usuarios.nu_cpf, Usuarios.ds_email');
+        $this->db->from('tb_cadastro_pessoa as Usuarios');
+        $this->db->join('tb_perfil as Perfil', 'Perfil.id_perfil = Usuarios.id_perfil','left');        
    //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
         if(!empty($searchText)) {
             $likeCriteria = "(Usuarios.ds_email LIKE '%".$searchText."%'
