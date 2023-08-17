@@ -1,23 +1,21 @@
 <?php
 
-$Id_Usuario = '';
-$Nome_Usuario = '';
-$Email = '';
-$Cpf_Usuario = '';
-$Admin = '';
-$Tp_Ativo = '';
+$co_seq_cadastro_pessoa = '';
+$ds_nome = '';
+$ds_email = '';
+$nu_cpf = '';
+$st_admin = '';
 
 if ($this->uri->segment(2) == 'editar') {
 if(!empty($infoUsuario))
 {
     foreach ($infoUsuario as $r)
     {
-        $Id_Usuario = $r->Id_Usuario;
-        $Nome_Usuario = $r->Nome_Usuario;
-        $Email = $r->Email;
-        $Cpf_Usuario = $r->Cpf_Usuario;
-        $Admin = $r->Admin;
-        $Tp_Ativo = $r->Tp_Ativo;
+        $co_seq_cadastro_pessoa = $r->co_seq_cadastro_pessoa;
+        $ds_nome = $r->ds_nome;
+        $ds_email = $r->ds_email;
+        $nu_cpf = $r->nu_cpf;
+        $st_admin = $r->st_admin;
     }
 }
 }
@@ -56,16 +54,16 @@ if(!empty($infoUsuario))
                                 <!-- VARCHAR/INTEGER/FLOAT -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Nome_Usuario">Nome</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('Nome_Usuario') : $Nome_Usuario ; ?>" id="Nome_Usuario" name="Nome_Usuario" maxlength="128">
-                                        <input type="hidden" value="<?php echo $Id_Usuario; ?>" name="Id_Usuario" id="Id_Usuario" />
+                                        <label for="ds_nome">Nome</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_nome') : $Nome_Usuario ; ?>" id="ds_nome" name="ds_nome" maxlength="128">
+                                        <input type="hidden" value="<?php echo $co_seq_cadastro_pessoa; ?>" name="co_seq_cadastro_pessoa" id="co_seq_cadastro_pessoa" />
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Cpf_Usuario">CPF</label>
-                                        <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control required cpf_usuario" id="Cpf_Usuario" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('Cpf_Usuario') : $Cpf_Usuario; ?>" name="Cpf_Usuario"
+                                        <label for="nu_cpf">CPF</label>
+                                        <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control required cpf_usuario" id="nu_cpf" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('Cpf_Usuario') : $Cpf_Usuario; ?>" name="nu_cpf"
                                             maxlength="14">
                                     </div>
                                 </div>
@@ -75,18 +73,8 @@ if(!empty($infoUsuario))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Email">Email</label>
-                                        <input type="text" class="form-control email required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('Email') : $Email; ?>" id="Email" name="Email" maxlength="128">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="Tp_Ativo">Usuário ativo?</label>
-                                        <select class="form-control required" id="Tp_Ativo" name="Tp_Ativo">
-                                            <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $Tp_Ativo == 'S') { echo 'selected'; } else if ($this->uri->segment(2) == 'cadastrar') { echo 'selected'; } ?>>Sim</option>
-											<option value="N" <?php if ($this->uri->segment(2) == 'editar' && $Tp_Ativo == 'N') { echo 'selected'; } ?>>Não</option>
-                                        </select>
+                                        <label for="ds_email">Email</label>
+                                        <input type="text" class="form-control email required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_email') : $ds_email; ?>" id="ds_email" name="ds_email" maxlength="128">
                                     </div>
                                 </div>
                             </div>
@@ -94,8 +82,8 @@ if(!empty($infoUsuario))
                             <div class="row">                                
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Senha">Senha</label>
-                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?>" id="Senha" name="Senha" maxlength="20">
+                                        <label for="ds_senha">Senha</label>
+                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?>" id="ds_senha" name="ds_senha" maxlength="20">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
