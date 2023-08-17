@@ -569,7 +569,7 @@ function cadastroPermissao()
             
             $this->load->library('pagination');
             
-            $count = $this->CadastroModel->userListingCount($searchText);
+            $count = 0;
 
             $returns = $this->paginationCompress ( "cadastroPermissao/listar", $count, 100 );
             
