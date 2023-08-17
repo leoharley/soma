@@ -435,6 +435,8 @@ class User_model extends CI_Model
         $this->db->where('table_name', $tablename);
         $this->db->where('table_schema', $dbname);
         $query = $this->db->get($tablename);
+
+        var_dump($this->db->last_query());exit;
         
         return $query->row();
     }
