@@ -78,31 +78,31 @@
                       ?>
                     <tr>
                       <td>
-                        <?php echo $registro->Ds_Perfil ?>
+                        <?php echo $registro->ds_perfil ?>
                       </td>
                       <td>
-                        <?php echo $registro->Ds_Tela ?>
+                        <?php echo $registro->ds_tela ?>
                       </td>
                       <td>
-                        <?php echo ($registro->Atualizar == 'S')?'Sim':'Não'; ?>
+                        <?php echo ($registro->atualizar == 'S')?'Sim':'Não'; ?>
                       </td>
                       <td>
                         <?php echo ($registro->Inserir == 'S')?'Sim':'Não'; ?>
                       </td>
                       <td>
-                        <?php echo ($registro->Excluir == 'S')?'Sim':'Não'; ?>
+                        <?php echo ($registro->excluir == 'S')?'Sim':'Não'; ?>
                       </td>
                       <td>
-                        <?php echo ($registro->Consultar == 'S')?'Sim':'Não'; ?>
+                        <?php echo ($registro->consultar == 'S')?'Sim':'Não'; ?>
                       </td>
                       <td>
-                        <?php echo ($registro->Imprimir == 'S')?'Sim':'Não'; ?>
+                        <?php echo ($registro->imprimir == 'S')?'Sim':'Não'; ?>
                       </td>
                       <td class="text-center">
                         <!--  <a class="btn btn-sm btn-primary" href="<?php //echo base_url().'log-history/'.$record->userId; ?>" title="Log geçmişi">
                               <i class="fa fa-history"></i>
                           </a> -->
-                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'cadastroPermissao/editar/'.$registro->Id_Permissao ; ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'cadastroPermissao/editar/'.$registro->id_permissao ; ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
                       </td>
