@@ -108,30 +108,17 @@ class Cadastro extends BaseController
             else
         { */
 
-                $nome = ucwords(strtolower($this->security->xss_clean($this->input->post('Nome_Usuario'))));
-                $cpf = $this->input->post('Cpf_Usuario');
-                $email = $this->security->xss_clean($this->input->post('Email'));
-                $senha = $this->input->post('Senha');
-                $tpativo = $this->input->post('Tp_Ativo');
+                $nome = $this->input->post('ds_nome');
+                $cpf = $this->input->post('nu_cpf');
+                $email = $this->security->xss_clean($this->input->post('ds_email'));
+                $senha = $this->input->post('ds_senha');
                 $admin = 'N';
             //    $roleId = $this->input->post('role');
 
                 if ($this->CadastroModel->consultaUsuarioExistente($cpf,$email) == null) {
 
-                //SE O USUÁRIO FOR SETADO COMO ATIVO PEGAR DATA ATUAL
-                if ($tpativo == 'S') 
-                { 
-                    $dtativo = date('Y-m-d H:i:s');
-                } else
-                {
-                    $dtativo = null;
-                }
-                
-                //'Senha'=>getHashedPassword($senha)
-
-                $infoUsuario = array('Nome_Usuario'=> $nome, 'Email'=>$email, 'Senha'=>$senha, 'Admin'=>$admin,
-                                    'Cpf_Usuario'=>$cpf, 'CriadoPor'=>$this->vendorId, 'AtualizadoPor'=>$this->vendorId,
-                                    'Tp_Ativo'=>$tpativo, 'Dt_Ativo'=>$dtativo);
+                $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 'st_admin'=>$admin,
+                                    'nu_cpf'=>$cpf);
                                     
                 $result = $this->CadastroModel->adicionaUsuario($infoUsuario);
                 
@@ -162,7 +149,7 @@ class Cadastro extends BaseController
     {
             $this->load->library('form_validation');
             
-            $IdUsuario = $this->input->post('Id_Usuario');
+            $IdUsuario = $this->input->post('co_seq_cadastro_pessoa');
 
             //VALIDAÇÃO
             
@@ -180,41 +167,23 @@ class Cadastro extends BaseController
             else
             { */
 
-                $nome = ucwords(strtolower($this->security->xss_clean($this->input->post('Nome_Usuario'))));
-                $cpf = $this->input->post('Cpf_Usuario');
-                $email = $this->security->xss_clean($this->input->post('Email'));
-                $senha = $this->input->post('Senha');
-                $tpativo = $this->input->post('Tp_Ativo');
-                $admin = $this->input->post('Admin');
-
-                foreach ($this->CadastroModel->carregaInfoUsuario($IdUsuario) as $data){
-                    $tpativoatual = ($data->Tp_Ativo);
-                }
-
-                if ($tpativoatual == 'N' && $tpativo == 'S')
-                {
-                    $dtativo = date('Y-m-d H:i:s');
-                    $dtinativo = null;
-                } else if ($tpativo == 'N')
-                {
-                    $dtativo = null;
-                    $dtinativo = date('Y-m-d H:i:s');
-                }
-                
+                $nome = $this->input->post('ds_nome');
+                $cpf = $this->input->post('nu_cpf');
+                $email = $this->security->xss_clean($this->input->post('ds_email'));
+                $senha = $this->input->post('ds_senha');
+                $admin = 'N';
+                        
                 $infoUsuario = array();
                 
                 if(empty($senha))
                 {
-                    $infoUsuario = array('Nome_Usuario'=> $nome, 'Email'=>$email, 'Admin'=>$admin,
-                                        'Cpf_Usuario'=>$cpf, 'CriadoPor'=>$this->vendorId, 'AtualizadoPor'=>$this->vendorId,
-                                        'Tp_Ativo'=>$tpativo, 'Dt_Ativo'=>$dtativo, 'Dt_Inativo'=>$dtinativo);
+                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email,'st_admin'=>$admin,'nu_cpf'=>$cpf);
                 }
                 else
                 {
                     //'Senha'=>getHashedPassword($senha)
-                    $infoUsuario = array('Nome_Usuario'=> $nome, 'Email'=>$email, 'Senha'=>$senha, 'Admin'=>$admin,
-                                'Cpf_Usuario'=>$cpf, 'CriadoPor'=>$this->vendorId, 'AtualizadoPor'=>$this->vendorId,
-                                'Tp_Ativo'=>$tpativo, 'Dt_Ativo'=>$dtativo, 'Dt_Inativo'=>$dtinativo);
+                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 
+                                         'st_admin'=>$admin,'nu_cpf'=>$cpf);
                 }
                 
                 $resultado = $this->CadastroModel->editaUsuario($infoUsuario, $IdUsuario);
@@ -240,11 +209,7 @@ class Cadastro extends BaseController
     {
             $IdUsuario = $this->uri->segment(2);
 
-            $infoUsuario = array();
-
-            $infoUsuario = array('Deletado'=>'S', 'AtualizadoPor'=>$this->vendorId, 'Dt_Atualizacao'=>date('Y-m-d H:i:s'));
-            
-            $resultado = $this->CadastroModel->apagaUsuario($infoUsuario, $IdUsuario);
+            $resultado = $this->CadastroModel->apagaUsuario($IdUsuario);
             
             if ($resultado) {
                 // echo(json_encode(array('status'=>TRUE)));

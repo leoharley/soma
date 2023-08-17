@@ -51,7 +51,7 @@ class CadastroModel extends CI_Model
         return TRUE;
     }
     
-    function apagaUsuario($infoUsuario, $IdUsuario)
+    function apagaUsuario($IdUsuario)
     {
         $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
         $res2 = $this->db->delete('tb_cadastro_pessoa');
