@@ -39,10 +39,7 @@
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-9'i><'col-sm-3'B>>" +
                 "<'row'<'col-sm-7 col-centered'p>>",
-            lengthMenu: [
-                [10, 15, 25, 50, -1],
-                [10, 15, 25, 50, "Todos"]
-            ],
+            
             "pageLength": 6,
 
             //Dil
