@@ -295,7 +295,7 @@ $(function() {
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="relatorio">
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>relatorioLogs/listar">
+                    <a href="<?php echo base_url(); ?>log-history">
                         <i class="fa fa-reorder" style="margin-right:5px!important"></i>
                         <span>Logs</span>
                     </a>

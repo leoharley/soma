@@ -32,8 +32,6 @@ $route['cadastroFauna/:any'] = "cadastro/cadastroFauna/$1";
 $route['cadastroEpiteta/:any/:any'] = "cadastro/cadastroEpiteta/$1/$2";
 $route['cadastroEpiteta/:any'] = "cadastro/cadastroEpiteta/$1";
 
-$route['relatorioLogs/listar'] = "admin/logHistory";
-
 /*********** ROUTES PARA AÇÕES DA TELA USUÁRIO *******************/
 $route['adicionaUsuario'] = "cadastro/adicionaUsuario";
 $route['editaUsuario'] = "cadastro/editaUsuario";
