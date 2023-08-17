@@ -107,7 +107,7 @@ if(!empty($infoUsuario))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="ds_senha">Senha</label>
-                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?>" id="ds_senha" name="Senha" maxlength="20">
+                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?>" id="ds_senha" name="ds_senha" maxlength="20">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
