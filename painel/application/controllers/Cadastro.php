@@ -586,8 +586,6 @@ function editaPermissao()
 
         $infoPermissao = array('atualizar'=>$Atualizar, 'Inserir'=>$Inserir, 'excluir'=>$Excluir,
                                 'consultar'=>$Consultar,'imprimir'=>$Imprimir);
-
-                                var_dump($infoPermissao);exit;
         
         $resultado = $this->CadastroModel->editaPermissao($infoPermissao, $IdPermissao);
         
