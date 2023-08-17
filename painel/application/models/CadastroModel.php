@@ -86,6 +86,15 @@ class CadastroModel extends CI_Model
         // return $this->db->affected_rows();
     }
 
+    function carregaInfoPerfil()
+    {
+        $this->db->select('id_perfil, ds_perfil, st_admin');
+        $this->db->from('tb_perfil');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
     function carregaInfoUsuario($IdUsuario)
     {
         $this->db->select('co_seq_cadastro_pessoa, ds_nome, ds_email, nu_cpf, st_admin');
