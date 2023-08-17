@@ -67,7 +67,6 @@
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>E-mail</th>
-                    <th>Usuário ativo?</th>
                   <!--  <th>Admin?</th> -->
                   <!--  <th>Data ativo</th>
                     <th>Data inativo</th> -->                    
@@ -83,19 +82,16 @@
                       ?>
                     <tr>
                       <td>
-                        <?php echo $registro->Id_Usuario ?>
+                        <?php echo $registro->co_seq_cadastro_pessoa ?>
                       </td>
                       <td>
-                        <?php echo $registro->Nome_Usuario ?>
+                        <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
-                        <?php echo $registro->Cpf_Usuario ?>
+                        <?php echo $registro->nu_cpf ?>
                       </td>
                       <td>
-                        <?php echo $registro->Email ?>
-                      </td>
-                      <td>
-                        <?php echo ($registro->Tp_Ativo == 'S') ? 'Sim' : 'Não'; ?>
+                        <?php echo $registro->ds_email ?>
                       </td>
                     <!--  <td>
                         <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>
@@ -107,10 +103,10 @@
                         <?php //echo ($registro->Dt_Inativo != null) ? date("d/m/Y", strtotime($registro->Dt_Inativo)) : ''; ?>
                       </td> -->
                       <td class="text-center">
-                          <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroUsuario/editar/'.$registro->Id_Usuario ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroUsuario/editar/'.$registro->co_seq_cadastro_pessoa ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaUsuario/'.$registro->Id_Usuario ?>" data-userid="<?= $registro->Id_Usuario ?>" title="Excluir">
+                          <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaUsuario/'.$registro->co_seq_cadastro_pessoa ?>" data-userid="<?= $registro->co_seq_cadastro_pessoa ?>" title="Excluir">
                               <i class="fa fa-trash-o"></i>
                           </a>
                       </td>
