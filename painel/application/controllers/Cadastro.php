@@ -23,6 +23,9 @@ class Cadastro extends BaseController
         $this->datas();
         // isLoggedIn / Login control function /  This function used login control
         $isLoggedIn = $this->session->userdata('isLoggedIn');
+        
+        date_default_timezone_set('America/Sao_Paulo');
+
         if(!isset($isLoggedIn) || $isLoggedIn != TRUE)
         {
             redirect('login');
