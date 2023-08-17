@@ -31,16 +31,19 @@ class CadastroModel extends CI_Model
         $insert_id = $this->db->insert_id();
         
         $this->db->trans_complete();
-
-        $infoAcesso = array('co_cadastro_pessoa'=> $insert_id, 'ds_senha'=>$infoUsuario[0]->ds_senha,
-        'dt_cadastro'=>date('Y-m-d H:i:s'));
-        $this->db->trans_start();
-        $this->db->insert('tb_acesso', $infoPermissao);
         
-        $insert_id_Permissao = $this->db->insert_id();
+        return $insert_id;
+    }
+
+
+    function adicionaAcesso($infoAcesso)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tb_acesso', $infoUsuario);
+        
+        $insert_id = $this->db->insert_id();
         
         $this->db->trans_complete();
-
 
         return $insert_id;
     }

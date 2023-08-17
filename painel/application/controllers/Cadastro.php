@@ -117,12 +117,16 @@ class Cadastro extends BaseController
 
                 if ($this->CadastroModel->consultaUsuarioExistente($cpf,$email) == null) {
 
-                $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 'st_admin'=>$admin,
+                $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'st_admin'=>$admin,
                                     'nu_cpf'=>$cpf);
                                     
                 $result = $this->CadastroModel->adicionaUsuario($infoUsuario);
                 
-                if($result > 0)
+                $infoAcesso = array('co_cadastro_pessoa '=> $infoUsuario, 'ds_senha'=>$senha);
+                                    
+                $resultAcesso = $this->CadastroModel->adicionaAcesso($infoAcesso);
+                
+                if($result > 0 && $resultAcesso > 0)
                 {
                     $process = 'Adicionar usuário';
                     $processFunction = 'Cadastro/adicionaUsuario';
