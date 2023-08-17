@@ -5,15 +5,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = "login";
 $route['404_override'] = 'login/error';
 
+$route['cadastroUsuario/:any/:any'] = "cadastro/cadastroUsuario/$1/$2";
+$route['cadastroUsuario/:any'] = "cadastro/cadastroUsuario/$1";
+
+$route['cadastroPermissao/:any/:any'] = "cadastro/cadastroPermissao/$1/$2";
+$route['cadastroPermissao/:any'] = "cadastro/cadastroPermissao/$1";
+
 $route['cadastroPerfil/:any/:any'] = "cadastro/cadastroPerfil/$1/$2";
 $route['cadastroPerfil/:any'] = "cadastro/cadastroPerfil/$1";
 
+/*********** ROUTES PARA AÇÕES DA TELA USUÁRIO *******************/
+$route['adicionaUsuario'] = "cadastro/adicionaUsuario";
+$route['editaUsuario'] = "cadastro/editaUsuario";
+$route['apagaUsuario/:any'] = "cadastro/apagaUsuario/$1";
 
 /*********** ROUTES PARA AÇÕES DA TELA PERFIL *******************/
 $route['adicionaPerfil'] = "cadastro/adicionaPerfil";
 $route['editaPerfil'] = "cadastro/editaPerfil";
 $route['apagaPerfil/:any'] = "cadastro/apagaPerfil/$1";
 
+/*********** ROUTES PARA AÇÕES DA TELA PERMISSAO *******************/
+$route['editaPermissao'] = "cadastro/editaPermissao";
 
 /*********** USER DEFINED ROUTES *******************/
 
