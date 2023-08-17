@@ -576,50 +576,33 @@ function editaPermissao()
 {
         $this->load->library('form_validation');
         
-        $IdPermissao = $this->input->post('Id_Permissao');
+        $IdPermissao = $this->input->post('id_permissao');
 
-        //VALIDAÇÃO
+        $Atualizar = $this->input->post('Atualizar');
+        $Inserir = $this->input->post('Inserir');  
+        $Excluir = $this->input->post('Excluir');  
+        $Consultar = $this->input->post('Consultar');  
+        $Imprimir = $this->input->post('Imprimir');  
+
+        $infoPermissao = array('atualizar'=>$Atualizar, 'Inserir'=>$Inserir, 'excluir'=>$Excluir,
+                                'consultar'=>$Consultar,'imprimir'=>$Imprimir);
         
-     /*   $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-        $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-        $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
-        $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
-        $this->form_validation->set_rules('role','Role','trim|required|numeric');
-        $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
+        $resultado = $this->CadastroModel->editaPermissao($infoPermissao, $IdPermissao);
         
-        if($this->form_validation->run() == FALSE)
-        { 
-            $this->editOld($userId);
+        if($resultado == true)
+        {
+            $process = 'Permissão atualizada';
+            $processFunction = 'Cadastro/editaPermissao';
+            $this->logrecord($process,$processFunction);
+
+            $this->session->set_flashdata('success', 'Permissões atualizadas com sucesso');
         }
         else
-        { */
-
-            $Atualizar = $this->input->post('Atualizar');
-            $Inserir = $this->input->post('Inserir');  
-            $Excluir = $this->input->post('Excluir');  
-            $Consultar = $this->input->post('Consultar');  
-            $Imprimir = $this->input->post('Imprimir');  
-
-            $infoPermissao = array('Atualizar'=>$Atualizar, 'Inserir'=>$Inserir, 'Excluir'=>$Excluir,
-                                'Consultar'=>$Consultar,'Imprimir'=>$Imprimir, 'AtualizadoPor'=>$this->vendorId);
-            
-            $resultado = $this->CadastroModel->editaPermissao($infoPermissao, $IdPermissao);
-            
-            if($resultado == true)
-            {
-                $process = 'Permissão atualizada';
-                $processFunction = 'Cadastro/editaPermissao';
-                $this->logrecord($process,$processFunction);
-
-                $this->session->set_flashdata('success', 'Permissões atualizadas com sucesso');
-            }
-            else
-            {
-                $this->session->set_flashdata('error', 'Falha na atualização das permissões');
-            }
+        {
+            $this->session->set_flashdata('error', 'Falha na atualização das permissões');
+        }
             
             redirect('cadastroPermissao/listar');
-       // }
 }
 // FIM DAS FUNÇÕES DA TELA DE PERMISSAO
 
