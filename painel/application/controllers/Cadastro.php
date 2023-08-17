@@ -118,6 +118,7 @@ class Cadastro extends BaseController
                 $nome = $this->input->post('ds_nome');
                 $cpf = $this->input->post('nu_cpf');
                 $email = $this->security->xss_clean($this->input->post('ds_email'));
+                $id_perfil = $this->input->post('id_perfil');
                 $senha = $this->input->post('ds_senha');
                 $admin = 'N';
             //    $roleId = $this->input->post('role');
@@ -125,7 +126,7 @@ class Cadastro extends BaseController
                 if ($this->CadastroModel->consultaUsuarioExistente($cpf,$email) == null) {
 
                 $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'st_admin'=>$admin,
-                                    'nu_cpf'=>$cpf);
+                                    'id_perfil'=> $id_perfil, 'nu_cpf'=>$cpf);
                                     
                 $result = $this->CadastroModel->adicionaUsuario($infoUsuario);
                 
