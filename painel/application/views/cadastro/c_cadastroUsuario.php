@@ -13,7 +13,7 @@ if(!empty($infoUsuario))
     foreach ($infoUsuario as $r)
     {
         $co_seq_cadastro_pessoa = $r->co_seq_cadastro_pessoa;
-        $id_perfil = $r->$id_perfil;
+        $id_perfil = $r->id_perfil;
         $ds_nome = $r->ds_nome;
         $ds_email = $r->ds_email;
         $nu_cpf = $r->nu_cpf;
