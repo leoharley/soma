@@ -69,6 +69,8 @@ class Cadastro extends BaseController
                 $this->global['pageTitle'] = 'QUALICAD : Lista de Usuário';
 
                 $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfil();
+
+                var_dump($data['infoPerfil']);exit;
                 
                 $this->loadViews("cadastro/l_cadastroUsuario", $this->global, $data, NULL);
             }
