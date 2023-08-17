@@ -578,14 +578,16 @@ function editaPermissao()
         
         $IdPermissao = $this->input->post('id_permissao');
 
-        $Atualizar = $this->input->post('Atualizar');
+        $Atualizar = $this->input->post('atualizar');
         $Inserir = $this->input->post('Inserir');  
-        $Excluir = $this->input->post('Excluir');  
-        $Consultar = $this->input->post('Consultar');  
-        $Imprimir = $this->input->post('Imprimir');  
+        $Excluir = $this->input->post('excluir');  
+        $Consultar = $this->input->post('consultar');  
+        $Imprimir = $this->input->post('imprimir');  
 
         $infoPermissao = array('atualizar'=>$Atualizar, 'Inserir'=>$Inserir, 'excluir'=>$Excluir,
                                 'consultar'=>$Consultar,'imprimir'=>$Imprimir);
+
+                                var_dump($infoPermissao);exit;
         
         $resultado = $this->CadastroModel->editaPermissao($infoPermissao, $IdPermissao);
         
