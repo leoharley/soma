@@ -1,26 +1,26 @@
 <?php
 
-$Id_Permissao   = '';
-$Ds_Perfil = '';
-$Ds_Tela = '';
-$Atualizar = '';
+$id_permissao = '';
+$ds_perfil = '';
+$ds_tela = '';
+$atualizar = '';
 $Inserir = '';
-$Excluir = '';
-$Consultar = '';
-$Imprimir = '';
+$excluir = '';
+$consultar = '';
+$imprimir = '';
 
 if(!empty($infoPermissao))
 {
     foreach ($infoPermissao as $r)
     {
-        $Id_Permissao  = $r->Id_Permissao ;
-        $Ds_Perfil = $r->Ds_Perfil;
-        $Ds_Tela = $r->Ds_Tela;
-        $Atualizar = $r->Atualizar;
+        $id_permissao  = $r->id_permissao ;
+        $ds_perfil = $r->ds_perfil;
+        $ds_tela = $r->ds_tela;
+        $atualizar = $r->atualizar;
         $Inserir = $r->Inserir;
-        $Excluir = $r->Excluir;
-        $Consultar = $r->Consultar;
-        $Imprimir = $r->Imprimir;
+        $excluir = $r->excluir;
+        $consultar = $r->consultar;
+        $imprimir = $r->imprimir;
     }
 }
 
@@ -57,24 +57,24 @@ if(!empty($infoPermissao))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="Ds_Perfil">Perfil</label>
-                                        <input type="text" class="form-control required" value="<?php echo $Ds_Perfil ; ?>" id="Ds_Perfil" name="Ds_Perfil" maxlength="128" disabled>
-                                        <input type="hidden" value="<?php echo $Id_Permissao; ?>" name="Id_Permissao" id="Id_Permissao" />
+                                        <input type="text" class="form-control required" value="<?php echo $ds_perfil ; ?>" id="ds_perfil" name="ds_perfil" maxlength="128" disabled>
+                                        <input type="hidden" value="<?php echo $id_permissao; ?>" name="id_permissao" id="id_permissao" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Ds_Tela">Tela</label>
-                                        <input type="text" class="form-control required" value="<?php echo $Ds_Tela ; ?>" id="Ds_Tela" name="Ds_Tela" maxlength="128" disabled>
+                                        <label for="ds_tela">Tela</label>
+                                        <input type="text" class="form-control required" value="<?php echo $ds_tela ; ?>" id="ds_tela" name="ds_tela" maxlength="128" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Atualizar">Atualizar</label>
-                                        <select class="form-control required" id="Atualizar" name="Atualizar">
-                                            <option value="S" <?php if ($Atualizar == 'S') { echo 'selected'; } ?>>Sim</option>
-                                            <option value="N" <?php if ($Atualizar == 'N') { echo 'selected'; } ?>>Não</option>
+                                        <label for="atualizar">Atualizar</label>
+                                        <select class="form-control required" id="atualizar" name="atualizar">
+                                            <option value="S" <?php if ($atualizar == 'S') { echo 'selected'; } ?>>Sim</option>
+                                            <option value="N" <?php if ($atualizar == 'N') { echo 'selected'; } ?>>Não</option>
                                         </select>
                                     </div>
                                 </div>
@@ -91,19 +91,19 @@ if(!empty($infoPermissao))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Excluir">Excluir</label>
-                                        <select class="form-control required" id="Excluir" name="Excluir">
-                                            <option value="S" <?php if ($Excluir == 'S') { echo 'selected'; } ?>>Sim</option>
-                                            <option value="N" <?php if ($Excluir == 'N') { echo 'selected'; } ?>>Não</option>
+                                        <label for="excluir">Excluir</label>
+                                        <select class="form-control required" id="excluir" name="excluir">
+                                            <option value="S" <?php if ($excluir == 'S') { echo 'selected'; } ?>>Sim</option>
+                                            <option value="N" <?php if ($excluir == 'N') { echo 'selected'; } ?>>Não</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Consultar">Consultar</label>
-                                        <select class="form-control required" id="Consultar" name="Consultar">
-                                            <option value="S" <?php if ($Consultar == 'S') { echo 'selected'; } ?>>Sim</option>
-                                            <option value="N" <?php if ($Consultar == 'N') { echo 'selected'; } ?>>Não</option>
+                                        <label for="consultar">Consultar</label>
+                                        <select class="form-control required" id="consultar" name="consultar">
+                                            <option value="S" <?php if ($consultar == 'S') { echo 'selected'; } ?>>Sim</option>
+                                            <option value="N" <?php if ($consultar == 'N') { echo 'selected'; } ?>>Não</option>
                                         </select>
                                     </div>
                                 </div>
@@ -112,10 +112,10 @@ if(!empty($infoPermissao))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Imprimir">Imprimir</label>
-                                        <select class="form-control required" id="Imprimir" name="Imprimir">
-                                            <option value="S" <?php if ($Imprimir == 'S') { echo 'selected'; } ?>>Sim</option>
-                                            <option value="N" <?php if ($Imprimir == 'N') { echo 'selected'; } ?>>Não</option>
+                                        <label for="imprimir">Imprimir</label>
+                                        <select class="form-control required" id="imprimir" name="imprimir">
+                                            <option value="S" <?php if ($imprimir == 'S') { echo 'selected'; } ?>>Sim</option>
+                                            <option value="N" <?php if ($imprimir == 'N') { echo 'selected'; } ?>>Não</option>
                                         </select>
                                     </div>
                                 </div>
