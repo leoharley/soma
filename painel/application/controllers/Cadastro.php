@@ -130,7 +130,7 @@ class Cadastro extends BaseController
                                     
                 $result = $this->CadastroModel->adicionaUsuario($infoUsuario);
                 
-                $infoAcesso = array('co_cadastro_pessoa '=> $infoUsuario, 'ds_senha'=>$senha);
+                $infoAcesso = array('co_cadastro_pessoa '=> $result, 'ds_senha'=>$senha);
                                     
                 $resultAcesso = $this->CadastroModel->adicionaAcesso($infoAcesso);
                 
