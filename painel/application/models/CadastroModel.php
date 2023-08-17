@@ -181,25 +181,18 @@ function adicionaPerfil($infoPerfil)
     $insert_id = $this->db->insert_id();
     $this->db->trans_complete();
 
-   /* $DsTelas = array('TelaConvenio','TelaPlano','TelaRegra','TelaIndice','TelaRegraFat','TelaUsuario','TelaFaturamento','TelaEmpresa','TelaIndiceGrupoPro','TelaRegraProibicao','TelaFracaoSimproBra','TelaFaturamentoItem','TelaUnidade','TelaExcecaoValores','TelaRegraGruPro');
+    $DsTelas = array('Projetos','Propriedades','Parcelas','Flora','Fauna','Epitetas');
 
     foreach ($DsTelas as $data) {
-        $infoTelas = array('TbPerfil_Id_CdPerfil'=> $insert_id, 'Ds_Tela'=>$data, 'CriadoPor'=>$infoPerfil['CriadoPor'],
-        'CriadoPor'=>$infoPerfil['CriadoPor'], 'Dt_Atualizacao'=>date('Y-m-d H:i:s'));
+        $infoPermissao = array('id_perfil'=> $insert_id, 'ds_tela'=>$data,
+        'dt_cadastro'=>date('Y-m-d H:i:s'));
         $this->db->trans_start();
-        $this->db->insert('TabTela', $infoTelas);
-        $insert_id_Tela = $this->db->insert_id();
-        $this->db->trans_complete();
-
-        $infoPermissao = array('TbPerfil_Id_CdPerfil'=> $insert_id, 'TabTela_Id_Tela'=>$insert_id_Tela,
-        'CriadoPor'=>$infoPerfil['CriadoPor'],'Dt_Atualizacao'=>date('Y-m-d H:i:s'));
-        $this->db->trans_start();
-        $this->db->insert('TbPermissao', $infoPermissao);
+        $this->db->insert('tb_permissao', $infoPermissao);
         
         $insert_id_Permissao = $this->db->insert_id();
         
         $this->db->trans_complete();
-    }*/
+    }
     
     return $insert_id;
 }
