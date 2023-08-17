@@ -82,34 +82,34 @@
                           <?php echo $record->id ?>
                         </td>
                         <td>
-                          <?php echo $record->userName ?>
+                          <?php echo $record->nome ?>
                         </td>
                         <td>
-                          <?php echo $record->process ?>
+                          <?php echo $record->acao ?>
                         </td>
                         <td>
-                          <?php echo $record->processFunction ?>
+                          <?php echo $record->funcao_acao ?>
                         </td>
                         <td>
-                          <?php echo $record->userRoleId ?>
+                          <?php echo $record->id_perfil ?>
                         </td>
                         <td>
-                          <?php echo $record->userRoleText ?>
+                          <?php echo $record->ds_perfil ?>
                         </td>
                         <td>
-                          <?php echo $record->userIp ?>
+                          <?php echo $record->ip ?>
                         </td>
                         <td>
-                          <?php echo $record->userAgent ?>
+                          <?php echo $record->ds_navegador ?>
                         </td>
                         <td>
-                          <?php echo $record->agentString ?>
+                          <?php echo $record->string_navegador ?>
                         </td>
                         <td>
-                          <?php echo $record->platform ?>
+                          <?php echo $record->plataforma ?>
                         </td>
                         <td>
-                          <?php echo $record->createdDtm ?>
+                          <?php echo $record->dt_cadastro ?>
                         </td>
                       </tr>
                       <?php
