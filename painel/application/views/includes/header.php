@@ -280,7 +280,7 @@ $(function() {
                   <li class="treeview">
                       <a href="<?php echo base_url(); ?>principalPlano/listar">
                           <i class="fa fa-tree" style="margin-right:5px!important"></i>
-                          <span>Epífetas</span>
+                          <span>Epítetas</span>
                       </a>
                   </li>
                   </ul>

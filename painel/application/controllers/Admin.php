@@ -27,14 +27,14 @@ class Admin extends BaseController
             redirect('login');
         }
         
-        else
+       /* else
         {
             // isAdmin / Admin role control function / This function used admin role control
             if($this->isAdmin() == TRUE)
             {
                 $this->accesslogincontrol();
             }
-        }
+        }*/
     }
 	
      /**
