@@ -216,19 +216,19 @@ class User_model extends CI_Model
     function logHistory($userId)
     {
         $this->db->select('*');        
-        $this->db->from('tbl_log as BaseTbl');
+        $this->db->from('tb_log as Log');
 
         if ($userId == NULL)
         {
-            $this->db->order_by('BaseTbl.createdDtm', 'DESC');
+            $this->db->order_by('Log.dt_cadastro', 'DESC');
             $query = $this->db->get();
             $result = $query->result();        
             return $result;
         }
         else
         {
-            $this->db->where('BaseTbl.userId', $userId);
-            $this->db->order_by('BaseTbl.createdDtm', 'DESC');
+            $this->db->where('Log.id_acesso', $userId);
+            $this->db->order_by('Log.dt_cadastro', 'DESC');
             $query = $this->db->get();
             $result = $query->result();
             return $result;
