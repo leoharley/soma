@@ -339,7 +339,7 @@ class Cadastro extends BaseController
     {
             $this->load->library('form_validation');
             
-            $IdPerfil = $this->input->post('Id_CdPerfil');
+            $IdPerfil = $this->input->post('id_perfil');
 
             //VALIDAÇÃO
             
@@ -357,13 +357,12 @@ class Cadastro extends BaseController
             else
             { */
 
-                $Ds_Perfil = ucwords(strtolower($this->security->xss_clean($this->input->post('Ds_Perfil'))));
-                $PerfilAdmin = $this->input->post('PerfilAdmin');
-                $Tp_Ativo = $this->input->post('Tp_Ativo');  
+                $ds_perfil = $this->input->post('ds_perfil');
+                $st_admin = $this->input->post('st_admin');
 
-                foreach ($this->CadastroModel->carregaInfoPerfilExistente($IdPerfil) as $data){
+               /* foreach ($this->CadastroModel->carregaInfoPerfilExistente($IdPerfil) as $data){
                     $Tp_Ativo_Atual = ($data->Tp_Ativo);
-                }
+                }*/
 
                 // if ($Tp_Ativo_Atual == 'N' && $Tp_Ativo == 'S')
                 // {
@@ -375,11 +374,9 @@ class Cadastro extends BaseController
                 //     $Dt_Inativo = date('Y-m-d H:i:s');
                 // }     
                 
-                $Dt_Atualizacao = date('Y-m-d H:i:s');
+             //   $Dt_Atualizacao = date('Y-m-d H:i:s');
                 
-                $infoPerfil = array('Ds_Perfil'=> $Ds_Perfil, 'AtualizadoPor'=>$this->vendorId,
-                                    'PerfilAdmin'=>$PerfilAdmin, 'Dt_Atualizacao'=>$Dt_Atualizacao,
-                                    'Tp_Ativo'=>$Tp_Ativo);
+                $infoPerfil = array('ds_perfil'=> $ds_perfil, 'st_admin'=>$st_admin);
                 
                 
                 $resultado = $this->CadastroModel->editaPerfil($infoPerfil, $IdPerfil);
