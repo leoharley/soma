@@ -57,7 +57,7 @@ if(!empty($infoUsuario))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="ds_nome">Nome</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_nome') : $Nome_Usuario ; ?>" id="ds_nome" name="ds_nome" maxlength="128">
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_nome') : $ds_nome ; ?>" id="ds_nome" name="ds_nome" maxlength="128">
                                         <input type="hidden" value="<?php echo $co_seq_cadastro_pessoa; ?>" name="co_seq_cadastro_pessoa" id="co_seq_cadastro_pessoa" />
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@ if(!empty($infoUsuario))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_cpf">CPF</label>
-                                        <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control required cpf_usuario" id="nu_cpf" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('Cpf_Usuario') : $Cpf_Usuario; ?>" name="nu_cpf"
+                                        <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control required cpf_usuario" id="nu_cpf" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_cpf') : $nu_cpf; ?>" name="nu_cpf"
                                             maxlength="14">
                                     </div>
                                 </div>
