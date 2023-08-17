@@ -69,13 +69,14 @@ class Cadastro extends BaseController
                 $this->global['pageTitle'] = 'QUALICAD : Lista de Usuário';
 
                 $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfil();
-
-                var_dump($data['infoPerfil']);exit;
-                
+               
                 $this->loadViews("cadastro/l_cadastroUsuario", $this->global, $data, NULL);
             }
             else if ($tpTela == 'cadastrar') {
                 $this->global['pageTitle'] = 'QUALICAD : Cadastro de Usuário';
+                
+                $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfil();
+
                 $this->loadViews("cadastro/c_cadastroUsuario", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
@@ -84,6 +85,8 @@ class Cadastro extends BaseController
                 {
                     redirect('cadastroUsuario/listar');
                 }
+
+                $data['infoPerfil'] = $this->CadastroModel->carregaInfoPerfil();
                 $data['infoUsuario'] = $this->CadastroModel->carregaInfoUsuario($IdUsuario);
                 $this->global['pageTitle'] = 'QUALICAD : Editar usuário';      
                 $this->loadViews("cadastro/c_cadastroUsuario", $this->global, $data, NULL);
