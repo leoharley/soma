@@ -56,7 +56,7 @@ class Cadastro extends BaseController
                 
                 $this->load->library('pagination');
                 
-                $count = $this->CadastroModel->userListingCount($searchText);
+                $count = 0;
 
                 $returns = $this->paginationCompress ( "cadastroUsuario/listar", $count, 10 );
                 

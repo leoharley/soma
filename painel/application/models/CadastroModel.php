@@ -6,20 +6,15 @@ class CadastroModel extends CI_Model
 // INICIO DAS CONSULTAS NA TELA DE USUÁRIO
     function listaUsuarios($idUser, $idEmpresa, $searchText = '', $page, $segment)
     {
-        $this->db->select('Usuarios.Id_Usuario, Usuarios.Nome_Usuario, Usuarios.Admin, Usuarios.Cpf_Usuario, Usuarios.Tp_Ativo, Usuarios.Dt_Ativo, Usuarios.CriadoPor, Usuarios.Dt_Inativo, Usuarios.Email');
-        $this->db->from('TabUsuario as Usuarios');
-        $this->db->join('TbUsuEmp as UsuEmp', 'UsuEmp.TabUsuario_Id_Usuario = Usuarios.Id_Usuario AND UsuEmp.Deletado <> \'S\'','left');
+        $this->db->select('Usuarios.co_seq_cadastro_pessoa, Usuarios.ds_nome, Usuarios.st_admin, Usuarios.nu_cpf, Usuarios.ds_email');
+        $this->db->from('tb_cadastro_pessoa as Usuarios');        
    //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
         if(!empty($searchText)) {
-            $likeCriteria = "(Usuarios.Email  LIKE '%".$searchText."%'
-                            OR  Usuarios.Nome_Usuario  LIKE '%".$searchText."%'
-                            OR  Usuarios.Cpf_Usuario  LIKE '%".$searchText."%')";
+            $likeCriteria = "(Usuarios.ds_email LIKE '%".$searchText."%'
+                            OR  Usuarios.ds_nome LIKE '%".$searchText."%'
+                            OR  Usuarios.nu_cpf LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
-        $this->db->where('UsuEmp.TbEmpresa_Id_Empresa', $idEmpresa);
-        $this->db->where('Usuarios.Deletado <>', 'S');
-        $this->db->where('Usuarios.Id_Usuario <>', $idUser);
-        $this->db->where('Usuarios.CriadoPor', $idUser);
 
         $this->db->limit($page, $segment);
         $query = $this->db->get();
@@ -31,49 +26,35 @@ class CadastroModel extends CI_Model
     function adicionaUsuario($infoUsuario)
     {
         $this->db->trans_start();
-        $this->db->insert('TabUsuario', $infoUsuario);
+        $this->db->insert('tb_cadastro_pessoa', $infoUsuario);
         
         $insert_id = $this->db->insert_id();
         
         $this->db->trans_complete();
 
-        $infoUsuEmp = array('TabUsuario_Id_Usuario'=> $insert_id, 'CriadoPor'=>$infoUsuario['CriadoPor'],
-        'AtualizadoPor'=>$infoUsuario['CriadoPor'], 'TbEmpresa_Id_Empresa'=>$this->session->userdata('IdEmpresa'),
-		'Dt_Atualizacao'=>date('Y-m-d H:i:s'));
-
-        $this->db->trans_start();
-        $this->db->insert('TbUsuEmp', $infoUsuEmp);
-        
-        $insert_id_UsuEmp = $this->db->insert_id();
-        
-        $this->db->trans_complete();
-        
         return $insert_id;
     }
 
     function editaUsuario($infoUsuario, $IdUsuario)
     {
-        $this->db->where('Id_Usuario', $IdUsuario);
-        $this->db->update('TabUsuario', $infoUsuario);
+        $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
+        $this->db->update('tb_cadastro_pessoa', $infoUsuario);
         
         return TRUE;
     }
 
     function setaUsuarioAdm($IdUsuario, $infoUsuario)
     {
-        $this->db->where('Id_Usuario', $IdUsuario);
-        $this->db->update('TabUsuario', $infoUsuario);
+        $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
+        $this->db->update('tb_cadastro_pessoa', $infoUsuario);
         
         return TRUE;
     }
     
     function apagaUsuario($infoUsuario, $IdUsuario)
     {
-        $this->db->where('TabUsuario_Id_Usuario', $IdUsuario);
-        $res1 = $this->db->delete('TbUsuEmp');
-
-        $this->db->where('Id_Usuario', $IdUsuario);
-        $res2 = $this->db->delete('TabUsuario');
+        $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
+        $res2 = $this->db->delete('tb_cadastro_pessoa');
 
         if(!$res1 && !$res2)
         {
@@ -94,9 +75,9 @@ class CadastroModel extends CI_Model
 
     function carregaInfoUsuario($IdUsuario)
     {
-        $this->db->select('Id_Usuario, Nome_Usuario, Email, Cpf_Usuario, Admin, Tp_Ativo');
-        $this->db->from('TabUsuario');
-        $this->db->where('Id_Usuario', $IdUsuario);
+        $this->db->select('co_seq_cadastro_pessoa, ds_nome, ds_email, nu_cpf, st_admin');
+        $this->db->from('tb_cadastro_pessoa');
+        $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
         $query = $this->db->get();
         
         return $query->result();
@@ -104,9 +85,9 @@ class CadastroModel extends CI_Model
 
     function carregaInfoUsuarioPorEmail($email)
     {
-        $this->db->select('Id_Usuario, Nome_Usuario, Email, Cpf_Usuario, Admin, Tp_Ativo');
-        $this->db->from('TabUsuario');
-        $this->db->where('Email', $email);
+        $this->db->select('co_seq_cadastro_pessoa, ds_nome, ds_email, nu_cpf, st_admin');
+        $this->db->from('tb_cadastro_pessoa');
+        $this->db->where('ds_email', $email);
         $query = $this->db->get();
 
         return $query->result();
@@ -114,47 +95,16 @@ class CadastroModel extends CI_Model
 
     function consultaUsuarioExistente($CpfUsuario, $Email)
     {
-        $this->db->select('Id_Usuario, Nome_Usuario, Email, Cpf_Usuario, Tp_Ativo');
-        $this->db->from('TabUsuario');
-        $campos = "((\"Cpf_Usuario\" = '".$CpfUsuario."'
-                    OR Email = '".$Email."')
-                    AND Deletado = 'N')";
+        $this->db->select('co_seq_cadastro_pessoa, ds_nome, ds_email, nu_cpf');
+        $this->db->from('tb_cadastro_pessoa');
+        $campos = "((\"nu_cpf\" = '".$CpfUsuario."'
+                    OR ds_email = '".$Email."'))";
         $this->db->where($campos);
         $query = $this->db->get();
         
         return $query->result();
     }
 
-    function carregaEmpresasPerfilUsuario($IdUsuario)
-    {
-    $this->db->select('Empresa.Id_Empresa, Empresa.Nome_Empresa, UsuEmp.TbEmpresa_Id_Empresa,
-                        UsuEmp.TbPerfil_Id_CdPerfil, Perfil.Ds_Perfil');
-    $this->db->from('TbUsuEmp as UsuEmp');
-    $this->db->join('TbEmpresa as Empresa', 'Empresa.Id_Empresa = UsuEmp.TbEmpresa_Id_Empresa AND Empresa.Deletado <> \'S\' AND Empresa.Tp_Ativo = \'S\'','inner');
-    $this->db->join('tb_perfil as Perfil', 'Perfil.id_perfil = UsuEmp.TbPerfil_Id_CdPerfil AND Perfil.Deletado <> \'S\' AND Perfil.Tp_Ativo = \'S\'','inner');
-    $this->db->where('UsuEmp.TabUsuario_Id_Usuario', $IdUsuario);
-    $this->db->where('UsuEmp.Deletado', 'N');
-//    $this->db->where('UsuEmp.TbPerfil_Id_CdPerfil <>', '99');
-
-    $query = $this->db->get();
-	    
-    return $query->result();
-    }
-
-    function carregaPerfilUsuario($IdEmpresa, $IdUsuario)
-    {
-    $this->db->select('UsuEmp.Id_UsuEmp, UsuEmp.TbEmpresa_Id_Empresa, UsuEmp.TbPerfil_Id_CdPerfil, Perfil.Ds_Perfil, Usuario.Admin');
-    $this->db->from('TbUsuEmp as UsuEmp');
-    $this->db->join('TbEmpresa as Empresa', 'Empresa.Id_Empresa = UsuEmp.TbEmpresa_Id_Empresa AND Empresa.Deletado <> \'S\' AND Empresa.Tp_Ativo = \'S\'','inner');
-    $this->db->join('tb_perfil as Perfil', 'Perfil.id_perfil = UsuEmp.TbPerfil_Id_CdPerfil AND Perfil.Deletado <> \'S\' AND Perfil.Tp_Ativo = \'S\'','inner');
-    $this->db->join('TabUsuario as Usuario', 'Usuario.Id_Usuario = UsuEmp.TabUsuario_Id_Usuario AND Usuario.Deletado <> \'S\' AND Usuario.Tp_Ativo = \'S\'','inner');
-    $this->db->where('UsuEmp.TbEmpresa_Id_Empresa', $IdEmpresa);
-    $this->db->where('UsuEmp.TabUsuario_Id_Usuario', $IdUsuario);
-    $this->db->where('UsuEmp.Deletado', 'N');
-    $query = $this->db->get();
-	    
-    return $query->result();
-    }
 // FIM DAS CONSULTAS NA TELA DE USUÁRIO
 
 // INICIO DAS CONSULTAS NA TELA DE PERFIL

@@ -223,7 +223,7 @@ $(function() {
                 </li>
 
                 <li class="treeview">
-                    <a href="<?php echo base_url(); ?>cadastroTelas/listar">
+                    <a href="<?php echo base_url(); ?>cadastroUsuario/listar">
                         <i class="fa fa-user" style="margin-right:5px"></i>
                         <span>Usuários</span>
                     </a>
