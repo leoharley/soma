@@ -162,7 +162,7 @@ function listaPerfis($searchText = '', $page, $segment)
 {
     $this->db->select('Perfis.id_perfil, Perfis.ds_perfil');
     $this->db->from('tb_perfil as Perfis');
-    
+
     if(!empty($searchText)) {
         $likeCriteria = "(Perfis.ds_perfil  LIKE '%".$searchText."%')";
         $this->db->where($likeCriteria);
@@ -246,17 +246,16 @@ function carregaInfoPerfil($IdPerfil)
 // INICIO DAS CONSULTAS NA TELA DE PERMISSOES
 function listaPermissao($idUser, $searchText = '', $page, $segment)
 {
-    $this->db->select('Permissao.Id_Permissao, Perfis.Ds_Perfil, Telas.Ds_Tela, Permissao.Atualizar,
-    Permissao.Inserir, Permissao.Excluir, Permissao.Consultar, Permissao.Imprimir');
-    $this->db->from('TbPermissao as Permissao');
-    $this->db->join('TabTela as Telas', 'Telas.Id_Tela = Permissao.TabTela_Id_Tela AND Telas.Tp_Ativo = \'S\'','inner');
-    $this->db->join('tb_perfil as Perfis', 'Perfis.id_perfil = Permissao.TbPerfil_Id_CdPerfil AND Perfis.Deletado = \'N\' AND Perfis.Tp_Ativo = \'S\'','inner');
+    $this->db->select('Permissao.id_permissao, Perfis.ds_perfil, Permissao.ds_tela, Permissao.atualizar,
+    Permissao.Inserir, Permissao.excluir, Permissao.consultar, Permissao.imprimir');
+    $this->db->from('tb_permissao as Permissao');    
+    $this->db->join('tb_perfil as Perfis', 'Perfis.id_perfil = Permissao.id_perfil','inner');
     if(!empty($searchText)) {
-        $likeCriteria = "(Perfis.Ds_Perfil  LIKE '%".$searchText."%'
-                        OR  Telas.Ds_Tela  LIKE '%".$searchText."%')";
+        $likeCriteria = "(Perfis.ds_perfil LIKE '%".$searchText."%'
+                        OR Permissao.ds_tela LIKE '%".$searchText."%')";
         $this->db->where($likeCriteria);
     }
-    $this->db->where('Permissao.CriadoPor', $idUser);
+//   $this->db->where('Permissao.CriadoPor', $idUser);
     $this->db->limit($page, $segment);
     $query = $this->db->get();
     
@@ -266,52 +265,24 @@ function listaPermissao($idUser, $searchText = '', $page, $segment)
 
 function editaPermissao($infoPermissao, $IdPermissao)
 {
-    $this->db->where('Id_Permissao', $IdPermissao);
-    $this->db->update('TbPermissao', $infoPermissao);
+    $this->db->where('id_permissao', $IdPermissao);
+    $this->db->update('tb_permissao', $infoPermissao);
     
     return TRUE;
 }
 
 function carregaInfoPermissao($IdPermissao)
 {
-    $this->db->select('Permissao.Id_Permissao, Perfis.Ds_Perfil, Telas.Ds_Tela, Permissao.Atualizar,
-    Permissao.Inserir, Permissao.Excluir, Permissao.Consultar, Permissao.Imprimir');
-    $this->db->from('TbPermissao as Permissao');
-    $this->db->join('TabTela as Telas', 'Telas.Id_Tela = Permissao.TabTela_Id_Tela AND Telas.Tp_Ativo = \'S\'','inner');
-    $this->db->join('tb_perfil as Perfis', 'Perfis.id_perfil = Permissao.TbPerfil_Id_CdPerfil AND Perfis.Deletado <> \'S\' AND Perfis.Tp_Ativo = \'S\'','inner');
-    $this->db->where('Id_Permissao', $IdPermissao);
+    $this->db->select('Permissao.id_permissao, Perfis.ds_perfil, Telas.ds_tela, Permissao.atualizar,
+    Permissao.Inserir, Permissao.excluir, Permissao.consultar, Permissao.imprimir');
+    $this->db->from('tb_permissao as Permissao');    
+    $this->db->join('tb_perfil as Perfis', 'Perfis.id_perfil = Permissao.id_perfil','inner');
+    $this->db->where('id_permissao', $IdPermissao);
     $query = $this->db->get();
     
     return $query->result();
 }
 // FIM DAS CONSULTAS NA TELA DE PERMISSAO
-
-function carregaInfoUsuarioCriados($CriadoPor)
-{
-        $this->db->select('Id_Usuario, Nome_Usuario, Email, Cpf_Usuario, Tp_Ativo');
-        $this->db->from('TabUsuario');
-        $this->db->where('CriadoPor', $CriadoPor);
-        $this->db->where('Deletado <>', 'S');
-        $this->db->where('Tp_Ativo', 'S');
-        $this->db->where('Id_Usuario <>', $CriadoPor);
-        $query = $this->db->get();
-        
-        return $query->result();
-}
-
-function carregaPerfisCriados($CriadoPor)
-{
-    $this->db->select('Perfis.id_perfil, Perfis.Ds_Perfil');
-    $this->db->from('tb_perfil as Perfis');
-    $this->db->where('Perfis.Deletado <>', 'S');
-    $this->db->where('Perfis.Tp_Ativo', 'S');
-    $this->db->where('Perfis.CriadoPor', $CriadoPor);
-    $query = $this->db->get();
-    
-    return $query->result();
-}
-
-// FIM DAS CONSULTAS NA TELA DE USUÁRIO/EMPRESA
 
     /**
      * This function is used to get the user roles information
