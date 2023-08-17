@@ -39,7 +39,7 @@ class CadastroModel extends CI_Model
     function adicionaAcesso($infoAcesso)
     {
         $this->db->trans_start();
-        $this->db->insert('tb_acesso', $infoUsuario);
+        $this->db->insert('tb_acesso', $infoAcesso);
         
         $insert_id = $this->db->insert_id();
         
