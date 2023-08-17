@@ -266,7 +266,7 @@ function editaPermissao($infoPermissao, $IdPermissao)
 
 function carregaInfoPermissao($IdPermissao)
 {
-    $this->db->select('Permissao.id_permissao, Perfis.ds_perfil, Telas.ds_tela, Permissao.atualizar,
+    $this->db->select('Permissao.id_permissao, Perfis.ds_perfil, Permissao.ds_tela, Permissao.atualizar,
     Permissao.Inserir, Permissao.excluir, Permissao.consultar, Permissao.imprimir');
     $this->db->from('tb_permissao as Permissao');    
     $this->db->join('tb_perfil as Perfis', 'Perfis.id_perfil = Permissao.id_perfil','inner');
