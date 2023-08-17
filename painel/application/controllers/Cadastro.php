@@ -181,6 +181,7 @@ class Cadastro extends BaseController
 
                 $nome = $this->input->post('ds_nome');
                 $cpf = $this->input->post('nu_cpf');
+                $id_perfil = $this->input->post('id_perfil');
                 $email = $this->security->xss_clean($this->input->post('ds_email'));
                 $senha = $this->input->post('ds_senha');
                 $admin = 'N';
@@ -195,7 +196,7 @@ class Cadastro extends BaseController
                 {
                     //'Senha'=>getHashedPassword($senha)
                     $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 
-                                         'st_admin'=>$admin,'nu_cpf'=>$cpf);
+                                        'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf);
                 }
                 
                 $resultado = $this->CadastroModel->editaUsuario($infoUsuario, $IdUsuario);
