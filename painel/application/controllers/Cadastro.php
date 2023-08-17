@@ -190,7 +190,8 @@ class Cadastro extends BaseController
                 
                 if(empty($senha))
                 {
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email,'st_admin'=>$admin,'nu_cpf'=>$cpf);
+                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email,'st_admin'=>$admin,
+                                         'id_perfil'=>$id_perfil,'nu_cpf'=>$cpf);
                 }
                 else
                 {
