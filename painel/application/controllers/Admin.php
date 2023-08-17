@@ -232,7 +232,7 @@ class Admin extends BaseController
      */
     function logHistory($userId = NULL)
     {
-            $data['dbinfo'] = $this->user_model->gettablemb('tb_log','cias');
+            $data['dbinfo'] = $this->user_model->gettablemb('tb_log','u699148595_inventario_hom');
             if(isset($data['dbinfo']->total_size))
             {
                 if(($data['dbinfo']->total_size)>1000){
