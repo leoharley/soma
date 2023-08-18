@@ -14,23 +14,23 @@ $route['cadastroPermissao/:any'] = "cadastro/cadastroPermissao/$1";
 $route['cadastroPerfil/:any/:any'] = "cadastro/cadastroPerfil/$1/$2";
 $route['cadastroPerfil/:any'] = "cadastro/cadastroPerfil/$1";
 
-$route['cadastroProjeto/:any/:any'] = "cadastro/cadastroProjeto/$1/$2";
-$route['cadastroProjeto/:any'] = "cadastro/cadastroProjeto/$1";
+$route['principalProjeto/:any/:any'] = "principal/principalProjeto/$1/$2";
+$route['principalProjeto/:any'] = "principal/principalProjeto/$1";
 
-$route['cadastroPropriedade/:any/:any'] = "cadastro/cadastroPropriedade/$1/$2";
-$route['cadastroPropriedade/:any'] = "cadastro/cadastroPropriedade/$1";
+$route['principalPropriedade/:any/:any'] = "principal/principalPropriedade/$1/$2";
+$route['principalPropriedade/:any'] = "principal/principalPropriedade/$1";
 
-$route['cadastroParcela/:any/:any'] = "cadastro/cadastroParcela/$1/$2";
-$route['cadastroParcela/:any'] = "cadastro/cadastroParcela/$1";
+$route['principalParcela/:any/:any'] = "principal/principalParcela/$1/$2";
+$route['principalParcela/:any'] = "principal/principalParcela/$1";
 
-$route['cadastroFlora/:any/:any'] = "cadastro/cadastroFlora/$1/$2";
-$route['cadastroFlora/:any'] = "cadastro/cadastroFlora/$1";
+$route['principalFlora/:any/:any'] = "principal/principalFlora/$1/$2";
+$route['principalFlora/:any'] = "principal/principalFlora/$1";
 
-$route['cadastroFauna/:any/:any'] = "cadastro/cadastroFauna/$1/$2";
-$route['cadastroFauna/:any'] = "cadastro/cadastroFauna/$1";
+$route['principalFauna/:any/:any'] = "principal/principalFauna/$1/$2";
+$route['principalFauna/:any'] = "principal/principalFauna/$1";
 
-$route['cadastroEpiteta/:any/:any'] = "cadastro/cadastroEpiteta/$1/$2";
-$route['cadastroEpiteta/:any'] = "cadastro/cadastroEpiteta/$1";
+$route['principalEpiteta/:any/:any'] = "principal/principalEpiteta/$1/$2";
+$route['principalEpiteta/:any'] = "principal/principalEpiteta/$1";
 
 /*********** ROUTES PARA AÇÕES DA TELA USUÁRIO *******************/
 $route['adicionaUsuario'] = "cadastro/adicionaUsuario";
@@ -47,34 +47,34 @@ $route['editaPermissao'] = "cadastro/editaPermissao";
 
 
 /*********** ROUTES PARA AÇÕES DA TELA PROJETOS *******************/
-$route['adicionaProjeto'] = "cadastro/adicionaProjeto";
-$route['editaProjeto'] = "cadastro/editaProjeto";
-$route['apagaProjeto/:any'] = "cadastro/apagaProjeto/$1";
+$route['adicionaProjeto'] = "principal/adicionaProjeto";
+$route['editaProjeto'] = "principal/editaProjeto";
+$route['apagaProjeto/:any'] = "principal/apagaProjeto/$1";
 
 /*********** ROUTES PARA AÇÕES DA TELA PROPRIEDADES *******************/
-$route['adicionaPropriedade'] = "cadastro/adicionaPropriedade";
-$route['editaPropriedade'] = "cadastro/editaPropriedade";
-$route['apagaPropriedade/:any'] = "cadastro/apagaPropriedade/$1";
+$route['adicionaPropriedade'] = "principal/adicionaPropriedade";
+$route['editaPropriedade'] = "principal/editaPropriedade";
+$route['apagaPropriedade/:any'] = "principal/apagaPropriedade/$1";
 
 /*********** ROUTES PARA AÇÕES DA TELA PARCELAS *******************/
-$route['adicionaParcela'] = "cadastro/adicionaParcela";
-$route['editaParcela'] = "cadastro/editaParcela";
-$route['apagaParcela/:any'] = "cadastro/apagaParcela/$1";
+$route['adicionaParcela'] = "principal/adicionaParcela";
+$route['editaParcela'] = "principal/editaParcela";
+$route['apagaParcela/:any'] = "principal/apagaParcela/$1";
 
 /*********** ROUTES PARA AÇÕES DA TELA FLORA *******************/
-$route['adicionaFlora'] = "cadastro/adicionaFlora";
-$route['editaFlora'] = "cadastro/editaFlora";
-$route['apagaFlora/:any'] = "cadastro/apagaFlora/$1";
+$route['adicionaFlora'] = "principal/adicionaFlora";
+$route['editaFlora'] = "principal/editaFlora";
+$route['apagaFlora/:any'] = "principal/apagaFlora/$1";
 
 /*********** ROUTES PARA AÇÕES DA TELA FAUNA *******************/
-$route['adicionaFauna'] = "cadastro/adicionaFauna";
-$route['editaFauna'] = "cadastro/editaFauna";
-$route['apagaFauna/:any'] = "cadastro/apagaFauna/$1";
+$route['adicionaFauna'] = "principal/adicionaFauna";
+$route['editaFauna'] = "principal/editaFauna";
+$route['apagaFauna/:any'] = "principal/apagaFauna/$1";
 
 /*********** ROUTES PARA AÇÕES DA TELA EPITETAS *******************/
-$route['adicionaEpiteta'] = "cadastro/adicionaEpiteta";
-$route['editaEpiteta'] = "cadastro/editaEpiteta";
-$route['apagaEpiteta/:any'] = "cadastro/apagaEpiteta/$1";
+$route['adicionaEpiteta'] = "principal/adicionaEpiteta";
+$route['editaEpiteta'] = "principal/editaEpiteta";
+$route['apagaEpiteta/:any'] = "principal/apagaEpiteta/$1";
 
 
 
