@@ -243,42 +243,42 @@ $(function() {
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="principal">
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>principalConvenio/listar">
+                    <a href="<?php echo base_url(); ?>principalProjeto/listar">
                         <i class="fa fa-paste" style="margin-right:5px!important"></i>
                         <span>Projetos</span>
                     </a>
                   </li>
 
                   <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalPlano/listar">
+                      <a href="<?php echo base_url(); ?>principalPropriedade/listar">
                           <i class="fa fa-list" style="margin-right:5px!important"></i>
                           <span>Propriedades</span>
                       </a>
                   </li>
 
                   <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalPlano/listar">
+                      <a href="<?php echo base_url(); ?>principalParcela/listar">
                           <i class="fa fa-th" style="margin-right:5px!important"></i>
                           <span>Parcelas</span>
                       </a>
                   </li>
 
                   <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalPlano/listar">
+                      <a href="<?php echo base_url(); ?>principalFlora/listar">
                           <i class="fa fa-leaf" style="margin-right:5px!important"></i>
                           <span>Flora</span>
                       </a>
                   </li>
 
                   <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalPlano/listar">
+                      <a href="<?php echo base_url(); ?>principalFauna/listar">
                           <i class="fa fa-paw" style="margin-right:5px!important"></i>
                           <span>Fauna</span>
                       </a>
                   </li>
 
                   <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalPlano/listar">
+                      <a href="<?php echo base_url(); ?>principalEpiteta/listar">
                           <i class="fa fa-tree" style="margin-right:5px!important"></i>
                           <span>Epítetas</span>
                       </a>
