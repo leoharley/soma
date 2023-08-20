@@ -47,7 +47,7 @@ if(!empty($infoProjeto))
                     <!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaProjeto' : base_url().'editaProjeto'; ?>" method="post" role="form">
+                    <form role="form" id="addProjeto" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaProjeto' : base_url().'editaProjeto'; ?>" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
 

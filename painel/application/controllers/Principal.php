@@ -115,43 +115,33 @@ class Principal extends BaseController
             else
         { */
 
-                $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
-                $email = $this->security->xss_clean($this->input->post('ds_email'));
-                $id_perfil = $this->input->post('id_perfil');
-                $senha = $this->input->post('ds_senha');
-                $admin = 'N';
+                $nome = $this->input->post('nome');
+                $perimetro = $this->input->post('perimetro');
+                $dt_inicio = $this->input->post('dt_inicio');
+                $dt_final = $this->input->post('dt_final');
             //    $roleId = $this->input->post('role');
 
-                if ($this->PrincipalModel->consultaUsuarioExistente($cpf,$email) == null) {
-
-                $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'st_admin'=>$admin,
-                                    'id_perfil'=> $id_perfil, 'nu_cpf'=>$cpf);
-                                    
-                $result = $this->PrincipalModel->adicionaUsuario($infoUsuario);
+                $infoProjeto = array('nome'=> $nome, 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
+                'dt_final'=> $dt_final);
                 
-                $infoAcesso = array('co_principal_pessoa '=> $result, 'ds_senha'=>$senha);
-                                    
-                $resultAcesso = $this->PrincipalModel->adicionaAcesso($infoAcesso);
+                $result = $this->PrincipalModel->adicionaProjeto($infoProjeto);
                 
-                if($result > 0 && $resultAcesso > 0)
+                if($result > 0)
                 {
-                    $process = 'Adicionar usuário';
-                    $processFunction = 'Principal/adicionaUsuario';
+                    $process = 'Adicionar projeto';
+                    $processFunction = 'Principal/adicionaProjeto';
                     $this->logrecord($process,$processFunction);
 
-                    $this->session->set_flashdata('success', 'Usuário criado com sucesso');
+                    $this->session->set_flashdata('success', 'Projeto criado com sucesso');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Falha na criação do usuário');
+                    $this->session->set_flashdata('error', 'Falha na criação do projeto');
                 }
 
-            } else {
-                    $this->session->set_flashdata('error', 'CPF ou Email já foram cadastrados!');
-            }
+   
                 
-                redirect('principalUsuario/listar');
+                redirect('principalProjeto/listar');
 
         //    }
     }
