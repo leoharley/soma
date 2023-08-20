@@ -1,23 +1,21 @@
 <?php
 
-$co_seq_cadastro_pessoa = '';
-$id_perfil = '';
-$ds_nome = '';
-$ds_email = '';
-$nu_cpf = '';
-$st_admin = '';
+$id = '';
+$nome = '';
+$perimetro = '';
+$dt_inicio = '';
+$dt_final = '';
 
 if ($this->uri->segment(2) == 'editar') {
-if(!empty($infoUsuario))
+if(!empty($infoProjeto))
 {
-    foreach ($infoUsuario as $r)
+    foreach ($infoProjeto as $r)
     {
-        $co_seq_cadastro_pessoa = $r->co_seq_cadastro_pessoa;
-        $id_perfil = $r->id_perfil;
-        $ds_nome = $r->ds_nome;
-        $ds_email = $r->ds_email;
-        $nu_cpf = $r->nu_cpf;
-        $st_admin = $r->st_admin;
+        $id = $r->id;
+        $nome = $r->nome;
+        $perimetro = $r->perimetro;
+        $dt_inicio = $r->dt_inicio;
+        $dt_final = $r->dt_final;
     }
 }
 }
@@ -28,7 +26,7 @@ if(!empty($infoUsuario))
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Usuários' : 'Editar Usuários' ; ?>
+            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Projetos' : 'Editar Projetos' ; ?>
             <small><?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Adicionar' : 'Editar' ; ?></small>
         </h1>
     </section>
@@ -49,23 +47,23 @@ if(!empty($infoUsuario))
                     <!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaUsuario' : base_url().'editaUsuario'; ?>" method="post" role="form">
+                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaProjeto' : base_url().'editaProjeto'; ?>" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
 
                                 <!-- VARCHAR/INTEGER/FLOAT -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_nome">Nome</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_nome') : $ds_nome ; ?>" id="ds_nome" name="ds_nome" maxlength="128">
-                                        <input type="hidden" value="<?php echo $co_seq_cadastro_pessoa; ?>" name="co_seq_cadastro_pessoa" id="co_seq_cadastro_pessoa" />
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nome') : $nome ; ?>" id="nome" name="nome" maxlength="128">
+                                        <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="nu_cpf">CPF</label>
-                                        <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control required cpf_usuario" id="nu_cpf" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_cpf') : $nu_cpf; ?>" name="nu_cpf"
+                                        <label for="perimetro">Perímetro</label>
+                                        <input type="text" class="form-control required" id="perimetro" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('perimetro') : $perimetro; ?>" name="perimetro"
                                             maxlength="14">
                                     </div>
                                 </div>
@@ -75,45 +73,15 @@ if(!empty($infoUsuario))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_email">Email</label>
-                                        <input type="text" class="form-control email required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_email') : $ds_email; ?>" id="ds_email" name="ds_email" maxlength="128">
+                                        <label for="dt_inicio">Data de início</label>
+                                        <input type="date" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('dt_inicio') : $dt_inicio; ?>" id="dt_inicio" name="dt_inicio">
                                     </div>
                                 </div>
                             
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="id_perfil">Perfil</label>
-                                        <select class="form-control required" id="id_perfil" name="id_perfil" required>
-                                            <option value="" disabled selected>SELECIONE</option>
-                                            <?php
-                                            if(!empty($infoPerfil))
-                                            {
-                                                foreach ($infoPerfil as $perfil)
-                                                {
-                                                    ?>
-                                                <option value="<?php echo $perfil->id_perfil ?>" <?php if ($this->uri->segment(2) == 'editar' && $perfil->id_perfil  == $id_perfil) { echo 'selected'; } ?>>
-                                                    <?php echo $perfil->id_perfil.' - '.$perfil->ds_perfil ?>
-                                                </option>
-                                                <?php
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="ds_senha">Senha</label>
-                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?>" id="ds_senha" name="ds_senha" maxlength="20">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="resenha">Redigite a senha</label>
-                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?> equalTo" id="resenha" name="resenha" maxlength="20">
+                                        <label for="dt_final">Data final</label>
+                                        <input type="date" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('dt_final') : $dt_final; ?>" id="dt_final" name="dt_final">
                                     </div>
                                 </div>
                             </div>
