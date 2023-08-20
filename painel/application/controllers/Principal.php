@@ -121,7 +121,7 @@ class Principal extends BaseController
                 $dt_final = $this->input->post('dt_final');
             //    $roleId = $this->input->post('role');
 
-                $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->vendorId, 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
+                $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
                 'dt_final'=> $dt_final);
                 
                 $result = $this->PrincipalModel->adicionaProjeto($infoProjeto);
