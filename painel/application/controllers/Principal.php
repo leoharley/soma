@@ -121,8 +121,6 @@ class Principal extends BaseController
                 $dt_final = $this->input->post('dt_final');
             //    $roleId = $this->input->post('role');
 
-            var_dump($this->session->userdata());exit;
-
                 $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
                 'dt_final'=> $dt_final);
                 
