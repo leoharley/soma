@@ -34,6 +34,23 @@ class PrincipalModel extends CI_Model
         return $insert_id;
     }
 
+    function apagaProjeto($IdProjeto)
+    {
+        $this->db->where('id', $IdProjeto);
+        $res2 = $this->db->delete('tb_projetos');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+
 
     function adicionaAcesso($infoAcesso)
     {

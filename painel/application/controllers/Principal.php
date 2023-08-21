@@ -211,26 +211,26 @@ class Principal extends BaseController
 
     function apagaProjeto()
     {
-            $IdUsuario = $this->uri->segment(2);
+            $IdProjeto = $this->uri->segment(2);
 
-            $resultado = $this->PrincipalModel->apagaUsuario($IdUsuario);
+            $resultado = $this->PrincipalModel->apagaProjeto($IdProjeto);
             
             if ($resultado) {
                 // echo(json_encode(array('status'=>TRUE)));
 
-                 $process = 'Exclusão de usuário';
-                 $processFunction = 'Principal/apagaUsuario';
+                 $process = 'Exclusão de projeto';
+                 $processFunction = 'Principal/apagaProjeto';
                  $this->logrecord($process,$processFunction);
 
-                 $this->session->set_flashdata('success', 'Usuário deletado com sucesso');
+                 $this->session->set_flashdata('success', 'Projeto deletado com sucesso');
 
                 }
                 else 
                 { 
                     //echo(json_encode(array('status'=>FALSE))); 
-                    $this->session->set_flashdata('error', 'Falha em excluir o usuário');
+                    $this->session->set_flashdata('error', 'Falha em excluir o projeto');
                 }
-                redirect('principalUsuario/listar');
+                redirect('principalProjeto/listar');
     }
     // FIM DAS FUNÇÕES DA TELA DE USUÁRIO
 
