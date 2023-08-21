@@ -23,6 +23,7 @@ if(!empty($infoParcela))
         $id_propriedade = $r->id_propriedade;
         $nu_ano_emissao = $r->nu_ano_emissao;
         $estagio_regeneracao = $r->estagio_regeneracao;
+        $grau_epifitismo = $r->grau_epifitismo;
         $tipo_bioma = $r->tipo_bioma;
         $tipo_parcela = $r->tipo_parcela;
         $tamanho_parcela = $r->tamanho_parcela;

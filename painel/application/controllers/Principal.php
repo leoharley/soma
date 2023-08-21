@@ -492,6 +492,7 @@ class Principal extends BaseController
                 $estagio_regeneracao = $this->input->post('estagio_regeneracao');
                 $grau_epifitismo = $this->input->post('grau_epifitismo');
                 $tipo_bioma = $this->input->post('tipo_bioma');
+                $tipo_parcela = $this->input->post('tipo_parcela');
                 $tamanho_parcela = $this->input->post('tamanho_parcela');
                 $carbono_vegetacao = $this->input->post('carbono_vegetacao');
                 $biomassa_vegetacao_total = $this->input->post('biomassa_vegetacao_total');
@@ -501,7 +502,7 @@ class Principal extends BaseController
                 
                 $infoParcela = array('id_acesso'=> $this->session->userdata('userId'), 'id_propriedade'=> $id_propriedade,
                 'nu_ano_emissao'=>$nu_ano_emissao,'estagio_regeneracao'=>$estagio_regeneracao, 'grau_epifitismo'=>$grau_epifitismo,
-                'tipo_bioma'=>$tipo_bioma,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
+                'tipo_bioma'=>$tipo_bioma,'tipo_parcela'=>$tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
                 'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
                 'carbono_total'=>$carbono_total);
                                     
@@ -533,6 +534,7 @@ class Principal extends BaseController
             $nu_ano_emissao = $this->input->post('nu_ano_emissao');
             $estagio_regeneracao = $this->input->post('estagio_regeneracao');
             $grau_epifitismo = $this->input->post('grau_epifitismo');
+            $tipo_parcela = $this->input->post('tipo_parcela');
             $tipo_bioma = $this->input->post('tipo_bioma');
             $tamanho_parcela = $this->input->post('tamanho_parcela');
             $carbono_vegetacao = $this->input->post('carbono_vegetacao');
@@ -543,28 +545,29 @@ class Principal extends BaseController
             
             $infoParcela = array('id_acesso'=> $this->session->userdata('userId'), 'id_propriedade'=> $id_propriedade,
             'nu_ano_emissao'=>$nu_ano_emissao,'estagio_regeneracao'=>$estagio_regeneracao, 'grau_epifitismo'=>$grau_epifitismo,
-            'tipo_bioma'=>$tipo_bioma,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
+            'tipo_bioma'=>$tipo_bioma,'tipo_parcela'=>$tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
             'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
             'carbono_total'=>$carbono_total);
                 
-                
-                $resultado = $this->PrincipalModel->editaParcela($infoParcela, $IdParcela);
-                
-                if($resultado == true)
-                {
-                    $process = 'Parcela atualizada';
-                    $processFunction = 'Principal/editaParcela';
-                    $this->logrecord($process,$processFunction);
+            
+            
+            $resultado = $this->PrincipalModel->editaParcela($infoParcela, $IdParcela);
+            
+            if($resultado == true)
+            {
+                $process = 'Parcela atualizada';
+                $processFunction = 'Principal/editaParcela';
+                $this->logrecord($process,$processFunction);
 
-                    $this->session->set_flashdata('success', 'Parcela atualizada com sucesso');
-                }
-                else
-                {
-                    $this->session->set_flashdata('error', 'Falha na atualização da parcela');
-                }
-                
-                redirect('principalParcela/listar');
-           // }
+                $this->session->set_flashdata('success', 'Parcela atualizada com sucesso');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Falha na atualização da parcela');
+            }
+            
+            redirect('principalParcela/listar');
+        // }
     }
 
     function apagaParcela()
