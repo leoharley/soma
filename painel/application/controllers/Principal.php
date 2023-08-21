@@ -462,6 +462,7 @@ class Principal extends BaseController
                 {
                     redirect('principalParcela/listar');
                 }
+                $data['infoPropriedades'] = $this->PrincipalModel->carregaInfoPropriedades();
                 $data['infoParcela'] = $this->PrincipalModel->carregaInfoParcela($IdParcela);
                 $this->global['pageTitle'] = 'SOMA : Editar parcela';      
                 $this->loadViews("principal/c_principalParcela", $this->global, $data, NULL);
