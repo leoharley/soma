@@ -95,19 +95,7 @@ if(!empty($infoParcela))
                                         <input type="text" class="yearpicker form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ano_emissao') : $nu_ano_emissao ; ?>" id="nu_ano_emissao" name="nu_ano_emissao" />
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
-                                </div>
-
-                                <div class="container">
-                                    <div class="title">
-                                        <h1>YearPicker - Basic Year Picker Plugin Example</h1>
-                                    </div>
-                                    <div class="main">
-                                        <h2>Select Year</h2>
-                                        <input type="text" class="yearpicker form-control" value="" />
-                                    </div>
-                                </div>
-
-                                        
+                                </div>                                        
                             </div>
 
                             <div class="row">
@@ -214,6 +202,10 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
-    $(".yearpicker").yearpicker();
+    $(".yearpicker").yearpicker({
+          year: 2017,
+          startYear: 2012,
+          endYear: 2030
+        });
 });
 </script>
