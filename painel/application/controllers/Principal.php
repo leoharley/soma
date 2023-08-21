@@ -309,8 +309,8 @@ class Principal extends BaseController
                 $nu_ccir = $this->input->post('nu_ccir');
                 $proprietario = $this->input->post('proprietario');
                 $no_propriedade = $this->input->post('no_propriedade');
-                $cnpj = $this->input->post('cnpj');
-                $cpf = $this->input->post('cpf');
+                $cnpj = $this->valor($this->input->post('cnpj'));
+                $cpf = $this->valor($this->input->post('cpf'));
                 $liberado_campo = $this->input->post('liberado_campo');
                 
                 $infoPropriedade = array('id_acesso'=> $this->session->userdata('userId'), 'id_projeto'=> $id_projeto,
@@ -1155,6 +1155,14 @@ function principalFauna()
                     $this->session->set_flashdata('error', 'Falha em excluir o usuário');
                 }
                 redirect('principalUsuario/listar');
+    }
+
+    function valor($val)
+    {
+        $val = str_replace(",",".",$val);
+        $val = preg_replace('/\.(?=.*\.)/', '', $val);
+       // return ($val); 
+        return floatval($val);      
     }
 
 }
