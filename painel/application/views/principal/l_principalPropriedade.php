@@ -20,7 +20,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i class="fa fa-users"></i> Listar Usuários
+      <i class="fa fa-users"></i> Listar Propriedades
       <small>Listar</small>
     </h1>
   </section>
@@ -28,7 +28,7 @@
     <div class="col-xs-12">
       <div class="text-left">
         <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroUsuario/cadastrar">
-          <i class="fa fa-plus"></i> Adicionar usuário</a>
+          <i class="fa fa-plus"></i> Adicionar propriedade</a>
       </div>
       <br/>
       <div class="box">
@@ -65,9 +65,10 @@
                   <tr>
                     <th>Id</th>
                     <th>Nome</th>
+                    <th>Proprietário</th>
+                    <th>CNPJ</th>
                     <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Perfil</th>
+                    <th>Liberado?</th>
                   <!--  <th>Admin?</th> -->
                   <!--  <th>Data ativo</th>
                     <th>Data inativo</th> -->                    
@@ -76,30 +77,30 @@
                 </thead>
                 <tbody>
                   <?php
-                      if(!empty($registrosUsuarios))
+                      if(!empty($registrosPropriedades))
                       {
-                          foreach($registrosUsuarios as $registro)
+                          foreach($registrosPropriedades as $registro)
                           {
                       ?>
                     <tr>
                       <td>
-                        <?php echo $registro->co_seq_cadastro_pessoa ?>
+                        <?php echo $registro->id ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_nome ?>
+                        <?php echo $registro->no_propriedade ?>
                       </td>
                       <td>
-                        <?php echo $registro->nu_cpf ?>
+                        <?php echo $registro->proprietario ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_email ?>
+                        <?php echo $registro->cnpj ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_perfil ?>
+                        <?php echo $registro->cpf ?>
                       </td>
-                    <!--  <td>
-                        <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>
-                      </td> -->
+                      <td>
+                        <?php echo ($registro->liberado_campo == 'S') ? 'Sim' : 'Não'; ?>
+                      </td>
                   <!--    <td>
                         <?php //echo ($registro->Dt_Ativo != null) ? date("d/m/Y", strtotime($registro->Dt_Ativo)) : ''; ?>
                       </td>
@@ -107,10 +108,10 @@
                         <?php //echo ($registro->Dt_Inativo != null) ? date("d/m/Y", strtotime($registro->Dt_Inativo)) : ''; ?>
                       </td> -->
                       <td class="text-center">
-                          <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroUsuario/editar/'.$registro->co_seq_cadastro_pessoa ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroPropriedade/editar/'.$registro->id ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaUsuario/'.$registro->co_seq_cadastro_pessoa ?>" data-userid="<?= $registro->co_seq_cadastro_pessoa ?>" title="Excluir">
+                          <a class="btn btn-sm btn-danger" href="<?= base_url().'apagaPropriedade/'.$registro->id ?>" data-userid="<?= $registro->id ?>" title="Excluir">
                               <i class="fa fa-trash-o"></i>
                           </a>
                       </td>
