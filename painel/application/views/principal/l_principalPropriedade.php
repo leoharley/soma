@@ -108,7 +108,7 @@
                         <?php //echo ($registro->Dt_Inativo != null) ? date("d/m/Y", strtotime($registro->Dt_Inativo)) : ''; ?>
                       </td> -->
                       <td class="text-center">
-                          <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroPropriedade/editar/'.$registro->id ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?= base_url().'principalPropriedade/editar/'.$registro->id ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
                           <a class="btn btn-sm btn-danger" href="<?= base_url().'apagaPropriedade/'.$registro->id ?>" data-userid="<?= $registro->id ?>" title="Excluir">
