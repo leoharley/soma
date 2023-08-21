@@ -277,6 +277,8 @@ class Principal extends BaseController
                     redirect('principalPropriedade/listar');
                 }
                 $data['infoPropriedade'] = $this->PrincipalModel->carregaInfoPropriedadeExistente($IdPropriedade);
+
+                var_dump($data['infoPropriedade']);exit;
                 $this->global['pageTitle'] = 'SOMA : Editar Propriedade';      
                 $this->loadViews("principal/c_principalPropriedade", $this->global, $data, NULL);
             }
