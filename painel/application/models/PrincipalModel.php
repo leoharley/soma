@@ -52,6 +52,55 @@ class PrincipalModel extends CI_Model
     }
 
 
+
+    function listaPropriedades($searchText = '', $page, $segment)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_propriedades as Propriedades');        
+   //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(Propriedades.no_propriedade LIKE '%".$searchText."%'
+                            OR Propriedades.proprietario LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+		        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function adicionaPropriedade($infoPropriedade)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tb_propriedades', $infoPropriedade);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function apagaPropriedade($idPropriedade)
+    {
+        $this->db->where('id', $idPropriedade);
+        $res2 = $this->db->delete('tb_propriedades');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+
+
     function adicionaAcesso($infoAcesso)
     {
         $this->db->trans_start();
