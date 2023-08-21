@@ -96,6 +96,17 @@ if(!empty($infoParcela))
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
+
+                                <div class="container">
+                                    <div class="title">
+                                        <h1>YearPicker - Basic Year Picker Plugin Example</h1>
+                                    </div>
+                                    <div class="main">
+                                        <h2>Select Year</h2>
+                                        <input type="text" class="yearpicker form-control" value="" />
+                                    </div>
+                                </div>
+
                                         
                             </div>
 
