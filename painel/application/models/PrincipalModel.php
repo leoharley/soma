@@ -195,13 +195,13 @@ class PrincipalModel extends CI_Model
 
     function carregaInfoPropriedadeExistente($IdPropriedade)
     {
-
-        var_dump($IdPropriedade);exit;
         $this->db->select('*');
         $this->db->from('tb_propriedades');
         $campos = "((\"id\" = '".$IdPropriedade."'))";
         $this->db->where($campos);
         $query = $this->db->get();
+
+        var_dump($this->db->last_query());exit;
         
         return $query->result();
     }
