@@ -56,6 +56,7 @@
 
 <script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/yearpicker/yearpicker.js"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/yearpicker/yearpicker.css">
 
 
 <script>
