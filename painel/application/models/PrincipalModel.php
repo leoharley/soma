@@ -197,11 +197,8 @@ class PrincipalModel extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tb_propriedades');
-        $campos = "((\"id\" = '".$IdPropriedade."'))";
-        $this->db->where($campos);
+        $this->db->where('id', $IdPropriedade);
         $query = $this->db->get();
-
-        var_dump($this->db->last_query());exit;
         
         return $query->result();
     }
