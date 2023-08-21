@@ -83,6 +83,14 @@ class PrincipalModel extends CI_Model
         return $insert_id;
     }
 
+    function editaPropriedade($infoPropriedade, $IdPropriedade)
+    {
+        $this->db->where('id', $IdPropriedade);
+        $this->db->update('tb_propriedades', $infoPropriedade);
+        
+        return TRUE;
+    }
+
     function apagaPropriedade($idPropriedade)
     {
         $this->db->where('id', $idPropriedade);

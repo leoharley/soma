@@ -375,7 +375,7 @@ class Principal extends BaseController
                 'cpf'=>$cpf,'liberado_campo'=>$liberado_campo);
                 
                 
-                $resultado = $this->PrincipalModel->editaPerfil($infoPropriedade, $IdPropriedade);
+                $resultado = $this->PrincipalModel->editaPropriedade($infoPropriedade, $IdPropriedade);
                 
                 if($resultado == true)
                 {
