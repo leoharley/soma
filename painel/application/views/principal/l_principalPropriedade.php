@@ -1,3 +1,17 @@
+<?php
+function mask($val, $mask) {
+  $maskared = '';
+  $k = 0;
+  for($i = 0; $i<=strlen($mask)-1; $i++) {
+      if($mask[$i] == '#') {
+          if(isset($val[$k])) $maskared .= $val[$k++];
+      } else {
+          if(isset($mask[$i])) $maskared .= $mask[$i];
+      }
+  }
+  return $maskared;
+}
+?>
 <style>
   table {
     border-color: #808080!important;
@@ -93,10 +107,10 @@
                         <?php echo $registro->proprietario ?>
                       </td>
                       <td>
-                        <?php echo $registro->cnpj ?>
+                        <?php echo mask($registro->cnpj, '##.###.###/####-##'); ?>
                       </td>
                       <td>
-                        <?php echo $registro->cpf ?>
+                        <?php echo mask($registro->cpf, '###.###.###-##'); ?>
                       </td>
                       <td>
                         <?php echo ($registro->liberado_campo == 'S') ? 'Sim' : 'Não'; ?>
