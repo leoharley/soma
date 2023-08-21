@@ -104,6 +104,9 @@ function mask($val, $mask) {
                         <?php echo $registro->no_propriedade ?>
                       </td>
                       <td>
+                        <?php echo $registro->nu_ano_emissao ?>
+                      </td>
+                      <td>
                         <?php echo $registro->estagio_regeneracao ?>
                       </td>
                       <td>
