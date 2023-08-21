@@ -309,8 +309,8 @@ class Principal extends BaseController
                 $nu_ccir = $this->input->post('nu_ccir');
                 $proprietario = $this->input->post('proprietario');
                 $no_propriedade = $this->input->post('no_propriedade');
-                preg_match_all('!\d+!', $this->input->post('cnpj'), $cnpj);
-                preg_match_all('!\d+!', $this->input->post('cpf'), $cpf);
+                $cnpj = filter_var($this->input->post('cnpj'), FILTER_SANITIZE_NUMBER_INT);
+                $cpf = filter_var($this->input->post('cpf'), FILTER_SANITIZE_NUMBER_INT);
                 $liberado_campo = $this->input->post('liberado_campo');
                 
                 $infoPropriedade = array('id_acesso'=> $this->session->userdata('userId'), 'id_projeto'=> $id_projeto,
