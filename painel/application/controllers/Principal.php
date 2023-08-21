@@ -439,7 +439,7 @@ class Principal extends BaseController
 
                 $returns = $this->paginationCompress ( "principalTelas/listar", $count, 50 );
                 
-                $data['registrosParcelas'] = $this->PrincipalModel->listaParcelas($this->session->userdata('userId'), $searchText, $returns["page"], $returns["segment"]);
+                $data['registrosParcelas'] = $this->PrincipalModel->listaParcelas($searchText, $returns["page"], $returns["segment"]);
                 
                 $process = 'Listar parcelas';
                 $processFunction = 'Principal/principalParcelas';
