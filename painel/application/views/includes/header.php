@@ -54,6 +54,8 @@
     var baseURL = "<?php echo base_url(); ?>";
   </script>
 
+<script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.js"></script>
+
 
 <script>
 $(function() {
