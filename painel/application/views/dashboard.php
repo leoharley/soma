@@ -13,7 +13,7 @@
         <div class="small-box bg-aqua">
           <div class="inner">
             <h3>
-              <?php if(isset($tasksCount)) { echo $tasksCount; } else { echo '0'; } ?>
+              <?php if(isset($UsuariosCount)) { echo $UsuariosCount; } else { echo '0'; } ?>
             </h3>
             <p>Usuários</p>
           </div>
@@ -31,7 +31,7 @@
         <div class="small-box bg-green">
           <div class="inner">
             <h3>
-              <?php if(isset($finishedTasksCount)) { echo $finishedTasksCount; } else { echo '0'; } ?>
+              <?php if(isset($ProjetosCount)) { echo $ProjetosCount; } else { echo '0'; } ?>
             </h3>
             <p>Projetos</p>
           </div>

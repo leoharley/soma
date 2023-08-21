@@ -541,6 +541,23 @@ class User_model extends CI_Model
 
         return $query->row();
     }
+
+    function UsuariosCount()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_cadastro_pessoa');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function ProjetosCount()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_projetos');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
 }
 
   

@@ -27,7 +27,10 @@ class User extends BaseController
     public function index()
     {
         $this->global['pageTitle'] = 'ADMIN: Página inicial';
-        $data['tasksCount'] = 0;
+    //    $data['tasksCount'] = 0;
+        $data['UsuariosCount'] = $this->user_model->UsuariosCount();
+        $data['ProjetosCount'] = $this->user_model->ProjetosCount();
+        $data['logsCount'] = $this->user_model->logsCount();
 
 /*        $data['tasksCount'] = $this->user_model->tasksCount();
         $data['finishedTasksCount'] = $this->user_model->finishedTasksCount();
