@@ -284,9 +284,6 @@ class Principal extends BaseController
 
     function adicionaPropriedade() 
     {
-            $this->load->library('form_validation');
-            
-            $this->form_validation->set_rules('Nome','Nome','trim|required|max_length[128]');        
 
         //VALIDAÇÃO
 
@@ -317,6 +314,8 @@ class Principal extends BaseController
                 'nu_ano_emissao'=>$nu_ano_emissao,'nu_inscricao_car'=>$nu_inscricao_car, 'nu_ccir'=>$nu_ccir,
                 'proprietario'=>$proprietario,'no_propriedade'=>$no_propriedade, 'cnpj'=>$cnpj,
                 'cpf'=>$cpf,'liberado_campo'=>$liberado_campo);
+
+                var_dump($infoPropriedade);exit;
                                     
                 $resultado = $this->PrincipalModel->adicionaPropriedade($infoPropriedade);
                 
