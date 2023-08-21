@@ -27,7 +27,7 @@
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroUsuario/cadastrar">
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroPropriedade/cadastrar">
           <i class="fa fa-plus"></i> Adicionar propriedade</a>
       </div>
       <br/>
