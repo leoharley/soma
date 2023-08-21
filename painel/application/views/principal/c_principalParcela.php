@@ -1,23 +1,36 @@
 <?php
 
-$co_seq_cadastro_pessoa = '';
-$id_perfil = '';
-$ds_nome = '';
-$ds_email = '';
-$nu_cpf = '';
-$st_admin = '';
+$id = '';
+$id_propriedade = '';
+$nu_ano_emissao = '';
+$estagio_regeneracao = '';
+$grau_epifitismo = '';
+$tipo_bioma = '';
+$tipo_parcela = '';
+$tamanho_parcela = '';
+$carbono_vegetacao = '';
+$biomassa_vegetacao_total = '';
+$biomassa_arbustiva = '';
+$biomassa_hectare = '';
+$carbono_total = '';
 
 if ($this->uri->segment(2) == 'editar') {
-if(!empty($infoUsuario))
+if(!empty($infoParcela))
 {
-    foreach ($infoUsuario as $r)
+    foreach ($infoParcela as $r)
     {
-        $co_seq_cadastro_pessoa = $r->co_seq_cadastro_pessoa;
-        $id_perfil = $r->id_perfil;
-        $ds_nome = $r->ds_nome;
-        $ds_email = $r->ds_email;
-        $nu_cpf = $r->nu_cpf;
-        $st_admin = $r->st_admin;
+        $id = $r->id;
+        $id_propriedade = $r->id_propriedade;
+        $nu_ano_emissao = $r->nu_ano_emissao;
+        $estagio_regeneracao = $r->estagio_regeneracao;
+        $tipo_bioma = $r->tipo_bioma;
+        $tipo_parcela = $r->tipo_parcela;
+        $tamanho_parcela = $r->tamanho_parcela;
+        $carbono_vegetacao = $r->carbono_vegetacao;
+        $biomassa_vegetacao_total = $r->biomassa_vegetacao_total;
+        $biomassa_arbustiva = $r->biomassa_arbustiva;
+        $biomassa_hectare = $r->biomassa_hectare;
+        $carbono_total = $r->carbono_total;
     }
 }
 }
@@ -28,7 +41,7 @@ if(!empty($infoUsuario))
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Usuários' : 'Editar Usuários' ; ?>
+            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Parcelas' : 'Editar Parcelas' ; ?>
             <small><?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Adicionar' : 'Editar' ; ?></small>
         </h1>
     </section>
@@ -49,50 +62,24 @@ if(!empty($infoUsuario))
                     <!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaUsuario' : base_url().'editaUsuario'; ?>" method="post" role="form">
+                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaParcela' : base_url().'editaParcela'; ?>" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
 
                                 <!-- VARCHAR/INTEGER/FLOAT -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_nome">Nome</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_nome') : $ds_nome ; ?>" id="ds_nome" name="ds_nome" maxlength="128">
-                                        <input type="hidden" value="<?php echo $co_seq_cadastro_pessoa; ?>" name="co_seq_cadastro_pessoa" id="co_seq_cadastro_pessoa" />
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nu_cpf">CPF</label>
-                                        <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control required cpf_usuario" id="nu_cpf" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_cpf') : $nu_cpf; ?>" name="nu_cpf"
-                                            maxlength="14">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="ds_email">Email</label>
-                                        <input type="text" class="form-control email required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_email') : $ds_email; ?>" id="ds_email" name="ds_email" maxlength="128">
-                                    </div>
-                                </div>
-                            
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="id_perfil">Perfil</label>
-                                        <select class="form-control required" id="id_perfil" name="id_perfil" required>
+                                        <label for="id_propriedade">Propriedade</label>
+                                        <select class="form-control required" id="id_propriedade" name="id_propriedade" required>
                                             <option value="" disabled selected>SELECIONE</option>
                                             <?php
-                                            if(!empty($infoPerfil))
+                                            if(!empty($infoPropriedades))
                                             {
-                                                foreach ($infoPerfil as $perfil)
+                                                foreach ($infoPropriedades as $propriedade)
                                                 {
                                                     ?>
-                                                <option value="<?php echo $perfil->id_perfil ?>" <?php if ($this->uri->segment(2) == 'editar' && $perfil->id_perfil  == $id_perfil) { echo 'selected'; } ?>>
-                                                    <?php echo $perfil->id_perfil.' - '.$perfil->ds_perfil ?>
+                                                <option value="<?php echo $propriedade->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $propriedade->id  == $id_propriedade) { echo 'selected'; } ?>>
+                                                    <?php echo $propriedade->id.' - '.$propriedade->no_propriedade ?>
                                                 </option>
                                                 <?php
                                                 }
@@ -101,22 +88,96 @@ if(!empty($infoUsuario))
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ds_nome">Ano emissão</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ano_emissao') : $nu_ano_emissao ; ?>" id="nu_ano_emissao" name="nu_ano_emissao">
+                                        <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
+                                    </div>
+                                </div>
+                                        
                             </div>
 
-                            <div class="row">                                
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_senha">Senha</label>
-                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?>" id="ds_senha" name="ds_senha" maxlength="20">
+                                        <label for="estagio_regeneracao">Estágio Regeneração</label>
+                                        <input type="text" class="form-control required" id="estagio_regeneracao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('estagio_regeneracao') : $estagio_regeneracao; ?>" name="estagio_regeneracao">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="resenha">Redigite a senha</label>
-                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?> equalTo" id="resenha" name="resenha" maxlength="20">
+                                        <label for="grau_epifitismo">Grau epifitismo</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('grau_epifitismo') : $grau_epifitismo; ?>" id="grau_epifitismo" name="grau_epifitismo">
                                     </div>
-                                </div>
+                                </div>                                
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tipo_bioma">Tipo de bioma</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('tipo_bioma') : $tipo_bioma; ?>" id="tipo_bioma" name="tipo_bioma">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tipo_parcela">Tipo de parcela</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('tipo_parcela') : $tipo_parcela; ?>" id="tipo_parcela" name="tipo_parcela">
+                                    </div>
+                                </div>                            
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tamanho_parcela">Tamanho de parcela</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('tamanho_parcela') : $tamanho_parcela; ?>" id="tamanho_parcela" name="tamanho_parcela">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="carbono_vegetacao">Carbono vegetação</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_vegetacao') : $carbono_vegetacao; ?>" id="carbono_vegetacao" name="carbono_vegetacao">
+                                    </div>
+                                </div>                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="biomassa_vegetacao_total">Biomassa vegetação total</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('biomassa_vegetacao_total') : $biomassa_vegetacao_total; ?>" id="biomassa_vegetacao_total" name="biomassa_vegetacao_total">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="biomassa_arbustiva">Biomassa arbustiva</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('biomassa_arbustiva') : $biomassa_arbustiva; ?>" id="biomassa_arbustiva" name="biomassa_arbustiva">
+                                    </div>
+                                </div>                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="biomassa_hectare">Biomassa hectare</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('biomassa_hectare') : $biomassa_hectare; ?>" id="biomassa_hectare" name="biomassa_hectare">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="carbono_total">Carbono total</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_total') : $carbono_total; ?>" id="carbono_total" name="carbono_total">
+                                    </div>
+                                </div>                                
+                            </div>
+
+                               
 
                         </div>
                         <!-- /.box-body -->

@@ -439,115 +439,155 @@ class Principal extends BaseController
 
                 $returns = $this->paginationCompress ( "principalTelas/listar", $count, 50 );
                 
-                $data['registrosTelas'] = $this->PrincipalModel->listaTelas($this->session->userdata('userId'), $searchText, $returns["page"], $returns["segment"]);
+                $data['registrosParcelas'] = $this->PrincipalModel->listaParcelas($this->session->userdata('userId'), $searchText, $returns["page"], $returns["segment"]);
                 
-                $process = 'Listar telas';
-                $processFunction = 'Principal/principalTelas';
+                $process = 'Listar parcelas';
+                $processFunction = 'Principal/principalParcelas';
                 $this->logrecord($process,$processFunction);
 
-                $this->global['pageTitle'] = 'SOMA : Lista de Telas';
+                $this->global['pageTitle'] = 'SOMA : Lista de Parcelas';
                 
-                $this->loadViews("principal/l_principalTelas", $this->global, $data, NULL);
+                $this->loadViews("principal/l_principalParcela", $this->global, $data, NULL);
+            }
+            else if ($tpTela == 'cadastrar') {
+                $this->global['pageTitle'] = 'SOMA : Cadastro de parcela';
+                
+                $data['infoPropriedades'] = $this->PrincipalModel->carregaInfoPropriedades();
+
+                $this->loadViews("principal/c_principalParcela", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
-                $IdTelas = $this->uri->segment(3);
-                if($IdTelas == null)
+                $IdParcela = $this->uri->segment(3); //CONTINUAR DAQUI
+                if($IdParcela == null)
                 {
-                    redirect('principalTela/listar');
+                    redirect('principalParcela/listar');
                 }
-                $data['infoTelas'] = $this->PrincipalModel->carregaInfoTelas($IdTelas);
-                $this->global['pageTitle'] = 'SOMA : Editar Telas';      
-                $this->loadViews("principal/c_principalTelas", $this->global, $data, NULL);
+                $data['infoParcela'] = $this->PrincipalModel->carregaInfoParcela($IdParcela);
+                $this->global['pageTitle'] = 'SOMA : Editar parcela';      
+                $this->loadViews("principal/c_principalParcela", $this->global, $data, NULL);
             }
     }
 
-    function editaParcela()
+    function adicionaParcela() 
     {
-            $this->load->library('form_validation');
+
+        //VALIDAÇÃO
+
+        //    $this->form_validation->set_rules('perfil','Role','trim|required|numeric');
             
-            $IdTela = $this->input->post('Id_Tela');
+        //    if($this->form_validation->run() == FALSE)
+        //    {
 
-            //VALIDAÇÃO
-            
-         /*   $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
-            $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-            
-            if($this->form_validation->run() == FALSE)
-            { 
-                $this->editOld($userId);
-            }
-            else
-            { */
+        //        $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
+        //        $this->global['pageTitle'] = 'SOMA : Adicionar usuário';
+        //        $this->loadViews("c_principalUsuario", $this->global, $data, NULL);
 
-                $Tp_Ativo = $this->input->post('Tp_Ativo');  
+        //    }
+        //    else
+        //{
 
-                foreach ($this->PrincipalModel->carregaInfoTelas($IdTela) as $data){
-                    $Tp_Ativo_Atual = ($data->Tp_Ativo);
-                }
-
-                // if ($Tp_Ativo_Atual == 'N' && $Tp_Ativo == 'S')
-                // {
-                //     $Dt_Ativo = date('Y-m-d H:i:s');
-                //     $Dt_Inativo = null;
-                // } else if ($Tp_Ativo == 'N')
-                // {
-                //     $Dt_Ativo = null;
-                //     $Dt_Inativo = date('Y-m-d H:i:s');
-                // }
+                $id_propriedade = $this->input->post('id_propriedade');
+                $nu_ano_emissao = $this->input->post('nu_ano_emissao');
+                $estagio_regeneracao = $this->input->post('estagio_regeneracao');
+                $grau_epifitismo = $this->input->post('grau_epifitismo');
+                $tipo_bioma = $this->input->post('tipo_bioma');
+                $tamanho_parcela = $this->input->post('tamanho_parcela');
+                $carbono_vegetacao = $this->input->post('carbono_vegetacao');
+                $biomassa_vegetacao_total = $this->input->post('biomassa_vegetacao_total');
+                $biomassa_arbustiva = $this->input->post('biomassa_arbustiva');
+                $biomassa_hectare = $this->input->post('biomassa_hectare');
+                $carbono_total = $this->input->post('carbono_total');
                 
-                $Dt_Atualizacao = date('Y-m-d H:i:s');
+                $infoParcela = array('id_acesso'=> $this->session->userdata('userId'), 'id_propriedade'=> $id_propriedade,
+                'nu_ano_emissao'=>$nu_ano_emissao,'estagio_regeneracao'=>$estagio_regeneracao, 'grau_epifitismo'=>$grau_epifitismo,
+                'tipo_bioma'=>$tipo_bioma,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
+                'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
+                'carbono_total'=>$carbono_total);
+                                    
+                $resultado = $this->PrincipalModel->adicionaParcela($infoParcela);
                 
-                $infoTela = array('AtualizadoPor'=>$this->vendorId, 'Dt_Atualizacao'=>$Dt_Atualizacao,
-                                    'Tp_Ativo'=>$Tp_Ativo);
-                
-                
-                $resultado = $this->PrincipalModel->editaTelas($infoTela, $IdTela);
-                
-                if($resultado == true)
+                if($resultado > 0)
                 {
-                    $process = 'Tela atualizada';
-                    $processFunction = 'Principal/editaTelas';
+                    $process = 'Adicionar parcela';
+                    $processFunction = 'Principal/adicionaParcela';
                     $this->logrecord($process,$processFunction);
 
-                    $this->session->set_flashdata('success', 'Tela atualizada com sucesso');
+                    $this->session->set_flashdata('success', 'Parcela criada com sucesso');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Falha na atualização da tela');
+                    $this->session->set_flashdata('error', 'Falha na criação da parcela');
                 }
                 
-                redirect('principalTelas/listar');
+                redirect('principalParcela/listar');
+
+        //    }
+    }
+
+    function editaParcela()
+    {    
+            $IdParcela = $this->input->post('id');
+
+            $id_propriedade = $this->input->post('id_propriedade');
+            $nu_ano_emissao = $this->input->post('nu_ano_emissao');
+            $estagio_regeneracao = $this->input->post('estagio_regeneracao');
+            $grau_epifitismo = $this->input->post('grau_epifitismo');
+            $tipo_bioma = $this->input->post('tipo_bioma');
+            $tamanho_parcela = $this->input->post('tamanho_parcela');
+            $carbono_vegetacao = $this->input->post('carbono_vegetacao');
+            $biomassa_vegetacao_total = $this->input->post('biomassa_vegetacao_total');
+            $biomassa_arbustiva = $this->input->post('biomassa_arbustiva');
+            $biomassa_hectare = $this->input->post('biomassa_hectare');
+            $carbono_total = $this->input->post('carbono_total');
+            
+            $infoParcela = array('id_acesso'=> $this->session->userdata('userId'), 'id_propriedade'=> $id_propriedade,
+            'nu_ano_emissao'=>$nu_ano_emissao,'estagio_regeneracao'=>$estagio_regeneracao, 'grau_epifitismo'=>$grau_epifitismo,
+            'tipo_bioma'=>$tipo_bioma,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
+            'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
+            'carbono_total'=>$carbono_total);
+                
+                
+                $resultado = $this->PrincipalModel->editaParcela($infoParcela, $IdParcela);
+                
+                if($resultado == true)
+                {
+                    $process = 'Parcela atualizada';
+                    $processFunction = 'Principal/editaParcela';
+                    $this->logrecord($process,$processFunction);
+
+                    $this->session->set_flashdata('success', 'Parcela atualizada com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na atualização da parcela');
+                }
+                
+                redirect('principalParcela/listar');
            // }
     }
 
     function apagaParcela()
     {
-            $IdPerfil = $this->uri->segment(2);
-
-            $infoPerfil = array('Deletado'=>'S', 'AtualizadoPor'=>$this->vendorId, 'Dt_Atualizacao'=>date('Y-m-d H:i:s'));
-            
-            $resultado = $this->PrincipalModel->apagaPerfil($infoPerfil, $IdPerfil);
+            $IdParcela = $this->uri->segment(2);
+   
+            $resultado = $this->PrincipalModel->apagaParcela($IdParcela);
             
             if ($resultado) {
                 // echo(json_encode(array('status'=>TRUE)));
 
-                 $process = 'Exclusão de perfil';
-                 $processFunction = 'Principal/apagaPerfil';
+                 $process = 'Exclusão da parcela';
+                 $processFunction = 'Principal/apagaParcela';
                  $this->logrecord($process,$processFunction);
 
-                 $this->session->set_flashdata('success', 'Perfil deletado com sucesso');
+                 $this->session->set_flashdata('success', 'Parcela deletado com sucesso');
 
                 }
                 else 
                 { 
                     //echo(json_encode(array('status'=>FALSE))); 
-                    $this->session->set_flashdata('error', 'Falha em excluir o perfil');
+                    $this->session->set_flashdata('error', 'Falha em excluir a parcela');
                 }
-                redirect('principalPerfil/listar');
+                redirect('principalParcela/listar');
     }
 // FIM DAS FUNÇÕES DA TELA DE TELAS
 

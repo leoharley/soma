@@ -1,3 +1,17 @@
+<?php
+function mask($val, $mask) {
+  $maskared = '';
+  $k = 0;
+  for($i = 0; $i<=strlen($mask)-1; $i++) {
+      if($mask[$i] == '#') {
+          if(isset($val[$k])) $maskared .= $val[$k++];
+      } else {
+          if(isset($mask[$i])) $maskared .= $mask[$i];
+      }
+  }
+  return $maskared;
+}
+?>
 <style>
   table {
     border-color: #808080!important;
@@ -20,15 +34,15 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i class="fa fa-users"></i> Listar Usuários
+      <i class="fa fa-users"></i> Listar parcelas
       <small>Listar</small>
     </h1>
   </section>
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroUsuario/cadastrar">
-          <i class="fa fa-plus"></i> Adicionar usuário</a>
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>principalPropriedade/cadastrar">
+          <i class="fa fa-plus"></i> Adicionar parcela</a>
       </div>
       <br/>
       <div class="box">
@@ -64,10 +78,11 @@
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Perfil</th>
+                    <th>Propriedade</th>
+                    <th>Ano emissão</th>
+                    <th>Estágio regeneração</th>
+                    <th>Grau epifitismo</th>
+                    <th>Tipo bioma</th>
                   <!--  <th>Admin?</th> -->
                   <!--  <th>Data ativo</th>
                     <th>Data inativo</th> -->                    
@@ -76,30 +91,27 @@
                 </thead>
                 <tbody>
                   <?php
-                      if(!empty($registrosUsuarios))
+                      if(!empty($registrosParcelas))
                       {
-                          foreach($registrosUsuarios as $registro)
+                          foreach($registrosParcelas as $registro)
                           {
                       ?>
                     <tr>
                       <td>
-                        <?php echo $registro->co_seq_cadastro_pessoa ?>
+                        <?php echo $registro->id ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_nome ?>
+                        <?php echo $registro->no_propriedade ?>
                       </td>
                       <td>
-                        <?php echo $registro->nu_cpf ?>
+                        <?php echo $registro->estagio_regeneracao ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_email ?>
+                        <?php echo $registro->grau_epifitismo ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_perfil ?>
+                        <?php echo $registro->tipo_bioma ?>
                       </td>
-                    <!--  <td>
-                        <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>
-                      </td> -->
                   <!--    <td>
                         <?php //echo ($registro->Dt_Ativo != null) ? date("d/m/Y", strtotime($registro->Dt_Ativo)) : ''; ?>
                       </td>
@@ -107,10 +119,10 @@
                         <?php //echo ($registro->Dt_Inativo != null) ? date("d/m/Y", strtotime($registro->Dt_Inativo)) : ''; ?>
                       </td> -->
                       <td class="text-center">
-                          <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroUsuario/editar/'.$registro->co_seq_cadastro_pessoa ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?= base_url().'principalParcela/editar/'.$registro->id ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaUsuario/'.$registro->co_seq_cadastro_pessoa ?>" data-userid="<?= $registro->co_seq_cadastro_pessoa ?>" title="Excluir">
+                          <a class="btn btn-sm btn-danger" href="<?= base_url().'apagaParcela/'.$registro->id ?>" data-userid="<?= $registro->id ?>" title="Excluir">
                               <i class="fa fa-trash-o"></i>
                           </a>
                       </td>

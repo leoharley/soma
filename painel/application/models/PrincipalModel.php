@@ -109,6 +109,64 @@ class PrincipalModel extends CI_Model
     }
 
 
+
+    function listaParcelas($searchText = '', $page, $segment)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_parcelas as Parcelas');
+        $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
+   //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(Parcelas.nu_ano_emissao LIKE '%".$searchText."%'
+                            OR Parcelas.tipo_bioma LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+		        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function adicionaParcela($infoParcela)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tb_parcelas', $infoParcela);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaParcela($infoParcela, $IdParcela)
+    {
+        $this->db->where('id', $IdParcela);
+        $this->db->update('tb_parcelas', $infoParcela);
+        
+        return TRUE;
+    }
+
+    function apagaParcela($idParcela)
+    {
+        $this->db->where('id', $idParcela);
+        $res2 = $this->db->delete('tb_parcelas');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+
+
     function adicionaAcesso($infoAcesso)
     {
         $this->db->trans_start();
@@ -352,7 +410,15 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('*');
         $this->db->from('tb_projetos as Projetos');
-    //    $this->db->where('Indice.Deletado !=', 'S');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    function carregaInfoPropriedades()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_propriedades as Propriedades');
         $query = $this->db->get();
 
         return $query->result();
