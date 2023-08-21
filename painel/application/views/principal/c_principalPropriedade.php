@@ -91,56 +91,56 @@ if(!empty($infoPropriedade))
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
-                                
+                                        
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_inscricao_car">Inscrição</label>
                                         <input type="text" class="form-control required" id="nu_inscricao_car" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_inscricao_car') : $nu_inscricao_car; ?>" name="nu_inscricao_car">
                                     </div>
                                 </div>
-
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_ccir">CCIR</label>
                                         <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ccir') : $nu_ccir; ?>" id="nu_ccir" name="nu_ccir">
                                     </div>
-                                </div>
+                                </div>                                
+                            </div>
 
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="proprietario">Proprietário</label>
                                         <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('proprietario') : $nu_ccir; ?>" id="proprietario" name="proprietario">
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="no_propriedade">Nome da propriedade</label>
                                         <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('no_propriedade') : $no_propriedade; ?>" id="no_propriedade" name="no_propriedade">
                                     </div>
-                                </div>
+                                </div>                            
+                            </div>
 
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="cnpj">CNPJ</label>
                                         <input data-inputmask="'mask': '99.999.999/9999-99'" type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('cnpj') : $cnpj; ?>" id="cnpj" name="cnpj">
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="cpf">CPF</label>
                                         <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('cpf') : $cpf; ?>" id="cpf" name="cpf">
                                     </div>
-                                </div>
+                                </div>                                
+                            </div>
 
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="liberado_campo">Campo liberado?</label>
@@ -150,7 +150,7 @@ if(!empty($infoPropriedade))
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div>    
 
                         </div>
                         <!-- /.box-body -->
