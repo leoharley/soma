@@ -514,7 +514,7 @@ class User_model extends CI_Model
     function logsCount()
     {
         $this->db->select('*');
-        $this->db->from('tbl_log as BaseTbl');
+        $this->db->from('tb_log');
         $query = $this->db->get();
         return $query->num_rows();
     }
