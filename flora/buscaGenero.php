@@ -1,6 +1,6 @@
 <?php
 function getFilterGenero($familia){
-	$pdo = new PDO("mysql:host=localhost; dbname=u699148595_inventario_hom;", "u699148595_u699148595_som", "5;K+5qbi");
+	$pdo = new PDO("mysql:host=localhost; dbname=u699148595_inventario_hom;", "u699148595_u699148595_som", "%Soma2023");
 	//$sql = "SELECT nome FROM tb_flora WHERE id = ?";
 	
 
