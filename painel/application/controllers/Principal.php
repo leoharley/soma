@@ -435,7 +435,7 @@ class Principal extends BaseController
                 
                 $this->load->library('pagination');
                 
-                $count = $this->PrincipalModel->userListingCount($searchText);
+                $count = 0;
 
                 $returns = $this->paginationCompress ( "principalTelas/listar", $count, 50 );
                 
