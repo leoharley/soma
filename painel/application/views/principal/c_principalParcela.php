@@ -203,5 +203,6 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
+    $(".yearpicker").yearpicker();
 });
 </script>
