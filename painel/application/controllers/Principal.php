@@ -276,6 +276,7 @@ class Principal extends BaseController
                 {
                     redirect('principalPropriedade/listar');
                 }
+                $data['infoProjetos'] = $this->PrincipalModel->carregaInfoProjetos();
                 $data['infoPropriedade'] = $this->PrincipalModel->carregaInfoPropriedadeExistente($IdPropriedade);
                 $this->global['pageTitle'] = 'SOMA : Editar Propriedade';      
                 $this->loadViews("principal/c_principalPropriedade", $this->global, $data, NULL);
@@ -314,8 +315,6 @@ class Principal extends BaseController
                 'nu_ano_emissao'=>$nu_ano_emissao,'nu_inscricao_car'=>$nu_inscricao_car, 'nu_ccir'=>$nu_ccir,
                 'proprietario'=>$proprietario,'no_propriedade'=>$no_propriedade, 'cnpj'=>$cnpj,
                 'cpf'=>$cpf,'liberado_campo'=>$liberado_campo);
-
-                var_dump($infoPropriedade);exit;
                                     
                 $resultado = $this->PrincipalModel->adicionaPropriedade($infoPropriedade);
                 
