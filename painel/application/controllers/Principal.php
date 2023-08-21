@@ -251,31 +251,34 @@ class Principal extends BaseController
                 
                 $count = 0;
 
-                $returns = $this->paginationCompress ( "principalPerfil/listar", $count, 10 );
+                $returns = $this->paginationCompress ( "principalPropriedade/listar", $count, 10 );
                 
-                $data['registrosPerfis'] = $this->PrincipalModel->listaPerfis($searchText, $returns["page"], $returns["segment"]);
+                $data['registrosPropriedades'] = $this->PrincipalModel->listaPropriedades($searchText, $returns["page"], $returns["segment"]);
                 
-                $process = 'Listar perfis';
-                $processFunction = 'Principal/principalPerfil';
+                $process = 'Listar propriedades';
+                $processFunction = 'Principal/principalPropriedade';
                 $this->logrecord($process,$processFunction);
 
-                $this->global['pageTitle'] = 'SOMA : Lista de Perfil';
+                $this->global['pageTitle'] = 'SOMA : Lista de Propriedades';
                 
-                $this->loadViews("principal/l_principalPerfil", $this->global, $data, NULL);
+                $this->loadViews("principal/l_principalPropriedade", $this->global, $data, NULL);
             }
             else if ($tpTela == 'cadastrar') {
-                $this->global['pageTitle'] = 'SOMA : Principal de Perfil';
-                $this->loadViews("principal/c_principalPerfil", $this->global, $data, NULL); 
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Propriedades';
+                
+                $data['infoProjetos'] = $this->PrincipalModel->carregaInfoProjetos();
+
+                $this->loadViews("principal/c_principalPropriedade", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
-                $IdPerfil = $this->uri->segment(3);
-                if($IdPerfil == null)
+                $IdPropriedade = $this->uri->segment(3);
+                if($IdPropriedade == null)
                 {
-                    redirect('principalPerfil/listar');
+                    redirect('principalPropriedade/listar');
                 }
-                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfilExistente($IdPerfil);
-                $this->global['pageTitle'] = 'SOMA : Editar Perfil';      
-                $this->loadViews("principal/c_principalPerfil", $this->global, $data, NULL);
+                $data['infoPropriedade'] = $this->PrincipalModel->carregaInfoPropriedadeExistente($IdPropriedade);
+                $this->global['pageTitle'] = 'SOMA : Editar Propriedade';      
+                $this->loadViews("principal/c_principalPropriedade", $this->global, $data, NULL);
             }
     }
 
@@ -300,28 +303,37 @@ class Principal extends BaseController
         //    else
         //{
 
-                $id_perfil = $this->input->post('id_perfil');
-                $ds_perfil = $this->input->post('ds_perfil');
-                $st_admin = $this->input->post('st_admin');
+                $id_projeto = $this->input->post('id_projeto');
+                $nu_ano_emissao = $this->input->post('nu_ano_emissao');
+                $nu_inscricao_car = $this->input->post('nu_inscricao_car');
+                $nu_ccir = $this->input->post('nu_ccir');
+                $proprietario = $this->input->post('proprietario');
+                $no_propriedade = $this->input->post('no_propriedade');
+                $cnpj = $this->input->post('cnpj');
+                $cpf = $this->input->post('cpf');
+                $liberado_campo = $this->input->post('liberado_campo');
                 
-                $infoPerfil = array('id_perfil'=> $id_perfil,'ds_perfil'=>$ds_perfil,'st_admin'=>$st_admin);
+                $infoPropriedade = array('id_acesso'=> $this->session->userdata('userId'), 'id_projeto'=> $id_projeto,
+                'nu_ano_emissao'=>$nu_ano_emissao,'nu_inscricao_car'=>$nu_inscricao_car, 'nu_ccir'=>$nu_ccir,
+                'proprietario'=>$proprietario,'no_propriedade'=>$no_propriedade, 'cnpj'=>$cnpj,
+                'cpf'=>$cpf,'liberado_campo'=>$liberado_campo);
                                     
-                $resultado = $this->PrincipalModel->adicionaPerfil($infoPerfil);
+                $resultado = $this->PrincipalModel->adicionaPropriedade($infoPropriedade);
                 
                 if($resultado > 0)
                 {
-                    $process = 'Adicionar perfil';
-                    $processFunction = 'Principal/adicionaPerfil';
+                    $process = 'Adicionar propriedade';
+                    $processFunction = 'Principal/adicionaPropriedade';
                     $this->logrecord($process,$processFunction);
 
-                    $this->session->set_flashdata('success', 'Perfil criado com sucesso');
+                    $this->session->set_flashdata('success', 'Propriedade criada com sucesso');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Falha na criação do perfil');
+                    $this->session->set_flashdata('error', 'Falha na criação do propriedade');
                 }
                 
-                redirect('principalPerfil/listar');
+                redirect('principalPropriedade/listar');
 
         //    }
     }
@@ -331,7 +343,7 @@ class Principal extends BaseController
     {
             $this->load->library('form_validation');
             
-            $IdPerfil = $this->input->post('id_perfil');
+            $IdPropriedade = $this->input->post('id');
 
             //VALIDAÇÃO
             
@@ -349,71 +361,63 @@ class Principal extends BaseController
             else
             { */
 
-                $ds_perfil = $this->input->post('ds_perfil');
-                $st_admin = $this->input->post('st_admin');
-
-               /* foreach ($this->PrincipalModel->carregaInfoPerfilExistente($IdPerfil) as $data){
-                    $Tp_Ativo_Atual = ($data->Tp_Ativo);
-                }*/
-
-                // if ($Tp_Ativo_Atual == 'N' && $Tp_Ativo == 'S')
-                // {
-                //     $Dt_Ativo = date('Y-m-d H:i:s');
-                //     $Dt_Inativo = null;
-                // } else if ($Tp_Ativo == 'N')
-                // {
-                //     $Dt_Ativo = null;
-                //     $Dt_Inativo = date('Y-m-d H:i:s');
-                // }     
+                $id_projeto = $this->input->post('id_projeto');
+                $nu_ano_emissao = $this->input->post('nu_ano_emissao');
+                $nu_inscricao_car = $this->input->post('nu_inscricao_car');
+                $nu_ccir = $this->input->post('nu_ccir');
+                $proprietario = $this->input->post('proprietario');
+                $no_propriedade = $this->input->post('no_propriedade');
+                $cnpj = $this->input->post('cnpj');
+                $cpf = $this->input->post('cpf');
+                $liberado_campo = $this->input->post('liberado_campo');
                 
-             //   $Dt_Atualizacao = date('Y-m-d H:i:s');
-                
-                $infoPerfil = array('ds_perfil'=> $ds_perfil, 'st_admin'=>$st_admin);
+                $infoPropriedade = array('id_acesso'=> $this->session->userdata('userId'), 'id_projeto'=> $id_projeto,
+                'nu_ano_emissao'=>$nu_ano_emissao,'nu_inscricao_car'=>$nu_inscricao_car, 'nu_ccir'=>$nu_ccir,
+                'proprietario'=>$proprietario,'no_propriedade'=>$no_propriedade, 'cnpj'=>$cnpj,
+                'cpf'=>$cpf,'liberado_campo'=>$liberado_campo);
                 
                 
-                $resultado = $this->PrincipalModel->editaPerfil($infoPerfil, $IdPerfil);
+                $resultado = $this->PrincipalModel->editaPerfil($infoPropriedade, $IdPropriedade);
                 
                 if($resultado == true)
                 {
-                    $process = 'Perfil atualizado';
-                    $processFunction = 'Principal/editaPerfil';
+                    $process = 'Propriedade atualizada';
+                    $processFunction = 'Principal/editaPropriedade';
                     $this->logrecord($process,$processFunction);
 
-                    $this->session->set_flashdata('success', 'Perfil atualizado com sucesso');
+                    $this->session->set_flashdata('success', 'Propriedade atualizada com sucesso');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Falha na atualização do perfil');
+                    $this->session->set_flashdata('error', 'Falha na atualização da propriedade');
                 }
                 
-                redirect('principalPerfil/listar');
+                redirect('principalPropriedade/listar');
            // }
     }
 
     function apagaPropriedade()
     {
-            $IdPerfil = $this->uri->segment(2);
-
-            $infoPerfil = array('Deletado'=>'S', 'AtualizadoPor'=>$this->vendorId, 'Dt_Atualizacao'=>date('Y-m-d H:i:s'));
-            
-            $resultado = $this->PrincipalModel->apagaPerfil($infoPerfil, $IdPerfil);
+            $IdPropriedade = $this->uri->segment(2);
+              
+            $resultado = $this->PrincipalModel->apagaPropriedade($IdPropriedade);
             
             if ($resultado) {
                 // echo(json_encode(array('status'=>TRUE)));
 
-                 $process = 'Exclusão de perfil';
-                 $processFunction = 'Principal/apagaPerfil';
+                 $process = 'Exclusão de propriedade';
+                 $processFunction = 'Principal/apagaPropriedade';
                  $this->logrecord($process,$processFunction);
 
-                 $this->session->set_flashdata('success', 'Perfil deletado com sucesso');
+                 $this->session->set_flashdata('success', 'Propriedade deletada com sucesso');
 
                 }
                 else 
                 { 
                     //echo(json_encode(array('status'=>FALSE))); 
-                    $this->session->set_flashdata('error', 'Falha em excluir o perfil');
+                    $this->session->set_flashdata('error', 'Falha em excluir a propriedade');
                 }
-                redirect('principalPerfil/listar');
+                redirect('principalPropriedade/listar');
     }
     // FIM DAS FUNÇÕES DA TELA DE PERFIL
 

@@ -120,6 +120,7 @@ class PrincipalModel extends CI_Model
         
         return $query->result();
     }
+    
 
     function carregaInfoUsuarioPorEmail($email)
     {
@@ -275,6 +276,17 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->from('tb_perfil');
         $query = $this->db->get();
         
+        return $query->result();
+    }
+
+
+    function carregaInfoProjetos()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_projetos as Projetos');
+    //    $this->db->where('Indice.Deletado !=', 'S');
+        $query = $this->db->get();
+
         return $query->result();
     }
 
@@ -680,6 +692,8 @@ function carregaInfoPermissao($IdPermissao)
 
         return $query->row();
     }
+
+    
 }
 
   
