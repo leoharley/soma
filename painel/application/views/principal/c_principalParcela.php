@@ -92,7 +92,7 @@ if(!empty($infoParcela))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="ds_nome">Ano emissão</label>                                        
-                                        <input type="text" class="yearpicker form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ano_emissao') : $nu_ano_emissao ; ?>" id="nu_ano_emissao" name="nu_ano_emissao" />
+                                        <input type="text" class="yearpicker form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ano_emissao') : $nu_ano_emissao ; ?>"  />
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>                                        
