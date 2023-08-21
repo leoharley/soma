@@ -217,6 +217,16 @@ class PrincipalModel extends CI_Model
         // return $this->db->affected_rows();
     }
 
+    function carregaInfoParcela($IdParcela)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_parcelas');
+        $this->db->where('id', $IdParcela);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
     function carregaInfoPerfil()
     {
         $this->db->select('id_perfil, ds_perfil, st_admin');
