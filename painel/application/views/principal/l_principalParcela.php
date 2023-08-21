@@ -41,7 +41,7 @@ function mask($val, $mask) {
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>principalPropriedade/cadastrar">
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>principalParcela/cadastrar">
           <i class="fa fa-plus"></i> Adicionar parcela</a>
       </div>
       <br/>
