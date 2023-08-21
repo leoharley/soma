@@ -193,6 +193,18 @@ class PrincipalModel extends CI_Model
         return $query->result();
     }
 
+    function carregaInfoPropriedadeExistente($IdPropriedade)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_propriedades');
+        $campos = "((\"id\" = '".$IdPropriedade."'))";
+        $this->db->where($campos);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+
 // FIM DAS CONSULTAS NA TELA DE USUÁRIO
 
 // INICIO DAS CONSULTAS NA TELA DE PERFIL
