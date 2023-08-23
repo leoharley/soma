@@ -13,7 +13,7 @@ class Login_model extends CI_Model
         $this->db->select('cadpessoa.co_seq_cadastro_pessoa as id_usuario, acesso.co_seq_acesso as id_acesso, acesso.co_cadastro_pessoa, acesso.ds_senha as senha, cadpessoa.ds_nome as nome,
         perfil.id_perfil, perfil.ds_perfil');
         $this->db->from('tb_cadastro_pessoa as cadpessoa');
-        $this->db->join('tb_acesso as acesso','acesso.co_cadastro_pessoa = cadpessoa.co_seq_cadastro_pessoa');
+        $this->db->join('tb_acesso as acesso','acesso.co_seq_acesso = cadpessoa.id_acesso');
         $this->db->join('tb_perfil as perfil','perfil.id_perfil = cadpessoa.id_perfil');
         $this->db->where('cadpessoa.nu_cpf', $usuario);
         $this->db->where('acesso.st_registro_ativo', 'S');
