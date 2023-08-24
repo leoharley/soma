@@ -229,8 +229,9 @@ class PrincipalModel extends CI_Model
 
     function carregaInfoArvoreViva($IdArvoreViva)
     {
-        $this->db->select('*');
-        $this->db->from('tb_arvores_vivas');
+        $this->db->select('ArvoresVivas.*,Rl.id_familia,Rl.id_genero,Rl.id_especie');
+        $this->db->from('tb_arvores_vivas as ArvoresVivas');
+        $this->db->join('rl_flora_familia_genero_especie as Rl', 'Rl.id_arvores_vivas = ArvoresVivas.id','left'); 
         $this->db->where('id', $IdArvoreViva);
         $query = $this->db->get();
         
