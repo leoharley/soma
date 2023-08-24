@@ -350,7 +350,9 @@ $(document).ready(function(){
         }
     });
 
-    selectElement('id_genero', '<?php echo $id_genero ?>');
+    setTimeout(function(){
+                    selectElement('id_genero', '<?php echo $id_genero ?>');
+                }, 1000);
 
 });
 
