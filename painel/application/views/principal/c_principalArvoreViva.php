@@ -352,7 +352,7 @@ $(document).ready(function(){
 
     setTimeout(function(){
                     selectElement('id_genero', '<?php echo $id_genero ?>');
-                }, 1000);
+                }, 100);
 
 });
 
