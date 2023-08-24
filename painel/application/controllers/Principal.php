@@ -824,7 +824,8 @@ function principalAnimal()
                 {
                     redirect('principalAnimal/listar');
                 }
-
+                
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
                 $data['infoAnimal'] = $this->PrincipalModel->carregaInfoAnimal($IdAnimal);
                 $data['infoFamiliasFauna'] = $this->PrincipalModel->carregaInfoFamiliasFauna();
                 $data['infoGenerosFauna'] = $this->PrincipalModel->carregaInfoGenerosFauna();
