@@ -329,7 +329,7 @@ $(document).ready(function(){
                     $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                 });   
                 setTimeout(function(){
-                    selectElement('id_genero', <?php echo $id_genero ?>);
+                    selectElement('id_genero', '<?php echo $id_genero ?>');
                 }, 3000);
             }
         });
