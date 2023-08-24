@@ -2,6 +2,9 @@
 
 $id = '';
 $id_parcela = '';
+$id_familia = '';
+$id_genero = '';
+$id_especie = '';
 $id_som = '';
 $id_fauna_tp_contato = '';
 $id_classificacao  = '';
@@ -16,6 +19,9 @@ if(!empty($infoAnimal))
     {
         $id = $r->id;
         $id_parcela = $r->id_parcela;
+        $id_familia = $r->id_familia;
+        $id_genero = $r->id_genero;
+        $id_especie = $r->id_especie;
         $id_som = $r->id_som;
         $id_fauna_tp_contato = $r->id_fauna_tp_contato;
         $id_classificacao = $r->id_classificacao;
