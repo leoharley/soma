@@ -61,7 +61,7 @@
             <?php } ?>
             <div class="panel-body">
             <div class="table-responsive">
-              <table id="dataTables-example" style="overflow-x:auto;width:150%!important;">
+              <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
                     <th>Id</th>
