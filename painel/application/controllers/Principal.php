@@ -751,7 +751,7 @@ function principalArvoreViva()
 
     function apagaArvoreViva()
     {
-            $IdArvoreViva = $this->input->post('id');
+            $IdArvoreViva = $this->uri->segment(2);
 
             $resultado = $this->PrincipalModel->apagaArvoreViva($IdArvoreViva);
             
