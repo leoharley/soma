@@ -677,10 +677,8 @@ function carregaInfoPermissao($IdPermissao)
 
     function editaAnimal($infoAnimal, $IdAnimal)
     {
-        $this->db->where('id', $IdArvoreViva);
+        $this->db->where('id', $IdAnimal);
         $this->db->update('tb_animais', $infoAnimal);
-
-        var_dump($infoAnimal);exit;
         
         return TRUE;
     }
