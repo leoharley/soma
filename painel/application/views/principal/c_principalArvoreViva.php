@@ -326,7 +326,7 @@ $(document).ready(function(){
             success:function(data) {
                 $('select[name="id_especie"]').empty();
                 $.each(data, function(key, value) {
-                    $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                    $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
                 });  
             }
         });
