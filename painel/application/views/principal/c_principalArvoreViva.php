@@ -364,10 +364,10 @@ $(document).ready(function(){
 
     setTimeout(function(){
         selectElement('id_genero', '<?php echo $id_genero ?>');
-    }, 100);
+    }, 500);
     setTimeout(function(){
         selectElement('id_especie', '<?php echo $id_especie ?>');
-    }, 100);                
+    }, 500);                
 
 });
 
