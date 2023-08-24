@@ -134,10 +134,10 @@
                         <?php echo $registro->dt_cadastro ?>
                       </td>
                       <td class="text-center">
-                          <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroUsuario/editar/'.$registro->co_seq_cadastro_pessoa ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?= base_url().'principalArvoreViva/editar/'.$registro->id ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaUsuario/'.$registro->co_seq_cadastro_pessoa ?>" data-userid="<?= $registro->co_seq_cadastro_pessoa ?>" title="Excluir">
+                          <a class="btn btn-sm btn-danger" href="<?= base_url().'apagaArvoreViva/'.$registro->id ?>" data-userid="<?= $registro->id ?>" title="Excluir">
                               <i class="fa fa-trash-o"></i>
                           </a>
                       </td>
