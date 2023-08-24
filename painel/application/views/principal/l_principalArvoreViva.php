@@ -28,7 +28,7 @@
     <div class="col-xs-12">
       <div class="text-left">
         <a class="btn btn-primary" href="<?php echo base_url(); ?>principalArvoreViva/cadastrar">
-          <i class="fa fa-plus"></i> Adicionar árvore viva</a>
+          <i class="fa fa-plus"></i> Adicionar Árvores Vivas</a>
       </div>
       <br/>
       <div class="box">

@@ -34,7 +34,7 @@ function mask($val, $mask) {
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i class="fa fa-users"></i> Listar parcelas
+      <i class="fa fa-users"></i> Listar Parcelas
       <small>Listar</small>
     </h1>
   </section>
