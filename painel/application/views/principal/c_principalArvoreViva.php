@@ -131,7 +131,6 @@ if(!empty($infoArvoreViva))
 
 
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
@@ -157,7 +156,8 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_especie">Espécie</label>
-                                        <input type="text" class="form-control required" id="id_especie" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_especie') : $id_especie; ?>" name="id_especie">
+                                        <select class="form-control required" id="id_especie" name="id_especie">
+                                        </select>
                                     </div>
                                 </div>
                             </div>
