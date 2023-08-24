@@ -651,8 +651,8 @@ function principalArvoreViva()
     function adicionaArvoreViva() 
     {
                 $id_parcela  = $this->input->post('id_parcela');
-                $latitude = $this->input->post('latitude');
-                $longitude = $this->input->post('longitude');
+                $latitude = preg_replace('/[^0-9]/', '', $this->input->post('latitude'));
+                $longitude = preg_replace('/[^0-9]/', '', $this->input->post('longitude'));
                 $id_familia = $this->input->post('id_familia');
                 $id_genero = $this->input->post('id_genero');
                 $id_especie = $this->input->post('id_especie');
