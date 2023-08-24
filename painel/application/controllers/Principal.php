@@ -675,7 +675,7 @@ function principalArvoreViva()
                                     
                 $result = $this->PrincipalModel->adicionaArvoreViva($infoArvoreViva);
                 
-                $infoRlFloraFamiliaGeneroEspecie = array('id'=> $result, 'id_familia'=>$id_familia,
+                $infoRlFloraFamiliaGeneroEspecie = array('id_arvores_vivas'=> $result, 'id_familia'=>$id_familia,
                                                          'id_genero '=> $id_genero, 'id_especie'=>$id_especie);
                                     
                 $resultRl = $this->PrincipalModel->adicionaRlFloraFamiliaGeneroEspecie($infoRlFloraFamiliaGeneroEspecie);
