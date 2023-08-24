@@ -999,7 +999,7 @@ function principalAnimal()
             }
     }
 
-    function adicionaEpiteta() 
+    function adicionaEpifita() 
     {
         $id_parcela  = $this->input->post('id_parcela');
         $latitude = $this->input->post('latitude');
