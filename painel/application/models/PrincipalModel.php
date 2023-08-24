@@ -464,6 +464,24 @@ function carregaInfoPermissao($IdPermissao)
         return $query->result();
     }
 
+    function carregaInfoGeneros()
+    {
+        $this->db->select('Generos.id, Generos.nome');
+        $this->db->from('tb_flora_genero as Generos');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    function carregaInfoEspecies()
+    {
+        $this->db->select('Especies.id, Especies.nome');
+        $this->db->from('tb_flora_especie as Especies');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
     function listaArvoresVivas($searchText = '', $page, $segment)
     {
         $this->db->select('ArvoresVivas.*,Parcelas.id as id_parcela, Propriedades.no_propriedade, CadastroPessoa.ds_nome');
