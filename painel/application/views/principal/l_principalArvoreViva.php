@@ -75,6 +75,7 @@
                     <th>Altura</th>
                     <th>Altura total</th>
                     <th>Altura fuste</th>
+                    <th>Altura copa</th>
                     <th>Isolada</th>
                     <th>Floração frutificação</th>
                     <th>Dt. cadastro</th>           
