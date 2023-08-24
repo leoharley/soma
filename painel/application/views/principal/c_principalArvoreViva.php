@@ -81,7 +81,7 @@ if(!empty($infoArvoreViva))
                                                 {
                                                     ?>
                                                 <option value="<?php echo $parcela->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $parcela->id  == $id_parcela) { echo 'selected'; } ?>>
-                                                    <?php echo 'Parcela ID '.$parcela->id.' / Propriedade: '.$parcela->no_propriedade ?>
+                                                    <?php echo 'Parcela ID: '.$parcela->id.' / Propriedade: '.$parcela->no_propriedade ?>
                                                 </option>
                                                 <?php
                                                 }
