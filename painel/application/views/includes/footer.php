@@ -50,14 +50,7 @@
 
                 url: "http://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese.json"
             },
-            buttons: [{
-                    extend: "print",
-                    text: "Impressão",
-                    exportOptions: {
-                        orthogonal: 'export',
-                        columns: ':visible'
-                    },
-                },
+            buttons: [
                 {
                     extend: 'excelHtml5',
                     exportOptions: {
