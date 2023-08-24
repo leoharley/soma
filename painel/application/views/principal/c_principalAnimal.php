@@ -286,7 +286,6 @@ $(document).ready(function(){
         });
 
     $('select[name="id_familia"]').on('change', function() {
-        console.log('aqui');
         var idFamilia = $(this).val();
         if(idFamilia) {
             $.ajax({
@@ -295,6 +294,7 @@ $(document).ready(function(){
                 dataType: "json",
                 success:function(data) {
                     $('select[name="id_genero"]').empty();
+                    console.log(value.id);
                     $.each(data, function(key, value) {
                         $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                     });

@@ -1167,8 +1167,6 @@ function principalAnimal()
             $idFamilia = $this->uri->segment(2);
                        
             $resultado = $this->PrincipalModel->consultaGeneroFauna($idFamilia);
-
-            var_dump($resultado);exit;
             
             echo json_encode($resultado);
     }
