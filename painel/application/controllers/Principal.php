@@ -642,7 +642,11 @@ function principalArvoreViva()
                 }
 
                 $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
-                $data['infoArvoreViva'] = $this->PrincipalModel->carregaInfoArvoreViva($IdArvoreViva);                      
+                $data['infoArvoreViva'] = $this->PrincipalModel->carregaInfoArvoreViva($IdArvoreViva);
+                $data['infoFamilias'] = $this->PrincipalModel->carregaInfoFamilias();
+                $data['infoGeneros'] = $this->PrincipalModel->carregaInfoGeneros();
+                $data['infoEspecies'] = $this->PrincipalModel->carregaInfoEspecies();
+
 
                 $this->global['pageTitle'] = 'SOMA : Editar Árvore Viva';      
                 $this->loadViews("principal/c_principalArvoreViva", $this->global, $data, NULL);
