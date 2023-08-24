@@ -457,7 +457,7 @@ function carregaInfoPermissao($IdPermissao)
 
     function carregaInfoFamilias()
     {
-        $this->db->select('distinct(Familias.id), Familias.nome');
+        $this->db->select('Familias.id, Familias.nome');
         $this->db->from('tb_flora_familia as Familias');
         $query = $this->db->get();
 
