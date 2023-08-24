@@ -652,7 +652,7 @@ function principalArvoreViva()
     {
                 $id_parcela  = $this->input->post('id_parcela');
                 $latitude = $this->input->post('latitude');
-                $longitude = $this->input->post('longitude');
+                $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
                 $id_familia = $this->input->post('id_familia');
                 $id_genero = $this->input->post('id_genero');
                 $id_especie = $this->input->post('id_especie');
