@@ -448,7 +448,7 @@ function carregaInfoPermissao($IdPermissao)
 
     function listaArvoresVivas($searchText = '', $page, $segment)
     {
-        $this->db->select('ArvoresVivas.*,Parcelas.id, Propriedades.no_propriedade, CadastroPessoa.ds_nome');
+        $this->db->select('ArvoresVivas.*,Parcelas.id as id_parcela, Propriedades.no_propriedade, CadastroPessoa.ds_nome');
         $this->db->from('tb_arvores_vivas as ArvoresVivas');
         $this->db->join('tb_parcelas as Parcelas', 'Parcelas.id = ArvoresVivas.id_parcela','left');
         $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        

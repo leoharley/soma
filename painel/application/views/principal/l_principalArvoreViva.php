@@ -65,6 +65,7 @@
                 <thead>
                   <tr>
                     <th>Id</th>
+                    <th>ID Parcela/Propriedade</th>
                     <th>Cadastrado por</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
@@ -92,6 +93,9 @@
                     <tr>
                       <td>
                         <?php echo $registro->id ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->id_parcela.'/'.$registro->no_propriedade ?>
                       </td>
                       <td>
                         <?php echo $registro->ds_nome ?>
