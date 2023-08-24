@@ -40,6 +40,12 @@ if(!empty($infoArvoreViva))
 
 ?>
 
+<style>
+    .content-wrapper{
+      height:880px!important;
+    }
+</style>    
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
