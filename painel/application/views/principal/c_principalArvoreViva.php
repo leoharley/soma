@@ -313,6 +313,7 @@ $(document).ready(function(){
 
     $('select[name="id_genero"]').on('change', function() {
         var idGenero = $(this).val();
+        console.log('aqui'+idGenero);
         if(idGenero) {
             $.ajax({
                 url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
