@@ -455,10 +455,10 @@ function carregaInfoPermissao($IdPermissao)
         return $query->result();
     }
 
-    function carregaInfoGeneros()
+    function carregaInfoFamilias()
     {
-        $this->db->select('Generos.id, Generos.nome');
-        $this->db->from('tb_flora_genero as Generos');
+        $this->db->select('Familias.id, Familias.nome');
+        $this->db->from('tb_flora_familia as Familias');
         $query = $this->db->get();
 
         return $query->result();

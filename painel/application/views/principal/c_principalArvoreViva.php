@@ -124,7 +124,22 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
-                                        <input type="text" class="form-control required" id="id_familia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_familia') : $id_familia; ?>" name="id_familia">
+                                        <select class="form-control required" id="id_familia" name="id_familia" required>
+                                            <option value="" disabled selected>SELECIONE</option>
+                                            <?php
+                                            if(!empty($infoFamilias))
+                                            {
+                                                foreach ($infoFamilias as $familia)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $familia->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $familia->id  == $id_familia) { echo 'selected'; } ?>>
+                                                    <?php echo $familia->id.' - '.$familia->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -134,21 +149,7 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
-                                        <select class="form-control required" id="id_genero" name="id_genero" required>
-                                            <option value="" disabled selected>SELECIONE</option>
-                                            <?php
-                                            if(!empty($infoGeneros))
-                                            {
-                                                foreach ($infoGeneros as $genero)
-                                                {
-                                                    ?>
-                                                <option value="<?php echo $genero->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $genero->id  == $id_genero) { echo 'selected'; } ?>>
-                                                    <?php echo $genero->id.' - '.$genero->nome ?>
-                                                </option>
-                                                <?php
-                                                }
-                                            }
-                                            ?>
+                                        <select class="form-control required" id="id_genero" name="id_genero">
                                         </select>
                                     </div>
                                 </div>
