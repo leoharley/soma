@@ -27,8 +27,8 @@
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroUsuario/cadastrar">
-          <i class="fa fa-plus"></i> Adicionar usuário</a>
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroEpifita/cadastrar">
+          <i class="fa fa-plus"></i> Adicionar epífita</a>
       </div>
       <br/>
       <div class="box">
@@ -60,57 +60,50 @@
             </div>
             <?php } ?>
             <div class="panel-body">
+            <div class="table-responsive">
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Perfil</th>
-                  <!--  <th>Admin?</th> -->
-                  <!--  <th>Data ativo</th>
-                    <th>Data inativo</th> -->                    
+                    <th>Parcela ID: Propriedade</th>
+                    <th>Cadastrado por</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Dt. cadastro</th>           
                     <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                      if(!empty($registrosUsuarios))
+                      if(!empty($registrosEpifita))
                       {
-                          foreach($registrosUsuarios as $registro)
+                          foreach($registrosEpifita as $registro)
                           {
                       ?>
                     <tr>
                       <td>
-                        <?php echo $registro->co_seq_cadastro_pessoa ?>
+                        <?php echo $registro->id ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->id_parcela.': '.$registro->no_propriedade ?>
                       </td>
                       <td>
                         <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
-                        <?php echo $registro->nu_cpf ?>
+                        <?php echo $registro->latitude ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_email ?>
+                        <?php echo $registro->longitude ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_perfil ?>
+                        <?php echo $registro->dt_cadastro ?>
                       </td>
-                    <!--  <td>
-                        <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>
-                      </td> -->
-                  <!--    <td>
-                        <?php //echo ($registro->Dt_Ativo != null) ? date("d/m/Y", strtotime($registro->Dt_Ativo)) : ''; ?>
-                      </td>
-                      <td>
-                        <?php //echo ($registro->Dt_Inativo != null) ? date("d/m/Y", strtotime($registro->Dt_Inativo)) : ''; ?>
-                      </td> -->
                       <td class="text-center">
-                          <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroUsuario/editar/'.$registro->co_seq_cadastro_pessoa ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?= base_url().'principalEpifita/editar/'.$registro->id ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaUsuario/'.$registro->co_seq_cadastro_pessoa ?>" data-userid="<?= $registro->co_seq_cadastro_pessoa ?>" title="Excluir">
+                          <a class="btn btn-sm btn-danger" href="<?= base_url().'apagaEpifita/'.$registro->id ?>" data-userid="<?= $registro->id ?>" title="Excluir">
                               <i class="fa fa-trash-o"></i>
                           </a>
                       </td>
@@ -121,6 +114,7 @@
                       ?>
                 </tbody>
               </table>
+            </div>
             </div>
         </div>
         <!-- /.box-body -->

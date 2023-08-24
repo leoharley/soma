@@ -20,15 +20,15 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i class="fa fa-users"></i> Listar Usuários
+      <i class="fa fa-users"></i> Listar Animais
       <small>Listar</small>
     </h1>
   </section>
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroUsuario/cadastrar">
-          <i class="fa fa-plus"></i> Adicionar usuário</a>
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroAnimal/cadastrar">
+          <i class="fa fa-plus"></i> Adicionar animal</a>
       </div>
       <br/>
       <div class="box">
@@ -60,57 +60,62 @@
             </div>
             <?php } ?>
             <div class="panel-body">
+            <div class="table-responsive">
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Perfil</th>
-                  <!--  <th>Admin?</th> -->
-                  <!--  <th>Data ativo</th>
-                    <th>Data inativo</th> -->                    
+                    <th>Parcela ID: Propriedade</th>
+                    <th>Cadastrado por</th>
+                    <th>Som</th>
+                    <th>Contato</th>
+                    <th>Classificação</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Dt. cadastro</th>           
                     <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                      if(!empty($registrosUsuarios))
+                      if(!empty($registrosAnimal))
                       {
-                          foreach($registrosUsuarios as $registro)
+                          foreach($registrosAnimal as $registro)
                           {
                       ?>
                     <tr>
                       <td>
-                        <?php echo $registro->co_seq_cadastro_pessoa ?>
+                        <?php echo $registro->id ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->id_parcela.': '.$registro->no_propriedade ?>
                       </td>
                       <td>
                         <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
-                        <?php echo $registro->nu_cpf ?>
+                        <?php echo $registro->nome_som ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_email ?>
+                        <?php echo $registro->nome_contato ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_perfil ?>
-                      </td>
-                    <!--  <td>
-                        <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>
-                      </td> -->
-                  <!--    <td>
-                        <?php //echo ($registro->Dt_Ativo != null) ? date("d/m/Y", strtotime($registro->Dt_Ativo)) : ''; ?>
+                        <?php echo $registro->nome_classificacao ?>
                       </td>
                       <td>
-                        <?php //echo ($registro->Dt_Inativo != null) ? date("d/m/Y", strtotime($registro->Dt_Inativo)) : ''; ?>
-                      </td> -->
+                        <?php echo $registro->latitude ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->longitude ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->dt_cadastro ?>
+                      </td>
                       <td class="text-center">
-                          <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroUsuario/editar/'.$registro->co_seq_cadastro_pessoa ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?= base_url().'principalAnimal/editar/'.$registro->id ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaUsuario/'.$registro->co_seq_cadastro_pessoa ?>" data-userid="<?= $registro->co_seq_cadastro_pessoa ?>" title="Excluir">
+                          <a class="btn btn-sm btn-danger" href="<?= base_url().'apagaAnimal/'.$registro->id ?>" data-userid="<?= $registro->id ?>" title="Excluir">
                               <i class="fa fa-trash-o"></i>
                           </a>
                       </td>
@@ -121,6 +126,7 @@
                       ?>
                 </tbody>
               </table>
+            </div>
             </div>
         </div>
         <!-- /.box-body -->
