@@ -593,7 +593,7 @@ function carregaInfoPermissao($IdPermissao)
 
     function consultaEspecie($idGenero)
     {
-        $this->db->select('distinct(Especie.id), Especie.nome');
+        $this->db->select('distinct(Especie.id), Especie.nome, Especie.no_popular');
         $this->db->from('tb_flora as Flora');
         $this->db->join('tb_flora_especie as Especie', 'Especie.id = Flora.id_especie','left');
         $this->db->where('Flora.id_genero', $idGenero);
