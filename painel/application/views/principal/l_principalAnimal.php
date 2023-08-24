@@ -94,13 +94,13 @@
                         <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
-                        <?php echo $registro->nome_som ?>
+                        <?php echo $registro->id_som  ?>
                       </td>
                       <td>
-                        <?php echo $registro->nome_contato ?>
+                        <?php echo $registro->id_fauna_tp_contato ?>
                       </td>
                       <td>
-                        <?php echo $registro->nome_classificacao ?>
+                        <?php echo $registro->id_classificacao ?>
                       </td>
                       <td>
                         <?php echo $registro->latitude ?>
