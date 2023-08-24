@@ -637,14 +637,13 @@ function principalArvoreViva()
                 $IdArvoreViva = $this->uri->segment(3);
                 if($IdArvoreViva == null)
                 {
-                    redirect('principalProjeto/listar');
+                    redirect('principalArvoreViva/listar');
                 }
 
-                $data['infoParcela'] = $this->PrincipalModel->carregaInfoPerfil();
-                $data['infoUsuario'] = $this->PrincipalModel->carregaInfoUsuario($this->session->userdata('userId'));
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();                
 
-                $this->global['pageTitle'] = 'SOMA : Editar projeto';      
-                $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL);
+                $this->global['pageTitle'] = 'SOMA : Editar Árvore Viva';      
+                $this->loadViews("principal/c_principalArvoreViva", $this->global, $data, NULL);
             }
     }
 
