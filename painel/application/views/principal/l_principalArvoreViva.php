@@ -65,7 +65,7 @@
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>ID Parcela: Propriedade</th>
+                    <th>Parcela ID: Propriedade</th>
                     <th>Cadastrado por</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
