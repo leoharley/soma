@@ -286,6 +286,7 @@ $(document).ready(function(){
         });
 
     $('select[name="id_familia"]').on('change', function() {
+        console.log('aqui');
         var idFamilia = $(this).val();
         if(idFamilia) {
             $.ajax({
