@@ -455,7 +455,14 @@ function carregaInfoPermissao($IdPermissao)
         return $query->result();
     }
 
+    function carregaInfoGeneros()
+    {
+        $this->db->select('Generos.id, Generos.nome');
+        $this->db->from('tb_flora_genero as Generos');
+        $query = $this->db->get();
 
+        return $query->result();
+    }
 
     function listaArvoresVivas($searchText = '', $page, $segment)
     {

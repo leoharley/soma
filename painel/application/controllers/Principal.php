@@ -628,7 +628,8 @@ function principalArvoreViva()
             }
             else if ($tpTela == 'cadastrar') {
                 $this->global['pageTitle'] = 'SOMA : Cadastro de Árvores Vivas';
-                
+
+                $data['infoGeneros'] = $this->PrincipalModel->carregaInfoGeneros();
                 $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
  
                 $this->loadViews("principal/c_principalArvoreViva", $this->global, $data, NULL); 
