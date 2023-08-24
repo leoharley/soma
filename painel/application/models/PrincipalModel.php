@@ -482,6 +482,33 @@ function carregaInfoPermissao($IdPermissao)
         return $query->result();
     }
 
+    function carregaInfoFamiliasFauna()
+    {
+        $this->db->select('Familias.id, Familias.nome');
+        $this->db->from('tb_fauna_familia as Familias');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    function carregaInfoGenerosFauna()
+    {
+        $this->db->select('Generos.id, Generos.nome');
+        $this->db->from('tb_fauna_genero as Generos');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    function carregaInfoEspeciesFauna()
+    {
+        $this->db->select('Especies.id, Especies.nome');
+        $this->db->from('tb_fauna_especie as Especies');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
     function listaArvoresVivas($searchText = '', $page, $segment)
     {
         $this->db->select('ArvoresVivas.*,Parcelas.id as id_parcela, Propriedades.no_propriedade, CadastroPessoa.ds_nome');
@@ -597,6 +624,127 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->from('tb_flora as Flora');
         $this->db->join('tb_flora_especie as Especie', 'Especie.id = Flora.id_especie','left');
         $this->db->where('Flora.id_genero', $idGenero);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+
+    function listaAnimais($searchText = '', $page, $segment)
+    {
+        $this->db->select('Animais.*,Parcelas.id as id_parcela, Propriedades.no_propriedade, CadastroPessoa.ds_nome');
+        $this->db->from('tb_animais as Animais');
+        $this->db->join('tb_parcelas as Parcelas', 'Parcelas.id = Animais.id_parcela','left');
+        $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
+        $this->db->join('tb_acesso as Acesso', 'Acesso.co_seq_acesso = Animais.id_acesso','left'); 
+        $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
+   //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(Animais.grau_protecao LIKE '%".$searchText."%'
+                            OR Animais.floracao_frutificacao LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+		        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function adicionaAnimal($infoAnimal)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tb_animais', $infoAnimal);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaAnimal($infoAnimal, $IdAnimal)
+    {
+        $this->db->where('id', $IdArvoreViva);
+        $this->db->update('tb_animais', $infoAnimal);
+        
+        return TRUE;
+    }
+
+    function apagaAnimal($IdAnimal)
+    {
+        $this->db->where('id_animais', $IdAnimal);
+        $res1 = $this->db->delete('rl_fauna_familia_genero_especie');
+        $this->db->where('id', $IdAnimal);
+        $res2 = $this->db->delete('tb_animais');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+
+    function adicionaRlFaunaFamiliaGeneroEspecie($infoRlFaunaFamiliaGeneroEspecie)
+    {
+        $this->db->trans_start();
+        $this->db->insert('rl_fauna_familia_genero_especie', $infoRlFaunaFamiliaGeneroEspecie);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaRlFaunaFamiliaGeneroEspecie($infoRlFaunaFamiliaGeneroEspecie, $IdAnimal)
+    {
+        $this->db->where('id_animais', $IdAnimal);
+        $this->db->update('rl_fauna_familia_genero_especie', $infoRlFaunaFamiliaGeneroEspecie);
+        
+        return TRUE;
+    }
+
+    function apagaRlFaunaFamiliaGeneroEspecie($IdRlFaunaFamiliaGeneroEspecie)
+    {
+        $this->db->where('id', $IdRlFaunaFamiliaGeneroEspecie);
+        $res2 = $this->db->delete('rl_fauna_familia_genero_especie');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+
+    function consultaGeneroFauna($idFamilia)
+    {
+        $this->db->select('distinct(Genero.id), Genero.nome');
+        $this->db->from('tb_fauna as Fauna');
+        $this->db->join('tb_fauna_genero as Genero', 'Genero.id = Fauna.id_genero','left');
+        $this->db->where('Fauna.id_familia', $idFamilia);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    function consultaEspecieFauna($idGenero)
+    {
+        $this->db->select('distinct(Especie.id), Especie.nome, Especie.no_popular');
+        $this->db->from('tb_fauna as Fauna');
+        $this->db->join('tb_fauna_especie as Especie', 'Especie.id = Fauna.id_especie','left');
+        $this->db->where('Fauna.id_genero', $idGenero);
         $query = $this->db->get();
 
         return $query->result();

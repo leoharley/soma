@@ -1,34 +1,44 @@
 <?php
 
-$co_seq_cadastro_pessoa = '';
-$id_perfil = '';
-$ds_nome = '';
-$ds_email = '';
-$nu_cpf = '';
-$st_admin = '';
+$id = '';
+$id_parcela = '';
+$id_som = '';
+$id_fauna_tp_contato = '';
+$id_classificacao  = '';
+$grau_protecao = '';
+$latitude = '';
+$longitude = '';
 
 if ($this->uri->segment(2) == 'editar') {
-if(!empty($infoUsuario))
+if(!empty($infoAnimal))
 {
-    foreach ($infoUsuario as $r)
+    foreach ($infoAnimal as $r)
     {
-        $co_seq_cadastro_pessoa = $r->co_seq_cadastro_pessoa;
-        $id_perfil = $r->id_perfil;
-        $ds_nome = $r->ds_nome;
-        $ds_email = $r->ds_email;
-        $nu_cpf = $r->nu_cpf;
-        $st_admin = $r->st_admin;
+        $id = $r->id;
+        $id_parcela = $r->id_parcela;
+        $id_som = $r->id_som;
+        $id_fauna_tp_contato = $r->id_fauna_tp_contato;
+        $id_classificacao = $r->id_classificacao;
+        $grau_protecao = $r->grau_protecao;
+        $latitude = $r->latitude;
+        $longitude = $r->longitude;
     }
 }
 }
 
 ?>
 
+<style>
+    .content-wrapper{
+      height:800px!important;
+    }
+</style>    
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Usuários' : 'Editar Usuários' ; ?>
+            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Animais' : 'Editar Animais' ; ?>
             <small><?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Adicionar' : 'Editar' ; ?></small>
         </h1>
     </section>
@@ -49,24 +59,37 @@ if(!empty($infoUsuario))
                     <!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaUsuario' : base_url().'editaUsuario'; ?>" method="post" role="form">
+                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaAnimal' : base_url().'editaAnimal'; ?>" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
 
-                                <!-- VARCHAR/INTEGER/FLOAT -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_nome">Nome</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_nome') : $ds_nome ; ?>" id="ds_nome" name="ds_nome" maxlength="128">
-                                        <input type="hidden" value="<?php echo $co_seq_cadastro_pessoa; ?>" name="co_seq_cadastro_pessoa" id="co_seq_cadastro_pessoa" />
+                                        <label for="id_parcela">Parcela</label>
+                                        <select class="form-control required" id="id_parcela" name="id_parcela" required>
+                                            <option value="" disabled selected>SELECIONE</option>
+                                            <?php
+                                            if(!empty($infoParcelas))
+                                            {
+                                                foreach ($infoParcelas as $parcela)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $parcela->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $parcela->id  == $id_parcela) { echo 'selected'; } ?>>
+                                                    <?php echo 'Parcela ID: '.$parcela->id.' / Propriedade: '.$parcela->no_propriedade ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="nu_cpf">CPF</label>
-                                        <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control required cpf_usuario" id="nu_cpf" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_cpf') : $nu_cpf; ?>" name="nu_cpf"
-                                            maxlength="14">
+                                        <label for="latitude">Latitude</label>
+                                        <input data-inputmask="'mask': '99.99999999'" type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude">
+                                        <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
 
@@ -75,24 +98,24 @@ if(!empty($infoUsuario))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_email">Email</label>
-                                        <input type="text" class="form-control email required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_email') : $ds_email; ?>" id="ds_email" name="ds_email" maxlength="128">
+                                        <label for="longitude">Longitude</label>
+                                        <input data-inputmask="'mask': '99.99999999'" type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
                                     </div>
                                 </div>
                             
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="id_perfil">Perfil</label>
-                                        <select class="form-control required" id="id_perfil" name="id_perfil" required>
+                                        <label for="id_familia">Família</label>
+                                        <select class="form-control required" id="id_familia" name="id_familia" required>
                                             <option value="" disabled selected>SELECIONE</option>
                                             <?php
-                                            if(!empty($infoPerfil))
+                                            if(!empty($infoFamiliasFauna))
                                             {
-                                                foreach ($infoPerfil as $perfil)
+                                                foreach ($infoFamiliasFauna as $familia)
                                                 {
                                                     ?>
-                                                <option value="<?php echo $perfil->id_perfil ?>" <?php if ($this->uri->segment(2) == 'editar' && $perfil->id_perfil  == $id_perfil) { echo 'selected'; } ?>>
-                                                    <?php echo $perfil->id_perfil.' - '.$perfil->ds_perfil ?>
+                                                <option value="<?php echo $familia->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $familia->id  == $id_familia) { echo 'selected'; } ?>>
+                                                    <?php echo $familia->id.' - '.$familia->nome ?>
                                                 </option>
                                                 <?php
                                                 }
@@ -103,20 +126,114 @@ if(!empty($infoUsuario))
                                 </div>
                             </div>
 
-                            <div class="row">                                
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_senha">Senha</label>
-                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?>" id="ds_senha" name="ds_senha" maxlength="20">
+                                        <label for="id_genero">Gênero</label>
+                                        <select class="form-control required" id="id_genero" name="id_genero" required>
+                                            <option value="" disabled selected>SELECIONE</option>
+                                            <?php
+                                            if(!empty($infoGenerosFauna))
+                                            {
+                                                foreach ($infoGenerosFauna as $genero)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $genero->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $genero->id  == $id_genero) { echo 'selected'; } ?>>
+                                                    <?php echo $genero->id.' - '.$genero->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="resenha">Redigite a senha</label>
-                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?> equalTo" id="resenha" name="resenha" maxlength="20">
+                                        <label for="id_especie">Espécie</label>
+                                        <select class="form-control required" id="id_especie" name="id_especie">
+                                        </select>
                                     </div>
                                 </div>
                             </div>
+                                                    
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nu_biomassa">Biomassa</label>
+                                        <input type="text" class="form-control required" id="nu_biomassa" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_biomassa') : $nu_biomassa; ?>" name="nu_biomassa">
+                                    </div>
+                                </div>                              
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nova">Nova</label>
+                                        <input type="text" class="form-control required" id="nova" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nova') : $nova; ?>" name="nova">
+                                    </div>
+                                </div>                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="grau_protecao">Grau de proteção</label>
+                                        <input type="text" class="form-control required" id="grau_protecao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('grau_protecao') : $grau_protecao; ?>" name="grau_protecao">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nu_circunferencia">Circunferência</label>
+                                        <input type="text" class="form-control required" id="nu_circunferencia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_circunferencia') : $nu_circunferencia; ?>" name="nu_circunferencia">
+                                    </div>
+                                </div>                                                                                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nu_altura">Altura</label>
+                                        <input type="text" class="form-control required" id="nu_altura" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura') : $nu_altura; ?>" name="nu_altura">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nu_altura_total">Altura total</label>
+                                        <input type="text" class="form-control required" id="nu_altura_total" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_total') : $nu_altura_total; ?>" name="nu_altura_total">
+                                    </div>
+                                </div>                               
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nu_altura_fuste">Altura fuste</label>
+                                        <input type="text" class="form-control required" id="nova" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_fuste') : $nu_altura_fuste; ?>" name="nu_altura_fuste">
+                                    </div>
+                                </div> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nu_altura_copa">Altura da copa</label>
+                                        <input type="text" class="form-control required" id="nu_altura_copa" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_copa') : $nu_altura_copa; ?>" name="nu_altura_copa">
+                                    </div>
+                                </div>                               
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="isolada">Isolada</label>
+                                        <input type="text" class="form-control required" id="isolada" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('isolada') : $isolada; ?>" name="isolada">
+                                    </div>
+                                </div> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="floracao_frutificacao">Floração/Frutificação</label>
+                                        <input type="text" class="form-control required" id="floracao_frutificacao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('floracao_frutificacao') : $floracao_frutificacao; ?>" name="floracao_frutificacao">
+                                    </div>
+                                </div>
+                            </div>    
 
                         </div>
                         <!-- /.box-body -->
@@ -140,7 +257,88 @@ if(!empty($infoUsuario))
 </div>
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
+
+function selectElement(id, valueToSelect) {    
+    let element = document.getElementById(id);
+    element.value = valueToSelect;
+    }
+
 $(document).ready(function(){
     $(":input").inputmask();
+
+    var idFamilia = $('#id_familia').val();
+        $.ajax({
+            url: '<?php echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
+            type: "GET",
+            dataType: "json",
+            success:function(data) {
+                $('select[name="id_genero"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                });
+            }
+        });
+
+    $('select[name="id_familia"]').on('change', function() {
+        var idFamilia = $(this).val();
+        if(idFamilia) {
+            $.ajax({
+                url: '<?php echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
+                type: "GET",
+                dataType: "json",
+                success:function(data) {
+                    $('select[name="id_genero"]').empty();
+                    $.each(data, function(key, value) {
+                        $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                    });
+                }
+            });
+        }else{
+      //      $('select[name="id_genero"]').empty();
+       //     $('select[name="id_especie"]').empty();
+        }
+    });
+
+
+    var idGenero = $('#id_genero').val();
+        $.ajax({
+            url: '<?php echo base_url(); ?>consultaEspecieFauna/'+idGenero,
+            type: "GET",
+            dataType: "json",
+            success:function(data) {
+                $('select[name="id_especie"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
+                });  
+            }
+        });
+
+    $('select[name="id_genero"]').on('change', function() {
+        var idGenero = $(this).val();
+        if(idGenero) {
+            $.ajax({
+                url: '<?php echo base_url(); ?>consultaEspecieFauna/'+idGenero,
+                type: "GET",
+                dataType: "json",
+                success:function(data) {
+                    $('select[name="id_especie"]').empty();
+                    $.each(data, function(key, value) {
+                        $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
+                    });
+                }
+            });
+        }else{
+        //    $('select[name="id_especie"]').empty();
+        }
+    });
+
+    setTimeout(function(){
+        selectElement('id_genero', '<?php echo $id_genero ?>');
+    }, 100);
+    setTimeout(function(){
+        selectElement('id_especie', '<?php echo $id_especie ?>');
+    }, 100);                
+
 });
+
 </script>

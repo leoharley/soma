@@ -794,189 +794,152 @@ function principalAnimal()
                 
                 $count = 0;
 
-                $returns = $this->paginationCompress ( "principalProjeto/listar", $count, 10 );
+                $returns = $this->paginationCompress ( "principalAnimal/listar", $count, 10 );
                 
-                $data['registrosProjetos'] = $this->PrincipalModel->listaProjetos($searchText, $returns["page"], $returns["segment"]);
+                $data['registrosAnimal'] = $this->PrincipalModel->listaAnimais($searchText, $returns["page"], $returns["segment"]);
                 
-                $process = 'Listar projetos';
-                $processFunction = 'Principal/principalProjeto';
+                $process = 'Listar animais';
+                $processFunction = 'Principal/principalAnimal';
                 $this->logrecord($process,$processFunction);
 
-                $this->global['pageTitle'] = 'SOMA : Lista de Projeto';
+                $this->global['pageTitle'] = 'SOMA : Lista de Animal';
 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
                
-                $this->loadViews("principal/l_principalProjeto", $this->global, $data, NULL);
+                $this->loadViews("principal/l_principalAnimal", $this->global, $data, NULL); //CONTINUAR DAQUI
             }
             else if ($tpTela == 'cadastrar') {
-                $this->global['pageTitle'] = 'SOMA : Cadastro de Projeto';
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Animal';
+
+                $data['infoFamiliasFauna'] = $this->PrincipalModel->carregaInfoFamiliasFauna();
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
                 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
 
-                $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL); 
+                $this->loadViews("principal/c_principalAnimal", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
-                $IdUsuario = $this->uri->segment(3);
-                if($IdUsuario == null)
+                $IdAnimal = $this->uri->segment(3);
+                if($IdAnimal == null)
                 {
-                    redirect('principalProjeto/listar');
+                    redirect('principalAnimal/listar');
                 }
 
-                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
-                $data['infoUsuario'] = $this->PrincipalModel->carregaInfoUsuario($IdUsuario);
-                $this->global['pageTitle'] = 'SOMA : Editar projeto';      
-                $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL);
+                $data['infoAnimal'] = $this->PrincipalModel->carregaInfoAnimal($IdAnimal);
+                $data['infoFamiliasFauna'] = $this->PrincipalModel->carregaInfoFamiliasFauna();
+                $data['infoGenerosFauna'] = $this->PrincipalModel->carregaInfoGenerosFauna();
+                $data['infoEspeciesFauna'] = $this->PrincipalModel->carregaInfoEspeciesFauna();
+
+                $this->global['pageTitle'] = 'SOMA : Editar Animal';      
+                $this->loadViews("principal/c_principalAnimal", $this->global, $data, NULL);
             }
     }
 
     function adicionaAnimal() 
     {
-         /*   $this->load->library('form_validation');
+            $id_parcela  = $this->input->post('id_parcela');
+            $id_familia  = $this->input->post('id_familia');
+            $id_genero  = $this->input->post('id_genero');
+            $id_especie  = $this->input->post('id_especie');
+            $id_som  = $this->input->post('id_som');
+            $id_fauna_tp_contato  = $this->input->post('id_fauna_tp_contato');
+            $id_classificacao  = $this->input->post('id_classificacao');
+            $grau_protecao = $this->input->post('grau_protecao');
+            $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
+            $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
             
-            $this->form_validation->set_rules('Nome_Usuario','Nome','trim|required|max_length[128]');
-            $this->form_validation->set_rules('Cpf_Usuario','CPF','trim|required|max_length[128]');
-            $this->form_validation->set_rules('Email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('Senha','Senha','required|max_length[20]');
-            $this->form_validation->set_rules('resenha','Confirme a senha','trim|required|matches[password]|max_length[20]');*/
-
-        //VALIDAÇÃO
-
-        //    $this->form_validation->set_rules('perfil','Role','trim|required|numeric');
+            $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
+                                'longitude'=>$longitude,'id_som'=> $id_som, 'id_fauna_tp_contato'=>$id_fauna_tp_contato, 
+                                'id_classificacao'=>$id_classificacao, 'grau_protecao'=>$grau_protecao);
+                                
+            $result = $this->PrincipalModel->adicionaAnimal($infoAnimal);
             
-        /*    if($this->form_validation->run() == FALSE)
+            $infoRlFaunaFamiliaGeneroEspecie = array('id_animais'=> $result, 'id_familia'=>$id_familia,
+                                                    'id_genero '=> $id_genero, 'id_especie'=>$id_especie);
+                                
+            $resultRl = $this->PrincipalModel->adicionaRlFaunaFamiliaGeneroEspecie($infoRlFaunaFamiliaGeneroEspecie);
+            
+            if($result > 0 && $resultRl > 0)
             {
+                $process = 'Adicionar animal';
+                $processFunction = 'Principal/adicionaAnimal';
+                $this->logrecord($process,$processFunction);
 
-                redirect('principalUsuario/cadastrar');
+                $this->session->set_flashdata('success', 'Animal criado com sucesso');
             }
             else
-        { */
-
-                $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
-                $email = $this->security->xss_clean($this->input->post('ds_email'));
-                $id_perfil = $this->input->post('id_perfil');
-                $senha = $this->input->post('ds_senha');
-                $admin = 'N';
-            //    $roleId = $this->input->post('role');
-
-                if ($this->PrincipalModel->consultaUsuarioExistente($cpf,$email) == null) {
-
-                $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'st_admin'=>$admin,
-                                    'id_perfil'=> $id_perfil, 'nu_cpf'=>$cpf);
-                                    
-                $result = $this->PrincipalModel->adicionaUsuario($infoUsuario);
-                
-                $infoAcesso = array('co_principal_pessoa '=> $result, 'ds_senha'=>$senha);
-                                    
-                $resultAcesso = $this->PrincipalModel->adicionaAcesso($infoAcesso);
-                
-                if($result > 0 && $resultAcesso > 0)
-                {
-                    $process = 'Adicionar usuário';
-                    $processFunction = 'Principal/adicionaUsuario';
-                    $this->logrecord($process,$processFunction);
-
-                    $this->session->set_flashdata('success', 'Usuário criado com sucesso');
-                }
-                else
-                {
-                    $this->session->set_flashdata('error', 'Falha na criação do usuário');
-                }
-
-            } else {
-                    $this->session->set_flashdata('error', 'CPF ou Email já foram cadastrados!');
-            }
-                
-                redirect('principalUsuario/listar');
-
-        //    }
+            {
+                $this->session->set_flashdata('error', 'Falha na criação de animal');
+            }          
+            
+            redirect('principalAnimal/listar');
     }
 
 
     function editaAnimal()
     {
-            $this->load->library('form_validation');
-            
-            $IdUsuario = $this->input->post('co_seq_principal_pessoa');
+            $IdAnimal = $this->input->post('id');
 
-            //VALIDAÇÃO
+            $id_parcela  = $this->input->post('id_parcela');
+            $id_familia  = $this->input->post('id_familia');
+            $id_genero  = $this->input->post('id_genero');
+            $id_especie  = $this->input->post('id_especie');
+            $id_som  = $this->input->post('id_som');
+            $id_fauna_tp_contato  = $this->input->post('id_fauna_tp_contato');
+            $id_classificacao  = $this->input->post('id_classificacao');
+            $grau_protecao = $this->input->post('grau_protecao');
+            $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
+            $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
+
+            $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
+                                'longitude'=>$longitude,'id_som'=> $id_som, 'id_fauna_tp_contato'=>$id_fauna_tp_contato, 
+                                'id_classificacao'=>$id_classificacao, 'grau_protecao'=>$grau_protecao);
+                                
+            $result = $this->PrincipalModel->editaAnimal($infoAnimal, $IdAnimal);
             
-         /*   $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
-            $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
+            $infoRlFaunaFamiliaGeneroEspecie = array('id_familia'=>$id_familia, 'id_genero '=> $id_genero, 
+                                                    'id_especie'=>$id_especie);
+                                
+            $resultRl = $this->PrincipalModel->editaRlFaunaFamiliaGeneroEspecie($infoRlFaunaFamiliaGeneroEspecie, $IdAnimal);
             
-            if($this->form_validation->run() == FALSE)
-            { 
-                $this->editOld($userId);
+            if($result && $resultRl)
+            {
+                $process = 'Árvore viva atualizada';
+                $processFunction = 'Principal/editaArvoreViva';
+                $this->logrecord($process,$processFunction);
+
+                $this->session->set_flashdata('success', 'Árvore viva atualizada com sucesso');
             }
             else
-            { */
-
-                $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
-                $id_perfil = $this->input->post('id_perfil');
-                $email = $this->security->xss_clean($this->input->post('ds_email'));
-                $senha = $this->input->post('ds_senha');
-                $admin = 'N';
-                        
-                $infoUsuario = array();
-                
-                if(empty($senha))
-                {
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email,'st_admin'=>$admin,
-                                         'id_perfil'=>$id_perfil,'nu_cpf'=>$cpf);
-                }
-                else
-                {
-                    //'Senha'=>getHashedPassword($senha)
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 
-                                        'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf);
-                }
-                
-                $resultado = $this->PrincipalModel->editaUsuario($infoUsuario, $IdUsuario);
-                
-                if($resultado == true)
-                {
-                    $process = 'Usuário atualizado';
-                    $processFunction = 'Principal/editaUsuario';
-                    $this->logrecord($process,$processFunction);
-
-                    $this->session->set_flashdata('success', 'Usuário atualizado com sucesso');
-                }
-                else
-                {
-                    $this->session->set_flashdata('error', 'Falha na atualização do usuário');
-                }
-                
-                redirect('principalUsuario/listar');
-           // }
+            {
+                $this->session->set_flashdata('error', 'Falha na atualização de árvore viva');
+            }
+            
+            redirect('principalArvoreViva/listar');
     }
 
     function apagaAnimal()
     {
-            $IdUsuario = $this->uri->segment(2);
+            $IdAnimal = $this->uri->segment(2);
 
-            $resultado = $this->PrincipalModel->apagaUsuario($IdUsuario);
+            $resultado = $this->PrincipalModel->apagaAnimal($IdAnimal);
             
             if ($resultado) {
                 // echo(json_encode(array('status'=>TRUE)));
 
-                 $process = 'Exclusão de usuário';
-                 $processFunction = 'Principal/apagaUsuario';
-                 $this->logrecord($process,$processFunction);
+                $process = 'Exclusão de animal';
+                $processFunction = 'Principal/apagaAnimal';
+                $this->logrecord($process,$processFunction);
 
-                 $this->session->set_flashdata('success', 'Usuário deletado com sucesso');
+                $this->session->set_flashdata('success', 'Animal deletado com sucesso');
 
                 }
                 else 
                 { 
                     //echo(json_encode(array('status'=>FALSE))); 
-                    $this->session->set_flashdata('error', 'Falha em excluir o usuário');
+                    $this->session->set_flashdata('error', 'Falha em excluir animal');
                 }
-                redirect('principalUsuario/listar');
+                redirect('principalAnimal/listar');
     }
 
 
@@ -1194,6 +1157,25 @@ function principalAnimal()
             $idGenero = $this->uri->segment(2);
                        
             $resultado = $this->PrincipalModel->consultaEspecie($idGenero);
+            
+            echo json_encode($resultado);
+    }
+
+
+    function consultaGeneroFauna()
+    {
+            $idFamilia = $this->uri->segment(2);
+                       
+            $resultado = $this->PrincipalModel->consultaGeneroFauna($idFamilia);
+            
+            echo json_encode($resultado);
+    }
+
+    function consultaEspecieFauna()
+    {
+            $idGenero = $this->uri->segment(2);
+                       
+            $resultado = $this->PrincipalModel->consultaEspecieFauna($idGenero);
             
             echo json_encode($resultado);
     }
