@@ -152,49 +152,55 @@ if(!empty($infoArvoreViva))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="grau_protecao">Grau de proteção</label>
+                                        <input type="text" class="form-control required" id="grau_protecao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('grau_protecao') : $grau_protecao; ?>" name="grau_protecao">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="nu_circunferencia">Circunferência</label>
                                         <input type="text" class="form-control required" id="nu_circunferencia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_circunferencia') : $nu_circunferencia; ?>" name="nu_circunferencia">
                                     </div>
-                                </div>                                
+                                </div>                                                                                                
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_altura">Altura</label>
                                         <input type="text" class="form-control required" id="nu_altura" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura') : $nu_altura; ?>" name="nu_altura">
                                     </div>
-                                </div>                                
-                            </div>
-
-                            <div class="row">
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_altura_total">Altura total</label>
                                         <input type="text" class="form-control required" id="nu_altura_total" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_total') : $nu_altura_total; ?>" name="nu_altura_total">
                                     </div>
                                 </div>                               
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_altura_fuste">Altura fuste</label>
                                         <input type="text" class="form-control required" id="nova" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_fuste') : $nu_altura_fuste; ?>" name="nu_altura_fuste">
                                     </div>
-                                </div>                                
-                            </div>
-
-                            <div class="row">
+                                </div> 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_altura_copa">Altura da copa</label>
                                         <input type="text" class="form-control required" id="nu_altura_copa" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_copa') : $nu_altura_copa; ?>" name="nu_altura_copa">
                                     </div>
-                                </div>                                
+                                </div>                               
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="isolada">Isolada</label>
                                         <input type="text" class="form-control required" id="isolada" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('isolada') : $isolada; ?>" name="isolada">
                                     </div>
-                                </div>                                
-                            </div>
-
-                            <div class="row">
+                                </div> 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="floracao_frutificacao">Floração/Frutificação</label>
