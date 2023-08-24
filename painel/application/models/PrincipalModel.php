@@ -451,7 +451,7 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->from('tb_arvores_vivas as ArvoresVivas');
         $this->db->join('tb_parcelas as Parcelas', 'Parcelas.id = ArvoresVivas.id_parcela','left');
         $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
-        $this->db->join('tb_acesso as Acesso', 'Acesso.id = ArvoresVivas.id_acesso','left'); 
+        $this->db->join('tb_acesso as Acesso', 'Acesso.co_seq_acesso = ArvoresVivas.id_acesso','left'); 
         $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
    //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
         if(!empty($searchText)) {
