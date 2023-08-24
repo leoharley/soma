@@ -294,8 +294,8 @@ $(document).ready(function(){
                 dataType: "json",
                 success:function(data) {
                     $('select[name="id_genero"]').empty();
-                    console.log(value.id);
                     $.each(data, function(key, value) {
+                        console.log(value.id);
                         $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                     });
                 }
