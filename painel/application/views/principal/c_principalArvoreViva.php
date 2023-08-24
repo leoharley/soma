@@ -327,8 +327,10 @@ $(document).ready(function(){
                 $('select[name="id_especie"]').empty();
                 $.each(data, function(key, value) {
                     $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
-                });                
-                selectElement('id_genero', '70');
+                });   
+                setTimeout(function(){
+                    selectElement('id_genero', <?php echo $id_genero ?>);
+                }, 3000);
             }
         });
 
