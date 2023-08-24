@@ -227,6 +227,16 @@ class PrincipalModel extends CI_Model
         return $query->result();
     }
 
+    function carregaInfoArvoreViva($IdArvoreViva)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_arvores_vivas');
+        $this->db->where('id', $IdArvoreViva);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
     function carregaInfoPerfil()
     {
         $this->db->select('id_perfil, ds_perfil, st_admin');

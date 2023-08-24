@@ -640,7 +640,8 @@ function principalArvoreViva()
                     redirect('principalArvoreViva/listar');
                 }
 
-                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();                
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
+                $data['infoArvoreViva'] = $this->PrincipalModel->carregaInfoArvoreViva();                      
 
                 $this->global['pageTitle'] = 'SOMA : Editar Árvore Viva';      
                 $this->loadViews("principal/c_principalArvoreViva", $this->global, $data, NULL);
