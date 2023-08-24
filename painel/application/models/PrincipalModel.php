@@ -501,6 +501,8 @@ function carregaInfoPermissao($IdPermissao)
 
     function apagaArvoreViva($IdArvoreViva)
     {
+        $this->db->where('id_arvores_vivas', $IdArvoreViva);
+        $res1 = $this->db->delete('rl_flora_familia_genero_especie');
         $this->db->where('id', $IdArvoreViva);
         $res2 = $this->db->delete('tb_arvores_vivas');
 
