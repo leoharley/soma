@@ -327,15 +327,13 @@ $(document).ready(function(){
                 $('select[name="id_especie"]').empty();
                 $.each(data, function(key, value) {
                     $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
-                });
+                });                
+                selectElement('id_genero', '70');
             }
         });
 
-    selectElement('id_genero', '70');
-
     $('select[name="id_genero"]').on('change', function() {
         var idGenero = $(this).val();
-        console.log('aqui'+idGenero);
         if(idGenero) {
             $.ajax({
                 url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
