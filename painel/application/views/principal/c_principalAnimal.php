@@ -176,7 +176,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_fauna_tp_contato">Contato (**campo aberto ou select?**)</label>
-                                        <input type="text" class="form-control required" id="nova" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_fauna_tp_contato') : $id_contato; ?>" name="id_fauna_tp_contato">
+                                        <input type="text" class="form-control required" id="nova" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_fauna_tp_contato') : $id_fauna_tp_contato; ?>" name="id_fauna_tp_contato">
                                     </div>
                                 </div>                                
                             </div>
