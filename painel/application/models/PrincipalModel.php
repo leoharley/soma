@@ -434,6 +434,113 @@ function carregaInfoPermissao($IdPermissao)
         return $query->result();
     }
 
+    function carregaInfoParcelas()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_parcelas as Parcelas');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+
+
+    function listaArvoresVivas($searchText = '', $page, $segment)
+    {
+        $this->db->select('ArvoresVivas.*,Parcelas.id, Propriedades.no_propriedade, CadastroPessoa.ds_nome');
+        $this->db->from('tb_arvores_vivas as ArvoresVivas');
+        $this->db->join('tb_parcelas as Parcelas', 'Parcelas.id = ArvoresVivas.id_parcela','left');
+        $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
+        $this->db->join('tb_acesso as Acesso', 'Acesso.id = ArvoresVivas.id_acesso','left'); 
+        $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
+   //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(ArvoresVivas.grau_protecao LIKE '%".$searchText."%'
+                            OR ArvoresVivas.floracao_frutificacao LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+		        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function adicionaArvoreViva($infoArvoreViva)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tb_arvores_vivas', $infoArvoreViva);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaArvoreViva($infoArvoreViva, $IdArvoreViva)
+    {
+        $this->db->where('id', $IdArvoreViva);
+        $this->db->update('tb_arvores_vivas', $infoArvoreViva);
+        
+        return TRUE;
+    }
+
+    function apagaArvoreViva($IdArvoreViva)
+    {
+        $this->db->where('id', $IdArvoreViva);
+        $res2 = $this->db->delete('tb_arvores_vivas');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+
+    function adicionaRlFloraFamiliaGeneroEspecie($infoRlFloraFamiliaGeneroEspecie)
+    {
+        $this->db->trans_start();
+        $this->db->insert('rl_flora_familia_genero_especie', $infoRlFloraFamiliaGeneroEspecie);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaRlFloraFamiliaGeneroEspecie($infoRlFloraFamiliaGeneroEspecie, $IdRlFloraFamiliaGeneroEspecie)
+    {
+        $this->db->where('id', $IdRlFloraFamiliaGeneroEspecie);
+        $this->db->update('rl_flora_familia_genero_especie', $infoRlFloraFamiliaGeneroEspecie);
+        
+        return TRUE;
+    }
+
+    function apagaRlFloraFamiliaGeneroEspecie($IdRlFloraFamiliaGeneroEspecie)
+    {
+        $this->db->where('id', $IdRlFloraFamiliaGeneroEspecie);
+        $res2 = $this->db->delete('rl_flora_familia_genero_especie');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+
 
     /**
      * This function is used to check whether email id is already exist or not

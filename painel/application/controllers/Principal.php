@@ -597,7 +597,7 @@ class Principal extends BaseController
 
 // INICIO DAS FUNÇÕES DA TELA DE PERMISSAO
 
-function principalFlora()
+function principalArvoreViva()
     {
             $tpTela = $this->uri->segment(2);
 
@@ -612,106 +612,93 @@ function principalFlora()
                 
                 $count = 0;
 
-                $returns = $this->paginationCompress ( "principalProjeto/listar", $count, 10 );
+                $returns = $this->paginationCompress ( "principalArvoreViva/listar", $count, 10 );
                 
-                $data['registrosProjetos'] = $this->PrincipalModel->listaProjetos($searchText, $returns["page"], $returns["segment"]);
+                $data['registrosArvoreViva'] = $this->PrincipalModel->listaArvoresVivas($searchText, $returns["page"], $returns["segment"]);
                 
-                $process = 'Listar projetos';
-                $processFunction = 'Principal/principalProjeto';
+                $process = 'Listar árvores vivas';
+                $processFunction = 'Principal/principalArvoreViva';
                 $this->logrecord($process,$processFunction);
 
-                $this->global['pageTitle'] = 'SOMA : Lista de Projeto';
+                $this->global['pageTitle'] = 'SOMA : Lista de Árvores Vivas';
 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
                
-                $this->loadViews("principal/l_principalProjeto", $this->global, $data, NULL);
+                $this->loadViews("principal/l_principalArvoreViva", $this->global, $data, NULL);
             }
             else if ($tpTela == 'cadastrar') {
-                $this->global['pageTitle'] = 'SOMA : Cadastro de Projeto';
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Árvores Vivas';
                 
-                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
-
-                $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL); 
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
+ 
+                $this->loadViews("principal/c_principalArvoreViva", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
-                $IdUsuario = $this->uri->segment(3);
-                if($IdUsuario == null)
+                $IdArvoreViva = $this->uri->segment(3);
+                if($IdArvoreViva == null)
                 {
                     redirect('principalProjeto/listar');
                 }
 
-                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
-                $data['infoUsuario'] = $this->PrincipalModel->carregaInfoUsuario($IdUsuario);
+                $data['infoParcela'] = $this->PrincipalModel->carregaInfoPerfil();
+                $data['infoUsuario'] = $this->PrincipalModel->carregaInfoUsuario($this->session->userdata('userId'));
+
                 $this->global['pageTitle'] = 'SOMA : Editar projeto';      
                 $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL);
             }
     }
 
-    function adicionaFlora() 
+    function adicionaArvoreViva() 
     {
-         /*   $this->load->library('form_validation');
-            
-            $this->form_validation->set_rules('Nome_Usuario','Nome','trim|required|max_length[128]');
-            $this->form_validation->set_rules('Cpf_Usuario','CPF','trim|required|max_length[128]');
-            $this->form_validation->set_rules('Email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('Senha','Senha','required|max_length[20]');
-            $this->form_validation->set_rules('resenha','Confirme a senha','trim|required|matches[password]|max_length[20]');*/
+                $id_parcela  = $this->input->post('id_parcela');
+                $latitude = $this->input->post('latitude');
+                $longitude = $this->input->post('longitude');
+                $id_familia = $this->input->post('id_familia');
+                $id_genero = $this->input->post('id_genero');
+                $id_especie = $this->input->post('id_especie');
+                $nu_biomassa = $this->input->post('nu_biomassa');
+                $nova = $this->input->post('nova');
+                $grau_protecao = $this->input->post('grau_protecao');
+                $nu_circunferencia = $this->input->post('nu_circunferencia');
+                $nu_altura = $this->input->post('nu_altura');
+                $nu_altura_total = $this->input->post('nu_altura_total');
+                $nu_altura_fuste = $this->input->post('nu_altura_fuste');
+                $nu_altura_copa = $this->input->post('nu_altura_copa');
+                $isolada = $this->input->post('isolada');
+                $floracao_frutificacao = $this->input->post('floracao_frutificacao');
 
-        //VALIDAÇÃO
-
-        //    $this->form_validation->set_rules('perfil','Role','trim|required|numeric');
-            
-        /*    if($this->form_validation->run() == FALSE)
-            {
-
-                redirect('principalUsuario/cadastrar');
-            }
-            else
-        { */
-
-                $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
-                $email = $this->security->xss_clean($this->input->post('ds_email'));
-                $id_perfil = $this->input->post('id_perfil');
-                $senha = $this->input->post('ds_senha');
-                $admin = 'N';
-            //    $roleId = $this->input->post('role');
-
-                if ($this->PrincipalModel->consultaUsuarioExistente($cpf,$email) == null) {
-
-                $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'st_admin'=>$admin,
-                                    'id_perfil'=> $id_perfil, 'nu_cpf'=>$cpf);
+                $infoArvoreViva = array('id_parcela'=> $id_parcela, 'latitude'=>$latitude, 'longitude'=>$longitude,
+                                    'nu_biomassa'=> $nu_biomassa, 'nova'=>$nova, 'grau_protecao'=>$grau_protecao,
+                                    'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura, 'nu_altura_total'=>$nu_altura_total,
+                                    'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa, 'isolada'=>$isolada,
+                                    'floracao_frutificacao'=>$floracao_frutificacao);
                                     
-                $result = $this->PrincipalModel->adicionaUsuario($infoUsuario);
+                $result = $this->PrincipalModel->adicionaArvoreViva($infoArvoreViva);
                 
-                $infoAcesso = array('co_principal_pessoa '=> $result, 'ds_senha'=>$senha);
+                $infoRlFloraFamiliaGeneroEspecie = array('id'=> $result, 'id_familia'=>$id_familia,
+                                                         'id_genero '=> $id_genero, 'id_especie'=>$id_especie);
                                     
-                $resultAcesso = $this->PrincipalModel->adicionaAcesso($infoAcesso);
+                $resultRl = $this->PrincipalModel->adicionaRlFloraFamiliaGeneroEspecie($infoRlFloraFamiliaGeneroEspecie);
                 
-                if($result > 0 && $resultAcesso > 0)
+                if($result > 0 && $resultRl > 0)
                 {
-                    $process = 'Adicionar usuário';
-                    $processFunction = 'Principal/adicionaUsuario';
+                    $process = 'Adicionar árvore viva';
+                    $processFunction = 'Principal/adicionaArvoreViva';
                     $this->logrecord($process,$processFunction);
 
-                    $this->session->set_flashdata('success', 'Usuário criado com sucesso');
+                    $this->session->set_flashdata('success', 'Árvore viva criada com sucesso');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Falha na criação do usuário');
-                }
-
-            } else {
-                    $this->session->set_flashdata('error', 'CPF ou Email já foram cadastrados!');
-            }
+                    $this->session->set_flashdata('error', 'Falha na criação de árvore viva');
+                }          
                 
-                redirect('principalUsuario/listar');
+                redirect('principalArvoreViva/listar');
 
-        //    }
     }
 
 
-    function editaFlora()
+    function editaArvoreViva()
     {
             $this->load->library('form_validation');
             
@@ -773,7 +760,7 @@ function principalFlora()
            // }
     }
 
-    function apagaFlora()
+    function apagaArvoreViva()
     {
             $IdUsuario = $this->uri->segment(2);
 
@@ -798,7 +785,7 @@ function principalFlora()
     }
 // FIM DAS FUNÇÕES DA TELA DE PERMISSAO
 
-function principalFauna()
+function principalAnimal()
     {
             $tpTela = $this->uri->segment(2);
 
@@ -848,7 +835,7 @@ function principalFauna()
             }
     }
 
-    function adicionaFauna() 
+    function adicionaAnimal() 
     {
          /*   $this->load->library('form_validation');
             
@@ -912,7 +899,7 @@ function principalFauna()
     }
 
 
-    function editaFauna()
+    function editaAnimal()
     {
             $this->load->library('form_validation');
             
@@ -974,7 +961,7 @@ function principalFauna()
            // }
     }
 
-    function apagaFauna()
+    function apagaAnimal()
     {
             $IdUsuario = $this->uri->segment(2);
 
@@ -999,7 +986,7 @@ function principalFauna()
     }
 
 
-    function principalEpiteta()
+    function principalEpifita()
     {
             $tpTela = $this->uri->segment(2);
 
@@ -1113,7 +1100,7 @@ function principalFauna()
     }
 
 
-    function editaEpiteta()
+    function editaEpifita()
     {
             $this->load->library('form_validation');
             
@@ -1175,7 +1162,7 @@ function principalFauna()
            // }
     }
 
-    function apagaEpiteta()
+    function apagaEpifita()
     {
             $IdUsuario = $this->uri->segment(2);
 

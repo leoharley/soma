@@ -265,21 +265,21 @@ $(function() {
                   </li>
 
                   <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalFlora/listar">
+                      <a href="<?php echo base_url(); ?>principalArvoreViva/listar">
                           <i class="fa fa-leaf" style="margin-right:5px!important"></i>
                           <span>Árvores vivas</span>
                       </a>
                   </li>
 
                   <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalFauna/listar">
+                      <a href="<?php echo base_url(); ?>principalAnimal/listar">
                           <i class="fa fa-paw" style="margin-right:5px!important"></i>
                           <span>Animais</span>
                       </a>
                   </li>
 
                   <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalEpiteta/listar">
+                      <a href="<?php echo base_url(); ?>principalEpifita/listar">
                           <i class="fa fa-tree" style="margin-right:5px!important"></i>
                           <span>Epífitas</span>
                       </a>

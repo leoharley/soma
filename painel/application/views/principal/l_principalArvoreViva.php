@@ -20,15 +20,15 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i class="fa fa-users"></i> Listar Usuários
+      <i class="fa fa-users"></i> Listar árvores vivas
       <small>Listar</small>
     </h1>
   </section>
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroUsuario/cadastrar">
-          <i class="fa fa-plus"></i> Adicionar usuário</a>
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>principalArvoreViva/cadastrar">
+          <i class="fa fa-plus"></i> Adicionar árvore viva</a>
       </div>
       <br/>
       <div class="box">
@@ -64,48 +64,75 @@
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Perfil</th>
-                  <!--  <th>Admin?</th> -->
-                  <!--  <th>Data ativo</th>
-                    <th>Data inativo</th> -->                    
+                    <th>Cadastrado por</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Biomassa</th>
+                    <th>Nova</th>
+                    <th>Grau proteção</th>
+                    <th>Circunferência</th>
+                    <th>Altura</th>
+                    <th>Altura total</th>
+                    <th>Altura fuste</th>
+                    <th>Isolada</th>
+                    <th>Floração frutificação</th>
+                    <th>Dt. cadastro</th>           
                     <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                      if(!empty($registrosUsuarios))
+                      if(!empty($registrosArvoreViva))
                       {
-                          foreach($registrosUsuarios as $registro)
+                          foreach($registrosArvoreViva as $registro)
                           {
                       ?>
                     <tr>
                       <td>
-                        <?php echo $registro->co_seq_cadastro_pessoa ?>
+                        <?php echo $registro->id ?>
                       </td>
                       <td>
                         <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
-                        <?php echo $registro->nu_cpf ?>
+                        <?php echo $registro->latitude ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_email ?>
+                        <?php echo $registro->longitude ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_perfil ?>
-                      </td>
-                    <!--  <td>
-                        <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>
-                      </td> -->
-                  <!--    <td>
-                        <?php //echo ($registro->Dt_Ativo != null) ? date("d/m/Y", strtotime($registro->Dt_Ativo)) : ''; ?>
+                        <?php echo $registro->nu_biomassa ?>
                       </td>
                       <td>
-                        <?php //echo ($registro->Dt_Inativo != null) ? date("d/m/Y", strtotime($registro->Dt_Inativo)) : ''; ?>
-                      </td> -->
+                        <?php echo $registro->nova ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->grau_protecao ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->nu_circunferencia ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->nu_altura ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->nu_altura_total ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->nu_altura_fuste ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->nu_altura_copa ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->isolada ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->floracao_frutificacao ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->dt_cadastro ?>
+                      </td>
                       <td class="text-center">
                           <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroUsuario/editar/'.$registro->co_seq_cadastro_pessoa ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
