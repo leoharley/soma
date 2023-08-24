@@ -238,6 +238,17 @@ class PrincipalModel extends CI_Model
         return $query->result();
     }
 
+    function carregaInfoAnimal($IdAnimal)
+    {
+        $this->db->select('Animais.*,Rl.id_familia,Rl.id_genero,Rl.id_especie');
+        $this->db->from('tb_animais as Animais');
+        $this->db->join('rl_fauna_familia_genero_especie as Rl', 'Rl.id_animais = Animais.id','left'); 
+        $this->db->where('Animais.id', $IdAnimal);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
     function carregaInfoPerfil()
     {
         $this->db->select('id_perfil, ds_perfil, st_admin');
