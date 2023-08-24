@@ -295,7 +295,6 @@ $(document).ready(function(){
                 success:function(data) {
                     $('select[name="id_genero"]').empty();
                     $.each(data, function(key, value) {
-                        console.log(value.id);
                         $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                     });
                 }
@@ -315,7 +314,11 @@ $(document).ready(function(){
             success:function(data) {
                 $('select[name="id_especie"]').empty();
                 $.each(data, function(key, value) {
-                    $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
+                    if (value.no_popular !== null) {
+                        $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
+                    } else {
+                        $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                    }    
                 });  
             }
         });
