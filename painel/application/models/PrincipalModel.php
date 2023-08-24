@@ -762,6 +762,104 @@ function carregaInfoPermissao($IdPermissao)
     }
 
 
+    function listaEpifitas($searchText = '', $page, $segment)
+    {
+        $this->db->select('Epifitas.*,Parcelas.id as id_parcela, Propriedades.no_propriedade, CadastroPessoa.ds_nome');
+        $this->db->from('tb_epifitas as Epifitas');
+        $this->db->join('tb_parcelas as Parcelas', 'Parcelas.id = Epifitas.id_parcela','left');
+        $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
+        $this->db->join('tb_acesso as Acesso', 'Acesso.co_seq_acesso = Epifitas.id_acesso','left'); 
+        $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
+   //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(Epifitas.latitude LIKE '%".$searchText."%'
+                            OR Epifitas.longitude LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+		        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function adicionaEpifita($infoEpifita)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tb_epifitas', $infoEpifita);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaEpifita($infoEpifita, $IdEpifita)
+    {
+        $this->db->where('id', $IdEpifita);
+        $this->db->update('tb_epifitas', $infoEpifita);
+        
+        return TRUE;
+    }
+
+    function apagaEpifita($IdEpifita)
+    {
+        $this->db->where('id_epifitas', $IdAnimal);
+        $res1 = $this->db->delete('rl_epifitas_familia_genero_especie');
+        $this->db->where('id', $IdAnimal);
+        $res2 = $this->db->delete('tb_epifitas');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+
+    function adicionaRlEpifitaFamiliaGeneroEspecie($infoRlEpifitaFamiliaGeneroEspecie)
+    {
+        $this->db->trans_start();
+        $this->db->insert('rl_epifitas_familia_genero_especie', $infoRlEpifitaFamiliaGeneroEspecie);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaRlEpifitaFamiliaGeneroEspecie($infoRlEpifitaFamiliaGeneroEspecie, $IdEpifita)
+    {
+        $this->db->where('id_epifitas', $IdEpifita);
+        $this->db->update('rl_epifitas_familia_genero_especie', $infoRlEpifitaFamiliaGeneroEspecie);
+        
+        return TRUE;
+    }
+
+    function apagaRlEpifitaFamiliaGeneroEspecie($IdRlEpifitaFamiliaGeneroEspecie)
+    {
+        $this->db->where('id', $IdRlEpifitaFamiliaGeneroEspecie);
+        $res2 = $this->db->delete('rl_epifitas_familia_genero_especie');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+
     /**
      * This function is used to check whether email id is already exist or not
      * @param {string} $email : This is email id

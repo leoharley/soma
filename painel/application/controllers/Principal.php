@@ -905,15 +905,15 @@ function principalAnimal()
             
             if($result && $resultRl)
             {
-                $process = 'Árvore viva atualizada';
-                $processFunction = 'Principal/editaArvoreViva';
+                $process = 'Animais atualizada';
+                $processFunction = 'Principal/editaAnimal';
                 $this->logrecord($process,$processFunction);
 
-                $this->session->set_flashdata('success', 'Árvore viva atualizada com sucesso');
+                $this->session->set_flashdata('success', 'Animais atualizado com sucesso');
             }
             else
             {
-                $this->session->set_flashdata('error', 'Falha na atualização de árvore viva');
+                $this->session->set_flashdata('error', 'Falha na atualização de animais');
             }
             
             redirect('principalAnimal/listar');
@@ -959,189 +959,142 @@ function principalAnimal()
                 
                 $count = 0;
 
-                $returns = $this->paginationCompress ( "principalProjeto/listar", $count, 10 );
+                $returns = $this->paginationCompress ( "principalEpifita/listar", $count, 10 );
                 
-                $data['registrosProjetos'] = $this->PrincipalModel->listaProjetos($searchText, $returns["page"], $returns["segment"]);
+                $data['registrosEpifitas'] = $this->PrincipalModel->listaEpifitas($searchText, $returns["page"], $returns["segment"]);
                 
-                $process = 'Listar projetos';
-                $processFunction = 'Principal/principalProjeto';
+                $process = 'Listar Epífitas';
+                $processFunction = 'Principal/principalEpifita';
                 $this->logrecord($process,$processFunction);
 
-                $this->global['pageTitle'] = 'SOMA : Lista de Projeto';
+                $this->global['pageTitle'] = 'SOMA : Lista de Epífitas';
 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
                
-                $this->loadViews("principal/l_principalProjeto", $this->global, $data, NULL);
+                $this->loadViews("principal/l_principalEpifita", $this->global, $data, NULL);
             }
             else if ($tpTela == 'cadastrar') {
-                $this->global['pageTitle'] = 'SOMA : Cadastro de Projeto';
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Epífita';
                 
-                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
-
-                $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL); 
+                $data['infoFamilias'] = $this->PrincipalModel->carregaInfoFamilias();
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
+                
+                $this->loadViews("principal/c_principalEpifita", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
-                $IdUsuario = $this->uri->segment(3);
-                if($IdUsuario == null)
+                $IdEpifita = $this->uri->segment(3);
+                if($IdEpifita == null)
                 {
-                    redirect('principalProjeto/listar');
+                    redirect('principalEpifita/listar');
                 }
 
-                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
-                $data['infoUsuario'] = $this->PrincipalModel->carregaInfoUsuario($IdUsuario);
-                $this->global['pageTitle'] = 'SOMA : Editar projeto';      
-                $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL);
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
+                $data['infoArvoreViva'] = $this->PrincipalModel->carregaInfoArvoreViva($IdEpifita);
+                $data['infoFamilias'] = $this->PrincipalModel->carregaInfoFamilias();
+                $data['infoGeneros'] = $this->PrincipalModel->carregaInfoGeneros();
+                $data['infoEspecies'] = $this->PrincipalModel->carregaInfoEspecies();
+
+                $this->global['pageTitle'] = 'SOMA : Editar epífita';      
+                $this->loadViews("principal/c_principalEpifita", $this->global, $data, NULL);
             }
     }
 
     function adicionaEpiteta() 
     {
-         /*   $this->load->library('form_validation');
-            
-            $this->form_validation->set_rules('Nome_Usuario','Nome','trim|required|max_length[128]');
-            $this->form_validation->set_rules('Cpf_Usuario','CPF','trim|required|max_length[128]');
-            $this->form_validation->set_rules('Email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('Senha','Senha','required|max_length[20]');
-            $this->form_validation->set_rules('resenha','Confirme a senha','trim|required|matches[password]|max_length[20]');*/
+        $id_parcela  = $this->input->post('id_parcela');
+        $latitude = $this->input->post('latitude');
+        $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
+        $id_familia = $this->input->post('id_familia');
+        $id_genero = $this->input->post('id_genero');
+        $id_especie = $this->input->post('id_especie');
+        
+        $infoEpifita = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'),
+                             'latitude'=>$latitude, 'longitude'=>$longitude);
+                            
+        $result = $this->PrincipalModel->adicionaEpifita($infoEpifita);
+        
+        $infoRlEpifitaFamiliaGeneroEspecie = array('id_epifitas'=> $result, 'id_familia'=>$id_familia,
+                                                 'id_genero '=> $id_genero, 'id_especie'=>$id_especie);
+                            
+        $resultRl = $this->PrincipalModel->adicionaRlEpifitaFamiliaGeneroEspecie($infoRlEpifitaFamiliaGeneroEspecie);
+        
+        if($result > 0 && $resultRl > 0)
+        {
+            $process = 'Adicionar epífita';
+            $processFunction = 'Principal/adicionaEpifita';
+            $this->logrecord($process,$processFunction);
 
-        //VALIDAÇÃO
-
-        //    $this->form_validation->set_rules('perfil','Role','trim|required|numeric');
-            
-        /*    if($this->form_validation->run() == FALSE)
-            {
-
-                redirect('principalUsuario/cadastrar');
-            }
-            else
-        { */
-
-                $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
-                $email = $this->security->xss_clean($this->input->post('ds_email'));
-                $id_perfil = $this->input->post('id_perfil');
-                $senha = $this->input->post('ds_senha');
-                $admin = 'N';
-            //    $roleId = $this->input->post('role');
-
-                if ($this->PrincipalModel->consultaUsuarioExistente($cpf,$email) == null) {
-
-                $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'st_admin'=>$admin,
-                                    'id_perfil'=> $id_perfil, 'nu_cpf'=>$cpf);
-                                    
-                $result = $this->PrincipalModel->adicionaUsuario($infoUsuario);
-                
-                $infoAcesso = array('co_principal_pessoa '=> $result, 'ds_senha'=>$senha);
-                                    
-                $resultAcesso = $this->PrincipalModel->adicionaAcesso($infoAcesso);
-                
-                if($result > 0 && $resultAcesso > 0)
-                {
-                    $process = 'Adicionar usuário';
-                    $processFunction = 'Principal/adicionaUsuario';
-                    $this->logrecord($process,$processFunction);
-
-                    $this->session->set_flashdata('success', 'Usuário criado com sucesso');
-                }
-                else
-                {
-                    $this->session->set_flashdata('error', 'Falha na criação do usuário');
-                }
-
-            } else {
-                    $this->session->set_flashdata('error', 'CPF ou Email já foram cadastrados!');
-            }
-                
-                redirect('principalUsuario/listar');
-
-        //    }
+            $this->session->set_flashdata('success', 'Epífita criada com sucesso');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Falha na criação de epífita');
+        }          
+        
+        redirect('principalEpifita/listar');
     }
 
 
     function editaEpifita()
     {
-            $this->load->library('form_validation');
-            
-            $IdUsuario = $this->input->post('co_seq_principal_pessoa');
+            $IdEpifita = $this->input->post('id');
 
-            //VALIDAÇÃO
-            
-         /*   $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
-            $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-            
-            if($this->form_validation->run() == FALSE)
-            { 
-                $this->editOld($userId);
-            }
-            else
-            { */
+                $id_parcela  = $this->input->post('id_parcela');
+                $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
+                $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
+                $id_familia = $this->input->post('id_familia');
+                $id_genero = $this->input->post('id_genero');
+                $id_especie = $this->input->post('id_especie');
 
-                $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
-                $id_perfil = $this->input->post('id_perfil');
-                $email = $this->security->xss_clean($this->input->post('ds_email'));
-                $senha = $this->input->post('ds_senha');
-                $admin = 'N';
-                        
-                $infoUsuario = array();
+                $infoEpifita = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 
+                                     'latitude'=>$latitude, 'longitude'=>$longitude);
+                                    
+                $result = $this->PrincipalModel->editaEpifita($infoEpifita, $IdEpifita);
                 
-                if(empty($senha))
-                {
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email,'st_admin'=>$admin,
-                                         'id_perfil'=>$id_perfil,'nu_cpf'=>$cpf);
-                }
-                else
-                {
-                    //'Senha'=>getHashedPassword($senha)
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 
-                                        'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf);
-                }
+                $infoRlEpifitaFamiliaGeneroEspecie = array('id_familia'=>$id_familia, 'id_genero '=> $id_genero, 
+                                                         'id_especie'=>$id_especie);
+                                    
+                $resultRl = $this->PrincipalModel->editaRlEpifitaFamiliaGeneroEspecie($infoRlEpifitaFamiliaGeneroEspecie, $IdEpifita);
                 
-                $resultado = $this->PrincipalModel->editaUsuario($infoUsuario, $IdUsuario);
-                
-                if($resultado == true)
+                if($result && $resultRl)
                 {
-                    $process = 'Usuário atualizado';
-                    $processFunction = 'Principal/editaUsuario';
+                    $process = 'Epífita atualizada';
+                    $processFunction = 'Principal/editaEpifita';
                     $this->logrecord($process,$processFunction);
 
-                    $this->session->set_flashdata('success', 'Usuário atualizado com sucesso');
+                    $this->session->set_flashdata('success', 'Epífita atualizada com sucesso');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Falha na atualização do usuário');
+                    $this->session->set_flashdata('error', 'Falha na atualização de epífita');
                 }
                 
-                redirect('principalUsuario/listar');
+                redirect('principalEpifita/listar');
            // }
     }
 
     function apagaEpifita()
     {
-            $IdUsuario = $this->uri->segment(2);
+            $IdEpifita = $this->uri->segment(2);
 
-            $resultado = $this->PrincipalModel->apagaUsuario($IdUsuario);
+            $resultado = $this->PrincipalModel->apagaEpifita($IdEpifita);
             
             if ($resultado) {
                 // echo(json_encode(array('status'=>TRUE)));
 
-                 $process = 'Exclusão de usuário';
-                 $processFunction = 'Principal/apagaUsuario';
-                 $this->logrecord($process,$processFunction);
+                $process = 'Exclusão de epífita';
+                $processFunction = 'Principal/apagaEpifita';
+                $this->logrecord($process,$processFunction);
 
-                 $this->session->set_flashdata('success', 'Usuário deletado com sucesso');
+                $this->session->set_flashdata('success', 'Epífita deletada com sucesso');
 
                 }
                 else 
                 { 
                     //echo(json_encode(array('status'=>FALSE))); 
-                    $this->session->set_flashdata('error', 'Falha em excluir o usuário');
+                    $this->session->set_flashdata('error', 'Falha em excluir epífita');
                 }
-                redirect('principalUsuario/listar');
+                redirect('principalEpifita/listar');
     }
 
     function consultaGenero()

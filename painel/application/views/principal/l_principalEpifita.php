@@ -20,14 +20,14 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i class="fa fa-users"></i> Listar Usuários
+      <i class="fa fa-users"></i> Listar Epífitas
       <small>Listar</small>
     </h1>
   </section>
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroEpifita/cadastrar">
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>principalEpifita/cadastrar">
           <i class="fa fa-plus"></i> Adicionar epífita</a>
       </div>
       <br/>
@@ -75,9 +75,9 @@
                 </thead>
                 <tbody>
                   <?php
-                      if(!empty($registrosEpifita))
+                      if(!empty($registrosAnimal))
                       {
-                          foreach($registrosEpifita as $registro)
+                          foreach($registrosAnimal as $registro)
                           {
                       ?>
                     <tr>
@@ -91,7 +91,7 @@
                         <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
-                        <?php echo $registro->latitude ?>
+                        <?php echo $registro->latitude  ?>
                       </td>
                       <td>
                         <?php echo $registro->longitude ?>

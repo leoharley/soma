@@ -1,34 +1,36 @@
 <?php
 
-$co_seq_cadastro_pessoa = '';
-$id_perfil = '';
-$ds_nome = '';
-$ds_email = '';
-$nu_cpf = '';
-$st_admin = '';
+$id = '';
+$id_parcela = '';
+$latitude = '';
+$longitude = '';
 
 if ($this->uri->segment(2) == 'editar') {
-if(!empty($infoUsuario))
+if(!empty($infoAnimal))
 {
-    foreach ($infoUsuario as $r)
+    foreach ($infoAnimal as $r)
     {
-        $co_seq_cadastro_pessoa = $r->co_seq_cadastro_pessoa;
-        $id_perfil = $r->id_perfil;
-        $ds_nome = $r->ds_nome;
-        $ds_email = $r->ds_email;
-        $nu_cpf = $r->nu_cpf;
-        $st_admin = $r->st_admin;
+        $id = $r->id;
+        $id_parcela = $r->id_parcela;
+        $latitude = $r->latitude;
+        $longitude = $r->longitude;
     }
 }
 }
 
 ?>
 
+<style>
+    .content-wrapper{
+      height:800px!important;
+    }
+</style>    
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Usuários' : 'Editar Usuários' ; ?>
+            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Epífita' : 'Editar Epífita' ; ?>
             <small><?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Adicionar' : 'Editar' ; ?></small>
         </h1>
     </section>
@@ -49,50 +51,23 @@ if(!empty($infoUsuario))
                     <!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaUsuario' : base_url().'editaUsuario'; ?>" method="post" role="form">
+                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaAnimal' : base_url().'editaAnimal'; ?>" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
 
-                                <!-- VARCHAR/INTEGER/FLOAT -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_nome">Nome</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_nome') : $ds_nome ; ?>" id="ds_nome" name="ds_nome" maxlength="128">
-                                        <input type="hidden" value="<?php echo $co_seq_cadastro_pessoa; ?>" name="co_seq_cadastro_pessoa" id="co_seq_cadastro_pessoa" />
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nu_cpf">CPF</label>
-                                        <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control required cpf_usuario" id="nu_cpf" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_cpf') : $nu_cpf; ?>" name="nu_cpf"
-                                            maxlength="14">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="ds_email">Email</label>
-                                        <input type="text" class="form-control email required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_email') : $ds_email; ?>" id="ds_email" name="ds_email" maxlength="128">
-                                    </div>
-                                </div>
-                            
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="id_perfil">Perfil</label>
-                                        <select class="form-control required" id="id_perfil" name="id_perfil" required>
+                                        <label for="id_parcela">Parcela</label>
+                                        <select class="form-control required" id="id_parcela" name="id_parcela" required>
                                             <option value="" disabled selected>SELECIONE</option>
                                             <?php
-                                            if(!empty($infoPerfil))
+                                            if(!empty($infoParcelas))
                                             {
-                                                foreach ($infoPerfil as $perfil)
+                                                foreach ($infoParcelas as $parcela)
                                                 {
                                                     ?>
-                                                <option value="<?php echo $perfil->id_perfil ?>" <?php if ($this->uri->segment(2) == 'editar' && $perfil->id_perfil  == $id_perfil) { echo 'selected'; } ?>>
-                                                    <?php echo $perfil->id_perfil.' - '.$perfil->ds_perfil ?>
+                                                <option value="<?php echo $parcela->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $parcela->id  == $id_parcela) { echo 'selected'; } ?>>
+                                                    <?php echo 'Parcela ID: '.$parcela->id.' / Propriedade: '.$parcela->no_propriedade ?>
                                                 </option>
                                                 <?php
                                                 }
@@ -101,23 +76,25 @@ if(!empty($infoUsuario))
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">                                
+                                
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_senha">Senha</label>
-                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?>" id="ds_senha" name="ds_senha" maxlength="20">
+                                        <label for="latitude">Latitude</label>
+                                        <input data-inputmask="'mask': '99.99999999'" type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude">
+                                        <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
+
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="resenha">Redigite a senha</label>
-                                        <input type="password" class="form-control <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'required' : '' ; ?> equalTo" id="resenha" name="resenha" maxlength="20">
+                                        <label for="longitude">Longitude</label>
+                                        <input data-inputmask="'mask': '99.99999999'" type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <!-- /.box-body -->
 
@@ -143,4 +120,5 @@ if(!empty($infoUsuario))
 $(document).ready(function(){
     $(":input").inputmask();
 });
+
 </script>
