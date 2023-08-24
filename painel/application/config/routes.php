@@ -77,6 +77,8 @@ $route['editaEpifita'] = "principal/editaEpifita";
 $route['apagaEpifita/:any'] = "principal/apagaEpifita/$1";
 
 
+$route['consultaGenero/:any'] = "principal/consultaGenero/$1";
+
 
 /*********** USER DEFINED ROUTES *******************/
 

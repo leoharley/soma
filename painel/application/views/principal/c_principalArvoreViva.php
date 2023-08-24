@@ -246,5 +246,40 @@ if(!empty($infoArvoreViva))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
+
+    var idFamilia = $('#id_familia').val();
+        $.ajax({
+            url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+            type: "GET",
+            dataType: "json",
+            success:function(data) {
+                $('select[name="id_genero"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                });
+            }
+        });
+
+    $('select[name="id_familia"]').on('change', function() {
+        var idFamilia = $(this).val();
+        if(idFamilia) {
+            $.ajax({
+                url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+                type: "GET",
+                dataType: "json",
+                success:function(data) {
+                    $('select[name="id_genero"]').empty();
+                    $.each(data, function(key, value) {
+                        $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                    });
+                }
+            });
+        }else{
+            $('select[name="id_genero"]').empty();
+            $('select[name="id_especie"]').empty();
+        }
+    });
+
+
 });
 </script>

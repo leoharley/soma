@@ -555,6 +555,17 @@ function carregaInfoPermissao($IdPermissao)
 
     }
 
+    function consultaGenero($idFamilia)
+    {
+        $this->db->select('Genero.id, Genero.nome');
+        $this->db->from('tb_flora as Flora');
+        $this->db->join('tb_flora_genero as Genero', 'Genero.id = Flora.id_genero','left');
+        $this->db->where('Flora.id_familia', $idFamilia);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
 
     /**
      * This function is used to check whether email id is already exist or not

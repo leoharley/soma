@@ -1175,6 +1175,16 @@ function principalAnimal()
                 redirect('principalUsuario/listar');
     }
 
+    function consultaGenero()
+    {
+           
+            $idFamilia = $this->uri->segment(2);
+                       
+            $resultado = $this->PrincipalModel->consultaGenero($idFamilia);
+            
+            echo json_encode($resultado);
+    }
+
     function valor($val)
     {
         $val = str_replace(",",".",$val);
