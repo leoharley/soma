@@ -92,10 +92,10 @@
                         <?php echo $registro->perimetro ?>
                       </td>
                       <td>
-                        <?php echo $registro->dt_inicio ?>
+                        <?php echo date("d/m/Y", strtotime($registro->dt_inicio)) ?>
                       </td>
                       <td>
-                        <?php echo $registro->dt_final ?>
+                        <?php echo date("d/m/Y", strtotime($registro->dt_final)) ?>
                       </td>
                     <!--  <td>
                         <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>
