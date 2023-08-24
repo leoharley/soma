@@ -4,6 +4,9 @@ $id = '';
 $id_parcela = '';
 $latitude = '';
 $longitude = '';
+$id_familia = '';
+$id_genero = '';
+$id_especie = '';
 
 if ($this->uri->segment(2) == 'editar') {
 if(!empty($infoAnimal))
@@ -14,6 +17,9 @@ if(!empty($infoAnimal))
         $id_parcela = $r->id_parcela;
         $latitude = $r->latitude;
         $longitude = $r->longitude;
+        $id_familia = $r->id_familia;
+        $id_genero = $r->id_genero;
+        $id_especie = $r->id_especie;
     }
 }
 }
@@ -51,7 +57,7 @@ if(!empty($infoAnimal))
                     <!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaAnimal' : base_url().'editaAnimal'; ?>" method="post" role="form">
+                    <form role="form" id="addUser" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaEpifita' : base_url().'editaEpifita'; ?>" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
 
@@ -94,7 +100,61 @@ if(!empty($infoAnimal))
                                         <input data-inputmask="'mask': '99.99999999'" type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_familia">Família</label>
+                                        <select class="form-control required" id="id_familia" name="id_familia" required>
+                                            <option value="" disabled selected>SELECIONE</option>
+                                            <?php
+                                            if(!empty($infoFamilias))
+                                            {
+                                                foreach ($infoFamilias as $familia)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $familia->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $familia->id  == $id_familia) { echo 'selected'; } ?>>
+                                                    <?php echo $familia->id.' - '.$familia->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_genero">Gênero</label>
+                                        <select class="form-control required" id="id_genero" name="id_genero" required>
+                                            <option value="" disabled selected>SELECIONE</option>
+                                            <?php
+                                            if(!empty($infoGeneros))
+                                            {
+                                                foreach ($infoGeneros as $genero)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $genero->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $genero->id  == $id_genero) { echo 'selected'; } ?>>
+                                                    <?php echo $genero->id.' - '.$genero->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_especie">Espécie</label>
+                                        <select class="form-control required" id="id_especie" name="id_especie">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>                     
+
                         </div>
                         <!-- /.box-body -->
 
@@ -117,8 +177,100 @@ if(!empty($infoAnimal))
 </div>
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
+
+function selectElement(id, valueToSelect) {    
+    let element = document.getElementById(id);
+    element.value = valueToSelect;
+    }
+
 $(document).ready(function(){
     $(":input").inputmask();
+
+    var idFamilia = $('#id_familia').val();
+        $.ajax({
+            url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+            type: "GET",
+            dataType: "json",
+            success:function(data) {
+                $('select[name="id_genero"]').empty();
+                $('select[name="id_genero"]').append('<option value="" disabled selected>SELECIONE</option>');
+                $.each(data, function(key, value) {
+                    $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                });
+            }
+        });
+
+    $('select[name="id_familia"]').on('change', function() {
+        var idFamilia = $(this).val();
+        if(idFamilia) {
+            $.ajax({
+                url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+                type: "GET",
+                dataType: "json",
+                success:function(data) {
+                    $('select[name="id_genero"]').empty();
+                    $('select[name="id_genero"]').append('<option value="" disabled selected>SELECIONE</option>');
+                    $.each(data, function(key, value) {
+                        $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                    });
+                }
+            });
+        }else{
+      //      $('select[name="id_genero"]').empty();
+       //     $('select[name="id_especie"]').empty();
+        }
+    });
+
+
+    var idGenero = $('#id_genero').val();
+        $.ajax({
+            url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+            type: "GET",
+            dataType: "json",
+            success:function(data) {
+                $('select[name="id_especie"]').empty();
+                $('select[name="id_especie"]').append('<option value="" disabled selected>SELECIONE</option>');
+                $.each(data, function(key, value) {
+                    if (value.no_popular !== '') {
+                        $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
+                    } else {
+                        $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                    }
+                });  
+            }
+        });
+
+    $('select[name="id_genero"]').on('change', function() {
+        var idGenero = $(this).val();
+        if(idGenero) {
+            $.ajax({
+                url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+                type: "GET",
+                dataType: "json",
+                success:function(data) {
+                    $('select[name="id_especie"]').empty();
+                    $('select[name="id_especie"]').append('<option value="" disabled selected>SELECIONE</option>');
+                    $.each(data, function(key, value) {
+                        if (value.no_popular !== '') {
+                            $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
+                        } else {
+                            $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                        }                        
+                    });
+                }
+            });
+        }else{
+        //    $('select[name="id_especie"]').empty();
+        }
+    });
+
+    setTimeout(function(){
+        selectElement('id_genero', '<?php echo $id_genero ?>');
+    }, 500);
+    setTimeout(function(){
+        selectElement('id_especie', '<?php echo $id_especie ?>');
+    }, 500); 
+
 });
 
 </script>
