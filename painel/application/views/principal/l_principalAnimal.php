@@ -109,7 +109,7 @@
                         <?php echo $registro->longitude ?>
                       </td>
                       <td>
-                        <?php echo $registro->dt_cadastro ?>
+                        <?php echo date("d/m/Y", strtotime($registro->dt_cadastro)) ?>
                       </td>
                       <td class="text-center">
                           <a class="btn btn-sm btn-info" href="<?= base_url().'principalAnimal/editar/'.$registro->id ?>" title="Editar">
