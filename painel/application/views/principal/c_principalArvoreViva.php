@@ -298,5 +298,38 @@ $(document).ready(function(){
     });
 
 
+    var idGenero = $('#id_genero').val();
+        $.ajax({
+            url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+            type: "GET",
+            dataType: "json",
+            success:function(data) {
+                $('select[name="id_especie"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                });
+            }
+        });
+
+    $('select[name="id_genero"]').on('change', function() {
+        var idGenero = $(this).val();
+        if(idGenero) {
+            $.ajax({
+                url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+                type: "GET",
+                dataType: "json",
+                success:function(data) {
+                    $('select[name="id_especie"]').empty();
+                    $.each(data, function(key, value) {
+                        $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                    });
+                }
+            });
+        }else{
+            $('select[name="id_especie"]').empty();
+        }
+    });
+
+
 });
 </script>

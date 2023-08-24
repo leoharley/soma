@@ -573,6 +573,17 @@ function carregaInfoPermissao($IdPermissao)
         return $query->result();
     }
 
+    function consultaEspecie($idGenero)
+    {
+        $this->db->select('distinct(Especie.id), Especie.nome');
+        $this->db->from('tb_flora as Flora');
+        $this->db->join('tb_flora_especie as Genero', 'Genero.id = Flora.id_especie','left');
+        $this->db->where('Flora.id_genero', $idGenero);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
 
     /**
      * This function is used to check whether email id is already exist or not
