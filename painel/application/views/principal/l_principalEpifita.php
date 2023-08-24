@@ -75,9 +75,9 @@
                 </thead>
                 <tbody>
                   <?php
-                      if(!empty($registrosAnimal))
+                      if(!empty($registrosEpifitas))
                       {
-                          foreach($registrosAnimal as $registro)
+                          foreach($registrosEpifitas as $registro)
                           {
                       ?>
                     <tr>
