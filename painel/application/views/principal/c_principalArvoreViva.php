@@ -345,13 +345,24 @@ $(document).ready(function(){
         }
     });
 
+});
+
+document.addEventListener('readystatechange', event => { 
+
+// When HTML/DOM elements are ready:
+if (event.target.readyState === "interactive") {   //does same as:  ..addEventListener("DOMContentLoaded"..
     function selectElement(id, valueToSelect) {    
     let element = document.getElementById(id);
     element.value = valueToSelect;
     }
 
     selectElement('id_genero', '70');
+}
 
-
+// When window loaded ( external resources are loaded too- `css`,`src`, etc...) 
+if (event.target.readyState === "complete") {
+    alert("hi 2");
+}
 });
+
 </script>
