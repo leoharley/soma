@@ -595,7 +595,7 @@ class Principal extends BaseController
     }
 // FIM DAS FUNÇÕES DA TELA DE TELAS
 
-// INICIO DAS FUNÇÕES DA TELA DE PERMISSAO
+// INICIO DAS FUNÇÕES DA TELA DE ARVORE VIVA
 
 function principalArvoreViva()
     {
@@ -700,90 +700,79 @@ function principalArvoreViva()
 
     function editaArvoreViva()
     {
-            $this->load->library('form_validation');
-            
-            $IdUsuario = $this->input->post('co_seq_principal_pessoa');
+                $IdArvoreViva = $this->input->post('id');
 
-            //VALIDAÇÃO
-            
-         /*   $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
-            $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-            
-            if($this->form_validation->run() == FALSE)
-            { 
-                $this->editOld($userId);
-            }
-            else
-            { */
+                $id_parcela  = $this->input->post('id_parcela');
+                $latitude = $this->input->post('latitude');
+                $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
+                $id_familia = $this->input->post('id_familia');
+                $id_genero = $this->input->post('id_genero');
+                $id_especie = $this->input->post('id_especie');
+                $nu_biomassa = $this->input->post('nu_biomassa');
+                $nova = $this->input->post('nova');
+                $grau_protecao = $this->input->post('grau_protecao');
+                $nu_circunferencia = $this->input->post('nu_circunferencia');
+                $nu_altura = $this->input->post('nu_altura');
+                $nu_altura_total = $this->input->post('nu_altura_total');
+                $nu_altura_fuste = $this->input->post('nu_altura_fuste');
+                $nu_altura_copa = $this->input->post('nu_altura_copa');
+                $isolada = $this->input->post('isolada');
+                $floracao_frutificacao = $this->input->post('floracao_frutificacao');
 
-                $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
-                $id_perfil = $this->input->post('id_perfil');
-                $email = $this->security->xss_clean($this->input->post('ds_email'));
-                $senha = $this->input->post('ds_senha');
-                $admin = 'N';
-                        
-                $infoUsuario = array();
+                $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
+                                    'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'nova'=>$nova, 
+                                    'grau_protecao'=>$grau_protecao, 'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura,
+                                    'nu_altura_total'=>$nu_altura_total, 'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa,
+                                    'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao);
+                                    
+                $result = $this->PrincipalModel->editaArvoreViva($infoArvoreViva, $IdArvoreViva);
                 
-                if(empty($senha))
-                {
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email,'st_admin'=>$admin,
-                                         'id_perfil'=>$id_perfil,'nu_cpf'=>$cpf);
-                }
-                else
-                {
-                    //'Senha'=>getHashedPassword($senha)
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 
-                                        'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf);
-                }
+                $infoRlFloraFamiliaGeneroEspecie = array('id_arvores_vivas'=> $result, 'id_familia'=>$id_familia,
+                                                        'id_genero '=> $id_genero, 'id_especie'=>$id_especie);
+                                    
+                $resultRl = $this->PrincipalModel->editaRlFloraFamiliaGeneroEspecie($infoRlFloraFamiliaGeneroEspecie, $IdArvoreViva);
                 
-                $resultado = $this->PrincipalModel->editaUsuario($infoUsuario, $IdUsuario);
-                
-                if($resultado == true)
+                if($result && $resultRl)
                 {
-                    $process = 'Usuário atualizado';
-                    $processFunction = 'Principal/editaUsuario';
+                    $process = 'Árvore viva atualizada';
+                    $processFunction = 'Principal/editaArvoreViva';
                     $this->logrecord($process,$processFunction);
 
-                    $this->session->set_flashdata('success', 'Usuário atualizado com sucesso');
+                    $this->session->set_flashdata('success', 'Árvore viva atualizada com sucesso');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Falha na atualização do usuário');
+                    $this->session->set_flashdata('error', 'Falha na atualização de árvore viva');
                 }
                 
-                redirect('principalUsuario/listar');
+                redirect('principalArvoreViva/listar');
            // }
     }
 
     function apagaArvoreViva()
     {
-            $IdUsuario = $this->uri->segment(2);
+            $IdArvoreViva = $this->input->post('id');
 
-            $resultado = $this->PrincipalModel->apagaUsuario($IdUsuario);
+            $resultado = $this->PrincipalModel->apagaArvoreViva($IdArvoreViva);
             
             if ($resultado) {
                 // echo(json_encode(array('status'=>TRUE)));
 
-                 $process = 'Exclusão de usuário';
-                 $processFunction = 'Principal/apagaUsuario';
+                 $process = 'Exclusão de árvore viva';
+                 $processFunction = 'Principal/apagaArvoreViva';
                  $this->logrecord($process,$processFunction);
 
-                 $this->session->set_flashdata('success', 'Usuário deletado com sucesso');
+                 $this->session->set_flashdata('success', 'Árvore viva deletada com sucesso');
 
                 }
                 else 
                 { 
                     //echo(json_encode(array('status'=>FALSE))); 
-                    $this->session->set_flashdata('error', 'Falha em excluir o usuário');
+                    $this->session->set_flashdata('error', 'Falha em excluir árvore viva');
                 }
-                redirect('principalUsuario/listar');
+                redirect('principalArvoreViva/listar');
     }
-// FIM DAS FUNÇÕES DA TELA DE PERMISSAO
+// FIM DAS FUNÇÕES DA TELA DE ARVORE VIVA
 
 function principalAnimal()
     {

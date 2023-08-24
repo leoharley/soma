@@ -517,9 +517,9 @@ function carregaInfoPermissao($IdPermissao)
         return $insert_id;
     }
 
-    function editaRlFloraFamiliaGeneroEspecie($infoRlFloraFamiliaGeneroEspecie, $IdRlFloraFamiliaGeneroEspecie)
+    function editaRlFloraFamiliaGeneroEspecie($infoRlFloraFamiliaGeneroEspecie, $IdArvoreViva)
     {
-        $this->db->where('id', $IdRlFloraFamiliaGeneroEspecie);
+        $this->db->where('id_arvores_vivas', $IdArvoreViva);
         $this->db->update('rl_flora_familia_genero_especie', $infoRlFloraFamiliaGeneroEspecie);
         
         return TRUE;
