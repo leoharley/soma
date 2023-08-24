@@ -667,11 +667,11 @@ function principalArvoreViva()
                 $isolada = $this->input->post('isolada');
                 $floracao_frutificacao = $this->input->post('floracao_frutificacao');
 
-                $infoArvoreViva = array('id_parcela'=> $id_parcela, 'latitude'=>$latitude, 'longitude'=>$longitude,
-                                    'nu_biomassa'=> $nu_biomassa, 'nova'=>$nova, 'grau_protecao'=>$grau_protecao,
-                                    'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura, 'nu_altura_total'=>$nu_altura_total,
-                                    'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa, 'isolada'=>$isolada,
-                                    'floracao_frutificacao'=>$floracao_frutificacao);
+                $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
+                                    'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'nova'=>$nova, 
+                                    'grau_protecao'=>$grau_protecao, 'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura,
+                                    'nu_altura_total'=>$nu_altura_total, 'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa,
+                                    'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao);
                                     
                 $result = $this->PrincipalModel->adicionaArvoreViva($infoArvoreViva);
                 
