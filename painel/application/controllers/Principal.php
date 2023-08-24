@@ -824,7 +824,7 @@ function principalAnimal()
                 {
                     redirect('principalAnimal/listar');
                 }
-                
+
                 $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
                 $data['infoAnimal'] = $this->PrincipalModel->carregaInfoAnimal($IdAnimal);
                 $data['infoFamiliasFauna'] = $this->PrincipalModel->carregaInfoFamiliasFauna();
@@ -916,7 +916,7 @@ function principalAnimal()
                 $this->session->set_flashdata('error', 'Falha na atualização de árvore viva');
             }
             
-            redirect('principalArvoreViva/listar');
+            redirect('principalAnimal/listar');
     }
 
     function apagaAnimal()
