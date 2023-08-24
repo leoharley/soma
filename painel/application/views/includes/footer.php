@@ -35,26 +35,24 @@
     $(document).ready(function () {
         $('#dataTables-example').DataTable({
             //Dom Gösterim şekli B-> buttonlar l-> lengthMenu f-> filtre vs.
-            dom: "<'row'<'col-sm-1'f>>" +
+            dom: "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
                 "<'row'<'col-sm-12'tr>>" +
-
+                "<'row'<'col-sm-9'i><'col-sm-3'B>>" +
                 "<'row'<'col-sm-7 col-centered'p>>",
-            lengthMenu: [
-                [10, 15, 25, 50, -1],
-                [10, 15, 25, 50, "Todos"]
-            ],
+            "bLengthChange" : false,
+            "pageLength": 6,
 
             //Dil
             language: {
                 select: {
-                    rows: "%d linha selecionada."
+                    rows: "%d linha escolhido."
                 },
 
-                url: "<?php echo base_url(); ?>assets/json/Portuguese.json"
+                url: "http://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese.json"
             },
             buttons: [{
                     extend: "print",
-                    text: "Imprimir",
+                    text: "Impressão",
                     exportOptions: {
                         orthogonal: 'export',
                         columns: ':visible'
