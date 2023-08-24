@@ -9,9 +9,9 @@ $id_genero = '';
 $id_especie = '';
 
 if ($this->uri->segment(2) == 'editar') {
-if(!empty($infoAnimal))
+if(!empty($infoEpifita))
 {
-    foreach ($infoAnimal as $r)
+    foreach ($infoEpifita as $r)
     {
         $id = $r->id;
         $id_parcela = $r->id_parcela;

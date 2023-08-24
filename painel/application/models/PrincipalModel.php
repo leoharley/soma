@@ -238,6 +238,17 @@ class PrincipalModel extends CI_Model
         return $query->result();
     }
 
+    function carregaInfoEpifita($IdEpifita)
+    {
+        $this->db->select('Epifitas.*,Rl.id_familia,Rl.id_genero,Rl.id_especie');
+        $this->db->from('tb_epifitas as Epifitas');
+        $this->db->join('rl_epifitas_familia_genero_especie as Rl', 'Rl.id_arvores_vivas = Epifitas.id','left'); 
+        $this->db->where('Epifitas.id', $IdEpifita);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
     function carregaInfoAnimal($IdAnimal)
     {
         $this->db->select('Animais.*,Rl.id_familia,Rl.id_genero,Rl.id_especie');
