@@ -564,7 +564,7 @@ function carregaInfoPermissao($IdPermissao)
 
     function consultaGenero($idFamilia)
     {
-        $this->db->select('Genero.id, Genero.nome');
+        $this->db->select('distinct(Genero.id), Genero.nome');
         $this->db->from('tb_flora as Flora');
         $this->db->join('tb_flora_genero as Genero', 'Genero.id = Flora.id_genero','left');
         $this->db->where('Flora.id_familia', $idFamilia);
