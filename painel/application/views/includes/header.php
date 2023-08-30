@@ -58,8 +58,8 @@
 
 <script type='text/javascript'
   src="<?php echo base_url(); ?>assets/js/select2.min.js"></script>
-<!--<link rel="stylesheet" type="text/css"
-  href="<?php //echo base_url(); ?>assets/dist/css/select2.css">-->
+<link rel="stylesheet" type="text/css"
+  href="<?php echo base_url(); ?>assets/dist/css/select2.css">
 
 <script>
 $(function() {

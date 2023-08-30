@@ -63,7 +63,8 @@ if(!empty($infoProjeto))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="chz-select">Teste</label>
-                                        <select id="chz-select" name="chz-select" class="form-control" data-placeholder="Select...">
+                                        <br/>
+                                        <select id="chz-select" name="chz-select" data-placeholder="Select...">
                                             <option value="1">Tom & Jerry</option>
                                             <option value="2">Andy & Jamie</option>
                                             <option value="3">Mark & Amy</option>
