@@ -59,6 +59,24 @@ if(!empty($infoProjeto))
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="input-datalist">Timezone</label>
+                                    <input type="text" class="form-control" placeholder="Timezone" list="list-timezone" id="input-datalist">
+                                    <datalist id="list-timezone">
+                                        <option>Asia/Aden</option>
+                                        <option>Asia/Aqtau</option>
+                                        <option>Asia/Baghdad</option>
+                                        <option>Asia/Barnaul</option>
+                                        <option>Asia/Chita</option>
+                                        <option>Asia/Dhaka</option>
+                                        <option>Asia/Famagusta</option>
+                                        <option>Asia/Hong_Kong</option>
+                                        <option>Asia/Jayapura</option>
+                                        <option>Asia/Kuala_Lumpur</option>
+                                        <option>Asia/Jakarta</option>
+                                    </datalist>
+                                </div>
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
