@@ -56,6 +56,11 @@
 
 <script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.js"></script>
 
+<script type='text/javascript'
+  src="http://cdn.jsdelivr.net/select2/3.4.1/select2.min.js"></script>
+<link rel="stylesheet" type="text/css"
+  href="http://cdn.jsdelivr.net/select2/3.4.1/select2.css">
+  
 <script>
 $(function() {
         const collapseExample = $("#cadastro");
