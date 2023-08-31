@@ -97,7 +97,7 @@ if(!empty($infoPropriedade))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="nu_inscricao_car">Inscrição</label>
+                                        <label for="nu_inscricao_car">CAR</label>
                                         <input type="text" class="form-control required" id="nu_inscricao_car" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_inscricao_car') : $nu_inscricao_car; ?>" name="nu_inscricao_car">
                                     </div>
                                 </div>
