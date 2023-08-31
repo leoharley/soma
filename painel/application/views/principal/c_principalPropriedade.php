@@ -65,7 +65,7 @@ if(!empty($infoPropriedade))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_perfil">Projeto</label>
-                                        <select class="form-control required" id="id_projeto " name="id_projeto" required>                                            
+                                        <select id="id_projeto " name="id_projeto" required>                                            
                                             <?php
                                             if(!empty($infoProjetos))
                                             {
