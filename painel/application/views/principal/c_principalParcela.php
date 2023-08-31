@@ -278,6 +278,12 @@ $(document).ready(function(){
         numericInput: true
     });
     
+    $('#id_propriedade').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
     $('#estagio_regeneracao').select2(
         {
             placeholder: "SELECIONE"
