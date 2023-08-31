@@ -86,8 +86,8 @@ if(!empty($infoPropriedade))
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_nome">Ano emissão</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ano_emissao') : $nu_ano_emissao ; ?>" id="nu_ano_emissao" name="nu_ano_emissao">
+                                        <label for="nu_ano_emissao">Ano emissão</label>
+                                        <input type="text" class="form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ano_emissao') : $nu_ano_emissao ; ?>" id="nu_ano_emissao" name="nu_ano_emissao">
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@ if(!empty($infoPropriedade))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_ccir">CCIR</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ccir') : $nu_ccir; ?>" id="nu_ccir" name="nu_ccir">
+                                        <input type="text" class="form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ccir') : $nu_ccir; ?>" id="nu_ccir" name="nu_ccir">
                                     </div>
                                 </div>                                
                             </div>
@@ -113,7 +113,7 @@ if(!empty($infoPropriedade))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="proprietario">Proprietário</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('proprietario') : $nu_ccir; ?>" id="proprietario" name="proprietario">
+                                        <input type="text" class="form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('proprietario') : $nu_ccir; ?>" id="proprietario" name="proprietario">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -128,14 +128,14 @@ if(!empty($infoPropriedade))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="cnpj">CNPJ</label>
-                                        <input data-inputmask="'mask': '99.999.999/9999-99'" type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('cnpj') : $cnpj; ?>" id="cnpj" name="cnpj">
+                                        <input data-inputmask="'mask': '99.999.999/9999-99'" type="text" class="form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('cnpj') : $cnpj; ?>" id="cnpj" name="cnpj">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="cpf">CPF</label>
-                                        <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('cpf') : $cpf; ?>" id="cpf" name="cpf">
+                                        <input data-inputmask="'mask': '999.999.999-99'" type="text" class="form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('cpf') : $cpf; ?>" id="cpf" name="cpf">
                                     </div>
                                 </div>                                
                             </div>
@@ -176,5 +176,13 @@ if(!empty($infoPropriedade))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
+    
+    $("#nu_ano_emissao").datepicker({
+     format: "yyyy",
+     viewMode: "years", 
+     minViewMode: "years",
+     autoclose:true
+    });
+
 });
 </script>
