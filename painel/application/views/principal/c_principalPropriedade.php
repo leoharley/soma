@@ -64,7 +64,7 @@ if(!empty($infoPropriedade))
                                 <!-- VARCHAR/INTEGER/FLOAT -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="id_perfil">Projeto</label>
+                                        <label for="id_projeto">Projeto</label>
                                         <select id="id_projeto " name="id_projeto" required>                                            
                                             <?php
                                             if(!empty($infoProjetos))
