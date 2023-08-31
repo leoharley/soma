@@ -370,7 +370,13 @@ $(document).ready(function(){
     }, 500);
     setTimeout(function(){
         selectElement('id_especie', '<?php echo $id_especie ?>');
-    }, 500);                
+    }, 500);
+    
+    $('#identificacao').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
 
 });
 
