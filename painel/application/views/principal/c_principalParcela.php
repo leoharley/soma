@@ -265,7 +265,7 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(".custom2").inputmask({
-        alias: "percentage",
+        alias: "decimal",
         digits: "2",
         rightAlign: false,
         suffix: "%",
