@@ -46,6 +46,13 @@
       .sidebar-toggle {
         display:none;
       }
+    }.........
+    .select2-container .select2-choice {
+        margin: 0;
+        position: relative;
+        display: block;
+        height: 34px;
+        border-radius: 0px!important;
     }
   </style>
   <!-- jQuery 2.1.4 -->
