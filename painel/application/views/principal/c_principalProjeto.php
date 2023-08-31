@@ -110,6 +110,5 @@ if(!empty($infoProjeto))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
-    $('#chz-select').select2();
 });
 </script>

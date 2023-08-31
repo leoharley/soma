@@ -260,5 +260,9 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
+    $('#estagio_regeneracao').select2();
+    $('#grau_epifitismo').select2();
+    $('#tipo_bioma').select2();
+    $('#tipo_parcela').select2();
 });
 </script>
