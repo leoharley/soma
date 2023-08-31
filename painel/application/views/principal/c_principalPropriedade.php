@@ -182,6 +182,12 @@ $(document).ready(function(){
         }
     );
 
+    $('#liberado_campo').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
     $("#nu_ano_emissao").datepicker({
      format: "yyyy",
      viewMode: "years", 
