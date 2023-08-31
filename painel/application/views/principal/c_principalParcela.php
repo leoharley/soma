@@ -107,7 +107,6 @@ if(!empty($infoParcela))
                                         <label for="estagio_regeneracao">Estágio Regeneração</label>
                                         <br/>
                                         <select id="estagio_regeneracao" name="estagio_regeneracao" data-placeholder="SELECIONE">
-                                            <option value="" disabled selected>SELECIONE</option>    
                                             <option value="1">Nativa</option>
                                         </select>
                                     </div>
@@ -125,7 +124,6 @@ if(!empty($infoParcela))
                                         <label for="grau_epifitismo">Grau epifitismo</label>
                                         <br/>
                                         <select id="grau_epifitismo" name="grau_epifitismo" data-placeholder="SELECIONE">
-                                            <option value="" disabled selected>SELECIONE</option>   
                                             <option value="1">Alto</option>
                                             <option value="2">Médio</option>
                                             <option value="3">Baixo</option>
@@ -149,7 +147,6 @@ if(!empty($infoParcela))
                                         <label for="tipo_bioma">Tipo de bioma</label>
                                         <br/>
                                         <select id="tipo_bioma" name="tipo_bioma" data-placeholder="SELECIONE">
-                                            <option value="" disabled selected>SELECIONE</option>   
                                             <option value="1">Floresta Amazônica</option>
                                             <option value="2">Cerrado</option>
                                             <option value="3">Mata Atlântica</option>
@@ -173,7 +170,6 @@ if(!empty($infoParcela))
                                         <label for="tipo_parcela">Tipo de parcela</label>
                                         <br/>
                                         <select id="tipo_parcela" name="tipo_parcela" data-placeholder="SELECIONE">
-                                            <option value="" disabled selected>SELECIONE</option>   
                                             <option value="1">Quadrada</option>
                                             <option value="2">Redonda</option>
                                             <option value="3">Triangular</option>
@@ -264,9 +260,25 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
-    $('#estagio_regeneracao').select2();
-    $('#grau_epifitismo').select2();
-    $('#tipo_bioma').select2();
-    $('#tipo_parcela').select2();
+    $('#estagio_regeneracao').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+    $('#grau_epifitismo').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+    $('#tipo_bioma').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+    $('#tipo_parcela').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
 });
 </script>
