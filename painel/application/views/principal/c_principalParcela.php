@@ -234,6 +234,7 @@ if(!empty($infoParcela))
                                     <div class="form-group">
                                         <label for="carbono_total">Carbono total</label>
                                         <input type="text" class="form-control required 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_total') : $carbono_total; ?>" id="carbono_total" name="carbono_total">
+                                        <input type="text" class="custom2" /><br>
                                     </div>
                                 </div>                                
                             </div>
@@ -263,7 +264,7 @@ if(!empty($infoParcela))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
-    $("#carbono_vegetacao").inputmask({
+    $(".custom2").inputmask({
         'alias': 'decimal',
         rightAlign: true,
         'groupSeparator': '.',
