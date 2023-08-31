@@ -54,6 +54,7 @@
         height: 34px!important;
         border-radius: 0px!important;
         background-image: 0!important;
+        line-height: 34px !important;
     }
   </style>
   <!-- jQuery 2.1.4 -->
