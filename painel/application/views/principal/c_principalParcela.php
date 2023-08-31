@@ -265,15 +265,13 @@ if(!empty($infoParcela))
 $(document).ready(function(){
     $(":input").inputmask(
         {
-   'alias':          'decimal',
-   'groupSeparator': ',',
-   'autoGroup':      true, 
-   'digits':         2,
-   'digitsOptional': false,
-   'placeholder':    '0.00'
-}
-
-    );
+        alias:          'decimal',
+        groupSeparator: ',',
+        autoGroup:      true, 
+        digits:         2,
+        digitsOptional: false,
+        placeholder:    '0.00'
+        });
     
     
     $('#estagio_regeneracao').select2(
