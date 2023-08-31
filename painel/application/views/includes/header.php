@@ -46,12 +46,12 @@
       .sidebar-toggle {
         display:none;
       }
-    }.........
+    }
     .select2-container .select2-choice {
         margin: 0;
         position: relative;
-        display: block;
-        height: 34px;
+        display: block!important;
+        height: 34px!important;
         border-radius: 0px!important;
     }
   </style>
