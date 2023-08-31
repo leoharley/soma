@@ -264,7 +264,20 @@ if(!empty($infoParcela))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
-    $(".custom2").inputmask('Regex', {regex: "^[0-9]{1,6}(\\.\\d{1,2})?$"});
+    $(".custom2").inputmask({
+        alias: "percentage",
+        digits: "2",
+        rightAlign: false,
+        suffix: "%",
+        integerDigits: 5,
+        digitsOptional: true,
+        allowPlus: true,
+        allowMinus: true,
+        placeholder: "0",
+        min: -1000,
+        max: 1000,
+        numericInput: true
+    });
     
     $('#estagio_regeneracao').select2(
         {
