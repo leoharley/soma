@@ -263,15 +263,18 @@ if(!empty($infoParcela))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
-    $(":input").inputmask();
-    $('#biomassa_vegetacao_total').inputmask({
+    $(":input").inputmask(
+        {
    'alias':          'decimal',
    'groupSeparator': ',',
    'autoGroup':      true, 
    'digits':         2,
    'digitsOptional': false,
    'placeholder':    '0.00'
-})
+}
+
+    );
+    
     
     $('#estagio_regeneracao').select2(
         {
