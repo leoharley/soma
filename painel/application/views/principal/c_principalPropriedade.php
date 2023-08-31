@@ -143,7 +143,7 @@ if(!empty($infoPropriedade))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="liberado_campo">Campo liberado?</label>
-                                        <select class="form-control required" id="liberado_campo" name="liberado_campo">
+                                        <select id="liberado_campo" name="liberado_campo">
                                             <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $liberado_campo == 'S') { echo 'selected'; } ?>>Sim</option>
                                             <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $liberado_campo == 'N') { echo 'selected'; } else if ($this->uri->segment(2) == 'cadastrar') { echo 'selected'; } ?>>Não</option>
                                         </select>
