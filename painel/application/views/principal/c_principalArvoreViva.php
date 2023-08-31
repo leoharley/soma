@@ -8,7 +8,7 @@ $id_familia = '';
 $id_genero = '';
 $id_especie = '';
 $nu_biomassa = '';
-$nova = '';
+$identificacao = '';
 $grau_protecao = '';
 $nu_circunferencia = '';
 $nu_altura = '';
@@ -31,7 +31,7 @@ if(!empty($infoArvoreViva))
         $id_genero = $r->id_genero;
         $id_especie = $r->id_especie;
         $nu_biomassa = $r->nu_biomassa;
-        $nova = $r->nova;
+        $identificacao = $r->identificacao;
         $grau_protecao = $r->grau_protecao;
         $nu_circunferencia = $r->nu_circunferencia;
         $nu_altura = $r->nu_altura;
@@ -187,8 +187,11 @@ if(!empty($infoArvoreViva))
                                 </div>                              
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="nova">Nova</label>
-                                        <input type="text" class="form-control required" id="nova" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nova') : $nova; ?>" name="nova">
+                                        <label for="identificacao">Identificação</label>
+                                        <select id="identificacao" name="identificacao">
+                                            <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $identificacao == 'S') { echo 'selected'; } ?>>Sim</option>
+                                            <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $identificacao == 'N') { echo 'selected'; } else if ($this->uri->segment(2) == 'cadastrar') { echo 'selected'; } ?>>Não</option>
+                                        </select>
                                     </div>
                                 </div>                                
                             </div>

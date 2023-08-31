@@ -662,7 +662,7 @@ function principalArvoreViva()
                 $id_genero = $this->input->post('id_genero');
                 $id_especie = $this->input->post('id_especie');
                 $nu_biomassa = $this->input->post('nu_biomassa');
-                $nova = $this->input->post('nova');
+                $identificacao = $this->input->post('identificacao');
                 $grau_protecao = $this->input->post('grau_protecao');
                 $nu_circunferencia = $this->input->post('nu_circunferencia');
                 $nu_altura = $this->input->post('nu_altura');
@@ -673,7 +673,7 @@ function principalArvoreViva()
                 $floracao_frutificacao = $this->input->post('floracao_frutificacao');
 
                 $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
-                                    'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'nova'=>$nova, 
+                                    'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'identificacao'=>$identificacao, 
                                     'grau_protecao'=>$grau_protecao, 'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura,
                                     'nu_altura_total'=>$nu_altura_total, 'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa,
                                     'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao);
@@ -714,7 +714,7 @@ function principalArvoreViva()
                 $id_genero = $this->input->post('id_genero');
                 $id_especie = $this->input->post('id_especie');
                 $nu_biomassa = $this->input->post('nu_biomassa');
-                $nova = $this->input->post('nova');
+                $identificacao = $this->input->post('identificacao');
                 $grau_protecao = $this->input->post('grau_protecao');
                 $nu_circunferencia = $this->input->post('nu_circunferencia');
                 $nu_altura = $this->input->post('nu_altura');
@@ -725,7 +725,7 @@ function principalArvoreViva()
                 $floracao_frutificacao = $this->input->post('floracao_frutificacao');
 
                 $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
-                                    'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'nova'=>$nova, 
+                                    'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'identificacao'=>$identificacao, 
                                     'grau_protecao'=>$grau_protecao, 'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura,
                                     'nu_altura_total'=>$nu_altura_total, 'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa,
                                     'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao);
