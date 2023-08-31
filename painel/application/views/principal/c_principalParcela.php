@@ -71,8 +71,7 @@ if(!empty($infoParcela))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_propriedade">Propriedade</label>
-                                        <select class="form-control required" id="id_propriedade" name="id_propriedade" required>
-                                            <option value="" disabled selected>SELECIONE</option>
+                                        <select id="id_propriedade" name="id_propriedade" required>
                                             <?php
                                             if(!empty($infoPropriedades))
                                             {
@@ -106,7 +105,7 @@ if(!empty($infoParcela))
                                     <div class="form-group">
                                         <label for="estagio_regeneracao">Estágio Regeneração</label>
                                         <br/>
-                                        <select id="estagio_regeneracao" name="estagio_regeneracao" data-placeholder="SELECIONE">
+                                        <select id="estagio_regeneracao" name="estagio_regeneracao">
                                             <option></option>
                                             <option value="1">Nativa</option>
                                         </select>
@@ -124,7 +123,7 @@ if(!empty($infoParcela))
                                     <div class="form-group">
                                         <label for="grau_epifitismo">Grau epifitismo</label>
                                         <br/>
-                                        <select id="grau_epifitismo" name="grau_epifitismo" data-placeholder="SELECIONE">
+                                        <select id="grau_epifitismo" name="grau_epifitismo">
                                             <option></option>
                                             <option value="1">Alto</option>
                                             <option value="2">Médio</option>
@@ -148,7 +147,7 @@ if(!empty($infoParcela))
                                     <div class="form-group">
                                         <label for="tipo_bioma">Tipo de bioma</label>
                                         <br/>
-                                        <select id="tipo_bioma" name="tipo_bioma" data-placeholder="SELECIONE">
+                                        <select id="tipo_bioma" name="tipo_bioma">
                                             <option></option>
                                             <option value="1">Floresta Amazônica</option>
                                             <option value="2">Cerrado</option>
@@ -172,7 +171,7 @@ if(!empty($infoParcela))
                                     <div class="form-group">
                                         <label for="tipo_parcela">Tipo de parcela</label>
                                         <br/>
-                                        <select id="tipo_parcela" name="tipo_parcela" data-placeholder="SELECIONE">
+                                        <select id="tipo_parcela" name="tipo_parcela">
                                             <option></option>
                                             <option value="1">Quadrada</option>
                                             <option value="2">Redonda</option>
