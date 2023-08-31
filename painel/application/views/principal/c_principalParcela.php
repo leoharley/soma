@@ -264,12 +264,7 @@ if(!empty($infoParcela))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
-    $(".custom2").inputmask({
-        'alias': 'decimal',
-        rightAlign: true,
-        'groupSeparator': '.',
-        'autoGroup': true
-    });
+    $(".custom2").inputmask('Regex', {regex: "^[0-9]{1,6}(\\.\\d{1,2})?$"});
     
     $('#estagio_regeneracao').select2(
         {
