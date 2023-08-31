@@ -264,9 +264,7 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
-    $(".2decimais").inputmask('decimal', {
-        rightAlign: true
-    });
+    $(".2decimais").inputmask('Regex', {regex: "^[0-9]{1,6}(\\.\\d{1,2})?$"});
     $('#estagio_regeneracao').select2(
         {
             placeholder: "SELECIONE"
