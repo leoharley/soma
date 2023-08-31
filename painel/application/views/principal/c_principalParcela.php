@@ -263,8 +263,13 @@ if(!empty($infoParcela))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
-    $(":input").inputmask();
-    $(".2decimais").inputmask('Regex', {regex: "^[0-9]{1,6}(\\.\\d{1,2})?$"});
+   // $(":input").inputmask();
+    $('.2decimais').inputmask({
+    alias: 'numeric', 
+    allowMinus: false,  
+    digits: 2, 
+    max: 999.99
+    });
     $('#estagio_regeneracao').select2(
         {
             placeholder: "SELECIONE"
