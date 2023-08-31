@@ -264,7 +264,17 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
-    $(".2decimais").inputmask('2decimais', { rightAlign: false, digits: 2, placeholder: "0" });
+    $(".2decimais").inputmask({
+            mask: "9{0,20}Z9{2}",
+            definitions: {
+                "Z": {
+                    validator: "[.]",
+                }
+            },
+            clearIncomplete: true,
+            autoUnmask: true,
+            placeholder: "",
+        });
     
     $('#estagio_regeneracao').select2(
         {
