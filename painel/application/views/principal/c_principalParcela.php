@@ -279,28 +279,28 @@ $(document).ready(function(){
     
     $('#id_propriedade').select2(
         {
-            placeholder: "Selecione"
+            placeholder: "SELECIONE"
         }
     );
 
     $('#estagio_regeneracao').select2(
         {
-            placeholder: "Selecione"
+            placeholder: "SELECIONE"
         }
     );
     $('#grau_epifitismo').select2(
         {
-            placeholder: "Selecione"
+            placeholder: "SELECIONE"
         }
     );
     $('#tipo_bioma').select2(
         {
-            placeholder: "Selecione"
+            placeholder: "SELECIONE"
         }
     );
     $('#tipo_parcela').select2(
         {
-            placeholder: "Selecione"
+            placeholder: "SELECIONE"
         }
     );
 
