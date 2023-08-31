@@ -264,12 +264,8 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
-    $(".2decimais").inputmask({
-    alias: 'numeric', 
-    allowMinus: false,  
-    digits: 2, 
-    max: 999.99
-    });
+    $(".2decimais").inputmask('2decimais', { rightAlign: false, digits: 2, placeholder: "0" });
+    
     $('#estagio_regeneracao').select2(
         {
             placeholder: "SELECIONE"
