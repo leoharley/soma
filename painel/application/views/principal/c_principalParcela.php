@@ -264,14 +264,14 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
-    $('.2decimais').inputmask({
+    $('#biomassa_vegetacao_total').inputmask({
    'alias':          'decimal',
    'groupSeparator': ',',
    'autoGroup':      true, 
    'digits':         2,
    'digitsOptional': false,
    'placeholder':    '0.00'
-});
+})
     
     $('#estagio_regeneracao').select2(
         {
