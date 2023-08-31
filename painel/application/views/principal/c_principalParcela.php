@@ -263,7 +263,7 @@ if(!empty($infoParcela))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
-    $(".2decimais").inputmask({
+    $("#carbono_vegetacao").inputmask({
         'alias': 'decimal',
         rightAlign: true,
         'groupSeparator': '.',
