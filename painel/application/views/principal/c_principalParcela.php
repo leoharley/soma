@@ -201,7 +201,7 @@ if(!empty($infoParcela))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="carbono_vegetacao">Carbono vegetação</label>
-                                        <input type="text" data-inputmask="'mask': '999.999.999.99'" class="form-control required 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_vegetacao') : $carbono_vegetacao; ?>" id="carbono_vegetacao" name="carbono_vegetacao">
+                                        <input type="text" class="form-control required 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_vegetacao') : $carbono_vegetacao; ?>" id="carbono_vegetacao" name="carbono_vegetacao">
                                     </div>
                                 </div>                                
                             </div>
@@ -263,7 +263,12 @@ if(!empty($infoParcela))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
-    $(":input").inputmask();
+    $(".2decimais").inputmask({
+        'alias': 'decimal',
+        rightAlign: true,
+        'groupSeparator': '.',
+        'autoGroup': true
+    });
     
     $('#estagio_regeneracao').select2(
         {
