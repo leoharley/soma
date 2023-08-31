@@ -57,7 +57,7 @@
         line-height: 34px !important;
     }
     .select2-arrow {
-        margin-top: 5px!important;
+      background-position-y: 5px!important;
     } 
   </style>
   <!-- jQuery 2.1.4 -->
