@@ -101,33 +101,89 @@ if(!empty($infoParcela))
                             </div>
 
                             <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="estagio_regeneracao">Estágio Regeneração</label>
-                                        <input type="text" class="form-control required" id="estagio_regeneracao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('estagio_regeneracao') : $estagio_regeneracao; ?>" name="estagio_regeneracao">
+                                        <br/>
+                                        <select id="estagio_regeneracao" name="estagio_regeneracao" data-placeholder="SELECIONE">
+                                            <option value="1">Nativa</option>
+                                        </select>
                                     </div>
                                 </div>
+
+                            <!--    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="estagio_regeneracao">Estágio Regeneração</label>
+                                        <input type="text" class="form-control required" id="estagio_regeneracao" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('estagio_regeneracao') : $estagio_regeneracao; ?>" name="estagio_regeneracao">
+                                    </div>
+                                </div> -->
+                                
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="grau_epifitismo">Grau epifitismo</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('grau_epifitismo') : $grau_epifitismo; ?>" id="grau_epifitismo" name="grau_epifitismo">
+                                        <br/>
+                                        <select id="grau_epifitismo" name="grau_epifitismo" data-placeholder="SELECIONE">
+                                            <option value="1">Alto</option>
+                                            <option value="2">Médio</option>
+                                            <option value="3">Baixo</option>
+                                        </select>
                                     </div>
-                                </div>                                
+                                </div>
+
+                               <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="grau_epifitismo">Grau epifitismo</label>
+                                        <input type="text" class="form-control required" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('grau_epifitismo') : $grau_epifitismo; ?>" id="grau_epifitismo" name="grau_epifitismo">
+                                    </div>
+                                </div> -->
+
                             </div>
 
                             <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="tipo_bioma">Tipo de bioma</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('tipo_bioma') : $tipo_bioma; ?>" id="tipo_bioma" name="tipo_bioma">
+                                        <br/>
+                                        <select id="tipo_bioma" name="tipo_bioma" data-placeholder="SELECIONE">
+                                            <option value="1">Floresta Amazônica</option>
+                                            <option value="2">Cerrado</option>
+                                            <option value="3">Mata Atlântica</option>
+                                            <option value="4">Caatinga</option>
+                                            <option value="5">Pantanal</option>
+                                            <option value="6">Pampa</option>
+                                            <option value="7">Mata de Araucárias</option>
+                                        </select>
                                     </div>
                                 </div>
+
+                               <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tipo_bioma">Tipo de bioma</label>
+                                        <input type="text" class="form-control required" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('tipo_bioma') : $tipo_bioma; ?>" id="tipo_bioma" name="tipo_bioma">
+                                    </div>
+                                </div> -->
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="tipo_parcela">Tipo de parcela</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('tipo_parcela') : $tipo_parcela; ?>" id="tipo_parcela" name="tipo_parcela">
+                                        <br/>
+                                        <select id="tipo_parcela" name="tipo_parcela" data-placeholder="SELECIONE">
+                                            <option value="1">Quadrada</option>
+                                            <option value="2">Redonda</option>
+                                            <option value="3">Triangular</option>
+                                            <option value="4">Retangular</option>
+                                        </select>
                                     </div>
-                                </div>                            
+                                </div>
+
+                               <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tipo_parcela">Tipo de parcela</label>
+                                        <input type="text" class="form-control required" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('tipo_parcela') : $tipo_parcela; ?>" id="tipo_parcela" name="tipo_parcela">
+                                    </div>
+                                </div>-->                        
                             </div>
 
                             <div class="row">

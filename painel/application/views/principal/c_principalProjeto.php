@@ -62,23 +62,11 @@ if(!empty($infoProjeto))
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="chz-select">Teste</label>
-                                        <br/>
-                                        <select id="chz-select" name="chz-select" data-placeholder="Select...">
-                                            <option value="1">Tom & Jerry</option>
-                                            <option value="2">Andy & Jamie</option>
-                                            <option value="3">Mark & Amy</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                               <!-- <div class="col-md-6">
-                                    <div class="form-group">
                                         <label for="perimetro">Perímetro</label>
                                         <input type="text" class="form-control required" id="perimetro" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('perimetro') : $perimetro; ?>" name="perimetro"
                                             maxlength="14">
                                     </div>
-                                </div> -->
+                                </div>
 
                             </div>
 
