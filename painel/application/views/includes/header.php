@@ -64,6 +64,7 @@
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.2.6/jquery.inputmask.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 
 <script type='text/javascript'
   src="<?php echo base_url(); ?>assets/js/select2.min.js"></script>
