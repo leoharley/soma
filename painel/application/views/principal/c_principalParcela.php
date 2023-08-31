@@ -265,7 +265,6 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(".custom2").inputmask({
-        'alias': 'decimal',
         rightAlign: true,
         'groupSeparator': '.',
         'autoGroup': true
