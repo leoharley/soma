@@ -65,8 +65,7 @@ if(!empty($infoPropriedade))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_perfil">Projeto</label>
-                                        <select class="form-control required" id="id_projeto " name="id_projeto" required>
-                                            <option value="" disabled selected>SELECIONE</option>
+                                        <select class="form-control required" id="id_projeto " name="id_projeto" required>                                            
                                             <?php
                                             if(!empty($infoProjetos))
                                             {
@@ -176,7 +175,13 @@ if(!empty($infoPropriedade))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
-    
+
+    $('#id_projeto').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
     $("#nu_ano_emissao").datepicker({
      format: "yyyy",
      viewMode: "years", 
