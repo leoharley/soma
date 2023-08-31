@@ -264,7 +264,7 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
    // $(":input").inputmask();
-    $('.2decimais').inputmask({
+    $(".2decimais").inputmask({
     alias: 'numeric', 
     allowMinus: false,  
     digits: 2, 
