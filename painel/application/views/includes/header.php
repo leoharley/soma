@@ -56,9 +56,6 @@
         background-image: 0!important;
         line-height: 34px !important;
     }
-    .select2-arrow {
-      background-position-y: 5px!important;
-    } 
   </style>
   <!-- jQuery 2.1.4 -->
   <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
