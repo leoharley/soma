@@ -47,10 +47,10 @@
         display:none;
       }
     }
-    .select2-container .select2-choice {
-        margin: 0;
-        position: relative;
+    .select2-container {
         display: block!important;
+    }
+    .select2-container .select2-choice {
         height: 34px!important;
         border-radius: 0px!important;
     }
