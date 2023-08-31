@@ -264,17 +264,14 @@ if(!empty($infoParcela))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
-    $(".2decimais").inputmask({
-            mask: "9{0,20}Z9{2}",
-            definitions: {
-                "Z": {
-                    validator: "[.]",
-                }
-            },
-            clearIncomplete: true,
-            autoUnmask: true,
-            placeholder: "",
-        });
+    $('.2decimais').inputmask({
+   'alias':          'decimal',
+   'groupSeparator': ',',
+   'autoGroup':      true, 
+   'digits':         2,
+   'digitsOptional': false,
+   'placeholder':    '0.00'
+});
     
     $('#estagio_regeneracao').select2(
         {
