@@ -329,7 +329,7 @@ $(function() {
 
               <li class="treeview" data-toggle="collapse" data-target="#relatorio" style="margin-bottom: 10px!important;cursor: pointer!important;">
                     
-                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  SELEÇÕES (TABELAS)..</b></h4>
+                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  TABELAS (SELEÇÃO)</b></h4>
 
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="relatorio">
 
