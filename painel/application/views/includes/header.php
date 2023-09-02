@@ -121,6 +121,20 @@ $(function() {
             collapseExample3.collapse("hide");
         }
 
+        const collapseExample4 = $("#selecoes");
+        collapseExample4.on("shown.bs.collapse", function() {
+            localStorage.setItem("collapseExample4", "show");
+        });
+        collapseExample4.on("hidden.bs.collapse", function() {
+            localStorage.setItem("collapseExample4", "hide");
+        });
+        const showExampleCollapse4 = localStorage.getItem("collapseExample4");
+        if (showExampleCollapse4 === "show") {
+            collapseExample4.collapse("show");
+        } else {
+            collapseExample4.collapse("hide");
+        } 
+
       });
 </script>
 
@@ -327,16 +341,58 @@ $(function() {
                   </li>
               <hr>
 
-              <li class="treeview" data-toggle="collapse" data-target="#relatorio" style="margin-bottom: 10px!important;cursor: pointer!important;">
+              <li class="treeview" data-toggle="collapse" data-target="#selecoes" style="margin-bottom: 10px!important;cursor: pointer!important;">
                     
                     <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  SELEÇÕES</b></h4>
 
-                    <ul class="nav nav-list collapse" style="margin-top:10px" id="relatorio">
+                    <ul class="nav nav-list collapse" style="margin-top:10px" id="selecoes">
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>log-history">
+                    <a href="<?php echo base_url(); ?>faunaclassificacao">
                         <i class="fa fa-reorder" style="margin-right:5px!important"></i>
-                        <span>Logs</span>
+                        <span>Fauna Classificação</span>
+                    </a>
+                  </li>
+
+                  <li class="treeview">
+                    <a href="<?php echo base_url(); ?>tipoparcela">
+                        <i class="fa fa-reorder" style="margin-right:5px!important"></i>
+                        <span>Tipo Parcela</span>
+                    </a>
+                  </li>
+
+                  <li class="treeview">
+                    <a href="<?php echo base_url(); ?>tipobioma">
+                        <i class="fa fa-reorder" style="margin-right:5px!important"></i>
+                        <span>Tipo Bioma</span>
+                    </a>
+                  </li>
+
+                  <li class="treeview">
+                    <a href="<?php echo base_url(); ?>grauepifitismo">
+                        <i class="fa fa-reorder" style="margin-right:5px!important"></i>
+                        <span>Grau Epifitismo</span>
+                    </a>
+                  </li>
+
+                  <li class="treeview">
+                    <a href="<?php echo base_url(); ?>estagioregeneracao">
+                        <i class="fa fa-reorder" style="margin-right:5px!important"></i>
+                        <span>Estágio Regeneração</span>
+                    </a>
+                  </li>
+
+                  <li class="treeview">
+                    <a href="<?php echo base_url(); ?>grauprotecao">
+                        <i class="fa fa-reorder" style="margin-right:5px!important"></i>
+                        <span>Grau Proteção</span>
+                    </a>
+                  </li>
+
+                  <li class="treeview">
+                    <a href="<?php echo base_url(); ?>faunatipoobservacao">
+                        <i class="fa fa-reorder" style="margin-right:5px!important"></i>
+                        <span>Fauna Tipo Observação</span>
                     </a>
                   </li>
 
