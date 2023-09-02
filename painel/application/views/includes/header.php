@@ -264,47 +264,47 @@ $(function() {
 
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="principal">
 
-                  <li class="treeview">
-                    <a href="<?php echo base_url(); ?>principalProjeto/listar">
-                        <i class="fa fa-paste" style="margin-right:5px!important"></i>
-                        <span>Projetos</span>
-                    </a>
-                  </li>
-
-                  <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalPropriedade/listar">
-                          <i class="fa fa-list" style="margin-right:5px!important"></i>
-                          <span>Propriedades</span>
+                    <li class="treeview">
+                      <a href="<?php echo base_url(); ?>principalProjeto/listar">
+                          <i class="fa fa-paste" style="margin-right:5px!important"></i>
+                          <span>Projetos</span>
                       </a>
-                  </li>
+                    </li>
 
-                  <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalParcela/listar">
-                          <i class="fa fa-th" style="margin-right:5px!important"></i>
-                          <span>Parcelas</span>
-                      </a>
-                  </li>
+                    <li class="treeview">
+                        <a href="<?php echo base_url(); ?>principalPropriedade/listar">
+                            <i class="fa fa-list" style="margin-right:5px!important"></i>
+                            <span>Propriedades</span>
+                        </a>
+                    </li>
 
-                  <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalArvoreViva/listar">
-                          <i class="fa fa-leaf" style="margin-right:5px!important"></i>
-                          <span>Árvores vivas</span>
-                      </a>
-                  </li>
+                    <li class="treeview">
+                        <a href="<?php echo base_url(); ?>principalParcela/listar">
+                            <i class="fa fa-th" style="margin-right:5px!important"></i>
+                            <span>Parcelas</span>
+                        </a>
+                    </li>
 
-                  <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalAnimal/listar">
-                          <i class="fa fa-paw" style="margin-right:5px!important"></i>
-                          <span>Animais</span>
-                      </a>
-                  </li>
+                    <li class="treeview">
+                        <a href="<?php echo base_url(); ?>principalArvoreViva/listar">
+                            <i class="fa fa-leaf" style="margin-right:5px!important"></i>
+                            <span>Árvores vivas</span>
+                        </a>
+                    </li>
 
-                  <li class="treeview">
-                      <a href="<?php echo base_url(); ?>principalEpifita/listar">
-                          <i class="fa fa-tree" style="margin-right:5px!important"></i>
-                          <span>Epífitas</span>
-                      </a>
-                  </li>
+                    <li class="treeview">
+                        <a href="<?php echo base_url(); ?>principalAnimal/listar">
+                            <i class="fa fa-paw" style="margin-right:5px!important"></i>
+                            <span>Animais</span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="<?php echo base_url(); ?>principalEpifita/listar">
+                            <i class="fa fa-tree" style="margin-right:5px!important"></i>
+                            <span>Epífitas</span>
+                        </a>
+                    </li>
                   </ul>
                   </li>
 
@@ -313,6 +313,23 @@ $(function() {
                   <li class="treeview" data-toggle="collapse" data-target="#relatorio" style="margin-bottom: 10px!important;cursor: pointer!important;">
                     
                     <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  RELATÓRIO</b></h4>
+
+                    <ul class="nav nav-list collapse" style="margin-top:10px" id="relatorio">
+
+                  <li class="treeview">
+                    <a href="<?php echo base_url(); ?>log-history">
+                        <i class="fa fa-reorder" style="margin-right:5px!important"></i>
+                        <span>Logs</span>
+                    </a>
+                  </li>
+
+                  </ul>
+                  </li>
+              <hr>
+
+              <li class="treeview" data-toggle="collapse" data-target="#relatorio" style="margin-bottom: 10px!important;cursor: pointer!important;">
+                    
+                    <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  SELEÇÕES (TABELAS)..</b></h4>
 
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="relatorio">
 
