@@ -348,49 +348,49 @@ $(function() {
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="selecoes">
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>faunaclassificacao">
+                    <a href="<?php echo base_url(); ?>selecaoFaunaClassificacao/listar">
                         <i class="fa fa-reorder" style="margin-right:5px!important"></i>
                         <span>Fauna Classificação</span>
                     </a>
                   </li>
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>tipoparcela">
+                    <a href="<?php echo base_url(); ?>selecaoTipoParcela/listar">
                         <i class="fa fa-reorder" style="margin-right:5px!important"></i>
                         <span>Tipo Parcela</span>
                     </a>
                   </li>
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>tipobioma">
+                    <a href="<?php echo base_url(); ?>selecaoTipoBioma/listar">
                         <i class="fa fa-reorder" style="margin-right:5px!important"></i>
                         <span>Tipo Bioma</span>
                     </a>
                   </li>
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>grauepifitismo">
+                    <a href="<?php echo base_url(); ?>selecaoGrauEpifitismo/listar">
                         <i class="fa fa-reorder" style="margin-right:5px!important"></i>
                         <span>Grau Epifitismo</span>
                     </a>
                   </li>
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>estagioregeneracao">
+                    <a href="<?php echo base_url(); ?>selecaoEstagioRegeneracao/listar">
                         <i class="fa fa-reorder" style="margin-right:5px!important"></i>
                         <span>Estágio Regeneração</span>
                     </a>
                   </li>
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>grauprotecao">
+                    <a href="<?php echo base_url(); ?>selecaoGrauProtecao/listar">
                         <i class="fa fa-reorder" style="margin-right:5px!important"></i>
                         <span>Grau Proteção</span>
                     </a>
                   </li>
 
                   <li class="treeview">
-                    <a href="<?php echo base_url(); ?>faunatipoobservacao">
+                    <a href="<?php echo base_url(); ?>selecaoFaunaTipoObservacao/listar">
                         <i class="fa fa-reorder" style="margin-right:5px!important"></i>
                         <span>Fauna Tipo Observação</span>
                     </a>
