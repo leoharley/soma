@@ -61,7 +61,7 @@ class Selecao extends BaseController
 
                 $returns = $this->paginationCompress ( "selecaoFaunaClassificacao/listar", $count, 10 );
                 
-                $data['registrosFaunaClassificacao'] = $this->SelecaoModel->listaFaunaClassificacao($searchText, $returns["page"], $returns["segment"]);
+                $data['registros'] = $this->SelecaoModel->listaFaunaClassificacao($searchText, $returns["page"], $returns["segment"]);
                 
                 $process = 'Listar projetos';
                 $processFunction = 'Selecao/selecaoFaunaClassificacao';
