@@ -18,7 +18,7 @@ class Selecao extends BaseController
         parent::__construct();
         $this->load->model('login_model');
         $this->load->model('user_model');
-        $this->load->model('PrincipalModel');
+        $this->load->model('selecaoModel');
         $this->load->model('SelecaoModel');
         // Datas -> libraries ->BaseController / This function used load user sessions
         $this->datas();
@@ -48,7 +48,7 @@ class Selecao extends BaseController
     {
             $tpTela = $this->uri->segment(2);
 
-            $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
+            $data['perfis'] = $this->selecaoModel->carregaPerfisUsuarios();
 
             if ($tpTela == 'listar') {
 
@@ -69,16 +69,16 @@ class Selecao extends BaseController
 
                 $this->global['pageTitle'] = 'SOMA : Lista de Fauna Classificação';
 
-                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+                $data['infoPerfil'] = $this->selecaoModel->carregaInfoPerfil();
                
-                $this->loadViews("principal/l_selecaoFaunaClassificacao", $this->global, $data, NULL);
+                $this->loadViews("selecao/l_selecaoFaunaClassificacao", $this->global, $data, NULL);
             }
             else if ($tpTela == 'cadastrar') {
                 $this->global['pageTitle'] = 'SOMA : Cadastro de Fauna Classificação';
                 
-                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+                $data['infoPerfil'] = $this->selecaoModel->carregaInfoPerfil();
 
-                $this->loadViews("principal/c_selecaoFaunaClassificacao", $this->global, $data, NULL); 
+                $this->loadViews("selecao/c_selecaoFaunaClassificacao", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
                 $IdFaunaClassificacao = $this->uri->segment(3);
@@ -90,7 +90,7 @@ class Selecao extends BaseController
                 $data['infoFaunaClassificacao'] = $this->SelecaoModel->carregaInfoFaunaClassificacao($IdFaunaClassificacao);
 
                 $this->global['pageTitle'] = 'SOMA : Editar Fauna Classificação';      
-                $this->loadViews("principal/c_selecaoFaunaClassificacao", $this->global, $data, NULL);
+                $this->loadViews("selecao/c_selecaoFaunaClassificacao", $this->global, $data, NULL);
             }
     }
 
@@ -104,12 +104,12 @@ class Selecao extends BaseController
                 $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
                 'dt_final'=> $dt_final);
                 
-                $result = $this->PrincipalModel->adicionaProjeto($infoProjeto);
+                $result = $this->selecaoModel->adicionaProjeto($infoProjeto);
                 
                 if($result > 0)
                 {
                     $process = 'Adicionar projeto';
-                    $processFunction = 'Principal/adicionaProjeto';
+                    $processFunction = 'selecao/adicionaProjeto';
                     $this->logrecord($process,$processFunction);
 
                     $this->session->set_flashdata('success', 'Projeto criado com sucesso');
@@ -125,7 +125,7 @@ class Selecao extends BaseController
 
     function editaFaunaClassificacao()
     {           
-            $IdUsuario = $this->input->post('co_seq_principal_pessoa');
+            $IdUsuario = $this->input->post('co_seq_selecao_pessoa');
 
                 $nome = $this->input->post('ds_nome');
                 $cpf = $this->input->post('nu_cpf');
@@ -148,12 +148,12 @@ class Selecao extends BaseController
                                         'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf);
                 }
                 
-                $resultado = $this->PrincipalModel->editaUsuario($infoUsuario, $IdUsuario);
+                $resultado = $this->selecaoModel->editaUsuario($infoUsuario, $IdUsuario);
                 
                 if($resultado == true)
                 {
                     $process = 'Usuário atualizado';
-                    $processFunction = 'Principal/editaUsuario';
+                    $processFunction = 'selecao/editaUsuario';
                     $this->logrecord($process,$processFunction);
 
                     $this->session->set_flashdata('success', 'Usuário atualizado com sucesso');
@@ -171,13 +171,13 @@ class Selecao extends BaseController
     {
             $IdProjeto = $this->uri->segment(2);
 
-            $resultado = $this->PrincipalModel->apagaProjeto($IdProjeto);
+            $resultado = $this->selecaoModel->apagaProjeto($IdProjeto);
             
             if ($resultado) {
                 // echo(json_encode(array('status'=>TRUE)));
 
                  $process = 'Exclusão de projeto';
-                 $processFunction = 'Principal/apagaProjeto';
+                 $processFunction = 'selecao/apagaProjeto';
                  $this->logrecord($process,$processFunction);
 
                  $this->session->set_flashdata('success', 'Projeto deletado com sucesso');
