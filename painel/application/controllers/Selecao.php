@@ -97,26 +97,19 @@ class Selecao extends BaseController
     function adicionaFaunaClassificacao() 
     {
                 $nome = $this->input->post('nome');
-                $perimetro = $this->input->post('perimetro');
-                $dt_inicio = $this->input->post('dt_inicio');
-                $dt_final = $this->input->post('dt_final');
-
-                $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
-                'dt_final'=> $dt_final);
-                
-                $result = $this->PrincipalModel->adicionaProjeto($infoProjeto);
+                $info = array('nome'=> $nome);
+                $result = $this->SelecaoModel->adicionaFaunaClassificacao($info);
                 
                 if($result > 0)
                 {
-                    $process = 'Adicionar projeto';
+                    $process = 'Adicionar Fauna Classificação';
                     $processFunction = 'Principal/adicionaProjeto';
                     $this->logrecord($process,$processFunction);
-
-                    $this->session->set_flashdata('success', 'Projeto criado com sucesso');
+                    $this->session->set_flashdata('success', 'Fauna classificação criada com sucesso');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Falha na criação do projeto');
+                    $this->session->set_flashdata('error', 'Falha na criação da fauna classificação');
                 }
                 
                 redirect('selecaoFaunaClassificacao/listar');
@@ -125,71 +118,47 @@ class Selecao extends BaseController
 
     function editaFaunaClassificacao()
     {           
-            $IdUsuario = $this->input->post('co_seq_selecao_pessoa');
-
-                $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
-                $id_perfil = $this->input->post('id_perfil');
-                $email = $this->security->xss_clean($this->input->post('ds_email'));
-                $senha = $this->input->post('ds_senha');
-                $admin = 'N';
-                        
-                $infoUsuario = array();
-                
-                if(empty($senha))
-                {
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email,'st_admin'=>$admin,
-                                         'id_perfil'=>$id_perfil,'nu_cpf'=>$cpf);
-                }
-                else
-                {
-                    //'Senha'=>getHashedPassword($senha)
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 
-                                        'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf);
-                }
-                
-                $resultado = $this->PrincipalModel->editaUsuario($infoUsuario, $IdUsuario);
+                $id = $this->input->post('id');
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $resultado = $this->SelecaoModel->editaFaunaClassificacao($info, $id);
                 
                 if($resultado == true)
                 {
-                    $process = 'Usuário atualizado';
-                    $processFunction = 'Principal/editaUsuario';
+                    $process = 'Fauna classificação atualizada';
+                    $processFunction = 'Selecao/editaFaunaClassificacao';
                     $this->logrecord($process,$processFunction);
-
-                    $this->session->set_flashdata('success', 'Usuário atualizado com sucesso');
+                    $this->session->set_flashdata('success', 'Fauna classificação atualizada com sucesso');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Falha na atualização do usuário');
+                    $this->session->set_flashdata('error', 'Falha na atualização da fauna classificação');
                 }
-                
                 redirect('selecaoFaunaClassificacao/listar');
-           // }
     }
 
     function apagaFaunaClassificacao()
     {
-            $IdProjeto = $this->uri->segment(2);
-
-            $resultado = $this->PrincipalModel->apagaProjeto($IdProjeto);
+            $id = $this->uri->segment(2);
+            $resultado = $this->SelecaoModel->apagaFaunaClassificacao($id);
             
             if ($resultado) {
-                // echo(json_encode(array('status'=>TRUE)));
-
-                 $process = 'Exclusão de projeto';
-                 $processFunction = 'Principal/apagaProjeto';
+                 $process = 'Exclusão da fauna classificação';
+                 $processFunction = 'Selecao/apagaFaunaClassificacao';
                  $this->logrecord($process,$processFunction);
-
-                 $this->session->set_flashdata('success', 'Projeto deletado com sucesso');
+                 $this->session->set_flashdata('success', 'Fauna classificação deletada com sucesso');
 
                 }
                 else 
                 { 
-                    //echo(json_encode(array('status'=>FALSE))); 
-                    $this->session->set_flashdata('error', 'Falha em excluir o projeto');
+                    $this->session->set_flashdata('error', 'Falha em excluir fauna classificação');
                 }
                 redirect('selecaoFaunaClassificacao/listar');
     }
+
+
+
+
 
     function valor($val)
     {
