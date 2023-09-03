@@ -55,7 +55,17 @@ class SelecaoModel extends CI_Model
             return TRUE;
         }
 
-    }    
+    }
+    
+    function carregaInfoFaunaClassificacao($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_fauna_classificacao');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
 }
 
   
