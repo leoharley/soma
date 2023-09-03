@@ -81,13 +81,13 @@ class Selecao extends BaseController
                 $this->loadViews("selecao/c_selecaoFaunaClassificacao", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
-                $IdFaunaClassificacao = $this->uri->segment(3);
-                if($IdFaunaClassificacao == null)
+                $id = $this->uri->segment(3);
+                if($id == null)
                 {
                     redirect('selecaoFaunaClassificacao/listar');
                 }
 
-                $data['infoFaunaClassificacao'] = $this->SelecaoModel->carregaInfoFaunaClassificacao($IdFaunaClassificacao);
+                $data['info'] = $this->SelecaoModel->carregaInfoFaunaClassificacao($id);
 
                 $this->global['pageTitle'] = 'SOMA : Editar Fauna Classificação';      
                 $this->loadViews("selecao/c_selecaoFaunaClassificacao", $this->global, $data, NULL);
