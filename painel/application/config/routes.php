@@ -76,12 +76,70 @@ $route['adicionaEpifita'] = "principal/adicionaEpifita";
 $route['editaEpifita'] = "principal/editaEpifita";
 $route['apagaEpifita/:any'] = "principal/apagaEpifita/$1";
 
-
 $route['consultaGenero/:any'] = "principal/consultaGenero/$1";
 $route['consultaEspecie/:any'] = "principal/consultaEspecie/$1";
 
 $route['consultaGeneroFauna/:any'] = "principal/consultaGeneroFauna/$1";
 $route['consultaEspecieFauna/:any'] = "principal/consultaEspecieFauna/$1";
+
+
+/*********** ROUTES DO GRUPO SELEÇÕES *******************/
+$route['selecaoFaunaClassificacao/:any/:any'] = "selecao/selecaoFaunaClassificacao/$1/$2";
+$route['selecaoFaunaClassificacao/:any'] = "selecao/selecaoFaunaClassificacao/$1";
+
+$route['selecaoTipoParcela/:any/:any'] = "selecao/selecaoTipoParcela/$1/$2";
+$route['selecaoTipoParcela/:any'] = "selecao/selecaoTipoParcela/$1";
+
+$route['selecaoTipoBioma/:any/:any'] = "selecao/selecaoTipoBioma/$1/$2";
+$route['selecaoTipoBioma/:any'] = "selecao/selecaoTipoBioma/$1";
+
+$route['selecaoGrauEpifitismo/:any/:any'] = "selecao/selecaoGrauEpifitismo/$1/$2";
+$route['selecaoGrauEpifitismo/:any'] = "selecao/selecaoGrauEpifitismo/$1";
+
+$route['selecaoEstagioRegeneracao/:any/:any'] = "selecao/selecaoEstagioRegeneracao/$1/$2";
+$route['selecaoEstagioRegeneracao/:any'] = "selecao/selecaoEstagioRegeneracao/$1";
+
+$route['selecaoGrauProtecao/:any/:any'] = "selecao/selecaoGrauProtecao/$1/$2";
+$route['selecaoGrauProtecao/:any'] = "selecao/selecaoGrauProtecao/$1";
+
+$route['selecaoFaunaTipoObservacao/:any/:any'] = "selecao/selecaoFaunaTipoObservacao/$1/$2";
+$route['selecaoFaunaTipoObservacao/:any'] = "selecao/selecaoFaunaTipoObservacao/$1";
+
+
+/*********** ROUTES PARA AÇÕES DA TELA FAUNA CLASSIFICAÇÃO *******************/
+$route['adicionaFaunaClassificacao'] = "selecao/adicionaFaunaClassificacao";
+$route['editaFaunaClassificacao'] = "selecao/editaFaunaClassificacao";
+$route['apagaFaunaClassificacao/:any'] = "selecao/apagaFaunaClassificacao/$1";
+
+/*********** ROUTES PARA AÇÕES DA TELA TIPO PARCELA *******************/
+$route['adicionaTipoParcela'] = "selecao/adicionaTipoParcela";
+$route['editaTipoParcela'] = "selecao/editaTipoParcela";
+$route['apagaTipoParcela/:any'] = "selecao/apagaTipoParcela/$1";
+
+/*********** ROUTES PARA AÇÕES DA TELA TIPO BIOMA *******************/
+$route['adicionaTipoBioma'] = "selecao/adicionaTipoBioma";
+$route['editaTipoBioma'] = "selecao/editaTipoBioma";
+$route['apagaTipoBioma/:any'] = "selecao/apagaTipoBioma/$1";
+
+/*********** ROUTES PARA AÇÕES DA TELA GRAU EPIFITISMO *******************/
+$route['adicionaGrauEpifitismo'] = "selecao/adicionaGrauEpifitismo";
+$route['editaGrauEpifitismo'] = "selecao/editaGrauEpifitismo";
+$route['apagaGrauEpifitismo/:any'] = "selecao/apagaGrauEpifitismo/$1";
+
+/*********** ROUTES PARA AÇÕES DA TELA ESTAGIO REGENERAÇÃO *******************/
+$route['adicionaEstagioRegeneracao'] = "selecao/adicionaEstagioRegeneracao";
+$route['editaEstagioRegeneracao'] = "selecao/editaEstagioRegeneracao";
+$route['apagaEstagioRegeneracao/:any'] = "selecao/apagaEstagioRegeneracao/$1";
+
+/*********** ROUTES PARA AÇÕES DA TELA GRAU PROTEÇÃO *******************/
+$route['adicionaGrauProtecao'] = "selecao/adicionaGrauProtecao";
+$route['editaGrauProtecao'] = "selecao/editaGrauProtecao";
+$route['apagaGrauProtecao/:any'] = "selecao/apagaGrauProtecao/$1";
+
+/*********** ROUTES PARA AÇÕES DA TELA FAUNA TIPO OBSERVAÇÃO *******************/
+$route['adicionaFaunaTipoObservacao'] = "selecao/adicionaFaunaTipoObservacao";
+$route['editaFaunaTipoObservacao'] = "selecao/editaFaunaTipoObservacao";
+$route['apagaFaunaTipoObservacao/:any'] = "selecao/apagaFaunaTipoObservacao/$1";
 
 
 
