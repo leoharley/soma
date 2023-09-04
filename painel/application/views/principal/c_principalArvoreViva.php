@@ -85,6 +85,7 @@ if(!empty($infoArvoreViva))
                                     <div class="form-group">
                                         <label for="id_parcela">Parcela</label>
                                         <select id="id_parcela" name="id_parcela" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoParcelas))
                                             {
@@ -189,6 +190,7 @@ if(!empty($infoArvoreViva))
                                     <div class="form-group">
                                         <label for="identificacao">Identificação</label>
                                         <select id="identificacao" name="identificacao">
+                                            <option></option>
                                             <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $identificacao == 'S') { echo 'selected'; } ?>>Sim</option>
                                             <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $identificacao == 'N') { echo 'selected'; } else if ($this->uri->segment(2) == 'cadastrar') { echo 'selected'; } ?>>Não</option>
                                         </select>
@@ -201,6 +203,7 @@ if(!empty($infoArvoreViva))
                                     <div class="form-group">
                                         <label for="id_grau_protecao">Grau de proteção</label>
                                         <select id="id_grau_protecao" name="id_grau_protecao" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoGrausProtecao))
                                             {
@@ -320,6 +323,12 @@ $(document).ready(function(){
     );
 
     $('#id_especie').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
+    $('#identificacao').select2(
         {
             placeholder: "SELECIONE"
         }
