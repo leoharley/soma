@@ -34,6 +34,14 @@ class PrincipalModel extends CI_Model
         return $insert_id;
     }
 
+    function editaProjeto($infoProjeto, $IdProjeto)
+    {
+        $this->db->where('id', $IdProjeto);
+        $this->db->update('tb_projetos', $infoProjeto);
+        
+        return TRUE;
+    }
+
     function apagaProjeto($IdProjeto)
     {
         $this->db->where('id', $IdProjeto);

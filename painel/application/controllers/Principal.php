@@ -95,26 +95,6 @@ class Principal extends BaseController
 
     function adicionaProjeto() 
     {
-         /*   $this->load->library('form_validation');
-            
-            $this->form_validation->set_rules('Nome_Usuario','Nome','trim|required|max_length[128]');
-            $this->form_validation->set_rules('Cpf_Usuario','CPF','trim|required|max_length[128]');
-            $this->form_validation->set_rules('Email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('Senha','Senha','required|max_length[20]');
-            $this->form_validation->set_rules('resenha','Confirme a senha','trim|required|matches[password]|max_length[20]');*/
-
-        //VALIDAÇÃO
-
-        //    $this->form_validation->set_rules('perfil','Role','trim|required|numeric');
-            
-        /*    if($this->form_validation->run() == FALSE)
-            {
-
-                redirect('principalUsuario/cadastrar');
-            }
-            else
-        { */
-
                 $nome = $this->input->post('nome');
                 $perimetro = $this->input->post('perimetro');
                 $dt_inicio = $this->input->post('dt_inicio');
@@ -149,64 +129,34 @@ class Principal extends BaseController
 
     function editaProjeto()
     {
-            $this->load->library('form_validation');
-            
-            $IdUsuario = $this->input->post('co_seq_principal_pessoa');
+                $this->load->library('form_validation');
+                
+                $IdProjeto = $this->input->post('co_seq_principal_pessoa');
 
-            //VALIDAÇÃO
-            
-         /*   $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
-            $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-            
-            if($this->form_validation->run() == FALSE)
-            { 
-                $this->editOld($userId);
-            }
-            else
-            { */
-
-                $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
-                $id_perfil = $this->input->post('id_perfil');
-                $email = $this->security->xss_clean($this->input->post('ds_email'));
-                $senha = $this->input->post('ds_senha');
-                $admin = 'N';
+                $nome = $this->input->post('nome');
+                $perimetro = $this->input->post('perimetro');
+                $dt_inicio = $this->input->post('dt_inicio');
+                $dt_final = $this->input->post('dt_final');
                         
-                $infoUsuario = array();
+                $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
+                'dt_final'=> $dt_final);
                 
-                if(empty($senha))
-                {
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email,'st_admin'=>$admin,
-                                         'id_perfil'=>$id_perfil,'nu_cpf'=>$cpf);
-                }
-                else
-                {
-                    //'Senha'=>getHashedPassword($senha)
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 
-                                        'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf);
-                }
-                
-                $resultado = $this->PrincipalModel->editaUsuario($infoUsuario, $IdUsuario);
+                $resultado = $this->PrincipalModel->editaProjeto($infoProjeto, $IdProjeto);   
                 
                 if($resultado == true)
                 {
-                    $process = 'Usuário atualizado';
-                    $processFunction = 'Principal/editaUsuario';
+                    $process = 'Projeto atualizado';
+                    $processFunction = 'Principal/editaProjeto';
                     $this->logrecord($process,$processFunction);
 
-                    $this->session->set_flashdata('success', 'Usuário atualizado com sucesso');
+                    $this->session->set_flashdata('success', 'Projeto atualizado com sucesso');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Falha na atualização do usuário');
+                    $this->session->set_flashdata('error', 'Falha na atualização do projeto');
                 }
-                
-                redirect('principalUsuario/listar');
-           // }
+                    
+                    redirect('principalProjeto/listar');
     }
 
     function apagaProjeto()
@@ -216,8 +166,6 @@ class Principal extends BaseController
             $resultado = $this->PrincipalModel->apagaProjeto($IdProjeto);
             
             if ($resultado) {
-                // echo(json_encode(array('status'=>TRUE)));
-
                  $process = 'Exclusão de projeto';
                  $processFunction = 'Principal/apagaProjeto';
                  $this->logrecord($process,$processFunction);
@@ -227,7 +175,6 @@ class Principal extends BaseController
                 }
                 else 
                 { 
-                    //echo(json_encode(array('status'=>FALSE))); 
                     $this->session->set_flashdata('error', 'Falha em excluir o projeto');
                 }
                 redirect('principalProjeto/listar');
