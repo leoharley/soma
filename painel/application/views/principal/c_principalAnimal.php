@@ -235,6 +235,12 @@ function selectElement(id, valueToSelect) {
 $(document).ready(function(){
     $(":input").inputmask();
 
+    $('#id_familia').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
     var idFamilia = $('#id_familia').val();
         $.ajax({
             url: '<?php echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
