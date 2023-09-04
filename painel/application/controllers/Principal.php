@@ -986,8 +986,8 @@ function principalAnimal()
             else if ($tpTela == 'cadastrar') {
                 $this->global['pageTitle'] = 'SOMA : Cadastro de Epífita';
                 
-                $data['infoEpifitas'] = $this->PrincipalModel->carregaInfoFamilias();
-                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
+                $data['infoFamilias'] = $this->PrincipalModel->carregaInfoFamilias();
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();                
                 
                 $this->loadViews("principal/c_principalEpifita", $this->global, $data, NULL); 
             }
