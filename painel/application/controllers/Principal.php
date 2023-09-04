@@ -824,6 +824,8 @@ function principalAnimal()
                 $data['infoFamiliasFauna'] = $this->PrincipalModel->carregaInfoFamiliasFauna();
                 $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
                 $data['infoTiposObservacao'] = $this->PrincipalModel->carregaInfoTiposObservacao();
+                $data['infoGrausProtecao'] = $this->PrincipalModel->carregaInfoGrausProtecao();
+                $data['infoFaunaClassificacoes'] = $this->PrincipalModel->carregaInfoFaunaClassificacoes();
                 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
 
@@ -842,6 +844,8 @@ function principalAnimal()
                 $data['infoGenerosFauna'] = $this->PrincipalModel->carregaInfoGenerosFauna();
                 $data['infoEspeciesFauna'] = $this->PrincipalModel->carregaInfoEspeciesFauna();
                 $data['infoTiposObservacao'] = $this->PrincipalModel->carregaInfoTiposObservacao();
+                $data['infoGrausProtecao'] = $this->PrincipalModel->carregaInfoGrausProtecao();
+                $data['infoFaunaClassificacoes'] = $this->PrincipalModel->carregaInfoFaunaClassificacoes();
 
                 $this->global['pageTitle'] = 'SOMA : Editar Animal';      
                 $this->loadViews("principal/c_principalAnimal", $this->global, $data, NULL);
@@ -856,13 +860,13 @@ function principalAnimal()
             $id_especie  = $this->input->post('id_especie');
             $id_tipo_observacao  = $this->input->post('id_tipo_observacao');
             $id_classificacao  = $this->input->post('id_classificacao');
-            $grau_protecao = $this->input->post('grau_protecao');
+            $id_grau_protecao = $this->input->post('id_grau_protecao');
             $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
             $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
             
             $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
                                 'longitude'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
-                                'id_classificacao'=>$id_classificacao, 'grau_protecao'=>$grau_protecao);
+                                'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao);
                                 
             $result = $this->PrincipalModel->adicionaAnimal($infoAnimal);
             
@@ -898,13 +902,13 @@ function principalAnimal()
             $id_especie  = $this->input->post('id_especie');
             $id_tipo_observacao  = $this->input->post('id_tipo_observacao');
             $id_classificacao  = $this->input->post('id_classificacao');
-            $grau_protecao = $this->input->post('grau_protecao');
+            $id_grau_protecao = $this->input->post('id_grau_protecao');
             $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
             $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
 
             $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
                                 'longitude'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
-                                'id_classificacao'=>$id_classificacao, 'grau_protecao'=>$grau_protecao);
+                                'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao);
                                 
             $result = $this->PrincipalModel->editaAnimal($infoAnimal, $IdAnimal);
             

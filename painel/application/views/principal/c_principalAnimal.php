@@ -8,7 +8,7 @@ $id_especie = '';
 $id_tipo_observacao = '';
 $id_fauna_tp_contato = '';
 $id_classificacao  = '';
-$grau_protecao = '';
+$id_grau_protecao = '';
 $latitude = '';
 $longitude = '';
 
@@ -25,7 +25,7 @@ if(!empty($infoAnimal))
         $id_tipo_observacao = $r->id_tipo_observacao;
         $id_fauna_tp_contato = $r->id_fauna_tp_contato;
         $id_classificacao = $r->id_classificacao;
-        $grau_protecao = $r->grau_protecao;
+        $id_grau_protecao = $r->grau_protecao;
         $latitude = $r->latitude;
         $longitude = $r->longitude;
     }
@@ -187,7 +187,21 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_classificacao">Classificação</label>
-                                        <input type="text" class="form-control required" id="id_classificacao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_classificacao') : $id_classificacao; ?>" name="id_classificacao">
+                                        <select id="id_classificacao" name="id_classificacao" required>
+                                            <?php
+                                            if(!empty($infoFaunaClassificacoes))
+                                            {
+                                                foreach ($infoFaunaClassificacoes as $registro)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $registro->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $registro->id  == $id_classificacao) { echo 'selected'; } ?>>
+                                                    <?php echo $registro->id.' - '.$registro->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>                                        
                                     </div>
                                 </div>                               
                             </div>
@@ -195,8 +209,22 @@ if(!empty($infoAnimal))
                             <div class="row">    
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="grau_protecao">Grau de proteção</label>
-                                        <input type="text" class="form-control required" id="grau_protecao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('grau_protecao') : $grau_protecao; ?>" name="grau_protecao">
+                                        <label for="id_grau_protecao">Grau de proteção</label>
+                                        <select id="id_grau_protecao" name="id_grau_protecao" required>
+                                            <?php
+                                            if(!empty($infoGrausProtecao))
+                                            {
+                                                foreach ($infoGrausProtecao as $registro)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $registro->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $registro->id  == $id_grau_protecao) { echo 'selected'; } ?>>
+                                                    <?php echo $registro->id.' - '.$registro->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>                                        
                                     </div>
                                 </div>                                                                                                
                             </div>
@@ -257,6 +285,12 @@ $(document).ready(function(){
     );
 
     $('#id_tipo_observacao').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
+    $('#id_classificacao').select2(
         {
             placeholder: "SELECIONE"
         }
