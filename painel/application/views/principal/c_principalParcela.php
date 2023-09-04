@@ -318,9 +318,7 @@ $(document).ready(function(){
     $('#id_propriedade').select2(
         {
             minimumResultsForSearch: -1,
-            placeholder: function(){
-                $(this).data('placeholder');
-            }
+            placeholder: 'SELECIONE'
         }
     );
 
