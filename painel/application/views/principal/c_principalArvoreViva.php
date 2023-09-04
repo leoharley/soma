@@ -192,7 +192,7 @@ if(!empty($infoArvoreViva))
                                         <select id="identificacao" name="identificacao">
                                             <option></option>
                                             <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $identificacao == 'S') { echo 'selected'; } ?>>Sim</option>
-                                            <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $identificacao == 'N') { echo 'selected'; } else if ($this->uri->segment(2) == 'cadastrar') { echo 'selected'; } ?>>Não</option>
+                                            <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $identificacao == 'N') { echo 'selected'; } ?>>Não</option>
                                         </select>
                                     </div>
                                 </div>                                
