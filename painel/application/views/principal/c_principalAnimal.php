@@ -5,7 +5,7 @@ $id_parcela = '';
 $id_familia = '';
 $id_genero = '';
 $id_especie = '';
-$id_som = '';
+$id_tipo_observacao = '';
 $id_fauna_tp_contato = '';
 $id_classificacao  = '';
 $grau_protecao = '';
@@ -22,7 +22,7 @@ if(!empty($infoAnimal))
         $id_familia = $r->id_familia;
         $id_genero = $r->id_genero;
         $id_especie = $r->id_especie;
-        $id_som = $r->id_som;
+        $id_tipo_observacao = $r->id_tipo_observacao;
         $id_fauna_tp_contato = $r->id_fauna_tp_contato;
         $id_classificacao = $r->id_classificacao;
         $grau_protecao = $r->grau_protecao;
@@ -169,25 +169,33 @@ if(!empty($infoAnimal))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="id_som">Som (**campo aberto ou select?**)</label>
-                                        <input type="text" class="form-control required" id="id_som" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_som') : $id_som; ?>" name="id_som">
+                                        <label for="id_tipo_observacao">Tipo de observação</label>
+                                        <select id="id_tipo_observacao" name="id_tipo_observacao" required>
+                                            <?php
+                                            if(!empty($infoTiposObservacao))
+                                            {
+                                                foreach ($infoTiposObservacao as $registro)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $registro->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $registro->id  == $id_tipo_observacao) { echo 'selected'; } ?>>
+                                                    <?php echo $registro->id.' - '.$registro->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>                                        
                                     </div>
                                 </div>                              
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="id_fauna_tp_contato">Contato (**campo aberto ou select?**)</label>
-                                        <input type="text" class="form-control required" id="nova" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_fauna_tp_contato') : $id_fauna_tp_contato; ?>" name="id_fauna_tp_contato">
-                                    </div>
-                                </div>                                
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_classificacao">Classificação</label>
                                         <input type="text" class="form-control required" id="id_classificacao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_classificacao') : $id_classificacao; ?>" name="id_classificacao">
                                     </div>
-                                </div>
+                                </div>                               
+                            </div>
+
+                            <div class="row">    
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="grau_protecao">Grau de proteção</label>
