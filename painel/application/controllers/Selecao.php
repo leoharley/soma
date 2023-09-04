@@ -732,6 +732,121 @@ class Selecao extends BaseController
     }
 
 
+    // INICIO DAS FUNÇÕES DA TELA DE FAUNA TIPO OBSERVAÇÃO
+
+    function selecaoFaunaTipoObservacao()
+    {
+            $tpTela = $this->uri->segment(2);
+
+            $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
+
+            if ($tpTela == 'listar') {
+
+                $searchText = $this->security->xss_clean($this->input->post('searchText'));
+                $data['searchText'] = $searchText;
+                
+                $this->load->library('pagination');
+                
+                $count = 0;
+
+                $returns = $this->paginationCompress ( "selecaoFaunaTipoObservacao/listar", $count, 10 );
+                
+                $data['registros'] = $this->SelecaoModel->listaFaunaTipoObservacao($searchText, $returns["page"], $returns["segment"]);
+                
+                $process = 'Listar fauna tipo de observação';
+                $processFunction = 'Selecao/selecaoFaunaTipoObservacao';
+                $this->logrecord($process,$processFunction);
+
+                $this->global['pageTitle'] = 'SOMA : Lista de fauna tipo de observação';
+
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+               
+                $this->loadViews("selecao/l_selecaoFaunaTipoObservacao", $this->global, $data, NULL);
+            }
+            else if ($tpTela == 'cadastrar') {
+                $this->global['pageTitle'] = 'SOMA : Cadastro de fauna tipo de observação';
+                
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+
+                $this->loadViews("selecao/c_selecaoFaunaTipoObservacao", $this->global, $data, NULL); 
+            }
+            else if ($tpTela == 'editar') {
+                $id = $this->uri->segment(3);
+                if($id == null)
+                {
+                    redirect('selecaoFaunaTipoObservacao/listar');
+                }
+
+                $data['info'] = $this->SelecaoModel->carregaInfoFaunaTipoObservacao($id);
+
+                $this->global['pageTitle'] = 'SOMA : Editar fauna tipo de observação';      
+                $this->loadViews("selecao/c_selecaoFaunaTipoObservacao", $this->global, $data, NULL);
+            }
+    }
+
+    function adicionaFaunaTipoObservacao() 
+    {
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $result = $this->SelecaoModel->adicionaFaunaTipoObservacao($info);
+                
+                if($result > 0)
+                {
+                    $process = 'Adicionar fauna tipo de observação';
+                    $processFunction = 'Selecao/adicionaFaunaTipoObservacao';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Fauna tipo de observação criada com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na criação da fauna tipo de observação');
+                }
+                
+                redirect('selecaoFaunaTipoObservacao/listar');
+    }
+
+
+    function editaFaunaTipoObservacao()
+    {           
+                $id = $this->input->post('id');
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $resultado = $this->SelecaoModel->editaFaunaTipoObservacao($info, $id);
+                
+                if($resultado == true)
+                {
+                    $process = 'Fauna tipo de observação atualizada';
+                    $processFunction = 'Selecao/editaFaunaTipoObservacao';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Fauna tipo de observação atualizado com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na atualização da fauna tipo de observação');
+                }
+                redirect('selecaoFaunaTipoObservacao/listar');
+    }
+
+    function apagaFaunaTipoObservacao()
+    {
+            $id = $this->uri->segment(2);
+            $resultado = $this->SelecaoModel->apagaFaunaTipoObservacao($id);
+            
+            if ($resultado) {
+                 $process = 'Exclusão da fauna tipo de observação';
+                 $processFunction = 'Selecao/apagaFaunaTipoObservacao';
+                 $this->logrecord($process,$processFunction);
+                 $this->session->set_flashdata('success', 'Fauna tipo de observação deletada com sucesso');
+
+                }
+                else 
+                { 
+                    $this->session->set_flashdata('error', 'Falha em excluir fauna tipo de observação');
+                }
+                redirect('selecaoFaunaTipoObservacao/listar');
+    }
+
+
 
 
 
