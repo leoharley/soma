@@ -272,6 +272,121 @@ class Selecao extends BaseController
     }
 
 
+    // INICIO DAS FUNÇÕES DA TELA DE TIPO BIOMA
+
+    function selecaoTipoBioma()
+    {
+            $tpTela = $this->uri->segment(2);
+
+            $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
+
+            if ($tpTela == 'listar') {
+
+                $searchText = $this->security->xss_clean($this->input->post('searchText'));
+                $data['searchText'] = $searchText;
+                
+                $this->load->library('pagination');
+                
+                $count = 0;
+
+                $returns = $this->paginationCompress ( "selecaoTipoBioma/listar", $count, 10 );
+                
+                $data['registros'] = $this->SelecaoModel->listaTipoBioma($searchText, $returns["page"], $returns["segment"]);
+                
+                $process = 'Listar tipo bioma';
+                $processFunction = 'Selecao/selecaoTipoBioma';
+                $this->logrecord($process,$processFunction);
+
+                $this->global['pageTitle'] = 'SOMA : Lista de Tipo Bioma';
+
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+               
+                $this->loadViews("selecao/l_selecaoTipoBioma", $this->global, $data, NULL);
+            }
+            else if ($tpTela == 'cadastrar') {
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Tipo Bioma';
+                
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+
+                $this->loadViews("selecao/c_selecaoTipoBioma", $this->global, $data, NULL); 
+            }
+            else if ($tpTela == 'editar') {
+                $id = $this->uri->segment(3);
+                if($id == null)
+                {
+                    redirect('selecaoTipoBioma/listar');
+                }
+
+                $data['info'] = $this->SelecaoModel->carregaInfoTipoBioma($id);
+
+                $this->global['pageTitle'] = 'SOMA : Editar Tipo Bioma';      
+                $this->loadViews("selecao/c_selecaoTipoBioma", $this->global, $data, NULL);
+            }
+    }
+
+    function adicionaTipoBioma() 
+    {
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $result = $this->SelecaoModel->adicionaTipoBioma($info);
+                
+                if($result > 0)
+                {
+                    $process = 'Adicionar Tipo Bioma';
+                    $processFunction = 'Selecao/adicionaTipoBioma';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Tipo bioma criada com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na criação de Tipo bioma');
+                }
+                
+                redirect('selecaoTipoBioma/listar');
+    }
+
+
+    function editaTipoBioma()
+    {           
+                $id = $this->input->post('id');
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $resultado = $this->SelecaoModel->editaTipoBioma($info, $id);
+                
+                if($resultado == true)
+                {
+                    $process = 'Tipo bioma atualizada';
+                    $processFunction = 'Selecao/editaTipoBioma';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Tipo bioma atualizado com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na atualização do tipo bioma');
+                }
+                redirect('selecaoTipoBioma/listar');
+    }
+
+    function apagaTipoBioma()
+    {
+            $id = $this->uri->segment(2);
+            $resultado = $this->SelecaoModel->apagaTipoBioma($id);
+            
+            if ($resultado) {
+                 $process = 'Exclusão do tipo bioma';
+                 $processFunction = 'Selecao/apagaTipoBioma';
+                 $this->logrecord($process,$processFunction);
+                 $this->session->set_flashdata('success', 'Tipo bioma deletado com sucesso');
+
+                }
+                else 
+                { 
+                    $this->session->set_flashdata('error', 'Falha em excluir tipo bioma');
+                }
+                redirect('selecaoTipoBioma/listar');
+    }
+
+
 
 
 

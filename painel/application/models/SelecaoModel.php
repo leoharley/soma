@@ -134,6 +134,72 @@ class SelecaoModel extends CI_Model
     }
 
 
+    //TIPO BIOMA
+    function listaTipoBioma($searchText = '', $page, $segment)
+    {
+        $this->db->select('TipoBioma.id, TipoBioma.nome');
+        $this->db->from('tb_tipo_bioma as TipoBioma');        
+        if(!empty($searchText)) {
+            $likeCriteria = "(TipoBioma.id LIKE '%".$searchText."%'
+                            OR TipoBioma.nome LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+		        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function adicionaTipoBioma($info)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tb_tipo_bioma', $info);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaTipoBioma($info, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('tb_tipo_bioma', $info);
+        
+        return TRUE;
+    }
+
+    function apagaTipoBioma($id)
+    {
+        $this->db->where('id', $id);
+        $res2 = $this->db->delete('tb_tipo_bioma');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+    
+    function carregaInfoTipoBioma($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_tipo_bioma');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+
 }
 
   
