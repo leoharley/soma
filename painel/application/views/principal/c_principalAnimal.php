@@ -72,7 +72,8 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_parcela">Parcela</label>
-                                        <select id="id_parcela" name="id_parcela" required>                                            
+                                        <select id="id_parcela" name="id_parcela" required>
+                                            <option></option>                                         
                                             <?php
                                             if(!empty($infoParcelas))
                                             {
@@ -112,6 +113,7 @@ if(!empty($infoAnimal))
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
                                         <select id="id_familia" name="id_familia" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoFamiliasFauna))
                                             {
@@ -135,7 +137,8 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
-                                        <select id="id_genero" name="id_genero" required>                                            
+                                        <select id="id_genero" name="id_genero" required>
+                                            <option></option>                                        
                                             <?php
                                             if(!empty($infoGenerosFauna))
                                             {
@@ -156,6 +159,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_especie">Espécie</label>
+                                        <option></option>
                                         <select id="id_especie" name="id_especie">
                                         </select>
                                     </div>
@@ -168,6 +172,7 @@ if(!empty($infoAnimal))
                                     <div class="form-group">
                                         <label for="id_tipo_observacao">Tipo de observação</label>
                                         <select id="id_tipo_observacao" name="id_tipo_observacao" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoTiposObservacao))
                                             {
@@ -188,6 +193,7 @@ if(!empty($infoAnimal))
                                     <div class="form-group">
                                         <label for="id_classificacao">Classificação</label>
                                         <select id="id_classificacao" name="id_classificacao" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoFaunaClassificacoes))
                                             {
@@ -211,6 +217,7 @@ if(!empty($infoAnimal))
                                     <div class="form-group">
                                         <label for="id_grau_protecao">Grau de proteção</label>
                                         <select id="id_grau_protecao" name="id_grau_protecao" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoGrausProtecao))
                                             {
@@ -329,8 +336,8 @@ $(document).ready(function(){
             type: "GET",
             dataType: "json",
             success:function(data) {
-                $('select[name="id_genero"]').empty();
-                $('select[name="id_genero"]').append('<option value="" disabled selected>SELECIONE</option>');
+                $("#id_genero").select2("val", null);
+                $("#id_especie").select2("val", null);
                 $.each(data, function(key, value) {
                     $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                 });
@@ -345,8 +352,8 @@ $(document).ready(function(){
                 type: "GET",
                 dataType: "json",
                 success:function(data) {
-                    $('select[name="id_genero"]').empty();
-                    $('select[name="id_genero"]').append('<option value="" disabled selected>SELECIONE</option>');
+                    $("#id_genero").select2("val", null);
+                    $("#id_especie").select2("val", null);
                     $.each(data, function(key, value) {
                         $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                     });
@@ -365,8 +372,7 @@ $(document).ready(function(){
             type: "GET",
             dataType: "json",
             success:function(data) {
-                $('select[name="id_especie"]').empty();
-                $('select[name="id_especie"]').append('<option value="" disabled selected>SELECIONE</option>');
+                $("#id_especie").select2("val", null);
                 $.each(data, function(key, value) {
                     if (value.no_popular !== '') {
                         $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
@@ -385,8 +391,7 @@ $(document).ready(function(){
                 type: "GET",
                 dataType: "json",
                 success:function(data) {
-                    $('select[name="id_especie"]').empty();
-                    $('select[name="id_especie"]').append('<option value="" disabled selected>SELECIONE</option>');
+                    $("#id_especie").select2("val", null);
                     $.each(data, function(key, value) {
                         if (value.no_popular !== '') {
                             $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
