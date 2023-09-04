@@ -321,7 +321,6 @@ $(document).ready(function(){
     
     $('#id_propriedade').select2(
         {
-            minimumResultsForSearch: -1,
             placeholder: 'SELECIONE'
         }
     );
