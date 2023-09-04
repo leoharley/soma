@@ -266,7 +266,7 @@ function selectElement(id, valueToSelect) {
 
 $(document).ready(function(){
     $("#longitude").inputmask({
-    mask: ['99°M9\'S9"S', '[1]79°M9\'S9"S'],
+    mask: ['99°M9\'P9"S', '[1]79°M9\'S9"S'],
     definitions: {
       D: {
         validator: '[nN|sS]',
@@ -277,10 +277,10 @@ $(document).ready(function(){
         validator: '[0-5]',
         cardinality: 1
       },
-    /*  S: {
+      P: {
         validator: '[0-5]',
         cardinality: 1
-      },*/
+      },
       7: {
         validator: '[0-7]',
         cardinality: 1
@@ -289,7 +289,7 @@ $(document).ready(function(){
   });
 
     $("#latitude").inputmask({
-    mask: '89°M9\'S9"O',
+    mask: '89°M9\'P9"O',
     definitions: {
       D: {
         validator: '[eE|oO]',
@@ -300,10 +300,10 @@ $(document).ready(function(){
         validator: '[0-5]',
         cardinality: 1
       },
-   /*   S: {
+      P: {
         validator: '[0-5]',
         cardinality: 1
-      },*/
+      },
       8: {
         validator: '[0-8]',
         cardinality: 1
