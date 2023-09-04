@@ -387,6 +387,236 @@ class Selecao extends BaseController
     }
 
 
+    // INICIO DAS FUNÇÕES DA TELA DE GRAU EPIFITISMO
+
+    function selecaoGrauEpifitismo()
+    {
+            $tpTela = $this->uri->segment(2);
+
+            $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
+
+            if ($tpTela == 'listar') {
+
+                $searchText = $this->security->xss_clean($this->input->post('searchText'));
+                $data['searchText'] = $searchText;
+                
+                $this->load->library('pagination');
+                
+                $count = 0;
+
+                $returns = $this->paginationCompress ( "selecaoGrauEpifitismo/listar", $count, 10 );
+                
+                $data['registros'] = $this->SelecaoModel->listaGrauEpifitismo($searchText, $returns["page"], $returns["segment"]);
+                
+                $process = 'Listar grau epifitismo';
+                $processFunction = 'Selecao/selecaoGrauEpifitismo';
+                $this->logrecord($process,$processFunction);
+
+                $this->global['pageTitle'] = 'SOMA : Lista de grau epifitismo';
+
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+               
+                $this->loadViews("selecao/l_selecaoGrauEpifitismo", $this->global, $data, NULL);
+            }
+            else if ($tpTela == 'cadastrar') {
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Grau Epifitismo';
+                
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+
+                $this->loadViews("selecao/c_selecaoGrauEpifitismo", $this->global, $data, NULL); 
+            }
+            else if ($tpTela == 'editar') {
+                $id = $this->uri->segment(3);
+                if($id == null)
+                {
+                    redirect('selecaoGrauEpifitismo/listar');
+                }
+
+                $data['info'] = $this->SelecaoModel->carregaInfoGrauEpifitismo($id);
+
+                $this->global['pageTitle'] = 'SOMA : Editar Grau Epifitismo';      
+                $this->loadViews("selecao/c_selecaoGrauEpifitismo", $this->global, $data, NULL);
+            }
+    }
+
+    function adicionaGrauEpifitismo() 
+    {
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $result = $this->SelecaoModel->adicionaGrauEpifitismo($info);
+                
+                if($result > 0)
+                {
+                    $process = 'Adicionar Grau Epifitismo';
+                    $processFunction = 'Selecao/adicionaGrauEpifitismo';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Grau epifitismo criada com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na criação de Grau epifitismo');
+                }
+                
+                redirect('selecaoGrauEpifitismo/listar');
+    }
+
+
+    function editaGrauEpifitismo()
+    {           
+                $id = $this->input->post('id');
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $resultado = $this->SelecaoModel->editaGrauEpifitismo($info, $id);
+                
+                if($resultado == true)
+                {
+                    $process = 'Grau epifitismo atualizada';
+                    $processFunction = 'Selecao/editaGrauEpifitismo';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Grau epifitismo atualizado com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na atualização do grau epifitismo');
+                }
+                redirect('selecaoGrauEpifitismo/listar');
+    }
+
+    function apagaGrauEpifitismo()
+    {
+            $id = $this->uri->segment(2);
+            $resultado = $this->SelecaoModel->apagaGrauEpifitismo($id);
+            
+            if ($resultado) {
+                 $process = 'Exclusão do grau epifitismo';
+                 $processFunction = 'Selecao/apagaGrauEpifitismo';
+                 $this->logrecord($process,$processFunction);
+                 $this->session->set_flashdata('success', 'Grau epifitismo deletado com sucesso');
+
+                }
+                else 
+                { 
+                    $this->session->set_flashdata('error', 'Falha em excluir grau epifitismo');
+                }
+                redirect('selecaoGrauEpifitismo/listar');
+    }
+
+
+    // INICIO DAS FUNÇÕES DA TELA DE ESTÁGIO REGENERAÇÃO
+
+    function selecaoEstagioRegeneracao()
+    {
+            $tpTela = $this->uri->segment(2);
+
+            $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
+
+            if ($tpTela == 'listar') {
+
+                $searchText = $this->security->xss_clean($this->input->post('searchText'));
+                $data['searchText'] = $searchText;
+                
+                $this->load->library('pagination');
+                
+                $count = 0;
+
+                $returns = $this->paginationCompress ( "selecaoEstagioRegeneracao/listar", $count, 10 );
+                
+                $data['registros'] = $this->SelecaoModel->listaEstagioRegeneracao($searchText, $returns["page"], $returns["segment"]);
+                
+                $process = 'Listar estágio regeneração';
+                $processFunction = 'Selecao/selecaoEstagioRegeneracao';
+                $this->logrecord($process,$processFunction);
+
+                $this->global['pageTitle'] = 'SOMA : Lista de estágio regeneração';
+
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+               
+                $this->loadViews("selecao/l_selecaoEstagioRegeneracao", $this->global, $data, NULL);
+            }
+            else if ($tpTela == 'cadastrar') {
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Estágio Regeneração';
+                
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+
+                $this->loadViews("selecao/c_selecaoEstagioRegeneracao", $this->global, $data, NULL); 
+            }
+            else if ($tpTela == 'editar') {
+                $id = $this->uri->segment(3);
+                if($id == null)
+                {
+                    redirect('selecaoEstagioRegeneracao/listar');
+                }
+
+                $data['info'] = $this->SelecaoModel->carregaInfoEstagioRegeneracao($id);
+
+                $this->global['pageTitle'] = 'SOMA : Editar Estágio Regeneração';      
+                $this->loadViews("selecao/c_selecaoEstagioRegeneracao", $this->global, $data, NULL);
+            }
+    }
+
+    function adicionaEstagioRegeneracao() 
+    {
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $result = $this->SelecaoModel->adicionaEstagioRegeneracao($info);
+                
+                if($result > 0)
+                {
+                    $process = 'Adicionar Estágio Regeneração';
+                    $processFunction = 'Selecao/adicionaEstagioRegeneracao';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Estágio regeneração criada com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na criação de estágio regeneração');
+                }
+                
+                redirect('selecaoEstagioRegeneracao/listar');
+    }
+
+
+    function editaEstagioRegeneracao()
+    {           
+                $id = $this->input->post('id');
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $resultado = $this->SelecaoModel->editaEstagioRegeneracao($info, $id);
+                
+                if($resultado == true)
+                {
+                    $process = 'Estágio regeneração atualizada';
+                    $processFunction = 'Selecao/editaEstagioRegeneracao';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Estágio regeneração atualizado com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na atualização do estágio regeneração');
+                }
+                redirect('selecaoEstagioRegeneracao/listar');
+    }
+
+    function apagaEstagioRegeneracao()
+    {
+            $id = $this->uri->segment(2);
+            $resultado = $this->SelecaoModel->apagaEstagioRegeneracao($id);
+            
+            if ($resultado) {
+                 $process = 'Exclusão do estágio regeneração';
+                 $processFunction = 'Selecao/apagaEstagioRegeneracao';
+                 $this->logrecord($process,$processFunction);
+                 $this->session->set_flashdata('success', 'Estágio regeneração deletado com sucesso');
+
+                }
+                else 
+                { 
+                    $this->session->set_flashdata('error', 'Falha em excluir estágio regeneração');
+                }
+                redirect('selecaoEstagioRegeneracao/listar');
+    }
+
+
 
 
 
