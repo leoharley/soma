@@ -277,10 +277,10 @@ $(document).ready(function(){
         validator: '[0-5]',
         cardinality: 1
       },
-      S: {
+    /*  S: {
         validator: '[0-5]',
         cardinality: 1
-      },
+      },*/
       7: {
         validator: '[0-7]',
         cardinality: 1
@@ -300,10 +300,10 @@ $(document).ready(function(){
         validator: '[0-5]',
         cardinality: 1
       },
-      S: {
+   /*   S: {
         validator: '[0-5]',
         cardinality: 1
-      },
+      },*/
       8: {
         validator: '[0-8]',
         cardinality: 1
