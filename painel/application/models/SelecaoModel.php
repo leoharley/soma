@@ -322,6 +322,72 @@ class SelecaoModel extends CI_Model
     }
 
 
+    //GRAU DE PROTEÇÃO
+    function listaGrauProtecao($searchText = '', $page, $segment)
+    {
+        $this->db->select('GrauProtecao.id, GrauProtecao.nome');
+        $this->db->from('tb_grau_protecao as GrauProtecao');        
+        if(!empty($searchText)) {
+            $likeCriteria = "(GrauProtecao.id LIKE '%".$searchText."%'
+                            OR GrauProtecao.nome LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+		        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function adicionaGrauProtecao($info)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tb_grau_protecao', $info);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaGrauProtecao($info, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('tb_grau_protecao', $info);
+        
+        return TRUE;
+    }
+
+    function apagaGrauProtecao($id)
+    {
+        $this->db->where('id', $id);
+        $res2 = $this->db->delete('tb_grau_protecao');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+    
+    function carregaInfoGrauProtecao($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_grau_protecao');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+
 }
 
   

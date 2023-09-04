@@ -617,6 +617,121 @@ class Selecao extends BaseController
     }
 
 
+    // INICIO DAS FUNÇÕES DA TELA DE GRAU PROTEÇÃO
+
+    function selecaoGrauProtecao()
+    {
+            $tpTela = $this->uri->segment(2);
+
+            $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
+
+            if ($tpTela == 'listar') {
+
+                $searchText = $this->security->xss_clean($this->input->post('searchText'));
+                $data['searchText'] = $searchText;
+                
+                $this->load->library('pagination');
+                
+                $count = 0;
+
+                $returns = $this->paginationCompress ( "selecaoGrauProtecao/listar", $count, 10 );
+                
+                $data['registros'] = $this->SelecaoModel->listaGrauProtecao($searchText, $returns["page"], $returns["segment"]);
+                
+                $process = 'Listar grau de proteção';
+                $processFunction = 'Selecao/selecaoGrauProtecao';
+                $this->logrecord($process,$processFunction);
+
+                $this->global['pageTitle'] = 'SOMA : Lista de grau de proteção';
+
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+               
+                $this->loadViews("selecao/l_selecaoGrauProtecao", $this->global, $data, NULL);
+            }
+            else if ($tpTela == 'cadastrar') {
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Grau de Proteção';
+                
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+
+                $this->loadViews("selecao/c_selecaoGrauProtecao", $this->global, $data, NULL); 
+            }
+            else if ($tpTela == 'editar') {
+                $id = $this->uri->segment(3);
+                if($id == null)
+                {
+                    redirect('selecaoGrauProtecao/listar');
+                }
+
+                $data['info'] = $this->SelecaoModel->carregaInfoGrauProtecao($id);
+
+                $this->global['pageTitle'] = 'SOMA : Editar Grau de Proteção';      
+                $this->loadViews("selecao/c_selecaoGrauProtecao", $this->global, $data, NULL);
+            }
+    }
+
+    function adicionaGrauProtecao() 
+    {
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $result = $this->SelecaoModel->adicionaGrauProtecao($info);
+                
+                if($result > 0)
+                {
+                    $process = 'Adicionar Grau de Proteção';
+                    $processFunction = 'Selecao/adicionaGrauProtecao';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Grau de proteção criada com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na criação de grau de proteção');
+                }
+                
+                redirect('selecaoGrauProtecao/listar');
+    }
+
+
+    function editaGrauProtecao()
+    {           
+                $id = $this->input->post('id');
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $resultado = $this->SelecaoModel->editaGrauProtecao($info, $id);
+                
+                if($resultado == true)
+                {
+                    $process = 'Grau de proteção atualizada';
+                    $processFunction = 'Selecao/editaGrauProtecao';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Grau de proteção atualizado com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na atualização do grau de proteção');
+                }
+                redirect('selecaoGrauProtecao/listar');
+    }
+
+    function apagaGrauProtecao()
+    {
+            $id = $this->uri->segment(2);
+            $resultado = $this->SelecaoModel->apagaGrauProtecao($id);
+            
+            if ($resultado) {
+                 $process = 'Exclusão do grau de proteção';
+                 $processFunction = 'Selecao/apagaGrauProtecao';
+                 $this->logrecord($process,$processFunction);
+                 $this->session->set_flashdata('success', 'Grau de proteção deletado com sucesso');
+
+                }
+                else 
+                { 
+                    $this->session->set_flashdata('error', 'Falha em excluir grau de proteção');
+                }
+                redirect('selecaoGrauProtecao/listar');
+    }
+
+
 
 
 
