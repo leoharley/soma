@@ -388,6 +388,72 @@ class SelecaoModel extends CI_Model
     }
 
 
+    //FAUNA TIPO DE OBSERVAÇÃO
+    function listaFaunaTipoObservacao($searchText = '', $page, $segment)
+    {
+        $this->db->select('FaunaTipoObservacao.id, FaunaTipoObservacao.nome');
+        $this->db->from('tb_fauna_tipo_observacao as FaunaTipoObservacao');        
+        if(!empty($searchText)) {
+            $likeCriteria = "(FaunaTipoObservacao.id LIKE '%".$searchText."%'
+                            OR FaunaTipoObservacao.nome LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+		        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function adicionaFaunaTipoObservacao($info)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tb_fauna_tipo_observacao', $info);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaFaunaTipoObservacao($info, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('tb_fauna_tipo_observacao', $info);
+        
+        return TRUE;
+    }
+
+    function apagaFaunaTipoObservacao($id)
+    {
+        $this->db->where('id', $id);
+        $res2 = $this->db->delete('tb_fauna_tipo_observacao');
+
+        if(!$res1 && !$res2)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+    }
+    
+    function carregaInfoFaunaTipoObservacao($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_fauna_tipo_observacao');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+
 }
 
   
