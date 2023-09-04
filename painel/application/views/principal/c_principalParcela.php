@@ -3,7 +3,7 @@
 $id = '';
 $id_propriedade = '';
 $nu_ano_emissao = '';
-$estagio_regeneracao = '';
+$id_estagio_regeneracao = '';
 $grau_epifitismo = '';
 $tipo_bioma = '';
 $tipo_parcela = '';
@@ -21,8 +21,9 @@ if(!empty($infoParcela))
     {
         $id = $r->id;
         $id_propriedade = $r->id_propriedade;
+        $id_estagio_regeneracao = $r->id_estagio_regeneracao;
         $nu_ano_emissao = $r->nu_ano_emissao;
-        $estagio_regeneracao = $r->estagio_regeneracao;
+        $id_estagio_regeneracao = $r->id_estagio_regeneracao;
         $grau_epifitismo = $r->grau_epifitismo;
         $tipo_bioma = $r->tipo_bioma;
         $tipo_parcela = $r->tipo_parcela;
@@ -104,10 +105,20 @@ if(!empty($infoParcela))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="estagio_regeneracao">Estágio Regeneração</label>
-                                        <br/>
-                                        <select id="estagio_regeneracao" name="estagio_regeneracao">
-                                            <option></option>
-                                            <option value="1">Nativa</option>
+                                        <select id="estagio_regeneracao" name="estagio_regeneracao" required>
+                                            <?php
+                                            if(!empty($infoEstagiosRegeneracao))
+                                            {
+                                                foreach ($infoEstagiosRegeneracao as $registro)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $registro->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $registro->id  == $id_estagio_regeneracao) { echo 'selected'; } ?>>
+                                                    <?php echo $registro->id.' - '.$registro->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
