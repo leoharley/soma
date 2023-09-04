@@ -42,7 +42,7 @@ class Selecao extends BaseController
         } */
     }
 
-    // INICIO DAS FUNÇÕES DA TELA DE USUÁRIO
+    // INICIO DAS FUNÇÕES DA TELA DE FAUNA CLASSIFICAÇÃO
 
     function selecaoFaunaClassificacao()
     {
@@ -103,7 +103,7 @@ class Selecao extends BaseController
                 if($result > 0)
                 {
                     $process = 'Adicionar Fauna Classificação';
-                    $processFunction = 'Principal/adicionaProjeto';
+                    $processFunction = 'Selecao/adicionaProjeto';
                     $this->logrecord($process,$processFunction);
                     $this->session->set_flashdata('success', 'Fauna classificação criada com sucesso');
                 }
@@ -154,6 +154,121 @@ class Selecao extends BaseController
                     $this->session->set_flashdata('error', 'Falha em excluir fauna classificação');
                 }
                 redirect('selecaoFaunaClassificacao/listar');
+    }
+
+
+    // INICIO DAS FUNÇÕES DA TELA DE TIPO PARCELA
+
+    function selecaoTipoParcela()
+    {
+            $tpTela = $this->uri->segment(2);
+
+            $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
+
+            if ($tpTela == 'listar') {
+
+                $searchText = $this->security->xss_clean($this->input->post('searchText'));
+                $data['searchText'] = $searchText;
+                
+                $this->load->library('pagination');
+                
+                $count = 0;
+
+                $returns = $this->paginationCompress ( "selecaoTipoParcela/listar", $count, 10 );
+                
+                $data['registros'] = $this->SelecaoModel->listaTipoParcela($searchText, $returns["page"], $returns["segment"]);
+                
+                $process = 'Listar tipo parcela';
+                $processFunction = 'Selecao/selecaoTipoParcela';
+                $this->logrecord($process,$processFunction);
+
+                $this->global['pageTitle'] = 'SOMA : Lista de Tipo Parcela';
+
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+               
+                $this->loadViews("selecao/l_selecaoTipoParcela", $this->global, $data, NULL);
+            }
+            else if ($tpTela == 'cadastrar') {
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Tipo Parcela';
+                
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+
+                $this->loadViews("selecao/c_selecaoTipoParcela", $this->global, $data, NULL); 
+            }
+            else if ($tpTela == 'editar') {
+                $id = $this->uri->segment(3);
+                if($id == null)
+                {
+                    redirect('selecaoTipoParcela/listar');
+                }
+
+                $data['info'] = $this->SelecaoModel->carregaInfoTipoParcela($id);
+
+                $this->global['pageTitle'] = 'SOMA : Editar Tipo Parcela';      
+                $this->loadViews("selecao/c_selecaoTipoParcela", $this->global, $data, NULL);
+            }
+    }
+
+    function adicionaTipoParcela() 
+    {
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $result = $this->SelecaoModel->adicionaTipoParcela($info);
+                
+                if($result > 0)
+                {
+                    $process = 'Adicionar Tipo Parcela';
+                    $processFunction = 'Selecao/adicionaProjeto';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Tipo parcela criada com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na criação de tipo parcela');
+                }
+                
+                redirect('selecaoTipoParcela/listar');
+    }
+
+
+    function editaTipoParcela()
+    {           
+                $id = $this->input->post('id');
+                $nome = $this->input->post('nome');
+                $info = array('nome'=> $nome);
+                $resultado = $this->SelecaoModel->editaTipoParcela($info, $id);
+                
+                if($resultado == true)
+                {
+                    $process = 'Tipo parcela atualizada';
+                    $processFunction = 'Selecao/editaTipoParcela';
+                    $this->logrecord($process,$processFunction);
+                    $this->session->set_flashdata('success', 'Tipo parcela atualizada com sucesso');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Falha na atualização do tipo parcela');
+                }
+                redirect('selecaoTipoParcela/listar');
+    }
+
+    function apagaTipoParcela()
+    {
+            $id = $this->uri->segment(2);
+            $resultado = $this->SelecaoModel->apagaTipoParcela($id);
+            
+            if ($resultado) {
+                 $process = 'Exclusão do tipo parcela';
+                 $processFunction = 'Selecao/apagaTipoParcela';
+                 $this->logrecord($process,$processFunction);
+                 $this->session->set_flashdata('success', 'Tipo parcela deletado com sucesso');
+
+                }
+                else 
+                { 
+                    $this->session->set_flashdata('error', 'Falha em excluir tipo parcela');
+                }
+                redirect('selecaoTipoParcela/listar');
     }
 
 

@@ -1,17 +1,15 @@
 <?php
 
-$id_perfil  = '';
-$ds_perfil = '';
-$st_admin = '';
+$id  = '';
+$nome = '';
 
 if ($this->uri->segment(2) == 'editar') {
-if(!empty($infoPerfil))
+if(!empty($info))
 {
-    foreach ($infoPerfil as $r)
+    foreach ($info as $r)
     {
-        $id_perfil = $r->id_perfil;
-        $ds_perfil = $r->ds_perfil;
-        $st_admin = $r->st_admin;
+        $id = $r->id;
+        $nome = $r->nome;
     }
 }
 }
@@ -21,7 +19,7 @@ if(!empty($infoPerfil))
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Perfil' : 'Editar Perfil' ; ?>
+            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Tipo Parcela' : 'Editar Tipo Parcela' ; ?>
             <small><?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Adicionar' : 'Editar' ; ?></small>
         </h1>
     </section>
@@ -40,25 +38,16 @@ if(!empty($infoPerfil))
                     <!-- /.box-header -->
                     <!-- form start -->
                     <?php $this->load->helper("form"); ?>
-                    <form role="form" id="addPerfil" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaPerfil' : base_url().'editaPerfil'; ?>" method="post" role="form">
+                    <form role="form" id="addPerfil" action="<?php echo ($this->uri->segment(2) == 'cadastrar') ? base_url().'adicionaTipoParcela' : base_url().'editaTipoParcela'; ?>" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_perfil">Descrição</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_perfil') : $ds_perfil ; ?>" id="ds_perfil" name="ds_perfil" maxlength="128">
-                                        <input type="hidden" value="<?php echo $id_perfil; ?>" name="id_perfil" id="id_perfil" />
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nome') : $nome ; ?>" id="nome" name="nome" maxlength="50">
+                                        <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="st_admin">Perfil Admin?</label>
-                                        <select class="form-control required" id="st_admin" name="st_admin">
-                                            <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $st_admin == 'S') { echo 'selected'; } ?>>Sim</option>
-                                            <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $st_admin == 'N') { echo 'selected'; } else if ($this->uri->segment(2) == 'cadastrar') { echo 'selected'; } ?>>Não</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                </div>                                
                             </div>
 
                             

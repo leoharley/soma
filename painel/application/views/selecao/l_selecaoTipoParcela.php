@@ -20,15 +20,15 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i class="fa fa-users"></i> Listar Perfis
+      <i class="fa fa-users"></i> Listar Tipo Parcela
       <small>Listar</small>
     </h1>
   </section>
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>cadastroPerfil/cadastrar">
-          <i class="fa fa-plus"></i> Adicionar perfil</a>
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>selecaoTipoParcela/cadastrar">
+          <i class="fa fa-plus"></i> Adicionar tipo parcela</a>
       </div>
       <br/>
       <div class="box">
@@ -70,26 +70,23 @@
                 </thead>
                 <tbody>  
                   <?php
-                      if(!empty($registrosPerfis))
+                      if(!empty($registros))
                       {
-                          foreach($registrosPerfis as $registro)
+                          foreach($registros as $registro)
                           {
                       ?>
                     <tr>
                       <td>
-                        <?php echo $registro->id_perfil ?>
+                        <?php echo $registro->id ?>
                       </td>
                       <td>
-                        <?php echo $registro->ds_perfil ?>
+                        <?php echo $registro->nome ?>
                       </td>
                       <td class="text-center">
-                        <!--  <a class="btn btn-sm btn-primary" href="<?php //echo base_url().'log-history/'.$record->userId; ?>" title="Log geçmişi">
-                              <i class="fa fa-history"></i>
-                          </a> -->
-                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'cadastroPerfil/editar/'.$registro->id_perfil; ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'selecaoTipoParcela/editar/'.$registro->id; ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="<?php echo base_url().'apagaPerfil/'.$registro->id_perfil; ?>" data-userid="<?php echo $registro->id_perfil; ?>" title="Excluir">
+                          <a class="btn btn-sm btn-danger" href="<?php echo base_url().'apagaTipoParcela/'.$registro->id; ?>" data-userid="<?php echo $registro->id; ?>" title="Excluir">
                               <i class="fa fa-trash-o"></i>
                           </a>
                       </td>
