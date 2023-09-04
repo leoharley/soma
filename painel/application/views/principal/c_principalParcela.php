@@ -104,8 +104,8 @@ if(!empty($infoParcela))
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="estagio_regeneracao">Estágio Regeneração</label>
-                                        <select id="estagio_regeneracao" name="estagio_regeneracao" required>
+                                        <label for="id_estagio_regeneracao">Estágio Regeneração</label>
+                                        <select id="id_estagio_regeneracao" name="id_estagio_regeneracao" required>
                                             <?php
                                             if(!empty($infoEstagiosRegeneracao))
                                             {
@@ -132,8 +132,8 @@ if(!empty($infoParcela))
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="grau_epifitismo">Grau Epifitismo</label>
-                                        <select id="grau_epifitismo" name="grau_epifitismo" required>
+                                        <label for="id_grau_epifitismo">Grau Epifitismo</label>
+                                        <select id="id_grau_epifitismo" name="id_grau_epifitismo" required>
                                             <?php
                                             if(!empty($infoGrausEpifitismo))
                                             {

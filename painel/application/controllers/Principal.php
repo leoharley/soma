@@ -499,9 +499,9 @@ class Principal extends BaseController
                 $id_propriedade = $this->input->post('id_propriedade');
                 $nu_ano_emissao = $this->input->post('nu_ano_emissao');
                 $id_estagio_regeneracao = $this->input->post('id_estagio_regeneracao');
-                $grau_epifitismo = $this->input->post('grau_epifitismo');
-                $tipo_bioma = $this->input->post('tipo_bioma');
-                $tipo_parcela = $this->input->post('tipo_parcela');
+                $id_grau_epifitismo = $this->input->post('id_grau_epifitismo');
+                $id_tipo_bioma = $this->input->post('id_tipo_bioma');
+                $id_tipo_parcela = $this->input->post('id_tipo_parcela');
                 $tamanho_parcela = $this->input->post('tamanho_parcela');
                 $carbono_vegetacao = $this->input->post('carbono_vegetacao');
                 $biomassa_vegetacao_total = $this->input->post('biomassa_vegetacao_total');
@@ -510,8 +510,8 @@ class Principal extends BaseController
                 $carbono_total = $this->input->post('carbono_total');
                 
                 $infoParcela = array('id_acesso'=> $this->session->userdata('userId'), 'id_propriedade'=> $id_propriedade,
-                'nu_ano_emissao'=>$nu_ano_emissao,'id_estagio_regeneracao'=>$id_estagio_regeneracao, 'grau_epifitismo'=>$grau_epifitismo,
-                'tipo_bioma'=>$tipo_bioma,'tipo_parcela'=>$tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
+                'nu_ano_emissao'=>$nu_ano_emissao,'id_estagio_regeneracao'=>$id_estagio_regeneracao, 'id_grau_epifitismo'=>$id_grau_epifitismo,
+                'id_tipo_bioma'=>$id_tipo_bioma,'id_tipo_parcela'=>$id_tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
                 'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
                 'carbono_total'=>$carbono_total);
                                     
@@ -542,9 +542,9 @@ class Principal extends BaseController
             $id_propriedade = $this->input->post('id_propriedade');
             $nu_ano_emissao = $this->input->post('nu_ano_emissao');
             $id_estagio_regeneracao = $this->input->post('id_estagio_regeneracao');
-            $grau_epifitismo = $this->input->post('grau_epifitismo');
-            $tipo_parcela = $this->input->post('tipo_parcela');
-            $tipo_bioma = $this->input->post('tipo_bioma');
+            $id_grau_epifitismo = $this->input->post('id_grau_epifitismo');
+            $id_tipo_parcela = $this->input->post('id_tipo_parcela');
+            $id_tipo_bioma = $this->input->post('id_tipo_bioma');
             $tamanho_parcela = $this->input->post('tamanho_parcela');
             $carbono_vegetacao = $this->input->post('carbono_vegetacao');
             $biomassa_vegetacao_total = $this->input->post('biomassa_vegetacao_total');
@@ -553,8 +553,8 @@ class Principal extends BaseController
             $carbono_total = $this->input->post('carbono_total');
             
             $infoParcela = array('id_acesso'=> $this->session->userdata('userId'), 'id_propriedade'=> $id_propriedade,
-            'nu_ano_emissao'=>$nu_ano_emissao,'id_estagio_regeneracao'=>$id_estagio_regeneracao, 'grau_epifitismo'=>$grau_epifitismo,
-            'tipo_bioma'=>$tipo_bioma,'tipo_parcela'=>$tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
+            'nu_ano_emissao'=>$nu_ano_emissao,'id_estagio_regeneracao'=>$id_estagio_regeneracao, 'id_grau_epifitismo'=>$id_grau_epifitismo,
+            'id_tipo_bioma'=>$id_tipo_bioma,'id_tipo_parcela'=>$id_tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
             'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
             'carbono_total'=>$carbono_total);
                 
