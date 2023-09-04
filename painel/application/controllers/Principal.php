@@ -87,7 +87,6 @@ class Principal extends BaseController
                 }
 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
-                $data['infoUsuario'] = $this->PrincipalModel->carregaInfoUsuario($IdUsuario);
                 $data['infoProjeto'] = $this->PrincipalModel->carregaInfoProjetoExistente($IdProjeto);
                 
                 $this->global['pageTitle'] = 'SOMA : Editar projeto';      
