@@ -86,7 +86,7 @@ if(!empty($infoEpifita))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="latitude">Latitude</label>
-                                        <input data-inputmask="'mask': '99.99999999'" type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude">
+                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude">
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@ if(!empty($infoEpifita))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="longitude">Longitude</label>
-                                        <input data-inputmask="'mask': '99.99999999'" type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
+                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -186,6 +186,52 @@ function selectElement(id, valueToSelect) {
 
 $(document).ready(function(){
     $(":input").inputmask();
+    
+    $("#longitude").inputmask({
+    mask: ['99°M9\'P9.99"S', '[1]79°M9\'S9.99"S'],
+    definitions: {
+      D: {
+        validator: '[nN|sS]',
+        cardinality: 1,
+        casing: 'upper'
+      },
+      M: {
+        validator: '[0-5]',
+        cardinality: 1
+      },
+      P: {
+        validator: '[0-5]',
+        cardinality: 1
+      },
+      7: {
+        validator: '[0-7]',
+        cardinality: 1
+      }
+    }
+    });
+
+        $("#latitude").inputmask({
+        mask: '89°M9\'P9.99"O',
+        definitions: {
+        D: {
+            validator: '[eE|oO]',
+            cardinality: 1,
+            casing: 'upper'
+        },
+        M: {
+            validator: '[0-5]',
+            cardinality: 1
+        },
+        P: {
+            validator: '[0-5]',
+            cardinality: 1
+        },
+        8: {
+            validator: '[0-8]',
+            cardinality: 1
+        }
+        }
+    });
 
     $('#id_parcela').select2(
         {
