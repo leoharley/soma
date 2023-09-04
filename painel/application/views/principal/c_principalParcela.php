@@ -113,6 +113,7 @@ if(!empty($infoParcela))
                                     <div class="form-group">
                                         <label for="id_estagio_regeneracao">Estágio Regeneração</label>
                                         <select id="id_estagio_regeneracao" name="id_estagio_regeneracao" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoEstagiosRegeneracao))
                                             {
@@ -141,6 +142,7 @@ if(!empty($infoParcela))
                                     <div class="form-group">
                                         <label for="id_grau_epifitismo">Grau Epifitismo</label>
                                         <select id="id_grau_epifitismo" name="id_grau_epifitismo" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoGrausEpifitismo))
                                             {
@@ -173,6 +175,7 @@ if(!empty($infoParcela))
                                     <div class="form-group">
                                         <label for="id_tipo_bioma">Tipo de Bioma</label>
                                         <select id="id_tipo_bioma" name="id_tipo_bioma" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoTiposBioma))
                                             {
@@ -202,6 +205,7 @@ if(!empty($infoParcela))
 
                                         <label for="id_tipo_parcela">Tipo de Parcela</label>
                                         <select id="id_tipo_parcela" name="id_tipo_parcela" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoTiposParcela))
                                             {
@@ -324,22 +328,26 @@ $(document).ready(function(){
 
     $('#id_estagio_regeneracao').select2(
         {
-            placeholder: "SELECIONE"
+            minimumResultsForSearch: -1,
+            placeholder: 'SELECIONE'
         }
     );
     $('#id_grau_epifitismo').select2(
         {
-            placeholder: "SELECIONE"
+            minimumResultsForSearch: -1,
+            placeholder: 'SELECIONE'
         }
     );
     $('#id_tipo_bioma').select2(
         {
-            placeholder: "SELECIONE"
+            minimumResultsForSearch: -1,
+            placeholder: 'SELECIONE'
         }
     );
     $('#id_tipo_parcela').select2(
         {
-            placeholder: "SELECIONE"
+            minimumResultsForSearch: -1,
+            placeholder: 'SELECIONE'
         }
     );
 
