@@ -79,7 +79,7 @@ if(!empty($infoParcela))
                                     <div class="form-group">
                                         <label for="id_propriedade">Propriedade</label>
                                         <select id="id_propriedade" name="id_propriedade" required>
-                                            <option value="" disabled selected>SELECIONE</option>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoPropriedades))
                                             {
@@ -317,7 +317,10 @@ $(document).ready(function(){
     
     $('#id_propriedade').select2(
         {
-            placeholder: "SELECIONE"
+            minimumResultsForSearch: -1,
+            placeholder: function(){
+                $(this).data('placeholder');
+            }
         }
     );
 
