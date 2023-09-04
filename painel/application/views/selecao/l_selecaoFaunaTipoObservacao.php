@@ -27,7 +27,7 @@
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>selecaoTipoBioma/cadastrar">
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>selecaoFaunaTipoObservacao/cadastrar">
           <i class="fa fa-plus"></i> Adicionar fauna tipo de observação</a>
       </div>
       <br/>
