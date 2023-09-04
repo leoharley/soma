@@ -327,25 +327,21 @@ $(document).ready(function(){
 
     $('#id_estagio_regeneracao').select2(
         {
-            minimumResultsForSearch: -1,
             placeholder: 'SELECIONE'
         }
     );
     $('#id_grau_epifitismo').select2(
         {
-            minimumResultsForSearch: -1,
             placeholder: 'SELECIONE'
         }
     );
     $('#id_tipo_bioma').select2(
         {
-            minimumResultsForSearch: -1,
             placeholder: 'SELECIONE'
         }
     );
     $('#id_tipo_parcela').select2(
         {
-            minimumResultsForSearch: -1,
             placeholder: 'SELECIONE'
         }
     );

@@ -124,6 +124,7 @@ if(!empty($infoArvoreViva))
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
                                         <select id="id_familia" name="id_familia" required>   
+                                            <option></option>
                                             <?php
                                             if(!empty($infoFamilias))
                                             {
@@ -148,6 +149,7 @@ if(!empty($infoArvoreViva))
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero" required>
+                                            <option></option>
                                             <?php
                                             if(!empty($infoGeneros))
                                             {
@@ -169,6 +171,7 @@ if(!empty($infoArvoreViva))
                                     <div class="form-group">
                                         <label for="id_especie">Espécie</label>
                                         <select id="id_especie" name="id_especie">
+                                            <option></option>
                                         </select>
                                     </div>
                                 </div>
