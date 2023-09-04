@@ -137,6 +137,7 @@ if(!empty($infoAnimal))
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero" required>
+                                            <option value="" disabled selected>SELECIONE</option>
                                             <?php
                                             if(!empty($infoGenerosFauna))
                                             {
