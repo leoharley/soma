@@ -63,7 +63,7 @@ if(!empty($infoProjeto))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="perimetro">Perímetro</label>
-                                        <input type="text" class="form-control required" id="perimetro" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('perimetro') : $perimetro; ?>" name="perimetro"
+                                        <input type="text" class="form-control required" id="perimetro" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('perimetro') : $perimetro; ?>" name="perimetro"
                                             maxlength="14">
                                     </div>
                                 </div>
