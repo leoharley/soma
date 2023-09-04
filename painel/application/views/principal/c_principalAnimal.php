@@ -105,7 +105,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="longitude">Longitude</label>
-                                        <input data-inputmask="'mask': '99.99999999'" type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
+                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
                                     </div>
                                 </div>
                             
@@ -265,7 +265,7 @@ function selectElement(id, valueToSelect) {
     }
 
 $(document).ready(function(){
-    $("#latitude").inputmask({
+    $("#longitude").inputmask({
     mask: ['99°M9\'S9"D', '[1]79°M9\'S9"D'],
     definitions: {
       D: {
@@ -283,6 +283,29 @@ $(document).ready(function(){
       },
       7: {
         validator: '[0-7]',
+        cardinality: 1
+      }
+    }
+  });
+
+    $("#latitude").inputmask({
+    mask: '89°M9\'S9"D',
+    definitions: {
+      D: {
+        validator: '[eE|wW]',
+        cardinality: 1,
+        casing: 'upper'
+      },
+      M: {
+        validator: '[0-5]',
+        cardinality: 1
+      },
+      S: {
+        validator: '[0-5]',
+        cardinality: 1
+      },
+      8: {
+        validator: '[0-8]',
         cardinality: 1
       }
     }
