@@ -4,9 +4,9 @@ $id = '';
 $id_propriedade = '';
 $nu_ano_emissao = '';
 $id_estagio_regeneracao = '';
-$grau_epifitismo = '';
-$tipo_bioma = '';
-$tipo_parcela = '';
+$id_grau_epifitismo = '';
+$id_tipo_bioma = '';
+$id_tipo_parcela = '';
 $tamanho_parcela = '';
 $carbono_vegetacao = '';
 $biomassa_vegetacao_total = '';
@@ -24,9 +24,9 @@ if(!empty($infoParcela))
         $id_estagio_regeneracao = $r->id_estagio_regeneracao;
         $nu_ano_emissao = $r->nu_ano_emissao;
         $id_estagio_regeneracao = $r->id_estagio_regeneracao;
-        $grau_epifitismo = $r->grau_epifitismo;
-        $tipo_bioma = $r->tipo_bioma;
-        $tipo_parcela = $r->tipo_parcela;
+        $id_grau_epifitismo = $r->id_grau_epifitismo;
+        $id_tipo_bioma = $r->id_tipo_bioma;
+        $id_tipo_parcela = $r->id_tipo_parcela;
         $tamanho_parcela = $r->tamanho_parcela;
         $carbono_vegetacao = $r->carbono_vegetacao;
         $biomassa_vegetacao_total = $r->biomassa_vegetacao_total;
@@ -132,13 +132,21 @@ if(!empty($infoParcela))
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="grau_epifitismo">Grau epifitismo</label>
-                                        <br/>
-                                        <select id="grau_epifitismo" name="grau_epifitismo">
-                                            <option></option>
-                                            <option value="1">Alto</option>
-                                            <option value="2">Médio</option>
-                                            <option value="3">Baixo</option>
+                                        <label for="grau_epifitismo">Grau Epifitismo</label>
+                                        <select id="grau_epifitismo" name="grau_epifitismo" required>
+                                            <?php
+                                            if(!empty($infoGrausEpifitismo))
+                                            {
+                                                foreach ($infoGrausEpifitismo as $registro)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $registro->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $registro->id  == $id_grau_epifitismo) { echo 'selected'; } ?>>
+                                                    <?php echo $registro->id.' - '.$registro->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -153,20 +161,24 @@ if(!empty($infoParcela))
                             </div>
 
                             <div class="row">
-
+     
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="tipo_bioma">Tipo de bioma</label>
-                                        <br/>
-                                        <select id="tipo_bioma" name="tipo_bioma">
-                                            <option></option>
-                                            <option value="1">Floresta Amazônica</option>
-                                            <option value="2">Cerrado</option>
-                                            <option value="3">Mata Atlântica</option>
-                                            <option value="4">Caatinga</option>
-                                            <option value="5">Pantanal</option>
-                                            <option value="6">Pampa</option>
-                                            <option value="7">Mata de Araucárias</option>
+                                        <label for="id_tipo_bioma">Tipo de Bioma</label>
+                                        <select id="id_tipo_bioma" name="id_tipo_bioma" required>
+                                            <?php
+                                            if(!empty($infoTiposBioma))
+                                            {
+                                                foreach ($infoTiposBioma as $registro)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $registro->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $registro->id  == $id_tipo_bioma) { echo 'selected'; } ?>>
+                                                    <?php echo $registro->id.' - '.$registro->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -180,15 +192,23 @@ if(!empty($infoParcela))
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="tipo_parcela">Tipo de parcela</label>
-                                        <br/>
-                                        <select id="tipo_parcela" name="tipo_parcela">
-                                            <option></option>
-                                            <option value="1">Quadrada</option>
-                                            <option value="2">Redonda</option>
-                                            <option value="3">Triangular</option>
-                                            <option value="4">Retangular</option>
-                                        </select>
+
+                                        <label for="id_tipo_parcela">Tipo de Parcela</label>
+                                        <select id="id_tipo_parcela" name="id_tipo_parcela" required>
+                                            <?php
+                                            if(!empty($infoTiposParcela))
+                                            {
+                                                foreach ($infoTiposParcela as $registro)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $registro->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $registro->id  == $id_tipo_parcela) { echo 'selected'; } ?>>
+                                                    <?php echo $registro->id.' - '.$registro->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select> 
                                     </div>
                                 </div>
 

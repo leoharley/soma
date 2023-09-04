@@ -278,6 +278,33 @@ class PrincipalModel extends CI_Model
         return $query->result();
     }
 
+    function carregaInfoGrausEpifitismo()
+    {
+        $this->db->select('id, nome');
+        $this->db->from('tb_grau_epifitismo');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+    function carregaInfoTiposBioma()
+    {
+        $this->db->select('id, nome');
+        $this->db->from('tb_tipo_bioma');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+    function carregaInfoTiposParcela()
+    {
+        $this->db->select('id, nome');
+        $this->db->from('tb_tipo_parcela');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
     function carregaInfoUsuario($IdUsuario)
     {
         $this->db->select('co_seq_cadastro_pessoa, id_perfil, ds_nome, ds_email, nu_cpf, st_admin');

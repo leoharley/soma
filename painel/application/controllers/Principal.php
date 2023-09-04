@@ -453,7 +453,10 @@ class Principal extends BaseController
                 $this->global['pageTitle'] = 'SOMA : Cadastro de parcela';
                 
                 $data['infoPropriedades'] = $this->PrincipalModel->carregaInfoPropriedades();
-                $data['infoEstagiosRegeneracao'] = $this->PrincipalModel->carregaInfoEstagiosRegeneracao();                
+                $data['infoEstagiosRegeneracao'] = $this->PrincipalModel->carregaInfoEstagiosRegeneracao();
+                $data['infoGrausEpifitismo'] = $this->PrincipalModel->carregaInfoGrausEpifitismo();
+                $data['infoTiposBioma'] = $this->PrincipalModel->carregaInfoTiposBioma();
+                $data['infoTiposParcela'] = $this->PrincipalModel->carregaInfoTiposParcela();
 
                 $this->loadViews("principal/c_principalParcela", $this->global, $data, NULL); 
             }
@@ -465,6 +468,11 @@ class Principal extends BaseController
                 }
                 $data['infoPropriedades'] = $this->PrincipalModel->carregaInfoPropriedades();
                 $data['infoParcela'] = $this->PrincipalModel->carregaInfoParcela($IdParcela);
+                $data['infoEstagiosRegeneracao'] = $this->PrincipalModel->carregaInfoEstagiosRegeneracao();
+                $data['infoGrausEpifitismo'] = $this->PrincipalModel->carregaInfoGrausEpifitismo();
+                $data['infoTiposBioma'] = $this->PrincipalModel->carregaInfoTiposBioma();
+                $data['infoTiposParcela'] = $this->PrincipalModel->carregaInfoTiposParcela();
+
                 $this->global['pageTitle'] = 'SOMA : Editar parcela';      
                 $this->loadViews("principal/c_principalParcela", $this->global, $data, NULL);
             }
