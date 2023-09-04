@@ -84,8 +84,7 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_parcela">Parcela</label>
-                                        <select class="form-control required" id="id_parcela" name="id_parcela" required>
-                                            <option value="" disabled selected>SELECIONE</option>
+                                        <select id="id_parcela" name="id_parcela" required>
                                             <?php
                                             if(!empty($infoParcelas))
                                             {
@@ -298,6 +297,12 @@ function selectElement(id, valueToSelect) {
 
 $(document).ready(function(){
     $(":input").inputmask();
+
+    $('#id_parcela').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
 
     $('#id_familia').select2(
         {
