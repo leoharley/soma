@@ -321,6 +321,16 @@ class SelecaoModel extends CI_Model
         return $query->result();
     }
 
+    function carregaInfoGrauEpifitismo($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_grau_epifitismo');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
 
     //GRAU DE PROTEÇÃO
     function listaGrauProtecao($searchText = '', $page, $segment)
