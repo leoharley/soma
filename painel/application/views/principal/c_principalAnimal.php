@@ -296,6 +296,12 @@ $(document).ready(function(){
         }
     );
 
+    $('#id_grau_protecao').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
     var idFamilia = $('#id_familia').val();
         $.ajax({
             url: '<?php echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
