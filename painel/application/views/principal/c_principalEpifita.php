@@ -103,8 +103,7 @@ if(!empty($infoEpifita))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
-                                        <select class="form-control required" id="id_familia" name="id_familia" required>
-                                            <option value="" disabled selected>SELECIONE</option>
+                                        <select id="id_familia" name="id_familia" required>
                                             <?php
                                             if(!empty($infoFamilias))
                                             {
@@ -127,8 +126,7 @@ if(!empty($infoEpifita))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
-                                        <select class="form-control required" id="id_genero" name="id_genero" required>
-                                            <option value="" disabled selected>SELECIONE</option>
+                                        <select id="id_genero" name="id_genero" required>
                                             <?php
                                             if(!empty($infoGeneros))
                                             {
@@ -149,7 +147,7 @@ if(!empty($infoEpifita))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_especie">Espécie</label>
-                                        <select class="form-control required" id="id_especie" name="id_especie">
+                                        <select id="id_especie" name="id_especie">
                                         </select>
                                     </div>
                                 </div>
@@ -185,6 +183,24 @@ function selectElement(id, valueToSelect) {
 
 $(document).ready(function(){
     $(":input").inputmask();
+
+    $('#id_familia').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
+    $('#id_genero').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
+    $('#id_especie').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
 
     var idFamilia = $('#id_familia').val();
         $.ajax({
