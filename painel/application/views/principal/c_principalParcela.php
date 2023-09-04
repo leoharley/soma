@@ -314,22 +314,22 @@ $(document).ready(function(){
         }
     );
 
-    $('#estagio_regeneracao').select2(
+    $('#id_estagio_regeneracao').select2(
         {
             placeholder: "SELECIONE"
         }
     );
-    $('#grau_epifitismo').select2(
+    $('#id_grau_epifitismo').select2(
         {
             placeholder: "SELECIONE"
         }
     );
-    $('#tipo_bioma').select2(
+    $('#id_tipo_bioma').select2(
         {
             placeholder: "SELECIONE"
         }
     );
-    $('#tipo_parcela').select2(
+    $('#id_tipo_parcela').select2(
         {
             placeholder: "SELECIONE"
         }
