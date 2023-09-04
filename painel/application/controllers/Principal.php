@@ -132,7 +132,7 @@ class Principal extends BaseController
     {
                 $this->load->library('form_validation');
                 
-                $IdProjeto = $this->input->post('co_seq_principal_pessoa');
+                $IdProjeto = $this->input->post('id');
 
                 $nome = $this->input->post('nome');
                 $perimetro = $this->input->post('perimetro');
