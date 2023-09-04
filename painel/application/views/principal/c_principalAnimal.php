@@ -292,7 +292,7 @@ $(document).ready(function(){
     mask: '89°M9\'S9"D',
     definitions: {
       D: {
-        validator: '[eE|wW]',
+        validator: '[eE|oO]',
         cardinality: 1,
         casing: 'upper'
       },
