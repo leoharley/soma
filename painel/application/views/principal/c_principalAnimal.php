@@ -158,9 +158,9 @@ if(!empty($infoAnimal))
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="id_especie">Espécie</label>
-                                        <option></option>
+                                        <label for="id_especie">Espécie</label>                                    
                                         <select id="id_especie" name="id_especie">
+                                        <option></option>
                                         </select>
                                     </div>
                                 </div>
