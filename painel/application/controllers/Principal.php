@@ -80,14 +80,16 @@ class Principal extends BaseController
                 $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
-                $IdUsuario = $this->uri->segment(3);
-                if($IdUsuario == null)
+                $IdProjeto = $this->uri->segment(3);
+                if($IdProjeto == null)
                 {
                     redirect('principalProjeto/listar');
                 }
 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
                 $data['infoUsuario'] = $this->PrincipalModel->carregaInfoUsuario($IdUsuario);
+                $data['infoProjeto'] = $this->PrincipalModel->carregaInfoProjetoExistente($IdProjeto);
+                
                 $this->global['pageTitle'] = 'SOMA : Editar projeto';      
                 $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL);
             }

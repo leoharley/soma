@@ -383,6 +383,16 @@ class PrincipalModel extends CI_Model
         return $query->result();
     }
 
+    function carregaInfoProjetoExistente($IdProjeto)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_projetos');
+        $this->db->where('id', $IdProjeto);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
 
 // FIM DAS CONSULTAS NA TELA DE USUÁRIO
 
