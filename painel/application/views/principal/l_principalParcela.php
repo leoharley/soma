@@ -107,13 +107,13 @@ function mask($val, $mask) {
                         <?php echo $registro->nu_ano_emissao ?>
                       </td>
                       <td>
-                        <?php echo $registro->estagio_regeneracao ?>
+                        <?php echo $registro->nome_estagio_regeneracao ?>
                       </td>
                       <td>
-                        <?php echo $registro->grau_epifitismo ?>
+                        <?php echo $registro->nome_grau_epifitismo ?>
                       </td>
                       <td>
-                        <?php echo $registro->tipo_bioma ?>
+                        <?php echo $registro->nome_tipo_bioma ?>
                       </td>
                   <!--    <td>
                         <?php //echo ($registro->Dt_Ativo != null) ? date("d/m/Y", strtotime($registro->Dt_Ativo)) : ''; ?>

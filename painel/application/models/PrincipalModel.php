@@ -120,9 +120,12 @@ class PrincipalModel extends CI_Model
 
     function listaParcelas($searchText = '', $page, $segment)
     {
-        $this->db->select('Parcelas.*,Propriedades.no_propriedade');
+        $this->db->select('Parcelas.*, Propriedades.no_propriedade, EstagioRegeneracao.nome as nome_estagio_regeneracao, GrauEpifitismo.nome as nome_grau_epifitismo, TipoBioma.nome as nome_tipo_bioma');
         $this->db->from('tb_parcelas as Parcelas');
         $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
+        $this->db->join('tb_estagio_regeneracao as EstagioRegeneracao', 'EstagioRegeneracao.id = Parcelas.id_estagio_regeneracao','left');        
+        $this->db->join('tb_grau_epifitismo as GrauEpifitismo', 'GrauEpifitismo.id = Parcelas.id_grau_epifitismo','left');        
+        $this->db->join('tb_tipo_bioma as TipoBioma', 'TipoBioma.id = Parcelas.id_tipo_bioma','left');        
    //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
         if(!empty($searchText)) {
             $likeCriteria = "(Parcelas.nu_ano_emissao LIKE '%".$searchText."%'
