@@ -314,6 +314,15 @@ class PrincipalModel extends CI_Model
         return $query->result();
     }
 
+    function carregaInfoGrausProtecao()
+    {
+        $this->db->select('id, nome');
+        $this->db->from('tb_grau_protecao');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
     function carregaInfoUsuario($IdUsuario)
     {
         $this->db->select('co_seq_cadastro_pessoa, id_perfil, ds_nome, ds_email, nu_cpf, st_admin');

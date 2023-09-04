@@ -78,6 +78,8 @@
   href="<?php echo base_url(); ?>assets/dist/css/select2.css">
 
 <script>
+
+  
 $(function() {
         const collapseExample = $("#cadastro");
         collapseExample.on("shown.bs.collapse", function() {

@@ -9,7 +9,7 @@ $id_genero = '';
 $id_especie = '';
 $nu_biomassa = '';
 $identificacao = '';
-$grau_protecao = '';
+$id_grau_protecao = '';
 $nu_circunferencia = '';
 $nu_altura = '';
 $nu_altura_total = '';
@@ -32,7 +32,7 @@ if(!empty($infoArvoreViva))
         $id_especie = $r->id_especie;
         $nu_biomassa = $r->nu_biomassa;
         $identificacao = $r->identificacao;
-        $grau_protecao = $r->grau_protecao;
+        $id_grau_protecao = $r->id_grau_protecao;
         $nu_circunferencia = $r->nu_circunferencia;
         $nu_altura = $r->nu_altura;
         $nu_altura_total = $r->nu_altura_total;
@@ -199,8 +199,22 @@ if(!empty($infoArvoreViva))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="grau_protecao">Grau de proteção</label>
-                                        <input type="text" class="form-control required" id="grau_protecao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('grau_protecao') : $grau_protecao; ?>" name="grau_protecao">
+                                        <label for="id_grau_protecao">Grau de proteção</label>
+                                        <select id="id_grau_protecao" name="id_grau_protecao" required>
+                                            <?php
+                                            if(!empty($infoGrausProtecao))
+                                            {
+                                                foreach ($infoGrausProtecao as $registro)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $registro->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $registro->id  == $id_grau_protecao) { echo 'selected'; } ?>>
+                                                    <?php echo $registro->id.' - '.$registro->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>                                         
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -286,6 +300,30 @@ function selectElement(id, valueToSelect) {
 
 $(document).ready(function(){
     $(":input").inputmask();
+
+    $('#id_familia').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
+    $('#id_genero').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
+    $('#id_especie').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
+    $('#id_grau_protecao').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
 
     var idFamilia = $('#id_familia').val();
         $.ajax({
