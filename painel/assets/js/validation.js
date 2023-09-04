@@ -45,7 +45,7 @@ $(document).ready(function(){
        {
            if(value == 0) { return false; }
           else { return true; }
-       },"This field is reuired.");
+       },"This field is required.");
        
        
        jQuery.validator.addMethod("greaterThan", function(value, element)
