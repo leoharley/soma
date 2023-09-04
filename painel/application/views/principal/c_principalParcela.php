@@ -39,6 +39,12 @@ if(!empty($infoParcela))
 
 ?>
 
+<style>
+    .content-wrapper{
+      height:800px!important;
+    }
+</style>    
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
