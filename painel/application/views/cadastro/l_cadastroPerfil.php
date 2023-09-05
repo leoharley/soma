@@ -100,29 +100,30 @@
                       }
                       ?>
                 </tbody>
-                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              </table>
+
+              <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                       <div class="modal-content">
                       
                           <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                              <h4 class="modal-title" id="myModalLabel"><strong>Confirmação</strong></h4>
                           </div>
                       
                           <div class="modal-body">
-                              <p>You are about to delete one track, this procedure is irreversible.</p>
-                              <p>Do you want to proceed?</p>
+                              <p>Tem certeza que deseja excluir? Esta ação não poderá ser revertida!</p>
                               <p class="debug-url"></p>
                           </div>
                           
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                              <a class="btn btn-danger btn-ok">Delete</a>
+                          <div class="modal-footer">                              
+                              <a class="btn btn-danger btn-ok">Confirmar</a>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                           </div>
                       </div>
                   </div>
               </div>
-              </table>             
+
             </div>
         </div>
         <!-- /.box-body -->
