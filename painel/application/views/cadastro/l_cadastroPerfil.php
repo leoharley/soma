@@ -89,10 +89,7 @@
                           <a class="btn btn-sm btn-info" href="<?php echo base_url().'cadastroPerfil/editar/'.$registro->id_perfil; ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="<?php echo base_url().'apagaPerfil/'.$registro->id_perfil; ?>" data-userid="<?php echo $registro->id_perfil; ?>" title="Excluir">
-                              <i class="fa fa-trash-o"></i>
-                          </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="#" data-toggle="modal" data-target="#confirma-exclusao">Delete record #23</a>                          
+                          <a class="btn btn-sm btn-danger deleteUser" href="#" data-toggle="modal" data-target="#confirma-exclusao"><i class="fa fa-trash-o"></i></a>                                                    
                       </td>
                     </tr>
 
@@ -109,14 +106,16 @@
                                     <p>Tem certeza que deseja excluir? Esta ação não poderá ser revertida!</p>
                                 </div>
                                 
-                                <div class="modal-footer">                              
-                                    <a class="btn btn-danger btn-ok">Confirmar</a>
+                                <div class="modal-footer">  
+                                    <a class="btn btn-sm btn-danger deleteUser" href="<?php echo base_url().'apagaPerfil/'.$registro->id_perfil; ?>" data-userid="<?php echo $registro->id_perfil; ?>" title="Excluir">
+                                    <i class="fa fa-trash-o"></i>Confirmar
+                                    </a>                       
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <?php
                           }
                       }
