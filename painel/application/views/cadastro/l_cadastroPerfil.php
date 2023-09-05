@@ -113,11 +113,10 @@
                       
                           <div class="modal-body">
                               <p>Tem certeza que deseja excluir? Esta ação não poderá ser revertida!</p>
-                              <p class="debug-url"></p>
                           </div>
                           
                           <div class="modal-footer">                              
-                              <a class="btn btn-danger btn-ok">Confirmar</a>
+                              <a class="btn btn-primary btn-ok">Confirmar</a>
                               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                           </div>
                       </div>
