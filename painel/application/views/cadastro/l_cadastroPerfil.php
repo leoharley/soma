@@ -92,36 +92,37 @@
                           <a class="btn btn-sm btn-danger deleteUser" href="<?php echo base_url().'apagaPerfil/'.$registro->id_perfil; ?>" data-userid="<?php echo $registro->id_perfil; ?>" title="Excluir">
                               <i class="fa fa-trash-o"></i>
                           </a>
-                          <a href="#" data-href="/delete.php?id=23" data-toggle="modal" data-target="#confirm-delete">Delete record #23</a>                          
+                          <a class="btn btn-sm btn-danger deleteUser" href="#" data-toggle="modal" data-target="#confirma-exclusao">Delete record #23</a>                          
                       </td>
                     </tr>
+
+                    <div class="modal fade" id="confirma-exclusao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel"><strong>Confirmação</strong></h4>
+                                </div>
+                            
+                                <div class="modal-body">
+                                    <p>Tem certeza que deseja excluir? Esta ação não poderá ser revertida!</p>
+                                </div>
+                                
+                                <div class="modal-footer">                              
+                                    <a class="btn btn-danger btn-ok">Confirmar</a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <?php
                           }
                       }
                       ?>
                 </tbody>
-              </table>
-
-              <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                      <div class="modal-content">
-                      
-                          <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h4 class="modal-title" id="myModalLabel"><strong>Confirmação</strong></h4>
-                          </div>
-                      
-                          <div class="modal-body">
-                              <p>Tem certeza que deseja excluir? Esta ação não poderá ser revertida!</p>
-                          </div>
-                          
-                          <div class="modal-footer">                              
-                              <a class="btn btn-danger btn-ok">Confirmar</a>
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+              </table>              
 
             </div>
         </div>
