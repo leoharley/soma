@@ -108,7 +108,7 @@
                                 
                                 <div class="modal-footer">  
                                     <a class="btn btn-sm btn-danger deleteUser" href="<?php echo base_url().'apagaPerfil/'.$registro->id_perfil; ?>" data-userid="<?php echo $registro->id_perfil; ?>" title="Excluir">
-                                    <i class="fa fa-trash-o"></i>Confirmar
+                                    Confirmar
                                     </a>                       
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                 </div>
