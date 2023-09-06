@@ -62,8 +62,8 @@ if(!empty($infoProjeto))
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="perimetro">Perímetro</label>
-                                        <input type="text" class="form-control required" id="perimetro" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('perimetro') : $perimetro; ?>" name="perimetro"
+                                        <label for="perimetro">Perímetro (ha)</label>
+                                        <input type="text" class="form-control 4decimais required" id="perimetro" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('perimetro') : $perimetro; ?>" name="perimetro"
                                             maxlength="14">
                                     </div>
                                 </div>
@@ -110,5 +110,21 @@ if(!empty($infoProjeto))
 <script>
 $(document).ready(function(){
     $(":input").inputmask();
+
+    $(".4decimais").inputmask({
+        alias: "decimal",
+        digits: "4",
+        rightAlign: false,
+        suffix: "",
+        integerDigits: 8,
+        digitsOptional: true,
+        allowPlus: true,
+        allowMinus: true,
+        placeholder: "0",
+        min: -1000,
+        max: 1000,
+        numericInput: true
+    });
+
 });
 </script>
