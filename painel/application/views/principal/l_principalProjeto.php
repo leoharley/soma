@@ -95,7 +95,7 @@
                         <?php echo date("d/m/Y", strtotime($registro->dt_inicio)) ?>
                       </td>
                       <td>
-                        <?= ($registro->dt_final!='30/11/-0001')?date("d/m/Y", strtotime($registro->dt_final)):'-'; ?>
+                        <?= ($registro->dt_final =='30/11/-0001')?'-':date("d/m/Y", strtotime($registro->dt_final)); ?>
                       </td>
                     <!--  <td>
                         <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>
