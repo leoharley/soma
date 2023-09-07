@@ -137,7 +137,8 @@
                         <?php echo $registro->floracao_frutificacao ?>
                       </td>
                       <td>
-                        <?php echo date("d/m/Y", strtotime($registro->dt_cadastro)) ?>
+                        <?= ($registro->dt_cadastro == '0000-00-00')?'<font style="color:red;font-weight:bold;">NÃO CADASTRADO
+                        </font>':date("d/m/Y", strtotime($registro->dt_cadastro)); ?>
                       </td>
                       <td class="text-center">
                           <a class="btn btn-sm btn-info" href="<?= base_url().'principalArvoreViva/editar/'.$registro->id ?>" title="Editar">
