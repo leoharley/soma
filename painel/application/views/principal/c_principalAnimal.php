@@ -6,7 +6,6 @@ $id_familia = '';
 $id_genero = '';
 $id_especie = '';
 $id_tipo_observacao = '';
-$id_fauna_tp_contato = '';
 $id_classificacao  = '';
 $id_grau_protecao = '';
 $latitude = '';
@@ -23,7 +22,6 @@ if(!empty($infoAnimal))
         $id_genero = $r->id_genero;
         $id_especie = $r->id_especie;
         $id_tipo_observacao = $r->id_tipo_observacao;
-        $id_fauna_tp_contato = $r->id_fauna_tp_contato;
         $id_classificacao = $r->id_classificacao;
         $id_grau_protecao = $r->grau_protecao;
         $latitude = $r->latitude;
