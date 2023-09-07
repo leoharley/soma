@@ -180,8 +180,8 @@ if(!empty($infoEpifita))
 <script>
 
 function selectElement(id, valueToSelect) {    
-    let element = document.getElementById(id);
-    element.value = valueToSelect;
+    $(id).val(valueToSelect);
+    $(id).trigger('change');
     }
 
 $(document).ready(function(){
@@ -272,26 +272,27 @@ $(document).ready(function(){
         });
 
     $('select[name="id_familia"]').on('change', function() {
-        var idFamilia = $(this).val();
-        if(idFamilia) {
-            $.ajax({
-                url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
-                type: "GET",
-                dataType: "json",
-                success:function(data) {
-                    $("#id_genero").select2("val", null);
-                    $("#id_especie").select2("val", null);
-                    $.each(data, function(key, value) {
-                        $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
-                    });
-                }
-            });
-        }else{
-      //      $('select[name="id_genero"]').empty();
-       //     $('select[name="id_especie"]').empty();
-        }
+        $('select[name="id_familia"]').on('click', function() {
+            var idFamilia = $(this).val();
+            if(idFamilia) {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $("#id_genero").select2("val", null);
+                        $("#id_especie").select2("val", null);
+                        $.each(data, function(key, value) {
+                            $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                        });
+                    }
+                });
+            }else{
+        //      $('select[name="id_genero"]').empty();
+        //     $('select[name="id_especie"]').empty();
+            }
+        });
     });
-
 
     var idGenero = $('#id_genero').val();
         $.ajax({
@@ -311,33 +312,35 @@ $(document).ready(function(){
         });
 
     $('select[name="id_genero"]').on('change', function() {
-        var idGenero = $(this).val();
-        if(idGenero) {
-            $.ajax({
-                url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
-                type: "GET",
-                dataType: "json",
-                success:function(data) {
-                    $("#id_especie").select2("val", null);
-                    $.each(data, function(key, value) {
-                        if (value.no_popular !== '') {
-                            $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
-                        } else {
-                            $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
-                        }                        
-                    });
-                }
-            });
-        }else{
-        //    $('select[name="id_especie"]').empty();
-        }
+        $('select[name="id_genero"]').on('click', function() {
+            var idGenero = $(this).val();
+            if(idGenero) {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $("#id_especie").select2("val", null);
+                        $.each(data, function(key, value) {
+                            if (value.no_popular !== '') {
+                                $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
+                            } else {
+                                $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                            }                        
+                        });
+                    }
+                });
+            }else{
+            //    $('select[name="id_especie"]').empty();
+            }
+        });
     });
 
     setTimeout(function(){
-        selectElement('id_genero', '<?php echo $id_genero ?>');
+        selectElement('#id_genero', '<?php echo $id_genero ?>');
     }, 500);
     setTimeout(function(){
-        selectElement('id_especie', '<?php echo $id_especie ?>');
+        selectElement('#id_especie', '<?php echo $id_especie ?>');
     }, 500); 
 
 });

@@ -299,8 +299,6 @@ if(!empty($infoArvoreViva))
 function selectElement(id, valueToSelect) {   
     $(id).val(valueToSelect);
     $(id).trigger('change');
- //   let element = document.getElementById(id);
- //   element.value = valueToSelect;
     }
 
 $(document).ready(function(){
@@ -394,8 +392,8 @@ $(document).ready(function(){
             type: "GET",
             dataType: "json",
             success:function(data) {
-            //    $("#id_genero").select2("val", null);
-            //    $("#id_especie").select2("val", null); 
+                $("#id_genero").select2("val", null);
+                $("#id_especie").select2("val", null); 
                 $.each(data, function(key, value) {
                     $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                 });
