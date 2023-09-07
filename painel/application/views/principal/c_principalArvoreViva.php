@@ -386,7 +386,7 @@ $(document).ready(function(){
         }
     );
 
-    var idFamilia = $('#id_familia').val();
+   /* var idFamilia = $('#id_familia').val();
         $.ajax({
             url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
             type: "GET",
@@ -422,7 +422,7 @@ $(document).ready(function(){
     });
 
 
-    /*var idGenero = $('#id_genero').val();
+    var idGenero = $('#id_genero').val();
         $.ajax({
             url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
             type: "GET",
