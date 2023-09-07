@@ -150,7 +150,7 @@ if(!empty($infoArvoreViva))
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero" required>
-                                            
+                                            <option></option>
                                             <?php
                                             if(!empty($infoGeneros))
                                             {
@@ -422,7 +422,7 @@ $(document).ready(function(){
     });
 
 
-    var idGenero = $('#id_genero').val();
+    /*var idGenero = $('#id_genero').val();
         $.ajax({
             url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
             type: "GET",
@@ -460,7 +460,7 @@ $(document).ready(function(){
         }else{
         //    $('select[name="id_especie"]').empty();
         }
-    });
+    });*/
 
     setTimeout(function(){
         selectElement('id_genero', '<?php echo $id_genero ?>');
