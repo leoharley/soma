@@ -464,7 +464,7 @@ $(document).ready(function(){
         }
     });
 
-    }, 2000);
+    }, 5000);
 
     setTimeout(function(){
         selectElement('id_genero', '<?php echo $id_genero ?>');
