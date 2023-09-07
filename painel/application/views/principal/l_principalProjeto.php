@@ -95,7 +95,7 @@
                         <?php echo date("d/m/Y", strtotime($registro->dt_inicio)) ?>
                       </td>
                       <td>
-                        <?= ($registro->dt_final == '0000-00-00')?'-':date("d/m/Y", strtotime($registro->dt_final)); ?>
+                        <?= ($registro->dt_final == '0000-00-00')?'<font style="color:red;font-weight:bold;">NÃO INFORMADO</font>':date("d/m/Y", strtotime($registro->dt_final)); ?>
                       </td>
                     <!--  <td>
                         <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>
