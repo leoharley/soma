@@ -469,10 +469,10 @@ $(document).ready(function(){
     });
 
     setTimeout(function(){
-        selectElement('id_genero', '#<?php echo $id_genero ?>');
+        selectElement('#id_genero', '<?php echo $id_genero ?>');
     }, 500);
     setTimeout(function(){
-        selectElement('id_especie', '#<?php echo $id_especie ?>');
+        selectElement('#id_especie', '<?php echo $id_especie ?>');
     }, 500);
     
     $('#identificacao').select2(
