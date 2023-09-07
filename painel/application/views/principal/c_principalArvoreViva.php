@@ -442,26 +442,28 @@ $(document).ready(function(){
         });
 
     $('select[name="id_genero"]').on('change', function() {
-        var idGenero = $(this).val();
-        if(idGenero) {
-            $.ajax({
-                url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
-                type: "GET",
-                dataType: "json",
-                success:function(data) {
-                    $("#id_especie").select2("val", null);
-                    $.each(data, function(key, value) {
-                        if (value.no_popular !== '') {
-                            $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
-                        } else {
-                            $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
-                        }                        
-                    });
-                }
-            });
-        }else{
-        //    $('select[name="id_especie"]').empty();
-        }
+        $('select[name="id_genero"]').on('click', function() {
+            var idGenero = $(this).val();
+            if(idGenero) {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $("#id_especie").select2("val", null);
+                        $.each(data, function(key, value) {
+                            if (value.no_popular !== '') {
+                                $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
+                            } else {
+                                $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                            }                        
+                        });
+                    }
+                });
+            }else{
+            //    $('select[name="id_especie"]').empty();
+            }
+        });
     });
 
     setTimeout(function(){
