@@ -82,10 +82,7 @@
                       <td>
                         <?php echo $registro->ds_perfil ?>
                       </td>
-                      <td class="text-center">
-                        <!--  <a class="btn btn-sm btn-primary" href="<?php //echo base_url().'log-history/'.$record->userId; ?>" title="Log geçmişi">
-                              <i class="fa fa-history"></i>
-                          </a> -->
+                      <td class="text-center">                        
                           <a class="btn btn-sm btn-info" href="<?php echo base_url().'cadastroPerfil/editar/'.$registro->id_perfil; ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>

@@ -92,7 +92,8 @@
                         <?php echo $registro->perimetro ?>
                       </td>
                       <td>
-                        <?php echo date("d/m/Y", strtotime($registro->dt_inicio)) ?>
+                        <?= ($registro->dt_final == '0000-00-00')?'<font style="color:red;font-weight:bold;">NÃO CADASTRADO
+                        </font>':date("d/m/Y", strtotime($registro->dt_inicio)); ?>
                       </td>
                       <td>
                         <?= ($registro->dt_final == '0000-00-00')?'<font style="color:red;font-weight:bold;">NÃO CADASTRADO
