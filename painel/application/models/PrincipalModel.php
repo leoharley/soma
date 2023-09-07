@@ -739,12 +739,15 @@ function carregaInfoPermissao($IdPermissao)
 
     function listaAnimais($searchText = '', $page, $segment)
     {
-        $this->db->select('Animais.*,Parcelas.id as id_parcela, Propriedades.no_propriedade, CadastroPessoa.ds_nome');
+        $this->db->select('Animais.*,Parcelas.id as id_parcela, Propriedades.no_propriedade, CadastroPessoa.ds_nome, 
+        FaunaTipoObservacao.nome_fauna_tipo_observacao, FaunaClassificacao.nome_classificacao');
         $this->db->from('tb_animais as Animais');
         $this->db->join('tb_parcelas as Parcelas', 'Parcelas.id = Animais.id_parcela','left');
         $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
         $this->db->join('tb_acesso as Acesso', 'Acesso.co_seq_acesso = Animais.id_acesso','left'); 
         $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
+        $this->db->join('tb_fauna_tipo_observacao as FaunaTipoObservacao', 'FaunaTipoObservacao.id = Animais.id_tipo_observacao','left');
+        $this->db->join('tb_fauna_classificacao as FaunaClassificacao', 'FaunaClassificacao.id = Animais.id_classificacao','left');
    //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
         if(!empty($searchText)) {
             $likeCriteria = "(Animais.grau_protecao LIKE '%".$searchText."%'

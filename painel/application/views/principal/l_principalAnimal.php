@@ -68,7 +68,6 @@
                     <th>Parcela ID: Propriedade</th>
                     <th>Cadastrado por</th>
                     <th>Som</th>
-                    <th>Contato</th>
                     <th>Classificação</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
@@ -94,13 +93,10 @@
                         <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
-                        <?php echo $registro->id_som  ?>
+                        <?php echo $registro->nome_fauna_tipo_observacao  ?>
                       </td>
                       <td>
-                        <?php echo $registro->id_fauna_tp_contato ?>
-                      </td>
-                      <td>
-                        <?php echo $registro->id_classificacao ?>
+                        <?php echo $registro->nome_classificacao ?>
                       </td>
                       <td>
                         <?php echo $registro->latitude ?>
