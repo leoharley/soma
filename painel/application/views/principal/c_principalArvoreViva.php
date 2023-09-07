@@ -400,8 +400,8 @@ $(document).ready(function(){
             }
         });
 
-    $('select[name="id_familia"]').on('click', function() {
-        $('select[name="id_familia"]').on('change', function() {
+    $('select[name="id_familia"]').on('change', function() {
+        $('select[name="id_familia"]').on('click', function() {
             var idFamilia = $(this).val();
             if(idFamilia) {
                 $.ajax({
