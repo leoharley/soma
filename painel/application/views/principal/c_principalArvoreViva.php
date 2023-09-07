@@ -172,7 +172,7 @@ if(!empty($infoArvoreViva))
                                     <div class="form-group">
                                         <label for="id_especie">Espécie</label>
                                         <select id="id_especie" name="id_especie">
-                                            <option <?php if ($this->uri->segment(2) == 'editar' && $registro->id  == $id_especie) { echo 'selected'; } ?>></option>
+                                            <option></option>
                                         </select>
                                     </div>
                                 </div>
