@@ -296,9 +296,11 @@ if(!empty($infoArvoreViva))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 
-function selectElement(id, valueToSelect) {    
-    let element = document.getElementById(id);
-    element.value = valueToSelect;
+function selectElement(id, valueToSelect) {   
+    $(id).val(valueToSelect);
+    $(id).trigger('change');
+ //   let element = document.getElementById(id);
+ //   element.value = valueToSelect;
     }
 
 $(document).ready(function(){
@@ -467,10 +469,10 @@ $(document).ready(function(){
     });
 
     setTimeout(function(){
-        selectElement('id_genero', '<?php echo $id_genero ?>');
+        selectElement('id_genero', '#<?php echo $id_genero ?>');
     }, 500);
     setTimeout(function(){
-        selectElement('id_especie', '<?php echo $id_especie ?>');
+        selectElement('id_especie', '#<?php echo $id_especie ?>');
     }, 500);
     
     $('#identificacao').select2(
