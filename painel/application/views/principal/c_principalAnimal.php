@@ -23,7 +23,7 @@ if(!empty($infoAnimal))
         $id_especie = $r->id_especie;
         $id_tipo_observacao = $r->id_tipo_observacao;
         $id_classificacao = $r->id_classificacao;
-        $id_grau_protecao = $r->grau_protecao;
+        $id_grau_protecao = $r->id_grau_protecao;
         $latitude = $r->latitude;
         $longitude = $r->longitude;
     }
