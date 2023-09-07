@@ -386,7 +386,7 @@ $(document).ready(function(){
         }
     );
 
-   /* var idFamilia = $('#id_familia').val();
+    var idFamilia = $('#id_familia').val();
         $.ajax({
             url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
             type: "GET",
@@ -460,7 +460,7 @@ $(document).ready(function(){
         }else{
         //    $('select[name="id_especie"]').empty();
         }
-    });*/
+    });
 
     setTimeout(function(){
         selectElement('id_genero', '<?php echo $id_genero ?>');
