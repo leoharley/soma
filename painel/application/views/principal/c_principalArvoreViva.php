@@ -150,7 +150,7 @@ if(!empty($infoArvoreViva))
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero" required>
-                                            <option></option>
+                                            
                                             <?php
                                             if(!empty($infoGeneros))
                                             {
