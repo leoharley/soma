@@ -386,6 +386,8 @@ $(document).ready(function(){
         }
     );
 
+    setTimeout(() => {
+
     var idFamilia = $('#id_familia').val();
         $.ajax({
             url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
@@ -409,7 +411,7 @@ $(document).ready(function(){
                 dataType: "json",
                 success:function(data) {
                     $("#id_genero").select2("val", null);
-                    $("#id_especie").select2("val", null)                  
+                    $("#id_especie").select2("val", null);
                     $.each(data, function(key, value) {
                         $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                     });
@@ -461,6 +463,8 @@ $(document).ready(function(){
         //    $('select[name="id_especie"]').empty();
         }
     });
+
+    }, 2000);
 
     setTimeout(function(){
         selectElement('id_genero', '<?php echo $id_genero ?>');
