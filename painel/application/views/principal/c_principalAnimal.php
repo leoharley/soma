@@ -408,6 +408,7 @@ $(document).ready(function(){
 
     $('select[name="id_genero"]').on('change', function() {
         $('select[name="id_genero"]').on('click', function() {
+            $("#id_especie").select2("val", null);
             var idGenero = $(this).val();
             if(idGenero) {
                 $.ajax({
