@@ -419,7 +419,7 @@ $(document).ready(function(){
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
-                        $('select[name="id_especie"]').empty();
+                    //    $('select[name="id_especie"]').empty();
                         $.each(data, function(key, value) {
                             if (value.no_popular !== '') {
                                 $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
