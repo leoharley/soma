@@ -356,15 +356,13 @@ $(document).ready(function(){
     );
 
     var idFamilia = $('#id_familia').val();
-        $('select[name="id_genero"]').empty();
-        $('select[name="id_especie"]').empty();
         $.ajax({
             url: '<?php echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
             type: "GET",
             dataType: "json",
             success:function(data) {
-                $("#id_genero").select2("val", null);
-                $("#id_especie").select2("val", null);
+                $('select[name="id_genero"]').empty();
+                $('select[name="id_especie"]').empty();
                 $.each(data, function(key, value) {
                     $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                 });
@@ -401,20 +399,19 @@ $(document).ready(function(){
             type: "GET",
             dataType: "json",
             success:function(data) {
-                $("#id_especie").select2("val", null);
+                $('select[name="id_especie"]').empty();
                 $.each(data, function(key, value) {
-                   /* if (value.no_popular !== '') {
+                    if (value.no_popular !== '') {
                         $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
-                    } else {*/
+                    } else {
                         $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
-                    //}    
+                    }    
                 });  
             }
         });
 
     $('select[name="id_genero"]').on('change', function() {
         $('select[name="id_genero"]').on('click', function() {
-            $("#id_especie").select2("val", null);
             var idGenero = $(this).val();
             if(idGenero) {
                 $.ajax({
@@ -422,18 +419,18 @@ $(document).ready(function(){
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
-                        $("#id_especie").select2("val", null);
+                        $('select[name="id_especie"]').empty();
                         $.each(data, function(key, value) {
-                          /*  if (value.no_popular !== '') {
+                            if (value.no_popular !== '') {
                                 $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
-                            } else {*/
+                            } else {
                                 $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
-                           // }
+                            }
                         });
                     }
                 });
             }else{
-                $("#id_especie").select2("val", null);
+                $('select[name="id_especie"]').empty();
             }
         });
     });
