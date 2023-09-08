@@ -426,7 +426,7 @@ $(document).ready(function(){
                     }
                 });
             }else{
-            //    $('select[name="id_especie"]').empty();
+                $("#id_especie").select2("val", null);
             }
         });
     });

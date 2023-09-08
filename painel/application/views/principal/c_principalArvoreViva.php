@@ -442,7 +442,7 @@ $(document).ready(function(){
         });
 
     $('select[name="id_genero"]').on('change', function() {
-    //    $('select[name="id_genero"]').on('click', function() {
+        $('select[name="id_genero"]').on('click', function() {
             var idGenero = $(this).val();
             if(idGenero) {
                 $.ajax({
@@ -463,7 +463,7 @@ $(document).ready(function(){
             }else{
             //    $('select[name="id_especie"]').empty();
             }
-    //    });
+        });
     });
 
     setTimeout(function(){
