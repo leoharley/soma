@@ -379,7 +379,7 @@ $(document).ready(function(){
                     dataType: "json",
                     success:function(data) {
                         $('select[name="id_genero"]').empty();
-                        $('select[name="id_especie"]').empty();
+                    //    $('select[name="id_especie"]').empty();
                         $.each(data, function(key, value) {
                             $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                         });
@@ -387,7 +387,7 @@ $(document).ready(function(){
                 });
             }else{
               $('select[name="id_genero"]').empty();
-             $('select[name="id_especie"]').empty();
+            // $('select[name="id_especie"]').empty();
             }
         });
     });
