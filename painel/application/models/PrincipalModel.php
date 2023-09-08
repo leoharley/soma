@@ -585,6 +585,8 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->from('tb_flora_especie as Especies');
         $query = $this->db->get();
 
+        var_dump($this->db->last_query());exit;
+
         return $query->result();
     }
 
