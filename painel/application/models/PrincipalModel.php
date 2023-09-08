@@ -733,6 +733,8 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->where('Flora.id_genero', $idGenero);
         $query = $this->db->get();
 
+        var_dump($this->db->last_query());exit;
+
         return $query->result();
     }
 
