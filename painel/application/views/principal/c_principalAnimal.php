@@ -394,12 +394,13 @@ $(document).ready(function(){
 
 
     var idGenero = $('#id_genero').val();
+        if(idGenero) {
         $.ajax({
             url: '<?php echo base_url(); ?>consultaEspecieFauna/'+idGenero,
             type: "GET",
             dataType: "json",
             success:function(data) {
-                $('select[name="id_especie"]').empty();
+            //    $('select[name="id_especie"]').empty();
                 $.each(data, function(key, value) {
                     if (value.no_popular !== '') {
                         $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
@@ -409,6 +410,9 @@ $(document).ready(function(){
                 });  
             }
         });
+        } else {
+            $('select[name="id_especie"]').empty();
+        }
 
     $('select[name="id_genero"]').on('change', function() {
         $('select[name="id_genero"]').on('click', function() {
@@ -419,7 +423,7 @@ $(document).ready(function(){
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
-                        $('select[name="id_especie"]').empty();
+                    //    $('select[name="id_especie"]').empty();
                         $.each(data, function(key, value) {
                             if (value.no_popular !== '') {
                                 $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
@@ -429,8 +433,8 @@ $(document).ready(function(){
                         });
                     }
                 });
-            }else{
-            //    $('select[name="id_especie"]').empty();
+            } else {
+                $('select[name="id_especie"]').empty();
             }
         });
     });
