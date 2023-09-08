@@ -581,7 +581,7 @@ function carregaInfoPermissao($IdPermissao)
 
     function carregaInfoEspecies()
     {
-        $this->db->select('Especies.id, Especies.nome');
+        $this->db->select('distinct(Especies.id), Especies.nome');
         $this->db->from('tb_flora_especie as Especies');
         $query = $this->db->get();
 

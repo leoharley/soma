@@ -433,10 +433,10 @@ $(document).ready(function(){
 
     setTimeout(function(){
         selectElement('#id_genero', '<?php echo $id_genero ?>');
-    }, 500);
+    }, 200);
     setTimeout(function(){
         selectElement('#id_especie', '<?php echo $id_especie ?>');
-    }, 500);                
+    }, 200);                
 
 });
 
