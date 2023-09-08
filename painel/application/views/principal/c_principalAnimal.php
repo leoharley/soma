@@ -135,14 +135,14 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
-                                        <select id="id_genero" name="id_genero">
+                                       <!-- <select id="id_genero" name="id_genero">
                                         <option></option>
-                                        </select>
+                                        </select> -->
 
-                                       <!-- <select id="id_genero" name="id_genero" required>
+                                        <select id="id_genero" name="id_genero" required>
                                             <option></option>                                        
                                             <?php
-                                           /* if(!empty($infoGenerosFauna))
+                                            if(!empty($infoGenerosFauna))
                                             {
                                                 foreach ($infoGenerosFauna as $genero)
                                                 {
@@ -152,9 +152,9 @@ if(!empty($infoAnimal))
                                                 </option>
                                                 <?php
                                                 }
-                                            }*/
+                                            }
                                             ?>
-                                        </select>-->
+                                        </select>
                                     </div>
                                 </div>
 
@@ -362,7 +362,7 @@ $(document).ready(function(){
             dataType: "json",
             success:function(data) {
                 $('select[name="id_genero"]').empty();
-                $('select[name="id_especie"]').empty();
+            //    $('select[name="id_especie"]').empty();
                 $.each(data, function(key, value) {
                     $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                 });
