@@ -356,6 +356,8 @@ $(document).ready(function(){
     );
 
     var idFamilia = $('#id_familia').val();
+        $('select[name="id_genero"]').empty();
+        $('select[name="id_especie"]').empty();
         $.ajax({
             url: '<?php echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
             type: "GET",
@@ -371,6 +373,8 @@ $(document).ready(function(){
 
     $('select[name="id_familia"]').on('change', function() {
         $('select[name="id_familia"]').on('click', function() {
+            $('select[name="id_genero"]').empty();
+            $('select[name="id_especie"]').empty();
             var idFamilia = $(this).val();
             if(idFamilia) {
                 $.ajax({
