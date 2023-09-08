@@ -135,14 +135,14 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
-                                       <!-- <select id="id_genero" name="id_genero">
+                                        <select id="id_genero" name="id_genero">
                                         <option></option>
-                                        </select> -->
+                                        </select>
 
-                                        <select id="id_genero" name="id_genero" required>
+                                       <!-- <select id="id_genero" name="id_genero" required>
                                             <option></option>                                        
                                             <?php
-                                            if(!empty($infoGenerosFauna))
+                                           /* if(!empty($infoGenerosFauna))
                                             {
                                                 foreach ($infoGenerosFauna as $genero)
                                                 {
@@ -152,9 +152,9 @@ if(!empty($infoAnimal))
                                                 </option>
                                                 <?php
                                                 }
-                                            }
+                                            }*/
                                             ?>
-                                        </select>
+                                        </select>-->
                                     </div>
                                 </div>
 
@@ -415,7 +415,7 @@ $(document).ready(function(){
         }
 
     $('select[name="id_genero"]').on('change', function() {
-        $('select[name="id_genero"]').on('click', function() {
+    //    $('select[name="id_genero"]').on('click', function() {
             var idGenero = $(this).val();
             if(idGenero) {
                 $.ajax({
@@ -436,7 +436,7 @@ $(document).ready(function(){
             } else {
             //    $('select[name="id_especie"]').empty();
             }
-        });
+     //   });
     });
 
     setTimeout(function(){
