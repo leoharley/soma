@@ -425,6 +425,7 @@ $(document).ready(function(){
 
 
     var idGenero = $('#id_genero').val();
+    $("#id_especie").select2("val", null);
         $.ajax({
             url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
             type: "GET",
@@ -442,7 +443,8 @@ $(document).ready(function(){
         });
 
     $('select[name="id_genero"]').on('change', function() {
-
+        $('select[name="id_genero"]').on('click', function() {
+            $("#id_especie").select2("val", null);
             var idGenero = $(this).val();
             if(idGenero) {
                 $.ajax({
@@ -463,7 +465,7 @@ $(document).ready(function(){
             }else{
             //    $('select[name="id_especie"]').empty();
             }
-
+        });
     });
 
     setTimeout(function(){
