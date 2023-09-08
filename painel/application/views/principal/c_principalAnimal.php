@@ -418,11 +418,11 @@ $(document).ready(function(){
                     success:function(data) {
                         $("#id_especie").select2("val", null);
                         $.each(data, function(key, value) {
-                            if (value.no_popular !== '') {
+                          /*  if (value.no_popular !== '') {
                                 $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
-                            } else {
+                            } else {*/
                                 $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
-                            }
+                           // }
                         });
                     }
                 });
