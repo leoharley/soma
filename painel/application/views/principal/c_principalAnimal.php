@@ -430,7 +430,7 @@ $(document).ready(function(){
                     }
                 });
             }else{
-                $('select[name="id_especie"]').empty();
+            //    $('select[name="id_especie"]').empty();
             }
         });
     });
