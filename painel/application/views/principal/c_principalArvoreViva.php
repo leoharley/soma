@@ -468,10 +468,10 @@ $(document).ready(function(){
 
     setTimeout(function(){
         selectElement('#id_genero', '<?php echo $id_genero ?>');
-    }, 200);
+    }, 1000);
     setTimeout(function(){
         selectElement('#id_especie', '<?php echo $id_especie ?>');
-    }, 200);
+    }, 1000);
     
     $('#identificacao').select2(
         {
