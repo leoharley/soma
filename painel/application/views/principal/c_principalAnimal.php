@@ -411,7 +411,7 @@ $(document).ready(function(){
             }
         });
         } else {
-            $('select[name="id_especie"]').empty();
+        //    $('select[name="id_especie"]').empty();
         }
 
     $('select[name="id_genero"]').on('change', function() {
@@ -434,7 +434,7 @@ $(document).ready(function(){
                     }
                 });
             } else {
-                $('select[name="id_especie"]').empty();
+            //    $('select[name="id_especie"]').empty();
             }
         });
     });
