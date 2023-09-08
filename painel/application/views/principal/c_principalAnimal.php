@@ -369,7 +369,7 @@ $(document).ready(function(){
             }
         });
 
-    $('select[name="id_familia"]').on('click', function() {
+    $('select[name="id_familia"]').on('select', function() {
     //    $('select[name="id_familia"]').on('click', function() {
             var idFamilia = $(this).val();
             if(idFamilia) {
@@ -414,7 +414,7 @@ $(document).ready(function(){
         //    $('select[name="id_especie"]').empty();
         }
 
-    $('select[name="id_genero"]').on('click', function() {
+    $('select[name="id_genero"]').on('select', function() {
     //    $('select[name="id_genero"]').on('click', function() {
             var idGenero = $(this).val();
             if(idGenero) {
