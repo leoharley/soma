@@ -855,9 +855,7 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->from('tb_fauna as Fauna');
         $this->db->join('tb_fauna_especie as Especie', 'Especie.id = Fauna.id_especie','left');
         $this->db->where('Fauna.id_genero', $idGenero);
-        $query = $this->db->get();
-
-        var_dump ($this->db->last_query());exit;
+        $query = $this->db->get();      
 
         return $query->result();
     }
