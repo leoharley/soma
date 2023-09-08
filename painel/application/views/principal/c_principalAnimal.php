@@ -373,8 +373,6 @@ $(document).ready(function(){
 
     $('select[name="id_familia"]').on('change', function() {
         $('select[name="id_familia"]').on('click', function() {
-            $('select[name="id_genero"]').empty();
-            $('select[name="id_especie"]').empty();
             var idFamilia = $(this).val();
             if(idFamilia) {
                 $.ajax({
@@ -382,16 +380,16 @@ $(document).ready(function(){
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
-                        $("#id_genero").select2("val", null);
-                        $("#id_especie").select2("val", null);
+                        $('select[name="id_genero"]').empty();
+                        $('select[name="id_especie"]').empty();
                         $.each(data, function(key, value) {
                             $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                         });
                     }
                 });
             }else{
-        //      $('select[name="id_genero"]').empty();
-        //     $('select[name="id_especie"]').empty();
+              $('select[name="id_genero"]').empty();
+             $('select[name="id_especie"]').empty();
             }
         });
     });
