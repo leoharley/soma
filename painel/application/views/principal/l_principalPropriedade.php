@@ -137,7 +137,7 @@ function mask($val, $mask) {
                                 </div>
                                 
                                 <div class="modal-footer">  
-                                    <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaProjeto/'.$registro->id ?>" data-userid="<?= $registro->id ?>" title="Excluir">
+                                    <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaPropriedade/'.$registro->id ?>" data-userid="<?= $registro->id ?>" title="Excluir">
                                     Confirmar
                                     </a>                       
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
