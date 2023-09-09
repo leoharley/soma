@@ -666,7 +666,7 @@ function principalArvoreViva()
                 $IdArvoreViva = $this->input->post('id');
 
                 $id_parcela  = $this->input->post('id_parcela');
-                $latitude = $this->input->post('latitude');
+                $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
                 $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
                 $id_familia = $this->input->post('id_familia');
                 $id_genero = $this->input->post('id_genero');
@@ -681,6 +681,12 @@ function principalArvoreViva()
                 $nu_altura_copa = $this->input->post('nu_altura_copa');
                 $isolada = $this->input->post('isolada');
                 $floracao_frutificacao = $this->input->post('floracao_frutificacao');
+
+
+                var_dump(strstr($latitude, '°'));
+                var_dump(get_string_between($latitude, '°', '\''));
+                var_dump(get_string_between($latitude, '\'', '.'));
+                exit;
 
                 $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
                                     'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'identificacao'=>$identificacao, 
@@ -1102,6 +1108,15 @@ function principalAnimal()
         $val = preg_replace('/\.(?=.*\.)/', '', $val);
        // return ($val); 
         return floatval($val);      
+    }
+
+    function get_string_between($string, $start, $end){
+        $string = ' ' . $string;
+        $ini = strpos($string, $start);
+        if ($ini == 0) return '';
+        $ini += strlen($start);
+        $len = strpos($string, $end, $ini) - $ini;
+        return substr($string, $ini, $len);
     }
 
 }
