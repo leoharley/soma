@@ -682,15 +682,15 @@ function principalArvoreViva()
                 $isolada = $this->input->post('isolada');
                 $floracao_frutificacao = $this->input->post('floracao_frutificacao');
 
-                var_dump($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
-
-                exit;
+                $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
+                $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
 
                 $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
                                     'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'identificacao'=>$identificacao, 
                                     'id_grau_protecao'=>$id_grau_protecao, 'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura,
                                     'nu_altura_total'=>$nu_altura_total, 'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa,
-                                    'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao);
+                                    'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao, 'latitude_gd'=>$latitude_gd,
+                                    'longitude_gd'=>$longitude_gd);
                                     
                 $result = $this->PrincipalModel->editaArvoreViva($infoArvoreViva, $IdArvoreViva);
                 
