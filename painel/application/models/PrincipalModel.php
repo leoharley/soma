@@ -44,7 +44,13 @@ class PrincipalModel extends CI_Model
 
     function apagaProjeto($IdProjeto)
     {
+        $infoProjeto['st_registro_ativo'] = 'N';
         $this->db->where('id', $IdProjeto);
+        $this->db->update('tb_projetos', $infoProjeto);
+        
+        return TRUE;
+
+    /*    $this->db->where('id', $IdProjeto);
         $res2 = $this->db->delete('tb_projetos');
 
         if(!$res1 && !$res2)
@@ -55,7 +61,7 @@ class PrincipalModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        }*/
 
     }
 
