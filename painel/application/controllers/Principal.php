@@ -684,8 +684,8 @@ function principalArvoreViva()
 
 
                 var_dump(strstr($latitude, '°'));
-                var_dump(get_string_between($latitude, '°', '\''));
-                var_dump(get_string_between($latitude, '\'', '.'));
+                var_dump($this->get_string_between($latitude, '°', '\''));
+                var_dump($this->get_string_between($latitude, '\'', '.'));
                 exit;
 
                 $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
