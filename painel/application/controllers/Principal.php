@@ -614,7 +614,7 @@ function principalArvoreViva()
     function adicionaArvoreViva() 
     {
                 $id_parcela  = $this->input->post('id_parcela');
-                $latitude = $this->input->post('latitude');
+                $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
                 $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
                 $id_familia = $this->input->post('id_familia');
                 $id_genero = $this->input->post('id_genero');
@@ -630,11 +630,15 @@ function principalArvoreViva()
                 $isolada = $this->input->post('isolada');
                 $floracao_frutificacao = $this->input->post('floracao_frutificacao');
 
+                $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
+                $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
+
                 $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
                                     'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'identificacao'=>$identificacao, 
                                     'id_grau_protecao'=>$id_grau_protecao, 'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura,
                                     'nu_altura_total'=>$nu_altura_total, 'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa,
-                                    'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao);
+                                    'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao, 'latitude_gd'=>$latitude_gd,
+                                    'longitude_gd'=>$longitude_gd);
                                     
                 $result = $this->PrincipalModel->adicionaArvoreViva($infoArvoreViva);
                 
@@ -815,6 +819,9 @@ function principalAnimal()
             $id_grau_protecao = $this->input->post('id_grau_protecao');
             $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
             $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
+
+            $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
+            $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
             
             $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
                                 'longitude'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
