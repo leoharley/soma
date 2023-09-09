@@ -682,10 +682,8 @@ function principalArvoreViva()
                 $isolada = $this->input->post('isolada');
                 $floracao_frutificacao = $this->input->post('floracao_frutificacao');
 
+                var_dump($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
 
-                var_dump(strtok($latitude, '°'));
-                var_dump($this->get_string_between($latitude, '°', '\''));
-                var_dump($this->get_string_between($latitude, '\'', '.'));
                 exit;
 
                 $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
@@ -1117,6 +1115,12 @@ function principalAnimal()
         $ini += strlen($start);
         $len = strpos($string, $end, $ini) - $ini;
         return substr($string, $ini, $len);
+    }
+
+    function DMStoDD($deg,$min,$sec)
+    {
+        // Converting DMS ( Degrees / minutes / seconds ) to decimal format
+    return $deg+((($min*60)+($sec))/3600);
     }
 
 }
