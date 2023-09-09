@@ -16,6 +16,7 @@ class CadastroModel extends CI_Model
                             OR  Usuarios.nu_cpf LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
+        $this->db->where('Usuarios.st_registro_ativo', 'S');
 
         $this->db->limit($page, $segment);
         $query = $this->db->get();
@@ -67,7 +68,13 @@ class CadastroModel extends CI_Model
     
     function apagaUsuario($IdUsuario)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
+        $this->db->update('tb_cadastro_pessoa', $info);
+
+        return TRUE;
+
+    /*    $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
         $res2 = $this->db->delete('tb_cadastro_pessoa');
 
         if(!$res1 && !$res2)
@@ -79,7 +86,7 @@ class CadastroModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        } */
 
         // $this->db->where('Id_Usuario', $IdUsuario);
         // $this->db->update('TabUsuario', $infoUsuario);
@@ -140,6 +147,8 @@ function listaPerfis($searchText = '', $page, $segment)
         $likeCriteria = "(Perfis.ds_perfil  LIKE '%".$searchText."%')";
         $this->db->where($likeCriteria);
     }
+
+    $this->db->where('Perfis.st_registro_ativo', 'S');
     $this->db->limit($page, $segment);
     $query = $this->db->get();
     
@@ -180,7 +189,15 @@ function editaPerfil($infoPerfil, $IdPerfil)
 
 function apagaPerfil($infoPerfil, $IdPerfil)
 {
-        $this->db->where('id_perfil', $IdPerfil);
+    $info['st_registro_ativo'] = 'N';
+    $this->db->where('id_perfil', $IdPerfil);
+    $this->db->update('tb_permissao', $info);
+    $this->db->where('id_perfil', $IdPerfil);
+    $this->db->update('tb_perfil', $info);
+
+    return TRUE;
+    
+    /*    $this->db->where('id_perfil', $IdPerfil);
         $res1 = $this->db->delete('tb_permissao');
 
         $this->db->where('id_perfil', $IdPerfil);
@@ -195,7 +212,8 @@ function apagaPerfil($infoPerfil, $IdPerfil)
         else
         {
             return TRUE;
-        }
+        }*/
+
 }
 
 function carregaInfoPerfilExistente($IdPerfil)
@@ -221,6 +239,8 @@ function listaPermissao($idUser, $searchText = '', $page, $segment)
                         OR Permissao.ds_tela LIKE '%".$searchText."%')";
         $this->db->where($likeCriteria);
     }
+
+    $this->db->where('Permissao.st_registro_ativo', 'S');
 //   $this->db->where('Permissao.CriadoPor', $idUser);
     $this->db->limit($page, $segment);
     $query = $this->db->get();

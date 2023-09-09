@@ -15,6 +15,7 @@ class PrincipalModel extends CI_Model
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('Projetos.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -78,6 +79,7 @@ class PrincipalModel extends CI_Model
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('Propriedades.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -107,7 +109,13 @@ class PrincipalModel extends CI_Model
 
     function apagaPropriedade($idPropriedade)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $idPropriedade);
+        $this->db->update('tb_propriedades', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('id', $idPropriedade);
         $res2 = $this->db->delete('tb_propriedades');
 
         if(!$res1 && !$res2)
@@ -118,7 +126,7 @@ class PrincipalModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        }*/
 
     }
 
@@ -139,6 +147,7 @@ class PrincipalModel extends CI_Model
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('Parcelas.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -168,7 +177,13 @@ class PrincipalModel extends CI_Model
 
     function apagaParcela($idParcela)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $idParcela);
+        $this->db->update('tb_parcelas', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('id', $idParcela);
         $res2 = $this->db->delete('tb_parcelas');
 
         if(!$res1 && !$res2)
@@ -179,7 +194,7 @@ class PrincipalModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        }*/
 
     }
 
@@ -214,7 +229,13 @@ class PrincipalModel extends CI_Model
     
     function apagaUsuario($IdUsuario)
     {
-        $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
+        $info['st_registro_ativo'] = 'N';
+        $this->db->where('id', $IdUsuario);
+        $this->db->update('tb_cadastro_pessoa', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
         $res2 = $this->db->delete('tb_cadastro_pessoa');
 
         if(!$res1 && !$res2)
@@ -226,7 +247,7 @@ class PrincipalModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        }*/
 
         // $this->db->where('Id_Usuario', $IdUsuario);
         // $this->db->update('TabUsuario', $infoUsuario);
@@ -415,6 +436,8 @@ function listaPerfis($searchText = '', $page, $segment)
         $likeCriteria = "(Perfis.ds_perfil  LIKE '%".$searchText."%')";
         $this->db->where($likeCriteria);
     }
+
+    $this->db->where('Perfis.st_registro_ativo', 'S');
     $this->db->limit($page, $segment);
     $query = $this->db->get();
     
@@ -455,7 +478,13 @@ function editaPerfil($infoPerfil, $IdPerfil)
 
 function apagaPerfil($infoPerfil, $IdPerfil)
 {
-        $this->db->where('id_perfil', $IdPerfil);
+    $info['st_registro_ativo'] = 'N';
+    $this->db->where('id', $IdPerfil);
+    $this->db->update('tb_permissao', $info);
+        
+    return TRUE;
+
+    /*    $this->db->where('id_perfil', $IdPerfil);
         $res1 = $this->db->delete('tb_permissao');
 
         $this->db->where('id_perfil', $IdPerfil);
@@ -470,7 +499,7 @@ function apagaPerfil($infoPerfil, $IdPerfil)
         else
         {
             return TRUE;
-        }
+        }*/
 }
 
 function carregaInfoPerfilExistente($IdPerfil)
@@ -496,6 +525,8 @@ function listaPermissao($idUser, $searchText = '', $page, $segment)
                         OR Permissao.ds_tela LIKE '%".$searchText."%')";
         $this->db->where($likeCriteria);
     }
+
+    $this->db->where('Permissao.st_registro_ativo', 'S');
 //   $this->db->where('Permissao.CriadoPor', $idUser);
     $this->db->limit($page, $segment);
     $query = $this->db->get();
@@ -637,6 +668,7 @@ function carregaInfoPermissao($IdPermissao)
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('ArvoresVivas.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -666,7 +698,15 @@ function carregaInfoPermissao($IdPermissao)
 
     function apagaArvoreViva($IdArvoreViva)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id_arvores_vivas', $IdArvoreViva);
+        $this->db->update('rl_flora_familia_genero_especie', $info);
+        $this->db->where('id', $IdArvoreViva);
+        $this->db->update('tb_arvores_vivas', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('id_arvores_vivas', $IdArvoreViva);
         $res1 = $this->db->delete('rl_flora_familia_genero_especie');
         $this->db->where('id', $IdArvoreViva);
         $res2 = $this->db->delete('tb_arvores_vivas');
@@ -679,7 +719,7 @@ function carregaInfoPermissao($IdPermissao)
         else
         {
             return TRUE;
-        }
+        }*/
 
     }
 
@@ -705,7 +745,13 @@ function carregaInfoPermissao($IdPermissao)
 
     function apagaRlFloraFamiliaGeneroEspecie($IdRlFloraFamiliaGeneroEspecie)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $IdRlFloraFamiliaGeneroEspecie);
+        $this->db->update('rl_flora_familia_genero_especie', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('id', $IdRlFloraFamiliaGeneroEspecie);
         $res2 = $this->db->delete('rl_flora_familia_genero_especie');
 
         if(!$res1 && !$res2)
@@ -716,7 +762,7 @@ function carregaInfoPermissao($IdPermissao)
         else
         {
             return TRUE;
-        }
+        }*/
 
     }
 
@@ -761,6 +807,7 @@ function carregaInfoPermissao($IdPermissao)
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('Animais.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -790,7 +837,15 @@ function carregaInfoPermissao($IdPermissao)
 
     function apagaAnimal($IdAnimal)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id_animais', $IdAnimal);
+        $this->db->update('rl_fauna_familia_genero_especie', $info);
+        $this->db->where('id', $IdAnimal);
+        $this->db->update('tb_animais', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('id_animais', $IdAnimal);
         $res1 = $this->db->delete('rl_fauna_familia_genero_especie');
         $this->db->where('id', $IdAnimal);
         $res2 = $this->db->delete('tb_animais');
@@ -803,7 +858,7 @@ function carregaInfoPermissao($IdPermissao)
         else
         {
             return TRUE;
-        }
+        }*/
 
     }
 
@@ -829,7 +884,13 @@ function carregaInfoPermissao($IdPermissao)
 
     function apagaRlFaunaFamiliaGeneroEspecie($IdRlFaunaFamiliaGeneroEspecie)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $IdRlFaunaFamiliaGeneroEspecie);
+        $this->db->update('rl_fauna_familia_genero_especie', $info);
+             
+        return TRUE;
+
+     /*   $this->db->where('id', $IdRlFaunaFamiliaGeneroEspecie);
         $res2 = $this->db->delete('rl_fauna_familia_genero_especie');
 
         if(!$res1 && !$res2)
@@ -840,7 +901,7 @@ function carregaInfoPermissao($IdPermissao)
         else
         {
             return TRUE;
-        }
+        }*/
 
     }
 
@@ -882,6 +943,7 @@ function carregaInfoPermissao($IdPermissao)
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('Epifitas.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -911,7 +973,15 @@ function carregaInfoPermissao($IdPermissao)
 
     function apagaEpifita($IdEpifita)
     {
-        $this->db->where('id_epifitas', $IdAnimal);
+        $info['st_registro_ativo'] = 'N';
+        $this->db->where('id_epifitas', $IdEpifita);
+        $this->db->update('rl_epifitas_familia_genero_especie', $info);
+        $this->db->where('id', $IdEpifita);
+        $this->db->update('tb_epifitas', $info);
+            
+        return TRUE;
+
+    /*    $this->db->where('id_epifitas', $IdAnimal);
         $res1 = $this->db->delete('rl_epifitas_familia_genero_especie');
         $this->db->where('id', $IdAnimal);
         $res2 = $this->db->delete('tb_epifitas');
@@ -924,7 +994,7 @@ function carregaInfoPermissao($IdPermissao)
         else
         {
             return TRUE;
-        }
+        } */
 
     }
 
@@ -950,7 +1020,13 @@ function carregaInfoPermissao($IdPermissao)
 
     function apagaRlEpifitaFamiliaGeneroEspecie($IdRlEpifitaFamiliaGeneroEspecie)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $IdRlEpifitaFamiliaGeneroEspecie);
+        $this->db->update('rl_epifitas_familia_genero_especie', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('id', $IdRlEpifitaFamiliaGeneroEspecie);
         $res2 = $this->db->delete('rl_epifitas_familia_genero_especie');
 
         if(!$res1 && !$res2)
@@ -961,7 +1037,7 @@ function carregaInfoPermissao($IdPermissao)
         else
         {
             return TRUE;
-        }
+        } */
 
     }
 

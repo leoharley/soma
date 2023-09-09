@@ -13,6 +13,7 @@ class SelecaoModel extends CI_Model
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('FaunaClassificacao.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -42,7 +43,12 @@ class SelecaoModel extends CI_Model
 
     function apagaFaunaClassificacao($id)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
+        $this->db->update('tb_fauna_classificacao', $info);
+
+        return TRUE;
+    /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_fauna_classificacao');
 
         if(!$res1 && !$res2)
@@ -53,7 +59,7 @@ class SelecaoModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        } */
 
     }
     
@@ -79,6 +85,7 @@ class SelecaoModel extends CI_Model
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('TipoParcela.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -108,7 +115,13 @@ class SelecaoModel extends CI_Model
 
     function apagaTipoParcela($id)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
+        $this->db->update('tb_tipo_parcela', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_tipo_parcela');
 
         if(!$res1 && !$res2)
@@ -119,7 +132,7 @@ class SelecaoModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        } */
 
     }
     
@@ -145,6 +158,7 @@ class SelecaoModel extends CI_Model
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('TipoBioma.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -174,7 +188,13 @@ class SelecaoModel extends CI_Model
 
     function apagaTipoBioma($id)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
+        $this->db->update('tb_tipo_bioma', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_tipo_bioma');
 
         if(!$res1 && !$res2)
@@ -185,7 +205,7 @@ class SelecaoModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        } */
 
     }
     
@@ -211,6 +231,7 @@ class SelecaoModel extends CI_Model
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('GrauEpifitismo.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -240,7 +261,13 @@ class SelecaoModel extends CI_Model
 
     function apagaGrauEpifitismo($id)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
+        $this->db->update('tb_grau_epifitismo', $info);
+       
+        return TRUE;
+
+    /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_grau_epifitismo');
 
         if(!$res1 && !$res2)
@@ -251,7 +278,7 @@ class SelecaoModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        } */
 
     }
 
@@ -267,6 +294,7 @@ class SelecaoModel extends CI_Model
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('EstagioRegeneracao.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -296,7 +324,13 @@ class SelecaoModel extends CI_Model
 
     function apagaEstagioRegeneracao($id)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
+        $this->db->update('tb_estagio_regeneracao', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_estagio_regeneracao');
 
         if(!$res1 && !$res2)
@@ -307,7 +341,7 @@ class SelecaoModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        } */
 
     }
     
@@ -343,6 +377,7 @@ class SelecaoModel extends CI_Model
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('GrauProtecao.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -372,7 +407,13 @@ class SelecaoModel extends CI_Model
 
     function apagaGrauProtecao($id)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
+        $this->db->update('tb_grau_protecao', $info);
+        
+        return TRUE;
+
+    /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_grau_protecao');
 
         if(!$res1 && !$res2)
@@ -383,7 +424,7 @@ class SelecaoModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        } */
 
     }
     
@@ -409,6 +450,7 @@ class SelecaoModel extends CI_Model
             $this->db->where($likeCriteria);
         }
 
+        $this->db->where('FaunaTipoObservacao.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -438,7 +480,12 @@ class SelecaoModel extends CI_Model
 
     function apagaFaunaTipoObservacao($id)
     {
+        $info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
+        $this->db->update('tb_fauna_tipo_observacao', $info);
+
+        return TRUE;
+    /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_fauna_tipo_observacao');
 
         if(!$res1 && !$res2)
@@ -449,7 +496,7 @@ class SelecaoModel extends CI_Model
         else
         {
             return TRUE;
-        }
+        } */
 
     }
     

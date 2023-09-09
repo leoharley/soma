@@ -17,6 +17,7 @@ class Login_model extends CI_Model
         $this->db->join('tb_perfil as perfil','perfil.id_perfil = cadpessoa.id_perfil');
         $this->db->where('cadpessoa.nu_cpf', $usuario);
         $this->db->where('acesso.st_registro_ativo', 'S');
+        $this->db->where('cadpessoa.st_registro_ativo', 'S');
         $query = $this->db->get();
         
         $usuario = $query->result();
