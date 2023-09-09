@@ -825,7 +825,8 @@ function principalAnimal()
             
             $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
                                 'longitude'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
-                                'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao);
+                                'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao,
+                                'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd);
                                 
             $result = $this->PrincipalModel->adicionaAnimal($infoAnimal);
             
@@ -865,9 +866,13 @@ function principalAnimal()
             $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
             $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
 
+            $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
+            $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
+
             $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
                                 'longitude'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
-                                'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao);
+                                'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao,
+                                'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd);
                                 
             $result = $this->PrincipalModel->editaAnimal($infoAnimal, $IdAnimal);
             
@@ -975,14 +980,18 @@ function principalAnimal()
     function adicionaEpifita() 
     {
         $id_parcela  = $this->input->post('id_parcela');
-        $latitude = $this->input->post('latitude');
+        $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
         $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
         $id_familia = $this->input->post('id_familia');
         $id_genero = $this->input->post('id_genero');
         $id_especie = $this->input->post('id_especie');
+
+        $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
+        $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
         
         $infoEpifita = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'),
-                             'latitude'=>$latitude, 'longitude'=>$longitude);
+                             'latitude'=>$latitude, 'longitude'=>$longitude, 'latitude_gd'=>$latitude_gd,
+                             'longitude_gd'=>$longitude_gd);
                             
         $result = $this->PrincipalModel->adicionaEpifita($infoEpifita);
         
@@ -1019,8 +1028,12 @@ function principalAnimal()
                 $id_genero = $this->input->post('id_genero');
                 $id_especie = $this->input->post('id_especie');
 
+                $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
+                $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
+
                 $infoEpifita = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 
-                                     'latitude'=>$latitude, 'longitude'=>$longitude);
+                                     'latitude'=>$latitude, 'longitude'=>$longitude, 'latitude_gd'=>$latitude_gd,
+                                     'longitude_gd'=>$longitude_gd);
                                     
                 $result = $this->PrincipalModel->editaEpifita($infoEpifita, $IdEpifita);
                 
