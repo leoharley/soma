@@ -101,11 +101,33 @@
                           <a class="btn btn-sm btn-info" href="<?= base_url().'cadastroUsuario/editar/'.$registro->co_seq_cadastro_pessoa ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaUsuario/'.$registro->co_seq_cadastro_pessoa ?>" data-userid="<?= $registro->co_seq_cadastro_pessoa ?>" title="Excluir">
-                              <i class="fa fa-trash-o"></i>
-                          </a>
+                          <a class="btn btn-sm btn-danger deleteUser" href="#" data-toggle="modal" data-target="#confirma-exclusao"><i class="fa fa-trash-o"></i></a>                          
                       </td>
                     </tr>
+
+                    <div class="modal fade" id="confirma-exclusao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel"><strong>Confirmação</strong></h4>
+                                </div>
+                            
+                                <div class="modal-body">
+                                    <p>Tem certeza que deseja excluir? Esta ação não poderá ser revertida!</p>
+                                </div>
+                                
+                                <div class="modal-footer">  
+                                    <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaUsuario/'.$registro->co_seq_cadastro_pessoa ?>" data-userid="<?php echo $registro->co_seq_cadastro_pessoa; ?>" title="Excluir">
+                                    Confirmar
+                                    </a>                       
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <?php
                           }
                       }
