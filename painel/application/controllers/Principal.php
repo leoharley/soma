@@ -683,7 +683,7 @@ function principalArvoreViva()
                 $floracao_frutificacao = $this->input->post('floracao_frutificacao');
 
 
-                var_dump(strstr($latitude, '°'));
+                var_dump($this->get_string_between($latitude, '', '°'));
                 var_dump($this->get_string_between($latitude, '°', '\''));
                 var_dump($this->get_string_between($latitude, '\'', '.'));
                 exit;
