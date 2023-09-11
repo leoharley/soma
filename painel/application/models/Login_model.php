@@ -20,9 +20,7 @@ class Login_model extends CI_Model
         $this->db->where('cadpessoa.st_registro_ativo', 'S');
         $query = $this->db->get();
         
-        $usuario = $query->result();
-
-        var_dump($this->db->last_query());exit;
+        $usuario = $query->result();       
 
         if(!empty($usuario)){
             if($senha==$usuario[0]->senha){
