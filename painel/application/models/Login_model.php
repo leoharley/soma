@@ -19,6 +19,8 @@ class Login_model extends CI_Model
         $this->db->where('acesso.st_registro_ativo', 'S');
         $this->db->where('cadpessoa.st_registro_ativo', 'S');
         $query = $this->db->get();
+
+        var_dump($this->db->last_query());exit;
         
         $usuario = $query->result();
 
