@@ -119,11 +119,11 @@ function mask($val, $mask) {
                           <a class="btn btn-sm btn-info" href="<?= base_url().'principalParcela/editar/'.$registro->id ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="#" data-toggle="modal" data-target="#confirma-exclusao"><i class="fa fa-trash-o"></i></a>
+                          <a class="btn btn-sm btn-danger deleteUser" href="#" data-toggle="modal" data-target="#confirma-exclusao<?= $registro->id ?>"><i class="fa fa-trash-o"></i></a>
                       </td>
                     </tr>
 
-                    <div class="modal fade" id="confirma-exclusao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="confirma-exclusao<?= $registro->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             
