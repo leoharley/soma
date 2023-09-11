@@ -100,8 +100,8 @@ class Cadastro extends BaseController
             $this->form_validation->set_rules('Nome_Usuario','Nome','trim|required|max_length[128]');
             $this->form_validation->set_rules('Cpf_Usuario','CPF','trim|required|max_length[128]');
             $this->form_validation->set_rules('Email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('Senha','Senha','required|max_length[20]');
-            $this->form_validation->set_rules('resenha','Confirme a senha','trim|required|matches[password]|max_length[20]');
+            $this->form_validation->set_rules('Senha','Senha','matches[resenha]|max_length[20]');
+            $this->form_validation->set_rules('resenha','Confirme a senha','trim|required|matches[Senha]|max_length[20]');
 
         //VALIDAÇÃO
 
@@ -125,15 +125,16 @@ class Cadastro extends BaseController
 
                 if ($this->CadastroModel->consultaUsuarioExistente($cpf,$email) == null) {
 
-                $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'st_admin'=>$admin,
+                $infoAcesso = array('co_cadastro_pessoa '=> $result, 'ds_senha'=>getHashedPassword($senha), 'st_registro_ativo'=>'S');
+                                
+                $resultAcesso = $this->CadastroModel->adicionaAcesso($infoAcesso);    
+
+                $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'st_admin'=>$admin, 'id_acesso'=>$resultAcesso,
                                     'id_perfil'=> $id_perfil, 'nu_cpf'=>$cpf, 'st_registro_ativo'=>'S');
                                     
                 $result = $this->CadastroModel->adicionaUsuario($infoUsuario);
                 
-                $infoAcesso = array('co_cadastro_pessoa '=> $result, 'ds_senha'=>getHashedPassword($senha), 'st_registro_ativo'=>'S');
-                                    
-                $resultAcesso = $this->CadastroModel->adicionaAcesso($infoAcesso);
-                
+
                 if($result > 0 && $resultAcesso > 0)
                 {
                     $process = 'Adicionar usuário';
@@ -162,6 +163,9 @@ class Cadastro extends BaseController
             $this->load->library('form_validation');
             
             $IdUsuario = $this->input->post('co_seq_cadastro_pessoa');
+
+            $this->form_validation->set_rules('Senha','Senha','matches[resenha]|max_length[20]');
+            $this->form_validation->set_rules('resenha','Confirme a senha','trim|required|matches[Senha]|max_length[20]');
 
             //VALIDAÇÃO
             
