@@ -23,7 +23,7 @@ class Login_model extends CI_Model
         $usuario = $query->result();
         
         if(!empty($usuario)){
-            if($senha==$usuario[0]->senha){
+            if(verifyHashedPassword($senha,$usuario[0]->senha)){
                 return $usuario;
             } else {
                 return array();
