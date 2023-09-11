@@ -70,32 +70,23 @@ class CadastroModel extends CI_Model
     {
         $info['st_registro_ativo'] = 'N';
 
-        $this->db->where('co_seq_acesso', $this->session->userdata('userId'));
+        $this->db->where('co_seq_acesso', $this->carregaInfoIdAcesso($IdUsuario)[0]->id_acesso);
         $this->db->update('tb_acesso', $info);
 
         $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
         $this->db->update('tb_cadastro_pessoa', $info);
 
         return TRUE;
+    }
 
-    /*    $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
-        $res2 = $this->db->delete('tb_cadastro_pessoa');
-
-        if(!$res1 && !$res2)
-        {
-            $error = $this->db->error();
-            return $error['code'];
-            //return array $error['code'] & $error['message']
-        }
-        else
-        {
-            return TRUE;
-        } */
-
-        // $this->db->where('Id_Usuario', $IdUsuario);
-        // $this->db->update('TabUsuario', $infoUsuario);
+    function carregaInfoIdAcesso($id)
+    {
+        $this->db->select('id_acesso');
+        $this->db->from('tb_cadastro_pessoa');
+        $this->db->where('co_seq_cadastro_pessoa', $id);
+        $query = $this->db->get();
         
-        // return $this->db->affected_rows();
+        return $query->result();
     }
 
     function carregaInfoPerfil()
