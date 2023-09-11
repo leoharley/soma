@@ -450,7 +450,7 @@ $(document).ready(function(){
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
-                       // $("#id_especie").select2("val", null);
+                        $("#id_especie").select2("val", null);
                         $("#id_especie").empty();
                         $.each(data, function(key, value) {
                             if (value.no_popular !== '') {
