@@ -46,24 +46,27 @@ class PrincipalModel extends CI_Model
     function apagaProjeto($IdProjeto)
     {
         $infoProjeto['st_registro_ativo'] = 'N';
+
+        $this->db->where('id_propriedade', $this->carregaInfoIdPropriedade($id)[0]->id);
+        $this->db->update('tb_parcelas', $infoProjeto);
+
+        $this->db->where('id_projeto', $IdProjeto);
+        $this->db->update('tb_propriedades', $infoProjeto);
+
         $this->db->where('id', $IdProjeto);
         $this->db->update('tb_projetos', $infoProjeto);
         
         return TRUE;
+    }
 
-    /*    $this->db->where('id', $IdProjeto);
-        $res2 = $this->db->delete('tb_projetos');
-
-        if(!$res1 && !$res2)
-        {
-            $error = $this->db->error();
-            return $error['code'];
-        }
-        else
-        {
-            return TRUE;
-        }*/
-
+    function carregaInfoIdPropriedade($id)
+    {
+        $this->db->select('id');
+        $this->db->from('tb_propriedades');
+        $this->db->where('id_projeto', $id);
+        $query = $this->db->get();
+        
+        return $query->result();
     }
 
 
