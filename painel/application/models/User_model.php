@@ -156,6 +156,8 @@ class User_model extends CI_Model
         $this->db->where('co_seq_acesso', $userId);        
         $this->db->where('st_registro_ativo', 'S');
         $query = $this->db->get('tb_acesso');
+
+        var_dump($this->db->last_query());exit;
         
         $user = $query->result();
 
