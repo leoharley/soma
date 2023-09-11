@@ -130,7 +130,7 @@ class Cadastro extends BaseController
                                     
                 $result = $this->CadastroModel->adicionaUsuario($infoUsuario);
                 
-                $infoAcesso = array('co_cadastro_pessoa '=> $result, 'ds_senha'=>$senha, 'st_registro_ativo'=>'S');
+                $infoAcesso = array('co_cadastro_pessoa '=> $result, 'ds_senha'=>getHashedPassword($senha), 'st_registro_ativo'=>'S');
                                     
                 $resultAcesso = $this->CadastroModel->adicionaAcesso($infoAcesso);
                 
@@ -196,7 +196,7 @@ class Cadastro extends BaseController
                 else
                 {
                     //'Senha'=>getHashedPassword($senha)
-                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 
+                    $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>getHashedPassword($senha), 
                                         'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf, 
                                         'st_registro_ativo'=>'S');
                 }
