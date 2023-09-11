@@ -125,7 +125,7 @@ class Cadastro extends BaseController
 
                 if ($this->CadastroModel->consultaUsuarioExistente($cpf,$email) == null) {
 
-                $infoAcesso = array('co_cadastro_pessoa '=> $result, 'ds_senha'=>getHashedPassword($senha), 'st_registro_ativo'=>'S');
+                $infoAcesso = array('ds_senha'=>getHashedPassword($senha), 'st_registro_ativo'=>'S');
                                 
                 $resultAcesso = $this->CadastroModel->adicionaAcesso($infoAcesso);    
 
