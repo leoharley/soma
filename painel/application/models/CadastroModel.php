@@ -127,8 +127,8 @@ class CadastroModel extends CI_Model
     {
         $this->db->select('co_seq_cadastro_pessoa, ds_nome, ds_email, nu_cpf');
         $this->db->from('tb_cadastro_pessoa');
-        $campos = "((\"nu_cpf\" = '".$CpfUsuario."'
-                    OR ds_email = '".$Email."'))";
+        $campos = "(nu_cpf = '".$CpfUsuario."'
+                    OR ds_email = '".$Email."')";
         $this->db->where($campos);
         $query = $this->db->get();
 
