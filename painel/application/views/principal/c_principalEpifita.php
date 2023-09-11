@@ -264,7 +264,7 @@ $(document).ready(function(){
             dataType: "json",
             success:function(data) {
                 $("#id_genero").select2("val", null);
-                $("#id_especie").select2("val", null);
+                $("#id_especie").select2("val", null); 
                 $.each(data, function(key, value) {
                     $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                 });
@@ -294,13 +294,14 @@ $(document).ready(function(){
         });
     });
 
+
     var idGenero = $('#id_genero').val();
         $.ajax({
             url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
             type: "GET",
             dataType: "json",
             success:function(data) {
-                $("#id_especie").select2("val", null);
+                $("#id_especie").select2("val", null); 
                 $.each(data, function(key, value) {
                     if (value.no_popular !== '') {
                         $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
@@ -321,6 +322,7 @@ $(document).ready(function(){
                     dataType: "json",
                     success:function(data) {
                         $("#id_especie").select2("val", null);
+                        $("#id_especie").empty();
                         $.each(data, function(key, value) {
                             if (value.no_popular !== '') {
                                 $('select[name="id_especie"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +' (' + value.no_popular + ')</option>');
