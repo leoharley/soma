@@ -47,7 +47,7 @@ class PrincipalModel extends CI_Model
     {
         $infoProjeto['st_registro_ativo'] = 'N';
 
-        $this->db->where('id_propriedade', $this->carregaInfoIdPropriedade($id)[0]->id);
+        $this->db->where('id_propriedade', $this->carregaInfoIdPropriedade($IdProjeto)[0]->id);
         $this->db->update('tb_parcelas', $infoProjeto);
 
         $this->db->where('id_projeto', $IdProjeto);
