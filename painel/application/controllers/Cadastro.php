@@ -116,7 +116,7 @@ class Cadastro extends BaseController
         { */
 
                 $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
+                $cpf = preg_replace('/[^0-9]/', '', $this->input->post('nu_cpf'));
                 $email = $this->security->xss_clean($this->input->post('ds_email'));
                 $id_perfil = $this->input->post('id_perfil');
                 $senha = $this->input->post('ds_senha');
@@ -184,7 +184,7 @@ class Cadastro extends BaseController
             { */
 
                 $nome = $this->input->post('ds_nome');
-                $cpf = $this->input->post('nu_cpf');
+                $cpf = preg_replace('/[^0-9]/', '', $this->input->post('nu_cpf'));
                 $id_perfil = $this->input->post('id_perfil');
                 $email = $this->security->xss_clean($this->input->post('ds_email'));
                 $senha = $this->input->post('ds_senha');
