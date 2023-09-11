@@ -131,8 +131,6 @@ class CadastroModel extends CI_Model
                     OR ds_email = '".$Email."')";
         $this->db->where($campos);
         $query = $this->db->get();
-
-        var_dump($this->db->last_query());exit;
         
         return $query->result();
     }
