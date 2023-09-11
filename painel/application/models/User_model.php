@@ -152,10 +152,10 @@ class User_model extends CI_Model
      */
     function matchOldPassword($userId, $oldPassword)
     {
-        $this->db->select('userId, password');
-        $this->db->where('userId', $userId);        
-        $this->db->where('isDeleted', 0);
-        $query = $this->db->get('tbl_users');
+        $this->db->select('co_seq_acesso, ds_senha');
+        $this->db->where('co_seq_acesso', $userId);        
+        $this->db->where('st_registro_ativo', 'S');
+        $query = $this->db->get('tb_acesso');
         
         $user = $query->result();
 
@@ -177,9 +177,9 @@ class User_model extends CI_Model
      */
     function changePassword($userId, $userInfo)
     {
-        $this->db->where('userId', $userId);
-        $this->db->where('isDeleted', 0);
-        $this->db->update('tbl_users', $userInfo);
+        $this->db->where('co_seq_acesso', $userId);
+        $this->db->where('st_registro_ativo', 'S');
+        $this->db->update('tb_acesso', $userInfo);
         
         return $this->db->affected_rows();
     }

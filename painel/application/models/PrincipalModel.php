@@ -198,6 +198,15 @@ class PrincipalModel extends CI_Model
 
     }
 
+    function apagaFilhos($tabela, $coluna, $id)
+    {
+        $info['st_registro_ativo'] = 'N';
+        $this->db->where($coluna, $id);
+        $this->db->update($tabela, $info);
+        
+        return TRUE;
+    }
+
 
     function adicionaAcesso($infoAcesso)
     {
