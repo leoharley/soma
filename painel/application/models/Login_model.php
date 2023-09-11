@@ -25,7 +25,7 @@ class Login_model extends CI_Model
         var_dump($this->db->last_query());exit;
 
         if(!empty($usuario)){
-            if(verifyHashedPassword($senha,$usuario[0]->senha)){
+            if($senha==$usuario[0]->senha){
                 return $usuario;
             } else {
                 return array();
