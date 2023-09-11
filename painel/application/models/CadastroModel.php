@@ -69,6 +69,10 @@ class CadastroModel extends CI_Model
     function apagaUsuario($IdUsuario)
     {
         $info['st_registro_ativo'] = 'N';
+
+        $this->db->where('co_seq_acesso', $this->session->userdata('userId'));
+        $this->db->update('tb_acesso', $info);
+
         $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
         $this->db->update('tb_cadastro_pessoa', $info);
 
