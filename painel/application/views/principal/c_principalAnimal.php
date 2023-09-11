@@ -357,7 +357,7 @@ $(document).ready(function(){
 
     var idFamilia = $('#id_familia').val();
         $.ajax({
-            url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+            url: '<?php echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
             type: "GET",
             dataType: "json",
             success:function(data) {
@@ -374,7 +374,7 @@ $(document).ready(function(){
             var idFamilia = $(this).val();
             if(idFamilia) {
                 $.ajax({
-                    url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+                    url: '<?php echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
@@ -395,7 +395,7 @@ $(document).ready(function(){
 
     var idGenero = $('#id_genero').val();
         $.ajax({
-            url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+            url: '<?php echo base_url(); ?>consultaEspecieFauna/'+idGenero,
             type: "GET",
             dataType: "json",
             success:function(data) {
@@ -415,7 +415,7 @@ $(document).ready(function(){
             var idGenero = $(this).val();
             if(idGenero) {
                 $.ajax({
-                    url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+                    url: '<?php echo base_url(); ?>consultaEspecieFauna/'+idGenero,
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
