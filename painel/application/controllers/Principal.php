@@ -103,7 +103,7 @@ class Principal extends BaseController
             //    $roleId = $this->input->post('role');
 
                 $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
-                'dt_final'=> $dt_final);
+                'dt_final'=> $dt_final, 'st_registro_ativo'=>'S');
                 
                 $result = $this->PrincipalModel->adicionaProjeto($infoProjeto);
                 
@@ -140,7 +140,7 @@ class Principal extends BaseController
                 $dt_final = $this->input->post('dt_final');
                         
                 $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
-                'dt_final'=> $dt_final);
+                'dt_final'=> $dt_final, 'st_registro_ativo'=>'S');
                 
                 $resultado = $this->PrincipalModel->editaProjeto($infoProjeto, $IdProjeto);   
                 
@@ -262,7 +262,7 @@ class Principal extends BaseController
                 $infoPropriedade = array('id_acesso'=> $this->session->userdata('userId'), 'id_projeto'=> $id_projeto,
                 'nu_ano_emissao'=>$nu_ano_emissao,'nu_inscricao_car'=>$nu_inscricao_car, 'nu_ccir'=>$nu_ccir,
                 'proprietario'=>$proprietario,'no_propriedade'=>$no_propriedade, 'cnpj'=>$cnpj,
-                'cpf'=>$cpf,'liberado_campo'=>$liberado_campo);
+                'cpf'=>$cpf,'liberado_campo'=>$liberado_campo, 'st_registro_ativo'=>'S');
                                     
                 $resultado = $this->PrincipalModel->adicionaPropriedade($infoPropriedade);
                 
@@ -320,7 +320,7 @@ class Principal extends BaseController
                 $infoPropriedade = array('id_acesso'=> $this->session->userdata('userId'), 'id_projeto'=> $id_projeto,
                 'nu_ano_emissao'=>$nu_ano_emissao,'nu_inscricao_car'=>$nu_inscricao_car, 'nu_ccir'=>$nu_ccir,
                 'proprietario'=>$proprietario,'no_propriedade'=>$no_propriedade, 'cnpj'=>$cnpj,
-                'cpf'=>$cpf,'liberado_campo'=>$liberado_campo);
+                'cpf'=>$cpf,'liberado_campo'=>$liberado_campo, 'st_registro_ativo'=>'S');
                 
                 
                 $resultado = $this->PrincipalModel->editaPropriedade($infoPropriedade, $IdPropriedade);
@@ -461,7 +461,7 @@ class Principal extends BaseController
                 'nu_ano_emissao'=>$nu_ano_emissao,'id_estagio_regeneracao'=>$id_estagio_regeneracao, 'id_grau_epifitismo'=>$id_grau_epifitismo,
                 'id_tipo_bioma'=>$id_tipo_bioma,'id_tipo_parcela'=>$id_tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
                 'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
-                'carbono_total'=>$carbono_total);
+                'carbono_total'=>$carbono_total, 'st_registro_ativo'=>'S');
                                     
                 $resultado = $this->PrincipalModel->adicionaParcela($infoParcela);
                 
@@ -504,7 +504,7 @@ class Principal extends BaseController
             'nu_ano_emissao'=>$nu_ano_emissao,'id_estagio_regeneracao'=>$id_estagio_regeneracao, 'id_grau_epifitismo'=>$id_grau_epifitismo,
             'id_tipo_bioma'=>$id_tipo_bioma,'id_tipo_parcela'=>$id_tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
             'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
-            'carbono_total'=>$carbono_total);
+            'carbono_total'=>$carbono_total, 'st_registro_ativo'=>'S');
                 
             
             
@@ -638,12 +638,12 @@ function principalArvoreViva()
                                     'id_grau_protecao'=>$id_grau_protecao, 'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura,
                                     'nu_altura_total'=>$nu_altura_total, 'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa,
                                     'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao, 'latitude_gd'=>$latitude_gd,
-                                    'longitude_gd'=>$longitude_gd);
+                                    'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                                     
                 $result = $this->PrincipalModel->adicionaArvoreViva($infoArvoreViva);
                 
                 $infoRlFloraFamiliaGeneroEspecie = array('id_arvores_vivas'=> $result, 'id_familia'=>$id_familia,
-                                                         'id_genero '=> $id_genero, 'id_especie'=>$id_especie);
+                                                         'id_genero '=> $id_genero, 'id_especie'=>$id_especie, 'st_registro_ativo'=>'S');
                                     
                 $resultRl = $this->PrincipalModel->adicionaRlFloraFamiliaGeneroEspecie($infoRlFloraFamiliaGeneroEspecie);
                 
@@ -694,12 +694,12 @@ function principalArvoreViva()
                                     'id_grau_protecao'=>$id_grau_protecao, 'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura,
                                     'nu_altura_total'=>$nu_altura_total, 'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa,
                                     'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao, 'latitude_gd'=>$latitude_gd,
-                                    'longitude_gd'=>$longitude_gd);
+                                    'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                                     
                 $result = $this->PrincipalModel->editaArvoreViva($infoArvoreViva, $IdArvoreViva);
                 
                 $infoRlFloraFamiliaGeneroEspecie = array('id_familia'=>$id_familia, 'id_genero '=> $id_genero, 
-                                                         'id_especie'=>$id_especie);
+                                                         'id_especie'=>$id_especie, 'st_registro_ativo'=>'S');
                                     
                 $resultRl = $this->PrincipalModel->editaRlFloraFamiliaGeneroEspecie($infoRlFloraFamiliaGeneroEspecie, $IdArvoreViva);
                 
@@ -826,12 +826,13 @@ function principalAnimal()
             $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
                                 'longitude'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
                                 'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao,
-                                'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd);
+                                'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                                 
             $result = $this->PrincipalModel->adicionaAnimal($infoAnimal);
             
             $infoRlFaunaFamiliaGeneroEspecie = array('id_animais'=> $result, 'id_familia'=>$id_familia,
-                                                    'id_genero '=> $id_genero, 'id_especie'=>$id_especie);
+                                                    'id_genero '=> $id_genero, 'id_especie'=>$id_especie, 
+                                                    'st_registro_ativo'=>'S');
                                 
             $resultRl = $this->PrincipalModel->adicionaRlFaunaFamiliaGeneroEspecie($infoRlFaunaFamiliaGeneroEspecie);
             
@@ -872,12 +873,12 @@ function principalAnimal()
             $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
                                 'longitude'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
                                 'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao,
-                                'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd);
+                                'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                                 
             $result = $this->PrincipalModel->editaAnimal($infoAnimal, $IdAnimal);
             
             $infoRlFaunaFamiliaGeneroEspecie = array('id_familia'=>$id_familia, 'id_genero '=> $id_genero, 
-                                                    'id_especie'=>$id_especie);
+                                                    'id_especie'=>$id_especie, 'st_registro_ativo'=>'S');
                                 
             $resultRl = $this->PrincipalModel->editaRlFaunaFamiliaGeneroEspecie($infoRlFaunaFamiliaGeneroEspecie, $IdAnimal);
             
@@ -991,12 +992,13 @@ function principalAnimal()
         
         $infoEpifita = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'),
                              'latitude'=>$latitude, 'longitude'=>$longitude, 'latitude_gd'=>$latitude_gd,
-                             'longitude_gd'=>$longitude_gd);
+                             'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                             
         $result = $this->PrincipalModel->adicionaEpifita($infoEpifita);
         
         $infoRlEpifitaFamiliaGeneroEspecie = array('id_epifitas'=> $result, 'id_familia'=>$id_familia,
-                                                 'id_genero '=> $id_genero, 'id_especie'=>$id_especie);
+                                                 'id_genero '=> $id_genero, 'id_especie'=>$id_especie, 
+                                                 'st_registro_ativo'=>'S');
                             
         $resultRl = $this->PrincipalModel->adicionaRlEpifitaFamiliaGeneroEspecie($infoRlEpifitaFamiliaGeneroEspecie);
         
@@ -1033,12 +1035,12 @@ function principalAnimal()
 
                 $infoEpifita = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 
                                      'latitude'=>$latitude, 'longitude'=>$longitude, 'latitude_gd'=>$latitude_gd,
-                                     'longitude_gd'=>$longitude_gd);
+                                     'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                                     
                 $result = $this->PrincipalModel->editaEpifita($infoEpifita, $IdEpifita);
                 
                 $infoRlEpifitaFamiliaGeneroEspecie = array('id_familia'=>$id_familia, 'id_genero '=> $id_genero, 
-                                                         'id_especie'=>$id_especie);
+                                                         'id_especie'=>$id_especie, 'st_registro_ativo'=>'S');
                                     
                 $resultRl = $this->PrincipalModel->editaRlEpifitaFamiliaGeneroEspecie($infoRlEpifitaFamiliaGeneroEspecie, $IdEpifita);
                 

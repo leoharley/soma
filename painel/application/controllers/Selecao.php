@@ -97,7 +97,7 @@ class Selecao extends BaseController
     function adicionaFaunaClassificacao() 
     {
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $result = $this->SelecaoModel->adicionaFaunaClassificacao($info);
                 
                 if($result > 0)
@@ -120,7 +120,7 @@ class Selecao extends BaseController
     {           
                 $id = $this->input->post('id');
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $resultado = $this->SelecaoModel->editaFaunaClassificacao($info, $id);
                 
                 if($resultado == true)
@@ -212,7 +212,7 @@ class Selecao extends BaseController
     function adicionaTipoParcela() 
     {
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $result = $this->SelecaoModel->adicionaTipoParcela($info);
                 
                 if($result > 0)
@@ -235,7 +235,7 @@ class Selecao extends BaseController
     {           
                 $id = $this->input->post('id');
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $resultado = $this->SelecaoModel->editaTipoParcela($info, $id);
                 
                 if($resultado == true)
@@ -327,7 +327,7 @@ class Selecao extends BaseController
     function adicionaTipoBioma() 
     {
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $result = $this->SelecaoModel->adicionaTipoBioma($info);
                 
                 if($result > 0)
@@ -350,7 +350,7 @@ class Selecao extends BaseController
     {           
                 $id = $this->input->post('id');
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $resultado = $this->SelecaoModel->editaTipoBioma($info, $id);
                 
                 if($resultado == true)
@@ -442,7 +442,7 @@ class Selecao extends BaseController
     function adicionaGrauEpifitismo() 
     {
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $result = $this->SelecaoModel->adicionaGrauEpifitismo($info);
                 
                 if($result > 0)
@@ -465,7 +465,7 @@ class Selecao extends BaseController
     {           
                 $id = $this->input->post('id');
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $resultado = $this->SelecaoModel->editaGrauEpifitismo($info, $id);
                 
                 if($resultado == true)
@@ -557,7 +557,7 @@ class Selecao extends BaseController
     function adicionaEstagioRegeneracao() 
     {
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $result = $this->SelecaoModel->adicionaEstagioRegeneracao($info);
                 
                 if($result > 0)
@@ -580,7 +580,7 @@ class Selecao extends BaseController
     {           
                 $id = $this->input->post('id');
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $resultado = $this->SelecaoModel->editaEstagioRegeneracao($info, $id);
                 
                 if($resultado == true)
@@ -672,7 +672,7 @@ class Selecao extends BaseController
     function adicionaGrauProtecao() 
     {
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $result = $this->SelecaoModel->adicionaGrauProtecao($info);
                 
                 if($result > 0)
@@ -695,7 +695,7 @@ class Selecao extends BaseController
     {           
                 $id = $this->input->post('id');
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $resultado = $this->SelecaoModel->editaGrauProtecao($info, $id);
                 
                 if($resultado == true)
@@ -787,7 +787,7 @@ class Selecao extends BaseController
     function adicionaFaunaTipoObservacao() 
     {
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $result = $this->SelecaoModel->adicionaFaunaTipoObservacao($info);
                 
                 if($result > 0)
@@ -810,7 +810,7 @@ class Selecao extends BaseController
     {           
                 $id = $this->input->post('id');
                 $nome = $this->input->post('nome');
-                $info = array('nome'=> $nome);
+                $info = array('nome'=> $nome, 'st_registro_ativo'=>'S');
                 $resultado = $this->SelecaoModel->editaFaunaTipoObservacao($info, $id);
                 
                 if($resultado == true)

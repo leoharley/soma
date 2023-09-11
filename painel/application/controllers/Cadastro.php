@@ -126,11 +126,11 @@ class Cadastro extends BaseController
                 if ($this->CadastroModel->consultaUsuarioExistente($cpf,$email) == null) {
 
                 $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'st_admin'=>$admin,
-                                    'id_perfil'=> $id_perfil, 'nu_cpf'=>$cpf);
+                                    'id_perfil'=> $id_perfil, 'nu_cpf'=>$cpf, 'st_registro_ativo'=>'S');
                                     
                 $result = $this->CadastroModel->adicionaUsuario($infoUsuario);
                 
-                $infoAcesso = array('co_cadastro_pessoa '=> $result, 'ds_senha'=>$senha);
+                $infoAcesso = array('co_cadastro_pessoa '=> $result, 'ds_senha'=>$senha, 'st_registro_ativo'=>'S');
                                     
                 $resultAcesso = $this->CadastroModel->adicionaAcesso($infoAcesso);
                 
@@ -191,13 +191,14 @@ class Cadastro extends BaseController
                 if(empty($senha))
                 {
                     $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email,'st_admin'=>$admin,
-                                         'id_perfil'=>$id_perfil,'nu_cpf'=>$cpf);
+                                         'id_perfil'=>$id_perfil,'nu_cpf'=>$cpf, 'st_registro_ativo'=>'S');
                 }
                 else
                 {
                     //'Senha'=>getHashedPassword($senha)
                     $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>$senha, 
-                                        'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf);
+                                        'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf, 
+                                        'st_registro_ativo'=>'S');
                 }
                 
                 $resultado = $this->CadastroModel->editaUsuario($infoUsuario, $IdUsuario);
@@ -314,7 +315,7 @@ class Cadastro extends BaseController
                 $ds_perfil = $this->input->post('ds_perfil');
                 $st_admin = $this->input->post('st_admin');
                 
-                $infoPerfil = array('id_perfil'=> $id_perfil,'ds_perfil'=>$ds_perfil,'st_admin'=>$st_admin);
+                $infoPerfil = array('id_perfil'=> $id_perfil,'ds_perfil'=>$ds_perfil,'st_admin'=>$st_admin, 'st_registro_ativo'=>'S');
                                     
                 $resultado = $this->CadastroModel->adicionaPerfil($infoPerfil);
                 
@@ -378,7 +379,7 @@ class Cadastro extends BaseController
                 
              //   $Dt_Atualizacao = date('Y-m-d H:i:s');
                 
-                $infoPerfil = array('ds_perfil'=> $ds_perfil, 'st_admin'=>$st_admin);
+                $infoPerfil = array('ds_perfil'=> $ds_perfil, 'st_admin'=>$st_admin, 'st_registro_ativo'=>'S');
                 
                 
                 $resultado = $this->CadastroModel->editaPerfil($infoPerfil, $IdPerfil);
@@ -510,7 +511,7 @@ class Cadastro extends BaseController
                 $Dt_Atualizacao = date('Y-m-d H:i:s');
                 
                 $infoTela = array('AtualizadoPor'=>$this->vendorId, 'Dt_Atualizacao'=>$Dt_Atualizacao,
-                                    'Tp_Ativo'=>$Tp_Ativo);
+                                    'Tp_Ativo'=>$Tp_Ativo, 'st_registro_ativo'=>'S');
                 
                 
                 $resultado = $this->CadastroModel->editaTelas($infoTela, $IdTela);
@@ -587,7 +588,7 @@ function editaPermissao()
         $Imprimir = $this->input->post('imprimir');  
 
         $infoPermissao = array('atualizar'=>$Atualizar, 'Inserir'=>$Inserir, 'excluir'=>$Excluir,
-                                'consultar'=>$Consultar,'imprimir'=>$Imprimir);
+                                'consultar'=>$Consultar,'imprimir'=>$Imprimir, 'st_registro_ativo'=>'S');
         
         $resultado = $this->CadastroModel->editaPermissao($infoPermissao, $IdPermissao);
         
