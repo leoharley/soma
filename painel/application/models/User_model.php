@@ -156,13 +156,11 @@ class User_model extends CI_Model
         $this->db->where('co_seq_acesso', $userId);        
         $this->db->where('st_registro_ativo', 'S');
         $query = $this->db->get('tb_acesso');
-
-        var_dump($this->db->last_query());exit;
-        
+       
         $user = $query->result();
 
         if(!empty($user)){
-            if(verifyHashedPassword($oldPassword, $user[0]->password)){
+            if(verifyHashedPassword($oldPassword, $user[0]->ds_senha)){
                 return $user;
             } else {
                 return array();
