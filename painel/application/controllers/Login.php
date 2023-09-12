@@ -201,7 +201,7 @@ class Login extends BaseController
                     if(!empty($userInfo)){
                         $data1["name"] = $userInfo[0]->ds_nome;
                         $data1["email"] = $userInfo[0]->ds_email;
-                        $data1["message"] = "Redefinição de senha";
+                        $data1["message"] = "Redefina sua senha";
                     }
 
                     $tmp["data"] = $data1;

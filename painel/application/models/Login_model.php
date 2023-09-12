@@ -93,7 +93,7 @@ class Login_model extends CI_Model
     function checkActivationDetails($email, $activation_id)
     {
         $this->db->select('id');
-        $this->db->from('tbl_reset_password');
+        $this->db->from('tb_reset_password');
         $this->db->where('email', $email);
         $this->db->where('activation_id', $activation_id);
         $query = $this->db->get();
@@ -103,10 +103,20 @@ class Login_model extends CI_Model
     // This function used to create new password by reset link
     function createPasswordUser($email, $password)
     {
-        $this->db->where('email', $email);
-        $this->db->where('isDeleted', 0);
-        $this->db->update('tbl_users', array('password'=>getHashedPassword($password)));
-        $this->db->delete('tbl_reset_password', array('email'=>$email));
+        $this->db->where('co_seq_acesso', $this->carregaInfoIdAcesso($email)[0]->id_acesso);
+        $this->db->where('st_registro_ativo', 'S');
+        $this->db->update('tb_acesso', array('password'=>getHashedPassword($password)));
+        $this->db->delete('tb_reset_password', array('email'=>$email));
+    }
+
+    function carregaInfoIdAcesso($email)
+    {
+        $this->db->select('id_acesso');
+        $this->db->from('tb_cadastro_pessoa');
+        $this->db->where('ds_email', $email);
+        $query = $this->db->get();
+        
+        return $query->result();
     }
 
     /**
