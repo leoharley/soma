@@ -17,6 +17,7 @@ class Login extends BaseController
     {
         parent::__construct();
         $this->load->model('login_model');
+        date_default_timezone_set('America/Sao_Paulo');
     }
 
     /**
