@@ -194,7 +194,7 @@ class Login extends BaseController
                     if(!empty($userInfo)){
                         $data1["name"] = $userInfo[0]->name;
                         $data1["email"] = $userInfo[0]->email;
-                        $data1["message"] = "Şifrenizi Sıfırlayın";
+                        $data1["message"] = "Redefinição de senha";
                     }
 
                     $sendStatus = resetPasswordEmail($data1);

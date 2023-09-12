@@ -40,10 +40,10 @@ class Login_model extends CI_Model
      */
     function checkEmailExist($email)
     {
-        $this->db->select('userId');
-        $this->db->where('email', $email);
-        $this->db->where('isDeleted', 0);
-        $query = $this->db->get('tbl_users');
+        $this->db->select('co_seq_cadastro_pessoa');
+        $this->db->where('ds_email', $email);
+        $this->db->where('st_registro_ativo', 'S');
+        $query = $this->db->get('tb_cadastro_pessoa');
 
         if ($query->num_rows() > 0){
             return true;
@@ -60,7 +60,7 @@ class Login_model extends CI_Model
      */
     function resetPasswordUser($data)
     {
-        $result = $this->db->insert('tbl_reset_password', $data);
+        $result = $this->db->insert('tb_reset_password', $data);
 
         if($result) {
             return TRUE;
@@ -76,10 +76,10 @@ class Login_model extends CI_Model
      */
     function getCustomerInfoByEmail($email)
     {
-        $this->db->select('userId, email, name');
-        $this->db->from('tbl_users');
-        $this->db->where('isDeleted', 0);
-        $this->db->where('email', $email);
+        $this->db->select('co_seq_cadastro_pessoa, ds_email, ds_nome');
+        $this->db->from('tb_cadastro_pessoa');
+        $this->db->where('st_registro_ativo', 'S');
+        $this->db->where('ds_email', $email);
         $query = $this->db->get();
 
         return $query->result();
