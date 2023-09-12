@@ -204,6 +204,8 @@ class Login extends BaseController
                         $data1["message"] = "Redefinição de senha";
                     }
 
+                    $tmp["data"] = $data1;
+
                     $mail = new PHPMailer(true);
 
                     /*$sendStatus = resetPasswordEmail($data1);*/
