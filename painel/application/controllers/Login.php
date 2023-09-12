@@ -1,6 +1,12 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 require APPPATH . '/libraries/BaseController.php';
+require 'vendor/autoload.php';
+
 /**
  * Class : Login (LoginController)
  * Admin class to control to authenticate admin credentials and include admin functions.
@@ -198,7 +204,27 @@ class Login extends BaseController
                         $data1["message"] = "Redefinição de senha";
                     }
 
-                    $sendStatus = resetPasswordEmail($data1);
+                    $mail = new PHPMailer(true);
+
+                    /*$sendStatus = resetPasswordEmail($data1);*/
+
+                    //Server settings
+                    $mail->isSMTP();
+                    $mail->SMTPDebug = 0;
+                    $mail->Host = 'smtp.hostinger.com';
+                    $mail->Port = 587;
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'sistema@somasustentabilidade.com.br';
+                    $mail->Password = '%Soma1234';
+                    $mail->setFrom('sistema@somasustentabilidade.com.br', 'SOMA SUSTENTABILIDADE');
+                    $mail->addAddress($data1["email"], $data1["name"]);
+                    $mail->Subject = 'Redefinir senha';
+                    // $mail->msgHTML(file_get_contents('message.html'), __DIR__);
+                    $mail->Body = $this->load->view('email/resetPassword', $tmp, TRUE);
+                    $mail->isHTML(true);
+
+                    $sendStatus = $mail->send();
+
 
                     $process = 'Solicitação de redefinição de senha';
                     $processFunction = 'Login/resetPasswordUser';
