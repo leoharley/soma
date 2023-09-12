@@ -192,8 +192,8 @@ class Login extends BaseController
                     $userInfo = $this->login_model->getCustomerInfoByEmail($email);
 
                     if(!empty($userInfo)){
-                        $data1["name"] = $userInfo[0]->name;
-                        $data1["email"] = $userInfo[0]->email;
+                        $data1["name"] = $userInfo[0]->ds_nome;
+                        $data1["email"] = $userInfo[0]->ds_email;
                         $data1["message"] = "Redefinição de senha";
                     }
 
