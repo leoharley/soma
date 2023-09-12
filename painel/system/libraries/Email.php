@@ -2055,7 +2055,7 @@ class CI_Email {
 		$ssl = ($this->smtp_crypto === 'ssl') ? 'ssl://' : '';
 
 		$this->_smtp_connect = fsockopen('smtp.hostinger.com',
-							465,
+							587,
 							$errno,
 							$errstr,
 							$this->smtp_timeout);
