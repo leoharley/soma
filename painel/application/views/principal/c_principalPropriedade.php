@@ -86,7 +86,7 @@ if(!empty($infoPropriedade))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_ano_emissao">Ano emissão</label>
-                                        <input type="text" class="form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ano_emissao') : $nu_ano_emissao ; ?>" id="nu_ano_emissao" name="nu_ano_emissao">
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_ano_emissao') : $nu_ano_emissao ; ?>" id="nu_ano_emissao" name="nu_ano_emissao">
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@ if(!empty($infoPropriedade))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="proprietario">Proprietário</label>
-                                        <input type="text" class="form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('proprietario') : $nu_ccir; ?>" id="proprietario" name="proprietario">
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('proprietario') : $nu_ccir; ?>" id="proprietario" name="proprietario">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -149,7 +149,9 @@ if(!empty($infoPropriedade))
                                         </select>
                                     </div>
                                 </div>
-                            </div>    
+                            </div>
+                            
+                            
 
                         </div>
                         <!-- /.box-body -->
