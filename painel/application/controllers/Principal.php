@@ -234,21 +234,6 @@ class Principal extends BaseController
     function adicionaPropriedade() 
     {
 
-        //VALIDAÇÃO
-
-        //    $this->form_validation->set_rules('perfil','Role','trim|required|numeric');
-            
-        //    if($this->form_validation->run() == FALSE)
-        //    {
-
-        //        $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
-        //        $this->global['pageTitle'] = 'SOMA : Adicionar usuário';
-        //        $this->loadViews("c_principalUsuario", $this->global, $data, NULL);
-
-        //    }
-        //    else
-        //{
-
                 $id_projeto = $this->input->post('id_projeto');
                 $nu_ano_emissao = $this->input->post('nu_ano_emissao');
                 $nu_inscricao_car = $this->input->post('nu_inscricao_car');
@@ -263,8 +248,27 @@ class Principal extends BaseController
                 'nu_ano_emissao'=>$nu_ano_emissao,'nu_inscricao_car'=>$nu_inscricao_car, 'nu_ccir'=>$nu_ccir,
                 'proprietario'=>$proprietario,'no_propriedade'=>$no_propriedade, 'cnpj'=>$cnpj,
                 'cpf'=>$cpf,'liberado_campo'=>$liberado_campo, 'st_registro_ativo'=>'S');
+
+                /*if(!empty($_FILES['arquivo']['name'])){
+                    $config['upload_path'] = 'uploads/images/';
+                    $config['allowed_types'] = 'jpg|jpeg|png|gif';
+                    $config['file_name'] = $_FILES['picture']['name'];
+                    
+                    //Load upload library and initialize configuration
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    
+                    if($this->upload->do_upload('picture')){
+                        $uploadData = $this->upload->data();
+                        $picture = $uploadData['file_name'];
+                    }else{
+                        $arquivo = '';
+                    }
+                }else{
+                    $arquivo = '';
+                }*/
                                     
-                $resultado = $this->PrincipalModel->adicionaPropriedade($infoPropriedade);
+                $resultado = $this->PrincipalModel->adicionaPropriedade($infoPropriedade);            
                 
                 if($resultado > 0)
                 {

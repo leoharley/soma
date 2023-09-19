@@ -149,7 +149,7 @@ if(!empty($infoEpifita))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_especie">Espécie</label>
-                                        <select id="id_especie" name="id_especie">
+                                        <select id="id_especie" name="id_especie" required>
                                             <option></option>
                                         </select>
                                     </div>

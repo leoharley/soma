@@ -150,6 +150,15 @@ if(!empty($infoPropriedade))
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label>Anexar arquivo</label>
+                                    <input class="btn btn-primary form-control" type="file" name="arquivo" /> 
+                                    </div>
+                                </div>
+                            </div>
                             
                             
 
