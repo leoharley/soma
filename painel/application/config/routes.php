@@ -143,7 +143,7 @@ $route['apagaFaunaTipoObservacao/:any'] = "selecao/apagaFaunaTipoObservacao/$1";
 
 
 
-$route['galeria'] = "principal/galeria";
+$route['galeria'] = "galeria/index";
 
 
 /*********** USER DEFINED ROUTES *******************/
