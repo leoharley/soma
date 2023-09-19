@@ -56,7 +56,7 @@ class Galeria extends BaseController
         } 
  
         $data['gallery'] = $this->GaleriaModel->getRows(); 
-        $data['title'] = 'Gallery Archive'; 
+        $data['pageTitle'] = 'Gallery Archive'; 
          
         // Load the list page view 
         $this->loadViews('galeria/index', $data);       
