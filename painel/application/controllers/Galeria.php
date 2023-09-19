@@ -55,7 +55,7 @@ class Galeria extends BaseController
             $this->session->unset_userdata('error_msg'); 
         } 
  
-        $data['gallery'] = $this->gallery->getRows(); 
+        $data['gallery'] = $this->GaleriaModel->getRows(); 
         $data['title'] = 'Gallery Archive'; 
          
         // Load the list page view 
@@ -67,7 +67,7 @@ class Galeria extends BaseController
          
         // Check whether id is not empty 
         if(!empty($id)){ 
-            $data['gallery'] = $this->gallery->getRows($id); 
+            $data['gallery'] = $this->GaleriaModel->getRows($id); 
             $data['title'] = $data['gallery']['title']; 
              
             // Load the details page view 
@@ -96,7 +96,7 @@ class Galeria extends BaseController
             // Validate submitted form data 
             if($this->form_validation->run() == true){ 
                 // Insert gallery data 
-                $insert = $this->gallery->insert($galleryData); 
+                $insert = $this->GaleriaModel->insert($galleryData); 
                 $galleryID = $insert;  
                  
                 if($insert){ 
@@ -135,7 +135,7 @@ class Galeria extends BaseController
                          
                         if(!empty($uploadData)){ 
                             // Insert files info into the database 
-                            $insert = $this->gallery->insertImage($uploadData); 
+                            $insert = $this->GaleriaModel->insertImage($uploadData); 
                         } 
                     } 
                      
@@ -161,7 +161,7 @@ class Galeria extends BaseController
         $data = $galleryData = array(); 
          
         // Get gallery data 
-        $galleryData = $this->gallery->getRows($id); 
+        $galleryData = $this->GaleriaModel->getRows($id); 
          
         // If update request is submitted 
         if($this->input->post('imgSubmit')){ 
@@ -176,7 +176,7 @@ class Galeria extends BaseController
             // Validate submitted form data 
             if($this->form_validation->run() == true){ 
                 // Update gallery data 
-                $update = $this->gallery->update($galleryData, $id); 
+                $update = $this->GaleriaModel->update($galleryData, $id); 
  
                 if($update){ 
                     if(!empty($_FILES['images']['name'])){ 
@@ -214,7 +214,7 @@ class Galeria extends BaseController
                          
                         if(!empty($uploadData)){ 
                             // Insert files data into the database 
-                            $insert = $this->gallery->insertImage($uploadData); 
+                            $insert = $this->GaleriaModel->insertImage($uploadData); 
                         } 
                     } 
  
@@ -242,7 +242,7 @@ class Galeria extends BaseController
         if($id){ 
             // Update gallery status 
             $data = array('status' => 0); 
-            $update = $this->gallery->update($data, $id); 
+            $update = $this->GaleriaModel->update($data, $id); 
              
             if($update){ 
                 $this->session->set_userdata('success_msg', 'Gallery has been blocked successfully.'); 
@@ -259,7 +259,7 @@ class Galeria extends BaseController
         if($id){ 
             // Update gallery status 
             $data = array('status' => 1); 
-            $update = $this->gallery->update($data, $id); 
+            $update = $this->GaleriaModel->update($data, $id); 
              
             if($update){ 
                 $this->session->set_userdata('success_msg', 'Gallery has been activated successfully.'); 
@@ -274,15 +274,15 @@ class Galeria extends BaseController
     public function delete($id){ 
         // Check whether id is not empty 
         if($id){ 
-            $galleryData = $this->gallery->getRows($id); 
+            $galleryData = $this->GaleriaModel->getRows($id); 
              
             // Delete gallery data 
-            $delete = $this->gallery->delete($id); 
+            $delete = $this->GaleriaModel->delete($id); 
              
             if($delete){ 
                 // Delete images data  
                 $condition = array('gallery_id' => $id);  
-                $deleteImg = $this->gallery->deleteImage($condition);  
+                $deleteImg = $this->GaleriaModel->deleteImage($condition);  
                   
                 // Remove files from the server  
                 if(!empty($galleryData['images'])){  
@@ -305,11 +305,11 @@ class Galeria extends BaseController
         // If post request is submitted via ajax 
         if($this->input->post('id')){ 
             $id = $this->input->post('id'); 
-            $imgData = $this->gallery->getImgRow($id); 
+            $imgData = $this->GaleriaModel->getImgRow($id); 
              
             // Delete image data 
             $con = array('id' => $id); 
-            $delete = $this->gallery->deleteImage($con); 
+            $delete = $this->GaleriaModel->deleteImage($con); 
              
             if($delete){ 
                 // Remove files from the server  
