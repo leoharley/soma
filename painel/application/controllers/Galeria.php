@@ -59,7 +59,7 @@ class Galeria extends BaseController
         $data['title'] = 'Gallery Archive'; 
          
         // Load the list page view 
-        $this->loadViews('gallery/index', $data);       
+        $this->loadViews('galeria/index', $data);       
     } 
      
     public function view($id){ 
@@ -71,9 +71,7 @@ class Galeria extends BaseController
             $data['title'] = $data['gallery']['title']; 
              
             // Load the details page view 
-            $this->load->view('templates/header', $data); 
-            $this->load->view('gallery/view', $data); 
-            $this->load->view('templates/footer'); 
+            $this->loadViews('galeria/index', $data);
         }else{ 
             redirect($this->controller); 
         } 
@@ -151,10 +149,8 @@ class Galeria extends BaseController
         $data['title'] = 'Create Gallery'; 
         $data['action'] = 'Add'; 
          
-        // Load the add page view 
-        $this->load->view('templates/header', $data); 
-        $this->load->view('gallery/add-edit', $data); 
-        $this->load->view('templates/footer'); 
+        // Load the add page view
+        $this->loadViews('galeria/add-edit', $data);
     } 
      
     public function edit($id){ 
@@ -232,9 +228,8 @@ class Galeria extends BaseController
         $data['action'] = 'Edit'; 
          
         // Load the edit page view 
-        $this->load->view('templates/header', $data); 
-        $this->load->view('gallery/add-edit', $data); 
-        $this->load->view('templates/footer'); 
+        
+        $this->loadViews('galeria/add-edit', $data);
     } 
      
     public function block($id){ 
