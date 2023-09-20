@@ -204,7 +204,7 @@ $route['resetPasswordConfirmUser/(:any)'] = "login/resetPasswordConfirmUser/$1";
 $route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUser/$1/$2";
 $route['createPasswordUser'] = "login/createPasswordUser";
 
-$route['teste/(:any)/(:any)'] = 'admin/index/$1/$2';
+$route['admin/(:any)/(:any)'] = 'admin/index/$1/$2';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

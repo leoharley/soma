@@ -20,6 +20,7 @@ class Admin extends BaseController
         $this->load->model('user_model');
         $this->load->model('photo_model');
         $this->load->library(array('pagination', 'session', 'form_validation', 'image_lib'));
+        exit;
         $this->load->helper('form');
         // Datas -> libraries ->BaseController / This function used load user sessions
         $this->datas();
@@ -468,7 +469,6 @@ class Admin extends BaseController
             $this->page_items['msg'] = "Login to see this page.";
             $this->render('index', $this->page_items);
         } else {*/
-exit;
             if ($this->input->get()) {
                 $this->session->set_userdata('order_field', $this->input->get('order_field'));
                 $this->session->set_userdata('order', $this->input->get('order'));
