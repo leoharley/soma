@@ -18,7 +18,7 @@ class Admin extends BaseController
         parent::__construct();
         $this->load->model('login_model');
         $this->load->model('user_model');
-        $this->load->model('photomodel');
+    //    $this->load->model('photomodel');
         $this->load->library(array('pagination', 'session', 'form_validation', 'image_lib'));
         $this->load->helper('form');
         // Datas -> libraries ->BaseController / This function used load user sessions
@@ -475,7 +475,7 @@ class Admin extends BaseController
             }
 
             // Get photo with offset based on 3 segment of uri
-            $photos = $this->PhotoModel->get(
+            $photos = $this->Login_model->get(
                 $this->current_page(),
                 $this->uri->segment(2),
                 $this->uri->segment(3),
