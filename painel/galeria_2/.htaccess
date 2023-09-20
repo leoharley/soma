@@ -1,5 +1,6 @@
 DirectoryIndex index.php
 RewriteEngine on
+RewriteBase /homologacao/inventario/painel/galeria_2/
  
 RewriteCond $1 !^(index\.php|(.*)\.swf|forums|images|css|downloads|jquery|js|robots\.txt|favicon\.ico)
 RewriteCond %{REQUEST_FILENAME} !-f

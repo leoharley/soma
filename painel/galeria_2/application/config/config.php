@@ -31,7 +31,6 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== FALSE) {
 }
 $base .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 
-var_dump($base);exit;
 $config['base_url'] = $base;
 
 /*
