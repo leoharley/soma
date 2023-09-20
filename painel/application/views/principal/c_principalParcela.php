@@ -320,7 +320,7 @@ if(!empty($infoParcela))
 function popup(url, windowName, win, w, h) {
     const y = win.top.outerHeight / 2 + win.top.screenY - ( h / 2);
     const x = win.top.outerWidth / 2 + win.top.screenX - ( w / 2);
-    return win.open(url, windowName, 'toolbar=no, location=no, directories=no, toolbar=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}');
+    return win.open(url, windowName, 'directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=no,resizable=no, width=${w}, height=${h}, top=${y}, left=${x}');
 }
 
 
