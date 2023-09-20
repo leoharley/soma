@@ -475,7 +475,7 @@ class Admin extends BaseController
             }
 
             // Get photo with offset based on 3 segment of uri
-            $photos = $this->Login_model->get(
+            $photos = $this->login_model->get(
                 $this->current_page(),
                 $this->uri->segment(2),
                 $this->uri->segment(3),
