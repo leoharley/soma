@@ -23,10 +23,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+
+var_dump($_SERVER['HTTP_HOST']);exit;
 if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== FALSE) {
     $base  = "http://".$_SERVER['HTTP_HOST'];
 } else {
-    $base  = "https://somasustentabilidade.com.br/homologacao/inventario/painel/galeria_2"; 
+    $base  = "https://".$_SERVER['HTTP_HOST']; 
 }
 $base .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 $config['base_url'] = $base;
@@ -41,7 +43,7 @@ $config['base_url'] = $base;
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
