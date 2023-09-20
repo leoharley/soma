@@ -13,6 +13,7 @@ public function get($offset = 0, $ds_categoria, $id_categoria, $order_field, $or
     $this->db->limit($limit, $offset);
     $this->db->order_by($order_field, $order);
     $query = $this->db->get('photos');
+    exit;
 
     return $query->result_array();
   }
