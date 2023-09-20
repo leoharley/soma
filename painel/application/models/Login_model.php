@@ -151,13 +151,16 @@ class Login_model extends CI_Model
   {
     $limit = 18;
     $offset = 0;
-    //$offset = $offset * 12;
+
+    $this->db->select('Galeria.*, CadastroPessoa.ds_nome');
+    $this->db->from('photos as Galeria');        
+    $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Galeria.id_acesso','left');
     $this->db->where('ds_categoria', $ds_categoria);
     $this->db->where('id_categoria', $id_categoria);
     $this->db->limit($limit, $offset);
     $this->db->order_by($order_field, $order);
-    $query = $this->db->get('photos');
-
+    $query = $this->db->get();
+                
     return $query->result_array();
   }
 
@@ -168,11 +171,12 @@ class Login_model extends CI_Model
     return $query->row_array();
   }
 
-  function persist($photo, $ds_categoria, $id_categoria)
+  function persist($photo, $ds_categoria, $id_categoria, $id_acesso)
   {
     $photo['date'] = date('Y-m-d', strtotime($photo['date']));
     $photo['ds_categoria'] = $ds_categoria;
     $photo['id_categoria'] = $id_categoria;
+    $photo['id_acesso'] = $id_acesso;
     $bool = $this->db->insert('photos', $photo);
 
     return $bool;
@@ -197,7 +201,7 @@ class Login_model extends CI_Model
   function record_count() {
     return $this->db->count_all('photos');
   }
-  
+
 }
 
 ?>

@@ -8,6 +8,7 @@
     <th>Descrição</th>
     <th>Data</th>
     <th>Arquivo</th>
+    <th>Enviado por</th>
     <th colspan="3">Ação</th>
   </tr>
 

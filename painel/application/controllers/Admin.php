@@ -605,7 +605,7 @@ class Admin extends BaseController
                     $upload_data['file_ext']
                 ;
 
-                $this->login_model->persist($data, $ds_categoria, $id_categoria);
+                $this->login_model->persist($data, $ds_categoria, $id_categoria, $this->session->userdata('userId'));
 
                 $this->page_items['ds_categoria'] = $ds_categoria;
                 $this->page_items['id_categoria'] = $id_categoria;
