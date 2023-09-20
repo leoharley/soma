@@ -142,10 +142,6 @@ $route['editaFaunaTipoObservacao'] = "selecao/editaFaunaTipoObservacao";
 $route['apagaFaunaTipoObservacao/:any'] = "selecao/apagaFaunaTipoObservacao/$1";
 
 
-
-$route['galeria'] = "galeria/index";
-
-
 /*********** USER DEFINED ROUTES *******************/
 
 $route['loginMe'] = 'login/loginMe';

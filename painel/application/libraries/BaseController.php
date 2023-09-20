@@ -114,14 +114,6 @@ class BaseController extends CI_Controller {
      * @return {null} $result : null
      */
     function loadViews($viewName = "", $headerInfo = NULL, $pageInfo = NULL, $footerInfo = NULL){
-
-        $this->load->view('includes/header', $headerInfo);
-        $this->load->view($viewName, $pageInfo);
-        $this->load->view('includes/footer', $footerInfo);
-    }
-
-	function loadViews($viewName = "", $headerInfo = NULL, $pageInfo = NULL, $footerInfo = NULL){
-
         $this->load->view('includes/header', $headerInfo);
         $this->load->view($viewName, $pageInfo);
         $this->load->view('includes/footer', $footerInfo);
