@@ -1,6 +1,6 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-class PhotoModel extends CI_Model
+class Photomodel extends CI_Model
 {
     
 public function get($offset = 0, $ds_categoria, $id_categoria, $order_field, $order)
