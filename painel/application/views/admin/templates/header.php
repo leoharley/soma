@@ -34,7 +34,7 @@
 
              <!-- Admin menubar -->
             <ul class="nav navbar-nav">
-              <li><?php echo anchor('admin/'.$ds_categoria.'/'.$id_categoria, 'Arquivos').$msg; ?></li>
+              <li><?php echo anchor('admin/'.$ds_categoria.'/'.$id_categoria, 'Arquivos'); ?></li>
               <li><?php echo anchor('admin/upload/'.$ds_categoria.'/'.$id_categoria, 'Upload de arquivos'); ?></li>              
             </ul>
 
