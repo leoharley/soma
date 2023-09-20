@@ -30,7 +30,7 @@
      ?>
     </td>
     <td><?= $photo['ds_nome']?></td>
-    <td><a href="<?= base_url($photo['link'])?>">Baixar</a></td>
+    <td><a href="<?= base_url($photo['link'])?>" target="_blank">Baixar</a></td>
     <td><?= anchor('admin/edit/'.$ds_categoria.'/'.$id_categoria.'/'. $photo['id'], 'Editar')?></td>
     <td style="vertical-align:top!important">
     <a class=""
