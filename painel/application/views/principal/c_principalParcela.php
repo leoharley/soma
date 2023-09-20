@@ -281,7 +281,7 @@ if(!empty($infoParcela))
 
                             <div class="row">
                                 <div class="col-md-12">
-                                <a href="https://somasustentabilidade.com.br/homologacao/inventario/painel/admin/parcelas/8" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Launch Demo Modal</a>
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#myModal" data-remote="https://somasustentabilidade.com.br/homologacao/inventario/painel/admin/parcelas/8">Launch modal</button>                                    
                                 </div>
                             </div>                               
 
@@ -304,11 +304,16 @@ if(!empty($infoParcela))
             </div>
         </div>
 
-        <div id="myModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Content will be loaded here from "remote.php" file -->
-                </div>
+        <div id="myModal" class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+                <h3 id="myModalLabel">Modal header</h3>
+            </div>
+            <div class="modal-body">
+            <!-- remote content will be inserted here via jQuery load() -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
             </div>
         </div>
 
