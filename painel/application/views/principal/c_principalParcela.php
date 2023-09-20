@@ -317,9 +317,12 @@ if(!empty($infoParcela))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 
-var popup = function() {
-window.open ("<?php echo base_url(); ?>admin/parcelas/8", "Window","height=200,width=200");
-}
+function popup() {
+  var left = (screen.width/2)-(400/2);
+  var top = (screen.height/2)-(400/2);
+  return window.open('<?php echo base_url(); ?>admin/parcelas/8', 'Window', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+400+', height='+400+', top='+top+', left='+left);
+} 
+
 
 $(document).ready(function(){
     $(".2decimais").inputmask({
