@@ -223,8 +223,9 @@ if(!empty($infoAnimal))
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="#" class="btn btn-primary" onclick="popup('<?php echo base_url(); ?>admin/animais/<?= $id ?>', 'test', window, 1000, 400);">Anexar arquivos</a>
-                                </div>
+                                    <a href="#" class="btn btn-primary" onclick="popup('<?php echo base_url(); ?>admin/animais/<?= $id ?>', 'test', window, 1000, 400);" <?=$this->uri->segment(2) !== 'editar'?'disabled':'';?>>Anexar arquivos</a>
+                                    <br/><?=$this->uri->segment(2) !== 'editar'?'<small style="color:red">*edite algo cadastrado para anexar arquivos</small>':'';?>
+                                </div>                                
                             </div> 
                             
                         </div>
