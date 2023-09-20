@@ -281,7 +281,7 @@ if(!empty($infoParcela))
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="#" class="btn btn-lg btn-primary" onclick="popup()">Launch Demo Modal</a>
+                                    <a href="#" class="btn btn-lg btn-primary" onclick="popup('<?php echo base_url(); ?>admin/parcelas/8', 'test', window, 200, 100);">Launch Demo Modal</a>
                                 </div>
                             </div>                               
 
@@ -317,12 +317,12 @@ if(!empty($infoParcela))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 
-function popup() {
-  var left = (screen.width/2)-(400/2);
-  var top = (screen.height/2)-(400/2);
-  return window.open('<?php echo base_url(); ?>admin/parcelas/8', 'Window', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+400+', height='+400+', top='+top+', left='+left);
-} 
-
+function popup(url, windowName, win, w, h) {
+    const y = win.top.outerHeight / 2 + win.top.screenY - ( h / 2);
+    const x = win.top.outerWidth / 2 + win.top.screenX - ( w / 2);
+    return win.open(url, windowName, `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`);
+}
+........
 
 $(document).ready(function(){
     $(".2decimais").inputmask({
