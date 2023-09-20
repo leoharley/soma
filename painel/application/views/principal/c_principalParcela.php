@@ -322,7 +322,7 @@ function popup(url, windowName, win, w, h) {
     const x = win.top.outerWidth / 2 + win.top.screenX - ( w / 2);
     return win.open(url, windowName, `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`);
 }
-........
+
 
 $(document).ready(function(){
     $(".2decimais").inputmask({
