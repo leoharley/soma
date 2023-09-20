@@ -281,7 +281,7 @@ if(!empty($infoParcela))
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="<?php echo base_url(); ?>admin/parcelas/8" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Launch Demo Modal</a>
+                                    <a href="#" class="btn btn-lg btn-primary" onclick="popup()">Launch Demo Modal</a>
                                 </div>
                             </div>                               
 
@@ -316,6 +316,11 @@ if(!empty($infoParcela))
 </div>
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
+
+var popup = function() {
+window.open ("<?php echo base_url(); ?>admin/parcelas/8", "Window","status=1,toolbar=1");
+}
+
 $(document).ready(function(){
     $(".2decimais").inputmask({
         alias: "decimal",
