@@ -23,6 +23,7 @@ class Admin extends CI_Controller
 
         if ( ! $this->session->userdata('logged_in'))
         {
+            var_dump('teste');exit;
             // Allow some methods?
             $allowed = array(
                 'index',
