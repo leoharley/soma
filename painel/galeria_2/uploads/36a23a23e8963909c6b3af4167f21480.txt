@@ -1,1 +1,0 @@
-* * * * * sudo -i -u postgres psql -d postgresql://doadmin:AVNS_zTybMxn5SprXDCdVXi9@db-postgresql-sfo3-95063-do-user-13350749-0.b.db.ondigitalocean.com:25061/FilaPadrao -c "select public.controlecargabi()";

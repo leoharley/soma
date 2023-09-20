@@ -1,1 +1,0 @@
-Password is 'admin'. The password is saved as hash value. You can change it in application/config/config.php file.

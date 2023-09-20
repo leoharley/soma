@@ -221,6 +221,12 @@ if(!empty($infoAnimal))
                                 </div>                                                                                                
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="#" class="btn btn-primary" onclick="popup('<?php echo base_url(); ?>admin/animais/<?= $id ?>', 'test', window, 1000, 400);">Anexar arquivos</a>
+                                </div>
+                            </div> 
+                            
                         </div>
                         <!-- /.box-body -->
 
@@ -239,10 +245,26 @@ if(!empty($infoAnimal))
                     </div>
             </div>
         </div>
+
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Content will be loaded here from "remote.php" file -->
+                </div>
+            </div>
+        </div>
+
     </section>
 </div>
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
+
+function popup(url, windowName, win, w, h) {
+    const y = win.top.outerHeight / 2 + win.top.screenY - ( h / 2);
+    const x = win.top.outerWidth / 2 + win.top.screenX - ( w / 2);
+    return win.open(url, windowName, `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`);
+}
+
 
 function selectElement(id, valueToSelect) {    
     $(id).val(valueToSelect);
