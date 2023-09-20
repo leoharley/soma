@@ -226,7 +226,10 @@ if(!empty($infoAnimal))
                                     <a href="#" class="btn btn-primary" onclick="popup('<?php echo base_url(); ?>admin/animais/<?= $id ?>', 'test', window, 1000, 400);" <?=$this->uri->segment(2) !== 'editar'?'disabled':'';?>>Anexar arquivos</a>
                                     <br/><?=$this->uri->segment(2) !== 'editar'?'<small style="color:red">*edite algo cadastrado para anexar arquivos</small>':'';?>
                                 </div>                                
-                            </div> 
+                            </div>
+                            
+
+                            <a href="javascript:void(0);" data-href="<?php echo base_url(); ?>admin/animais/<?= $id ?>" class="openPopup">About Us</a>
                             
                         </div>
                         <!-- /.box-body -->
@@ -246,6 +249,27 @@ if(!empty($infoAnimal))
                     </div>
             </div>
         </div>
+
+        <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Bootstrap Modal with Dynamic Content</h4>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+
 
         <div id="myModal" class="modal fade">
             <div class="modal-dialog">
@@ -273,6 +297,14 @@ function selectElement(id, valueToSelect) {
     }
 
 $(document).ready(function(){
+
+    $('.openPopup').on('click',function(){
+        var dataURL = $(this).attr('data-href');
+        $('.modal-body').load(dataURL,function(){
+            $('#myModal2').modal({show:true});
+        });
+    }); 
+
     $("#longitude").inputmask({
     mask: ['99°M9\'P9.99"S', '[1]79°M9\'S9.99"S'],
     definitions: {
