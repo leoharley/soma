@@ -605,7 +605,7 @@ class Admin extends BaseController
                     $upload_data['file_ext']
                 ;
 
-                $this->PhotoModel->persist($data, $ds_categoria, $id_categoria);
+                $this->login_model->persist($data, $ds_categoria, $id_categoria);
 
                 $this->page_items['ds_categoria'] = $ds_categoria;
                 $this->page_items['id_categoria'] = $id_categoria;
@@ -634,7 +634,7 @@ class Admin extends BaseController
          //   $this->form_validation->set_rules('location', 'Location', 'trim|required');
 
             if ($this->form_validation->run() == false) {
-                $photo = $this->PhotoModel->get_by_id($id);
+                $photo = $this->login_model->get_by_id($id);
 
                 if ( ! $photo) {
                     $this->page_items['msg'] = "No photo with such id.";
@@ -656,7 +656,7 @@ class Admin extends BaseController
                 }
             } else {
                 $data['photo'] = $this->input->post();
-                $this->PhotoModel->update($data['photo']['id'], $data['photo']);
+                $this->login_model->update($data['photo']['id'], $data['photo']);
 
                 $this->page_items['msg'] = "Edit photo success.";
                 $this->render('index', $this->page_items);
@@ -670,11 +670,11 @@ class Admin extends BaseController
         $ds_categoria = $this->uri->segment(3);
         $id_categoria = $this->uri->segment(4);
         $id = $this->uri->segment(5);
-        $photo = $this->PhotoModel->get_by_id($id);
+        $photo = $this->login_model->get_by_id($id);
         unlink($photo['link']);
         unlink($photo['link_thumb']);
 
-        $this->PhotoModel->delete($id);
+        $this->login_model->delete($id);
 
         redirect('admin/'.$ds_categoria.'/'.$id_categoria);
     }
@@ -684,7 +684,7 @@ class Admin extends BaseController
         // Codeigniter pagination configuration
         $config = array();
         $config['base_url'] = site_url() . '/admin/index';
-        $config['total_rows'] = $this->PhotoModel->record_count();
+        $config['total_rows'] = $this->login_model->record_count();
         $config['per_page'] = 18;
         $config['uri_segment'] = 3;
         // Applying bootstrap templates to codeigniter pagination
