@@ -12,7 +12,7 @@
     <?= form_open_multipart('admin/upload')?>
 
       <div class="form-group">
-        <label for="photo">Photo</label>
+        <label for="photo">Arquivo</label>
         <input type="file" name="photo"/>
       </div>
 
