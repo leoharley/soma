@@ -622,6 +622,8 @@ class Admin extends BaseController
 
     public function edit($id=null)
     {
+        $ds_categoria = $this->uri->segment(3);
+        $id_categoria = $this->uri->segment(4);
         $id = $this->uri->segment(5);
         if ( !is_numeric($id)) {
             $this->page_items['msg'] = "No photo with such id";
@@ -645,10 +647,15 @@ class Admin extends BaseController
                     $format = 'm/d/Y';
                     $photo['date'] = date($format, strtotime($date));
 
+
                     $this->page_items['msg'] = validation_errors('<span> ','</span>');
                     $this->page_items['form_edit'] = $this->load->view(
                         'admin/photo/parts_form_edit',
-                        array('msg' => $this->page_items['msg'], 'photo' => $photo),
+                        array(
+                            'ds_categoria' => $this->uri->segment(2),
+                            'id_categoria' => $this->uri->segment(3),
+                            'msg' => $this->page_items['msg'], 
+                            'photo' => $photo),
                         true
                     );
 
