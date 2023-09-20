@@ -281,7 +281,7 @@ if(!empty($infoParcela))
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="/admin/parcelas/8" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Launch Demo Modal</a>
+                                    <a href="<?php echo base_url(); ?>admin/parcelas/8" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Launch Demo Modal</a>
                                 </div>
                             </div>                               
 
