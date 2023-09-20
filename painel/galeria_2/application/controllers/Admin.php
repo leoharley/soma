@@ -57,7 +57,7 @@ class Admin extends CI_Controller
             );
 
             if ( !$photos) {
-                $this->page_items['msg'] = "No photo found in database.";
+                $this->page_items['msg'] = "";
                 $this->page_items['ds_categoria'] = $this->uri->segment(2);
                 $this->page_items['id_categoria'] = $this->uri->segment(3);
 

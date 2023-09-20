@@ -4,7 +4,7 @@
       if ($msg) {
         echo
           '<div class="alert alert-info">
-            <strong>Info!</strong> '.$msg.'
+            <strong>Atenção!</strong> '.$msg.'
           </div>';
       }
     ?>
