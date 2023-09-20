@@ -24,13 +24,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-var_dump($_SERVER['HTTP_HOST']);exit;
 if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== FALSE) {
     $base  = "http://".$_SERVER['HTTP_HOST'];
 } else {
     $base  = "https://".$_SERVER['HTTP_HOST']; 
 }
 $base .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+
+var_dump($base);exit;
 $config['base_url'] = $base;
 
 /*
