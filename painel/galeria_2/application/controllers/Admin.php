@@ -42,7 +42,6 @@ class Admin extends CI_Controller
             $this->render('index', $this->page_items);
         } else {*/
 
-            var_dump('arqui');exit;
             if ($this->input->get()) {
                 $this->session->set_userdata('order_field', $this->input->get('order_field'));
                 $this->session->set_userdata('order', $this->input->get('order'));
