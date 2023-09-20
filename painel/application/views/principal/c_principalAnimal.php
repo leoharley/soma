@@ -229,7 +229,7 @@ if(!empty($infoAnimal))
                             </div>
                             
 
-                            <a href="javascript:void(0);" data-href="<?php echo base_url(); ?>admin/animais/<?= $id ?>" class="openPopup">About Us</a>
+                            <a href="javascript:void(0);" data-href="<?php echo base_url(); ?>admin/animais/<?= $id ?>" class="openPopup">TESTE</a>
                             
                         </div>
                         <!-- /.box-body -->
