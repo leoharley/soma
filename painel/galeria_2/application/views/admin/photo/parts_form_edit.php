@@ -65,7 +65,7 @@
         /> -->
       </div>
 
-      <input type="submit" class="btn btn-default" value="Submit" />
+      <input type="submit" class="btn btn-default" value="Confirmar" />
     </form>
 
   </div>
