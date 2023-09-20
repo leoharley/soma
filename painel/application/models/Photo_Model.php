@@ -11,11 +11,7 @@ class Photo_Model extends CI_Model
   public $link_thumb;
   public $link_small;
 
-  public function __construct()
-  {
-    parent::__construct();
-    $this->load->database();
-  }
+
 
   public function get($offset = 0, $ds_categoria, $id_categoria, $order_field, $order)
   {
