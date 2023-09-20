@@ -3,7 +3,7 @@
 class Photomodel extends CI_Model
 {
     
-public function get($offset = 0, $ds_categoria, $id_categoria, $order_field, $order)
+function get($offset = 0, $ds_categoria, $id_categoria, $order_field, $order)
   {
     $limit = 18;
     $offset = 0;
@@ -17,14 +17,14 @@ public function get($offset = 0, $ds_categoria, $id_categoria, $order_field, $or
     return $query->result_array();
   }
 
-  public function get_by_id($id)
+  function get_by_id($id)
   {
     $query = $this->db->get_where('photos', array('id'=>$id));
 
     return $query->row_array();
   }
 
-  public function persist($photo, $ds_categoria, $id_categoria)
+  function persist($photo, $ds_categoria, $id_categoria)
   {
     $photo['date'] = date('Y-m-d', strtotime($photo['date']));
     $photo['ds_categoria'] = $ds_categoria;
@@ -34,14 +34,14 @@ public function get($offset = 0, $ds_categoria, $id_categoria, $order_field, $or
     return $bool;
   }
 
-  public function delete($id)
+  function delete($id)
   {
     $bool = $this->db->delete('photos', array('id' => $id));
 
     return $bool;
   }
 
-  public function update($id, $photo)
+  function update($id, $photo)
   {
     $this->db->where('id', $id);
     $photo['date'] = date('Y-m-d', strtotime($photo['date']));
@@ -50,7 +50,7 @@ public function get($offset = 0, $ds_categoria, $id_categoria, $order_field, $or
     return $bool;
   }
 
-  public function record_count() {
+  function record_count() {
     return $this->db->count_all('photos');
   }
 

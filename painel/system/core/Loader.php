@@ -343,11 +343,9 @@ class CI_Loader {
 				break;
 			}
 
-			var_dump($model);exit;
-
 			if ( ! class_exists($model, FALSE))
 			{
-				//var_dump($model);exit;
+				var_dump($model);exit;
 				throw new RuntimeException('Unable to locate the model you have specified: '.$model);
 			}
 		}
