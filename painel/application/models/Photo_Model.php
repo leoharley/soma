@@ -3,7 +3,7 @@
 class Photo_Model extends CI_Model
 {
     
-public function dsget($offset = 0, $ds_categoria, $id_categoria, $order_field, $order)
+public function get($offset = 0, $ds_categoria, $id_categoria, $order_field, $order)
   {
     $limit = 18;
     $offset = 0;
@@ -24,7 +24,7 @@ public function dsget($offset = 0, $ds_categoria, $id_categoria, $order_field, $
     return $query->row_array();
   }
 
-  public function dpersist($photo, $ds_categoria, $id_categoria)
+  public function persist($photo, $ds_categoria, $id_categoria)
   {
     $photo['date'] = date('Y-m-d', strtotime($photo['date']));
     $photo['ds_categoria'] = $ds_categoria;
@@ -34,14 +34,14 @@ public function dsget($offset = 0, $ds_categoria, $id_categoria, $order_field, $
     return $bool;
   }
 
-  public function ddelete($id)
+  public function delete($id)
   {
     $bool = $this->db->delete('photos', array('id' => $id));
 
     return $bool;
   }
 
-  public function dupdate($id, $photo)
+  public function update($id, $photo)
   {
     $this->db->where('id', $id);
     $photo['date'] = date('Y-m-d', strtotime($photo['date']));
@@ -50,7 +50,7 @@ public function dsget($offset = 0, $ds_categoria, $id_categoria, $order_field, $
     return $bool;
   }
 
-  public function drecord_count() {
+  public function record_count() {
     return $this->db->count_all('photos');
   }
 
