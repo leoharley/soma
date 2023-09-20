@@ -19,7 +19,6 @@ class Admin extends BaseController
         $this->load->model('login_model');
         $this->load->model('user_model');
         $this->load->model('photo_model');
-        exit;
         $this->load->library(array('pagination', 'session', 'form_validation', 'image_lib'));
         $this->load->helper('form');
         // Datas -> libraries ->BaseController / This function used load user sessions
