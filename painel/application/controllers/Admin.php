@@ -18,7 +18,6 @@ class Admin extends BaseController
         parent::__construct();
         $this->load->model('login_model');
         $this->load->model('user_model');
-        exit;
         $this->load->model('photo_model');
         $this->load->library(array('pagination', 'session', 'form_validation', 'image_lib'));
         $this->load->helper('form');
