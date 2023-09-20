@@ -281,7 +281,7 @@ if(!empty($infoParcela))
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="#" class="btn btn-lg btn-primary" onclick="popup('<?php echo base_url(); ?>admin/parcelas/8', 'test', window, '70%', 'auto');">Launch Demo Modal</a>
+                                    <a href="#" class="btn btn-lg btn-primary" onclick="popup('<?php echo base_url(); ?>admin/parcelas/8', 'test', window, 400, 200);">Launch Demo Modal</a>
                                 </div>
                             </div>                               
 
