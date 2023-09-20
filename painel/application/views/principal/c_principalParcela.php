@@ -318,7 +318,7 @@ if(!empty($infoParcela))
 <script>
 
 var popup = function() {
-window.open ("<?php echo base_url(); ?>admin/parcelas/8", "Window","status=1,toolbar=1");
+window.open ("<?php echo base_url(); ?>admin/parcelas/8", "Window","height=200,width=200");
 }
 
 $(document).ready(function(){
