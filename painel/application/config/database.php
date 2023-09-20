@@ -36,7 +36,7 @@ $db['default'] = array(
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '185.211.7.205:3306',
+	'hostname' => 'localhost:3306',
 	'username' => 'u699148595_u699148595_som',
 	'password' => '%Soma2023',
 	'database' => 'u699148595_inventario_hom',
