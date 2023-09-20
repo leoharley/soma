@@ -281,20 +281,7 @@ if(!empty($infoParcela))
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="button" class="btn" data-toggle="modal" data-target="#myModal" data-remote="http://example.com">Launch modal</button>
-
-                                    <div id="myModal" class="modal hide fade">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
-                                            <h3 id="myModalLabel">Modal header</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                        <!-- remote content will be inserted here via jQuery load() -->
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                                        </div>
-                                    </div>
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#myModal" data-remote="http://example.com">Launch modal</button>                                    
                                 </div>
                             </div>                               
 
@@ -316,6 +303,20 @@ if(!empty($infoParcela))
                     </div>
             </div>
         </div>
+
+        <div id="myModal" class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+                <h3 id="myModalLabel">Modal header</h3>
+            </div>
+            <div class="modal-body">
+            <!-- remote content will be inserted here via jQuery load() -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+
     </section>
 </div>
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
