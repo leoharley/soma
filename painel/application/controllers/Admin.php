@@ -468,11 +468,11 @@ class Admin extends BaseController
             $this->page_items['msg'] = "Login to see this page.";
             $this->render('index', $this->page_items);
         } else {*/
-            $this->load->model('photo_model');
-            if ($this->input->get()) {
+
+         /*   if ($this->input->get()) {
                 $this->session->set_userdata('order_field', $this->input->get('order_field'));
                 $this->session->set_userdata('order', $this->input->get('order'));
-            }
+            }*/
 
             // Get photo with offset based on 3 segment of uri
             $photos = $this->photo_model->get(
