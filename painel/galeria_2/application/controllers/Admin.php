@@ -37,6 +37,7 @@ class Admin extends CI_Controller
 
     public function index()
     {   
+        var_dump('aqui');exit;
        /* if ( ! $this->session->userdata('logged_in')) {
             $this->page_items['msg'] = "Login to see this page.";
             $this->render('index', $this->page_items);
