@@ -28,7 +28,7 @@ if(!empty($infoEpifita))
 
 <style>
     .content-wrapper{
-      height:800px!important;
+      height:990px!important;
     }
 </style>    
 

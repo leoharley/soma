@@ -32,6 +32,12 @@ if(!empty($infoPropriedade))
 
 ?>
 
+<style>
+    .content-wrapper{
+      height:1140px!important;
+    }
+</style>  
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">

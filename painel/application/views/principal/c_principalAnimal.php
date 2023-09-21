@@ -34,7 +34,7 @@ if(!empty($infoAnimal))
 
 <style>
     .content-wrapper{
-      height:800px!important;
+      height:1140px!important;
     }
 </style>    
 

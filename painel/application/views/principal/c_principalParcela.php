@@ -41,7 +41,7 @@ if(!empty($infoParcela))
 
 <style>
     .content-wrapper{
-      height:1220px!important;
+      height:1210px!important;
     }
 </style>    
 

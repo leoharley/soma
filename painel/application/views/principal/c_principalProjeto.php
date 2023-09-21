@@ -22,6 +22,12 @@ if(!empty($infoProjeto))
 
 ?>
 
+<style>
+    .content-wrapper{
+      height:915px!important;
+    }
+</style>  
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
