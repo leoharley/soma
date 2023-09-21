@@ -1455,6 +1455,15 @@ function carregaInfoPermissao($IdPermissao)
         return $query->row();
     }
 
+    function carregaNextIdParcela()
+    {
+        $this->db->select('max(id)+1 as id');
+        $this->db->limit(1);
+        $query = $this->db->get('tb_parcelas');
+
+        return $query->row();
+    }
+
     
 }
 

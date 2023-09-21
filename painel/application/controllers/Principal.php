@@ -410,6 +410,8 @@ class Principal extends BaseController
                 $data['infoTiposBioma'] = $this->PrincipalModel->carregaInfoTiposBioma();
                 $data['infoTiposParcela'] = $this->PrincipalModel->carregaInfoTiposParcela();
 
+                $data['nextIdParcela'] = $this->PrincipalModel->carregaNextIdParcela();
+
                 $this->loadViews("principal/c_principalParcela", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {

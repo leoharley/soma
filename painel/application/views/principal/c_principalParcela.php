@@ -41,7 +41,7 @@ if(!empty($infoParcela))
 
 <style>
     .content-wrapper{
-      height:1200px!important;
+      height:1220px!important;
     }
 </style>    
 
@@ -302,7 +302,7 @@ if(!empty($infoParcela))
         <h1><i class="fa fa-paperclip"></i> Gerenciador de Anexos</h1>
         </section>
         <br/>   
-        <iframe style="width:82%;height:500px;border-top: 3px solid #3c8dbc;border-left:none" src="<?php echo base_url(); ?>admin/parcelas/<?= $id ?>" title="" ></iframe>
+        <iframe style="width:82%;height:500px;border-top: 3px solid #3c8dbc;border-left:none" src="<?php echo base_url(); ?>admin/parcelas/<?= $this->uri->segment(2) == 'cadastrar'?$nextIdParcela->id:$id ?>" title="" ></iframe>
     </section>
 </div>
 
