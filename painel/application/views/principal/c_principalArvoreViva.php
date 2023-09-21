@@ -48,7 +48,7 @@ if(!empty($infoArvoreViva))
 
 <style>
     .content-wrapper{
-      height:1220px!important;
+      height:1320px!important;
     }
 </style>    
 
