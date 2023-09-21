@@ -1464,7 +1464,51 @@ function carregaInfoPermissao($IdPermissao)
         return $query->row();
     }
 
-    
+    function carregaNextIdProjeto()
+    {
+        $this->db->select('max(id)+1 as id');
+        $this->db->limit(1);
+        $query = $this->db->get('tb_projetos');
+
+        return $query->row();
+    }
+
+    function carregaNextIdAnimal()
+    {
+        $this->db->select('max(id)+1 as id');
+        $this->db->limit(1);
+        $query = $this->db->get('tb_animais');
+
+        return $query->row();
+    }
+
+    function carregaNextIdArvoreViva()
+    {
+        $this->db->select('max(id)+1 as id');
+        $this->db->limit(1);
+        $query = $this->db->get('tb_arvores_vivas');
+
+        return $query->row();
+    }
+
+    function carregaNextIdEpifita()
+    {
+        $this->db->select('max(id)+1 as id');
+        $this->db->limit(1);
+        $query = $this->db->get('tb_epifitas');
+
+        return $query->row();
+    }
+
+    function carregaNextIdPropriedade()
+    {
+        $this->db->select('max(id)+1 as id');
+        $this->db->limit(1);
+        $query = $this->db->get('tb_propriedades');
+
+        return $query->row();
+    }
+
 }
 
   

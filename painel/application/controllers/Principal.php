@@ -77,6 +77,8 @@ class Principal extends BaseController
                 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
 
+                $data['nextIdProjeto'] = $this->PrincipalModel->carregaNextIdProjeto();
+
                 $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
@@ -215,6 +217,8 @@ class Principal extends BaseController
                 $this->global['pageTitle'] = 'SOMA : Cadastro de Propriedades';
                 
                 $data['infoProjetos'] = $this->PrincipalModel->carregaInfoProjetos();
+
+                $data['nextIdPropriedade'] = $this->PrincipalModel->carregaNextIdPropriedade();
 
                 $this->loadViews("principal/c_principalPropriedade", $this->global, $data, NULL); 
             }
@@ -595,6 +599,8 @@ function principalArvoreViva()
                 $data['infoFamilias'] = $this->PrincipalModel->carregaInfoFamilias();
                 $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
                 $data['infoGrausProtecao'] = $this->PrincipalModel->carregaInfoGrausProtecao();
+
+                $data['nextIdArvoreViva'] = $this->PrincipalModel->carregaNextIdArvoreViva();
  
                 $this->loadViews("principal/c_principalArvoreViva", $this->global, $data, NULL); 
             }
@@ -791,6 +797,8 @@ function principalAnimal()
                 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
 
+                $data['nextIdAnimal'] = $this->PrincipalModel->carregaNextIdAnimal();
+
                 $this->loadViews("principal/c_principalAnimal", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
@@ -962,7 +970,9 @@ function principalAnimal()
                 $this->global['pageTitle'] = 'SOMA : Cadastro de Epífita';
                 
                 $data['infoFamilias'] = $this->PrincipalModel->carregaInfoFamilias();
-                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();                
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
+                
+                $data['nextIdEpifita'] = $this->PrincipalModel->carregaNextIdEpifita();
                 
                 $this->loadViews("principal/c_principalEpifita", $this->global, $data, NULL); 
             }

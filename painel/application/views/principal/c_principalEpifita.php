@@ -174,6 +174,12 @@ if(!empty($infoEpifita))
                     </div>
             </div>
         </div>
+
+        <section class="content-header">
+        <h1><i class="fa fa-paperclip"></i> Gerenciador de Anexos</h1>
+        </section>
+        <br/>   
+        <iframe style="width:82%;height:500px;border-top: 3px solid #3c8dbc;border-left:none" src="<?php echo base_url(); ?>admin/epifitas/<?= $this->uri->segment(2) == 'cadastrar'?$nextIdEpifita->id:$id ?>" title="" ></iframe>
     </section>
 </div>
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
