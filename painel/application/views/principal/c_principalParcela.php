@@ -41,7 +41,7 @@ if(!empty($infoParcela))
 
 <style>
     .content-wrapper{
-      height:800px!important;
+      height:1200px!important;
     }
 </style>    
 
@@ -277,13 +277,7 @@ if(!empty($infoParcela))
                                         <input type="text" class="form-control required 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_total') : $carbono_total; ?>" id="carbono_total" name="carbono_total">
                                     </div>
                                 </div>                                
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <a href="#" class="btn btn-primary" onclick="popup('<?php echo base_url(); ?>admin/parcelas/<?= $id ?>', 'test', window, 1000, 400);">Anexar arquivos</a>
-                                </div>
-                            </div>                               
+                            </div>                                                     
 
                         </div>
                         <!-- /.box-body -->
@@ -303,17 +297,15 @@ if(!empty($infoParcela))
                     </div>
             </div>
         </div>
-
-        <div id="myModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Content will be loaded here from "remote.php" file -->
-                </div>
-            </div>
-        </div>
-
+        
+        <section class="content-header">
+        <h1><i class="fa fa-paperclip"></i> Gerenciador de Anexos</h1>
+        </section>
+        <br/>   
+        <iframe style="width:85%;height:500px;border-top: 3px solid #3c8dbc;border-left:none" src="<?php echo base_url(); ?>admin/parcelas/<?= $id ?>" title="" ></iframe>
     </section>
 </div>
+
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 

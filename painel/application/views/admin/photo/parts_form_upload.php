@@ -58,7 +58,7 @@
       <input type="hidden" value="<?php echo $ds_categoria; ?>" name="ds_categoria" id="ds_categoria" />
       <input type="hidden" value="<?php echo $id_categoria; ?>" name="id_categoria" id="id_categoria" />
 
-      <input type="submit" class="btn btn-default" value="Enviar" />
+      <input type="submit" class="btn btn-default" value="Salvar" />
     </form>
 
   </div>

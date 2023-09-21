@@ -26,10 +26,8 @@
   <body>
     <div class="container">
       <br/>
-      <br/>
-
       <!-- Navbar -->
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default" style="margin-bottom:-5px!important">
         <div class="container-fluid">
 
              <!-- Admin menubar -->
