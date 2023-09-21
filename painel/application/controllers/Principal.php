@@ -240,7 +240,7 @@ class Principal extends BaseController
 
                 $id_projeto = $this->input->post('id_projeto');
                 $nu_ano_emissao = $this->input->post('nu_ano_emissao');
-                $nu_inscricao_car = $this->input->post('nu_inscricao_car');
+                $nu_inscricao_car = preg_replace('/[^0-9]/', '', $this->input->post('nu_inscricao_car'));
                 $nu_ccir = $this->input->post('nu_ccir');
                 $proprietario = $this->input->post('proprietario');
                 $no_propriedade = $this->input->post('no_propriedade');
@@ -299,25 +299,9 @@ class Principal extends BaseController
             
             $IdPropriedade = $this->input->post('id');
 
-            //VALIDAÇÃO
-            
-         /*   $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
-            $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-            
-            if($this->form_validation->run() == FALSE)
-            { 
-                $this->editOld($userId);
-            }
-            else
-            { */
-
                 $id_projeto = $this->input->post('id_projeto');
                 $nu_ano_emissao = $this->input->post('nu_ano_emissao');
-                $nu_inscricao_car = $this->input->post('nu_inscricao_car');
+                $nu_inscricao_car = preg_replace('/[^0-9]/', '', $this->input->post('nu_inscricao_car'));
                 $nu_ccir = $this->input->post('nu_ccir');
                 $proprietario = $this->input->post('proprietario');
                 $no_propriedade = $this->input->post('no_propriedade');
