@@ -40,28 +40,32 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Aplikasi Manajemen Mahasiswa',
+          'Aplicativo Soma',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: Container(
+      body: 
+      Container(
+        
+       
          decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              const Color(0xFFFFFFFF),
-              Color.fromARGB(233, 237, 142, 142),
-              const Color(0xFFFF9300),
-            ],
-            stops: [0.0, 0.40, 1.0],
-          ),
+
+          image: DecorationImage(
+              image: AssetImage("assets/images/fundo_1_app.png"), // <-- BACKGROUND IMAGE
+              fit: BoxFit.cover,
+            ),
+
+          
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset('assets/images/logo2.png',
+              height: 110,
+   
+              fit:BoxFit.fill),
               const Text(
                 'Login',
                 style: TextStyle(
@@ -90,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                       TextField(
                         controller: _passwordController,
                         decoration: const InputDecoration(
-                          labelText: 'Password',
+                          labelText: 'Senha',
                         ),
                         obscureText: true,
                       ),
@@ -98,8 +102,11 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 46.0),
               ElevatedButton(
+                style: TextButton.styleFrom(
+                backgroundColor: Colors.green,
+                minimumSize: Size(200, 50)),
                 onPressed: () async {
                   final email = _emailController.text;
                   final password = _passwordController.text;
@@ -111,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                         title: const Text('Login Success'),
                         content: const Text('Your Login was successful!'),
                         actions: [
-                          TextButton(
+                          TextButton(                            
                             onPressed: () {
                               Navigator.pop(context); // Close the dialog
                               Navigator.push(
@@ -140,17 +147,26 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   }
                 },
-                child: const Text('Login'),
+                child: const Text('Entrar',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white)),
               ),
               const SizedBox(height: 16.0),
               TextButton(
+                style: TextButton.styleFrom(
+                backgroundColor: Colors.green,
+                minimumSize: Size(200, 50)),
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const RegistrationPage()),
                   );
                 },
-                child: const Text('Register'),
+                child: const Text('Cadastre-se',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white)),
               ),
             ],
           ),
