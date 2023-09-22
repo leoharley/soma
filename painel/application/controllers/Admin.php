@@ -554,9 +554,9 @@ class Admin extends BaseController
         $ds_categoria = $this->uri->segment(3);
         $id_categoria = $this->uri->segment(4);
 
-        $this->form_validation->set_rules('name', '<strong>Nome</strong>', 'trim|required');
-        $this->form_validation->set_rules('description', 'Descrição', 'trim|required');
-        $this->form_validation->set_rules('date', 'Data', 'trim|required');
+        $this->form_validation->set_rules('name', '<strong>nome</strong>', 'trim|required');
+        $this->form_validation->set_rules('description', '<strong>descrição</strong>', 'trim|required');
+        $this->form_validation->set_rules('date', '<strong>data</strong>', 'trim|required');
        // $this->form_validation->set_rules('location', 'Location', 'trim|required');
 
         if ($this->form_validation->run() == false) {
@@ -630,9 +630,9 @@ class Admin extends BaseController
 
             $this->render('index', $this->page_items);
         } else {
-            $this->form_validation->set_rules('name', 'Nome', 'trim|required');
-            $this->form_validation->set_rules('description', 'Descrição', 'trim|required');
-            $this->form_validation->set_rules('date', 'Data', 'trim|required');
+            $this->form_validation->set_rules('name', '<strong>nome</strong>', 'trim|required');
+            $this->form_validation->set_rules('description', '<strong>descrição</strong>', 'trim|required');
+            $this->form_validation->set_rules('date', '<strong>data</strong>', 'trim|required');
          //   $this->form_validation->set_rules('location', 'Location', 'trim|required');
 
             if ($this->form_validation->run() == false) {
