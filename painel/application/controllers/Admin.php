@@ -554,9 +554,9 @@ class Admin extends BaseController
         $ds_categoria = $this->uri->segment(3);
         $id_categoria = $this->uri->segment(4);
 
-        $this->form_validation->set_rules('name', 'Photo name', 'trim|required');
-        $this->form_validation->set_rules('description', 'Description', 'trim|required');
-        $this->form_validation->set_rules('date', 'Date', 'trim|required');
+        $this->form_validation->set_rules('name', 'Nome', 'trim|required');
+        $this->form_validation->set_rules('description', 'Descrição', 'trim|required');
+        $this->form_validation->set_rules('date', 'Data', 'trim|required');
        // $this->form_validation->set_rules('location', 'Location', 'trim|required');
 
         if ($this->form_validation->run() == false) {
@@ -626,20 +626,20 @@ class Admin extends BaseController
         $id_categoria = $this->uri->segment(4);
         $id = $this->uri->segment(5);
         if ( !is_numeric($id)) {
-            $this->page_items['msg'] = "No photo with such id";
+            $this->page_items['msg'] = "Não existe arquivo com esse ID";
 
             $this->render('index', $this->page_items);
         } else {
-            $this->form_validation->set_rules('name', 'Photo name', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required');
-            $this->form_validation->set_rules('date', 'Date', 'trim|required');
+            $this->form_validation->set_rules('name', 'Nome', 'trim|required');
+            $this->form_validation->set_rules('description', 'Descrição', 'trim|required');
+            $this->form_validation->set_rules('date', 'Data', 'trim|required');
          //   $this->form_validation->set_rules('location', 'Location', 'trim|required');
 
             if ($this->form_validation->run() == false) {
                 $photo = $this->login_model->get_by_id($id);
 
                 if ( ! $photo) {
-                    $this->page_items['msg'] = "No photo with such id.";
+                    $this->page_items['msg'] = "Não existe arquivo com esse ID";
 
                     $this->render('index', $data);
                 } else {
