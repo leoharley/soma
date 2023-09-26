@@ -64,7 +64,7 @@ class PrincipalModel extends CI_Model
         $sql="
         UPDATE tb_arvores_vivas Simpro
         set st_registro_ativo = 'N'
-        where id_parcela in (select id_parcela from tb_parcelas 
+        where id_parcela in (select id from tb_parcelas 
         where id_propriedade = {$id_propriedade})";
 
         $query = $this->db->query($sql);
