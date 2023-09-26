@@ -1002,28 +1002,12 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->update('tb_epifitas', $info);
             
         return TRUE;
-
-    /*    $this->db->where('id_epifitas', $IdAnimal);
-        $res1 = $this->db->delete('rl_epifitas_familia_genero_especie');
-        $this->db->where('id', $IdAnimal);
-        $res2 = $this->db->delete('tb_epifitas');
-
-        if(!$res1 && !$res2)
-        {
-            $error = $this->db->error();
-            return $error['code'];
-        }
-        else
-        {
-            return TRUE;
-        } */
-
     }
 
 
     function listaHidrologia($searchText = '', $page, $segment)
     {
-        $this->db->select('Hidrologia.*');
+        $this->db->select('Hidrologia.*,Parcelas.id as id_parcela, Propriedades.no_propriedade, CadastroPessoa.ds_nome');
         $this->db->from('tb_hidrologia as Hidrologia');
         $this->db->join('tb_parcelas as Parcelas', 'Parcelas.id = Hidrologia.id_parcela','left');
         $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
