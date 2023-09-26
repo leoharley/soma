@@ -324,7 +324,7 @@ $(function() {
 
                     <li class="treeview">
                         <a href="<?php echo base_url(); ?>principalHidrologia/listar">
-                            <i class="fa-solid fa-water" style="margin-right:5px!important"></i>
+                            <i class="fa fa-list" style="margin-right:5px!important"></i>
                             <span>Hidrologia</span>
                         </a>
                     </li>
