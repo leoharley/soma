@@ -82,21 +82,22 @@ if(!empty($infoHidrologia))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="descricao">Descrição</label>
-                                        <input type="textarea" class="form-control required" id="descricao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('descricao') : $descricao; ?>" name="descricao">
+                                        <textarea id="story" name="story" rows="5" cols="33">
+                                        <textarea id="descricao" name="descricao" rows="5" cols="33">
+                                        <?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('descricao') : $descricao; ?>
+                                        </textarea>
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
-                                
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="latitude">Latitude</label>
                                         <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude">
                                     </div>
                                 </div>
-
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="longitude">Longitude</label>
