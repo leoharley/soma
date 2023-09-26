@@ -49,20 +49,59 @@ class PrincipalModel extends CI_Model
 
         $id_propriedade = $this->carregaInfoIdPropriedade($IdProjeto)[0]->id;
 
-        $this->db->where('id_propriedade', $id_propriedade);
-        $this->db->update('tb_parcelas', $infoProjeto);
+        $this->db->where('id', $IdProjeto);
+        $this->db->update('tb_projetos', $infoProjeto);
 
         $this->db->where('id_projeto', $IdProjeto);
         $this->db->update('tb_propriedades', $infoProjeto);
 
-        $this->db->where('id', $IdProjeto);
-        $this->db->update('tb_projetos', $infoProjeto);
+        $this->db->where('id_propriedade', $id_propriedade);
+        $this->db->update('tb_parcelas', $infoProjeto);
         
         $this->db->reconnect();
         $this->db->start_cache();
 
         $sql="
-        UPDATE tb_arvores_vivas Simpro
+        UPDATE tb_arvores_vivas
+        set st_registro_ativo = 'N'
+        where id_parcela in (select id from tb_parcelas 
+        where id_propriedade = {$id_propriedade})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_animais
+        set st_registro_ativo = 'N'
+        where id_parcela in (select id from tb_parcelas 
+        where id_propriedade = {$id_propriedade})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_epifitas
+        set st_registro_ativo = 'N'
+        where id_parcela in (select id from tb_parcelas 
+        where id_propriedade = {$id_propriedade})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_hidrologia
         set st_registro_ativo = 'N'
         where id_parcela in (select id from tb_parcelas 
         where id_propriedade = {$id_propriedade})";
@@ -141,20 +180,62 @@ class PrincipalModel extends CI_Model
         $this->db->where('id', $idPropriedade);
         $this->db->update('tb_propriedades', $info);
         
+        $this->db->where('id_propriedade', $idPropriedade);
+        $this->db->update('tb_parcelas', $infoProjeto);
+        
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_arvores_vivas
+        set st_registro_ativo = 'N'
+        where id_parcela in (select id from tb_parcelas 
+        where id_propriedade = {$idPropriedade})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_animais
+        set st_registro_ativo = 'N'
+        where id_parcela in (select id from tb_parcelas 
+        where id_propriedade = {$idPropriedade})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_epifitas
+        set st_registro_ativo = 'N'
+        where id_parcela in (select id from tb_parcelas 
+        where id_propriedade = {$idPropriedade})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_hidrologia
+        set st_registro_ativo = 'N'
+        where id_parcela in (select id from tb_parcelas 
+        where id_propriedade = {$idPropriedade})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+        
         return TRUE;
-
-    /*    $this->db->where('id', $idPropriedade);
-        $res2 = $this->db->delete('tb_propriedades');
-
-        if(!$res1 && !$res2)
-        {
-            $error = $this->db->error();
-            return $error['code'];
-        }
-        else
-        {
-            return TRUE;
-        }*/
 
     }
 
@@ -209,21 +290,56 @@ class PrincipalModel extends CI_Model
         $this->db->where('id', $idParcela);
         $this->db->update('tb_parcelas', $info);
         
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_arvores_vivas
+        set st_registro_ativo = 'N'
+        where id_parcela = {$idParcela})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_animais
+        set st_registro_ativo = 'N'
+        where id_parcela = {$idParcela})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_epifitas
+        set st_registro_ativo = 'N'
+        where id_parcela = {$idParcela})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_hidrologia
+        set st_registro_ativo = 'N'
+        where id_parcela = {$idParcela})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+
+
         return TRUE;
-
-    /*    $this->db->where('id', $idParcela);
-        $res2 = $this->db->delete('tb_parcelas');
-
-        if(!$res1 && !$res2)
-        {
-            $error = $this->db->error();
-            return $error['code'];
-        }
-        else
-        {
-            return TRUE;
-        }*/
-
     }
 
     function apagaFilhos($tabela, $coluna, $id)
