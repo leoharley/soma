@@ -1085,6 +1085,148 @@ function principalAnimal()
                 redirect('principalEpifita/listar');
     }
 
+
+    function principalHidrologia()
+    {
+            $tpTela = $this->uri->segment(2);
+
+            $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
+
+            if ($tpTela == 'listar') {
+
+                $searchText = $this->security->xss_clean($this->input->post('searchText'));
+                $data['searchText'] = $searchText;
+                
+                $this->load->library('pagination');
+                
+                $count = 0;
+
+                $returns = $this->paginationCompress ( "principalHidrologia/listar", $count, 10 );
+                
+                $data['registrosHidrologia'] = $this->PrincipalModel->listaHidrologia($searchText, $returns["page"], $returns["segment"]);
+                
+                $process = 'Listar Hidrologias';
+                $processFunction = 'Principal/principalHidrologia';
+                $this->logrecord($process,$processFunction);
+
+                $this->global['pageTitle'] = 'SOMA : Lista de Hidrologia';
+
+                $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+               
+                $this->loadViews("principal/l_principalHidrologia", $this->global, $data, NULL);
+            }
+            else if ($tpTela == 'cadastrar') {
+                $this->global['pageTitle'] = 'SOMA : Cadastro de Hidrologia';
+                
+                $data['infoFamilias'] = $this->PrincipalModel->carregaInfoFamilias();
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
+                
+                $data['nextIdHidrologia'] = $this->PrincipalModel->carregaNextIdHidrologia();
+                
+                $this->loadViews("principal/c_principalHidrologia", $this->global, $data, NULL); 
+            }
+            else if ($tpTela == 'editar') {
+                $IdHidrologia = $this->uri->segment(3);
+                if($IdHidrologia == null)
+                {
+                    redirect('principalHidrologia/listar');
+                }
+
+                $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
+                $data['infoHidrologia'] = $this->PrincipalModel->carregaInfoHidrologia($IdHidrologia);
+               
+                $this->global['pageTitle'] = 'SOMA : Editar Hidrologia';      
+                $this->loadViews("principal/c_principalHidrologia", $this->global, $data, NULL);
+            }
+    }
+
+    function adicionaHidrologia() 
+    {
+        $id_parcela  = $this->input->post('id_parcela');
+        $descricao  = $this->input->post('descricao');
+        $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
+        $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
+        
+        $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
+        $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
+        
+        $infoHidrologia = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'),
+                             'descricao'=>$descricao, 'latitude'=>$latitude, 'longitude'=>$longitude, 'latitude_gd'=>$latitude_gd,
+                             'longitude_gd'=>$longitude_gd, 'dt_cadastro'=>date('d-m-y'), 'st_registro_ativo'=>'S');
+                            
+        $result = $this->PrincipalModel->adicionaHidrologia($infoHidrologia);
+        
+        if($result > 0)
+        {
+            $process = 'Adicionar Hidrologia';
+            $processFunction = 'Principal/adicionaHidrologia';
+            $this->logrecord($process,$processFunction);
+
+            $this->session->set_flashdata('success', 'Hidrologia criada com sucesso');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Falha na criação de hidrologia');
+        }          
+        
+        redirect('principalHidrologia/listar');
+    }
+
+
+    function editaHidrologia()
+    {
+        $IdHidrologia = $this->input->post('id');
+
+        $id_parcela  = $this->input->post('id_parcela');
+        $descricao  = $this->input->post('descricao');
+        $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
+        $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
+        
+        $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
+        $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
+        
+        $infoHidrologia = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'),
+                                'descricao'=>$descricao, 'latitude'=>$latitude, 'longitude'=>$longitude, 'latitude_gd'=>$latitude_gd,
+                                'longitude_gd'=>$longitude_gd, 'dt_cadastro'=>date('d-m-y'), 'st_registro_ativo'=>'S');
+                                
+        $result = $this->PrincipalModel->editaHidrologia($infoHidrologia, $IdHidrologia);            
+        
+        if($result)
+        {
+            $process = 'Hidrologia atualizada';
+            $processFunction = 'Principal/editaHidrologia';
+            $this->logrecord($process,$processFunction);
+
+            $this->session->set_flashdata('success', 'Hidrologia atualizada com sucesso');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Falha na atualização de hidrologia');
+        }
+        
+        redirect('principalHidrologia/listar');
+    }
+
+    function apagaHidrologia()
+    {
+            $IdHidrologia = $this->uri->segment(2);
+
+            $resultado = $this->PrincipalModel->apagaHidrologia($IdHidrologia);
+            
+            if ($resultado) {
+                $process = 'Exclusão de hidrologia';
+                $processFunction = 'Principal/apagaHidrologia';
+                $this->logrecord($process,$processFunction);
+
+                $this->session->set_flashdata('success', 'Hidrologia deletada com sucesso');
+                }
+                else 
+                { 
+                    $this->session->set_flashdata('error', 'Falha em excluir hidrologia');
+                }
+                redirect('principalHidrologia/listar');
+    }
+
     function consultaGenero()
     {
             $idFamilia = $this->uri->segment(2);

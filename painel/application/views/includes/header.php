@@ -321,6 +321,13 @@ $(function() {
                             <span>Epífitas</span>
                         </a>
                     </li>
+
+                    <li class="treeview">
+                        <a href="<?php echo base_url(); ?>principalHidrologia/listar">
+                            <i class="fa fa-tree" style="margin-right:5px!important"></i>
+                            <span>Hidrologia</span>
+                        </a>
+                    </li>
                   </ul>
                   </li>
 

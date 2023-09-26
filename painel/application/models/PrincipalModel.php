@@ -299,6 +299,16 @@ class PrincipalModel extends CI_Model
         return $query->result();
     }
 
+    function carregaInfoHidrologia($IdHidrologia)
+    {
+        $this->db->select('Hidrologia.*');
+        $this->db->from('tb_hidrologia as Hidrologia');
+        $this->db->where('Hidrologia.id', $IdHidrologia);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
     function carregaInfoAnimal($IdAnimal)
     {
         $this->db->select('Animais.*,Rl.id_familia,Rl.id_genero,Rl.id_especie');
@@ -1010,6 +1020,59 @@ function carregaInfoPermissao($IdPermissao)
 
     }
 
+
+    function listaHidrologia($searchText = '', $page, $segment)
+    {
+        $this->db->select('Hidrologia.*');
+        $this->db->from('tb_hidrologia as Hidrologia');
+        $this->db->join('tb_parcelas as Parcelas', 'Parcelas.id = Hidrologia.id_parcela','left');
+        $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
+        $this->db->join('tb_acesso as Acesso', 'Acesso.co_seq_acesso = Hidrologia.id_acesso','left'); 
+        $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
+
+        if(!empty($searchText)) {
+            $likeCriteria = "(Hidrologia.latitude LIKE '%".$searchText."%'
+                            OR Hidrologia.longitude LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+
+        $this->db->where('Hidrologia.st_registro_ativo', 'S');
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+		        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function adicionaHidrologia($infoHidrologia)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tb_hidrologia', $infoHidrologia);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
+    function editaHidrologia($infoHidrologia, $IdHidrologia)
+    {
+        $this->db->where('id', $IdHidrologia);
+        $this->db->update('tb_hidrologia', $infoHidrologia);
+        
+        return TRUE;
+    }
+
+    function apagaHidrologia($IdHidrologia)
+    {
+        $info['st_registro_ativo'] = 'N';
+        $this->db->where('id', $IdHidrologia);
+        $this->db->update('tb_hidrologia', $info);
+            
+        return TRUE;
+    }
+
     function adicionaRlEpifitaFamiliaGeneroEspecie($infoRlEpifitaFamiliaGeneroEspecie)
     {
         $this->db->trans_start();
@@ -1496,6 +1559,15 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->select('max(id)+1 as id');
         $this->db->limit(1);
         $query = $this->db->get('tb_epifitas');
+
+        return $query->row();
+    }
+
+    function carregaNextIdHidrologia()
+    {
+        $this->db->select('max(id)+1 as id');
+        $this->db->limit(1);
+        $query = $this->db->get('tb_hidrologia');
 
         return $query->row();
     }

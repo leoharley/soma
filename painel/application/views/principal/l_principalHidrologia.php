@@ -20,15 +20,15 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i class="fa fa-users"></i> Listar Epífitas
+      <i class="fa fa-users"></i> Listar Hidrologia
       <small>Listar</small>
     </h1>
   </section>
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>principalEpifita/cadastrar">
-          <i class="fa fa-plus"></i> Adicionar epífita</a>
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>principalHidrologia/cadastrar">
+          <i class="fa fa-plus"></i> Adicionar hidrologia</a>
       </div>
       <br/>
       <div class="box">
@@ -76,9 +76,9 @@
                 </thead>
                 <tbody>
                   <?php
-                      if(!empty($registrosEpifitas))
+                      if(!empty($registrosHidrologia))
                       {
-                          foreach($registrosEpifitas as $registro)
+                          foreach($registrosHidrologia as $registro)
                           {
                       ?>
                     <tr>
@@ -92,6 +92,9 @@
                         <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
+                        <?php echo $registro->descricao ?>
+                      </td>
+                      <td>
                         <?php echo $registro->latitude  ?>
                       </td>
                       <td>
@@ -102,7 +105,7 @@
                         </font>':date("d/m/Y", strtotime($registro->dt_cadastro)); ?>
                       </td>
                       <td class="text-center">
-                          <a class="btn btn-sm btn-info" href="<?= base_url().'principalEpifita/editar/'.$registro->id ?>" title="Editar">
+                          <a class="btn btn-sm btn-info" href="<?= base_url().'principalHidrologia/editar/'.$registro->id ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
                           <a class="btn btn-sm btn-danger deleteUser" href="#" data-toggle="modal" data-target="#confirma-exclusao<?= $registro->id ?>"><i class="fa fa-trash-o"></i></a>
@@ -123,7 +126,7 @@
                                 </div>
                                 
                                 <div class="modal-footer">  
-                                    <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaEpifita/'.$registro->id ?>" data-userid="<?= $registro->id ?>" title="Excluir">
+                                    <a class="btn btn-sm btn-danger deleteUser" href="<?= base_url().'apagaHidrologia/'.$registro->id ?>" data-userid="<?= $registro->id ?>" title="Excluir">
                                     Confirmar
                                     </a>                       
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

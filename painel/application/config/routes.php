@@ -32,6 +32,9 @@ $route['principalAnimal/:any'] = "principal/principalAnimal/$1";
 $route['principalEpifita/:any/:any'] = "principal/principalEpifita/$1/$2";
 $route['principalEpifita/:any'] = "principal/principalEpifita/$1";
 
+$route['principalHidrologia/:any/:any'] = "principal/principalHidrologia/$1/$2";
+$route['principalHidrologia/:any'] = "principal/principalHidrologia/$1";
+
 /*********** ROUTES PARA AÇÕES DA TELA USUÁRIO *******************/
 $route['adicionaUsuario'] = "cadastro/adicionaUsuario";
 $route['editaUsuario'] = "cadastro/editaUsuario";
@@ -75,6 +78,12 @@ $route['apagaAnimal/:any'] = "principal/apagaAnimal/$1";
 $route['adicionaEpifita'] = "principal/adicionaEpifita";
 $route['editaEpifita'] = "principal/editaEpifita";
 $route['apagaEpifita/:any'] = "principal/apagaEpifita/$1";
+
+/*********** ROUTES PARA AÇÕES DA TELA HIDROLOGIA *******************/
+$route['adicionaHidrologia'] = "principal/adicionaHidrologia";
+$route['editaHidrologia'] = "principal/editaHidrologia";
+$route['apagaHidrologia/:any'] = "principal/apagaHidrologia/$1";
+
 
 $route['consultaGenero/:any'] = "principal/consultaGenero/$1";
 $route['consultaEspecie/:any'] = "principal/consultaEspecie/$1";

@@ -40,16 +40,13 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Aplicativo Soma',
+          'App Soma Sustentabilidade',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: 
       Container(
-        
-       
          decoration: BoxDecoration(
-
           image: DecorationImage(
               image: AssetImage("assets/images/fundo_1_app.png"), // <-- BACKGROUND IMAGE
               fit: BoxFit.cover,
@@ -87,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                       TextField(
                         controller: _emailController,
                         decoration: const InputDecoration(
-                          labelText: 'Email',
+                          labelText: 'CPF',
                         ),
                       ),
                       const SizedBox(height: 16.0),
