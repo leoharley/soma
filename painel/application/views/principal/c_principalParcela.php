@@ -234,7 +234,7 @@ if(!empty($infoParcela))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="tamanho_parcela">Tamanho de parcela</label>
+                                        <label for="tamanho_parcela">Tamanho de parcela (m2)</label>
                                         <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('tamanho_parcela') : $tamanho_parcela; ?>" id="tamanho_parcela" name="tamanho_parcela">
                                     </div>
                                 </div>

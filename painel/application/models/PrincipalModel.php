@@ -47,7 +47,9 @@ class PrincipalModel extends CI_Model
     {
         $infoProjeto['st_registro_ativo'] = 'N';
 
-        $this->db->where('id_propriedade', $this->carregaInfoIdPropriedade($IdProjeto)[0]->id);
+        $id_propriedade = $this->carregaInfoIdPropriedade($IdProjeto)[0]->id;
+
+        $this->db->where('id_propriedade', $id_propriedade);
         $this->db->update('tb_parcelas', $infoProjeto);
 
         $this->db->where('id_projeto', $IdProjeto);
@@ -56,6 +58,19 @@ class PrincipalModel extends CI_Model
         $this->db->where('id', $IdProjeto);
         $this->db->update('tb_projetos', $infoProjeto);
         
+        $this->db->reconnect();
+        $this->db->start_cache();
+
+        $sql="
+        UPDATE tb_arvores_vivas Simpro
+        set st_registro_ativo = 'N'
+        where id_parcela in (select id_parcela from tb_parcelas 
+        where id_propriedade = {$id_propriedade})";
+
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+    
         return TRUE;
     }
 
@@ -64,6 +79,16 @@ class PrincipalModel extends CI_Model
         $this->db->select('id');
         $this->db->from('tb_propriedades');
         $this->db->where('id_projeto', $id);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+    function carregaInfoIdParcela($id)
+    {
+        $this->db->select('id');
+        $this->db->from('tb_parcelas');
+        $this->db->where('id_parcela', $id);
         $query = $this->db->get();
         
         return $query->result();
@@ -572,6 +597,7 @@ function carregaInfoPermissao($IdPermissao)
     $this->db->from('tb_permissao as Permissao');    
     $this->db->join('tb_perfil as Perfis', 'Perfis.id_perfil = Permissao.id_perfil','inner');
     $this->db->where('id_permissao', $IdPermissao);
+    $this->db->where('st_registro_ativo','S');
     $query = $this->db->get();
     
     return $query->result();
@@ -586,6 +612,7 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('id_perfil, ds_perfil');
         $this->db->from('tb_perfil');
+        $this->db->where('st_registro_ativo','S');
         $query = $this->db->get();
         
         return $query->result();
@@ -596,6 +623,7 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('*');
         $this->db->from('tb_projetos as Projetos');
+        $this->db->where('st_registro_ativo','S');
         $query = $this->db->get();
 
         return $query->result();
@@ -605,6 +633,7 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('*');
         $this->db->from('tb_propriedades as Propriedades');
+        $this->db->where('st_registro_ativo','S');
         $query = $this->db->get();
 
         return $query->result();
@@ -624,6 +653,7 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('Familias.id, Familias.nome');
         $this->db->from('tb_flora_familia as Familias');
+        $this->db->where('st_registro_ativo','S');
         $query = $this->db->get();
 
         return $query->result();
@@ -633,6 +663,7 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('Generos.id, Generos.nome');
         $this->db->from('tb_flora_genero as Generos');
+        $this->db->where('st_registro_ativo','S');
         $query = $this->db->get();
 
         return $query->result();
@@ -642,6 +673,7 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('distinct(Especies.id), Especies.nome');
         $this->db->from('tb_flora_especie as Especies');
+        $this->db->where('st_registro_ativo','S');
         $query = $this->db->get();
 
         return $query->result();
@@ -651,6 +683,7 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('Familias.id, Familias.nome');
         $this->db->from('tb_fauna_familia as Familias');
+        $this->db->where('st_registro_ativo','S');
         $query = $this->db->get();
 
         return $query->result();
@@ -660,6 +693,7 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('Generos.id, Generos.nome');
         $this->db->from('tb_fauna_genero as Generos');
+        $this->db->where('st_registro_ativo','S');
         $query = $this->db->get();
 
         return $query->result();
@@ -669,6 +703,7 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('Especies.id, Especies.nome');
         $this->db->from('tb_fauna_especie as Especies');
+        $this->db->where('st_registro_ativo','S');
         $query = $this->db->get();
 
         return $query->result();
