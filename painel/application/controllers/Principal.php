@@ -1118,7 +1118,6 @@ function principalAnimal()
             else if ($tpTela == 'cadastrar') {
                 $this->global['pageTitle'] = 'SOMA : Cadastro de Hidrologia';
                 
-                $data['infoFamilias'] = $this->PrincipalModel->carregaInfoFamilias();
                 $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
                 
                 $data['nextIdHidrologia'] = $this->PrincipalModel->carregaNextIdHidrologia();
