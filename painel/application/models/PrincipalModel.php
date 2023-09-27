@@ -763,6 +763,7 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->where('Parcelas.st_registro_ativo','S');
         $query = $this->db->get();
 
+        var_dump($this->db->last_query());exit;
         return $query->result();
     }
 
