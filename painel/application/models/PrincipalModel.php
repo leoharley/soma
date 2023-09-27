@@ -760,6 +760,7 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->select('Parcelas.*, Propriedades.no_propriedade');
         $this->db->from('tb_parcelas as Parcelas');
         $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');
+        $this->db->where('st_registro_ativo','S');
         $query = $this->db->get();
 
         return $query->result();
