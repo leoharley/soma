@@ -59,7 +59,7 @@ if(!empty($infoHidrologia))
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="id_parcela">Pacela</label>
+                                        <label for="id_parcela">Parcela</label>
                                         <select id="id_parcela" name="id_parcela" required>
                                             <option></option>
                                             <?php
