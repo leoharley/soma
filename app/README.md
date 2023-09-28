@@ -1,50 +1,33 @@
-# Flutter CRUD with Login
+## Login and Registration in Android with PHP and MySQL
+[![N|Solid](https://androidigniter.com/wp-content/uploads/2019/03/powered-by-android-igniter.png)](https://androidigniter.com/)    
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://androidigniter.com)
 
-This is a Flutter project that demonstrates a basic CRUD (Create, Read, Update, Delete) application with login functionality. The app interacts with a simple PHP API to perform CRUD operations on a database.
+In this tutorial, we will learn how we can implement simple **Login and Registration in Android with PHP and MySQL**. I will use **PHP** for backend programming and **MySQL**database to store data in **remote database**.
+You can Get PHP Web-service here: [PHP Backend](https://github.com/androidigniter/Login-and-Registration-in-Android-using-PHP-and-MySQL-PHP-Backend-Service)
+##
+This Tutorial have Few steps : 
 
-## Features
+You can Read full Explanation and Documentation about how to implement this with PHP Webservice from Here:
+## Documentation
+[Login and Registration in Android with PHP and MySQL](https://androidigniter.com/login-registration-android-php-mysql.php)
+ - Adding Dependencies
+ - Adding Permission on AndroidMainfest.xml file
+ - Creating POJO Classes
+ - User.java
+ - Strings.xml
+ - Creating SessionHandler Class
+ - Create Login Screen Graphics
+ - activity_login.xml
+ - LoginActivity.java
+ - activity_register.xml
+ - RegisterActivity.java
+ - activity_dashboard.xml
+ - DashboardActivity.java
+ - Run the Code
+ - List item
 
-- User authentication: Allows users to log in and access CRUD functionality.
-- Create: Users can add new data to the database.
-- Read: Displays the existing data from the database.
-- Update: Users can edit and update the data.
-- Delete: Users can delete specific data entries.
-
-## Technologies Used
-
-- Flutter: A popular cross-platform framework for building mobile applications.
-- PHP: Used to create a simple API for interacting with the database.
-
-## API
-
-The API for this project is implemented using PHP. You can find the API code in the [SIMPLE API ](https://github.com/Gunarchive/simple_api) directory. The API consists of several PHP files that handle different CRUD operations:
-
-- `conn.php`: Establishes the database connection and also get data.
-- `login.php`: Handles user authentication and login.
-- `Register.php`:  user Registration
-- `post.php`: Handles the creation of new data entries.
-- `update.php`: Handles updating the data.
-- `delete.php`: Handles deleting specific data entries.
-
-## Installation
-
-1. Clone the repository:
-   shell
-   ```git clone https://github.com/Gunarchive/Simple_Flutter_CRUD_Login.git```
-2. Open the project in your preferred Flutter development environment (e.g., Android Studio, Visual Studio Code).
-
-3. Install the dependencies by running the following command in the project root:
-```flutter pub get```
-4. Update the API endpoint URLs:
-    In the Flutter project, locate the files where API requests are made (e.g., login.dart, editdata.dart). Replace the API endpoint URLs (e.g., http://yourip/api/login.php) with the appropriate URLs for your PHP server.
-
-
-Contributing
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
-
-License
-This project is licensed under the MIT License.
-
-```
-Feel free to customize the content as per your requirements and provide the appropriate API endpoint URLs in the installation instructions.
-```
+## Screenshots
+![Login and Registration in Android using PHP and MySQL](https://github.com/androidigniter/Login-and-Registration-in-Android-with-PHP-and-MySQL/blob/master/Screenshots/Login%20Registration%20in%20android%20using%20PHP%20and%20MySQL.gif?raw=true)
+![Login Screen](https://github.com/androidigniter/Login-and-Registration-in-Android-with-PHP-and-MySQL/blob/master/Screenshots/Login%20Screen%20-%20Login%20and%20Registration%20in%20Android%20using%20PHP%20and%20MySQL.png?raw=true)
+![Registration Screen](https://github.com/androidigniter/Login-and-Registration-in-Android-with-PHP-and-MySQL/blob/master/Screenshots/Registration%20Screen%20-%20Login%20and%20Registration%20in%20Android%20using%20PHP%20and%20MySQL.png?raw=true)
+![Dashboard Screen](https://raw.githubusercontent.com/androidigniter/Login-and-Registration-in-Android-with-PHP-and-MySQL/master/Screenshots/Dashboard%20Screen%20-%20Login%20and%20Registration%20in%20Android%20using%20PHP%20and%20MySQL.png)

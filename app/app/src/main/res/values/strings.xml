@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">LoginAndRegistration</string>
+    <string name="username">CPF</string>
+    <string name="password">Senha</string>
+    <string name="sign_in">Entrar</string>
+    <string name="register">Cadastro</string>
+    <string name="full_name">Nome Completo</string>
+    <string name="confirm_password">Confirme a Senha</string>
+    <string name="already_having_account">Já Tem Cadastro?</string>
+    <string name="log_in">Entrar</string>
+    <string name="not_having_account">Não Tem Cadastro?</string>
+    <string name="sign_up">Cadastre</string>
+    <string name="logout">Sair</string>
+</resources>
