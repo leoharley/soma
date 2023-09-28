@@ -8,7 +8,7 @@ $random_salt_length = 32;
 * @return
 */
 function userExists($username){
-	$query = "SELECT username FROM member WHERE username = ?";
+	$query = "SELECT cadpessoa.nu_cpf as username FROM tb_cadastro_pessoa as cadpessoa WHERE cadpessoa.nu_cpf = ?";
 	global $con;
 	if($stmt = $con->prepare($query)){
 		$stmt->bind_param("s",$username);

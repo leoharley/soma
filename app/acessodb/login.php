@@ -11,15 +11,18 @@ $input = json_decode($inputJSON, TRUE); //convert JSON into array
 if(isset($input['username']) && isset($input['password'])){
 	$username = $input['username'];
 	$password = $input['password'];
-	$query    = "SELECT full_name,password_hash, salt FROM member WHERE username = ?";
+	$query    = "SELECT cadastro.ds_nome,acesso.ds_senha 
+				 FROM tb_cadastro_pessoa as cadastro 
+				 INNER JOIN tb_acesso as acesso on acesso.co_seq_acesso = cadastro.id_acesso 
+				 WHERE cadastro.nu_cpf = ?";
  
 	if($stmt = $con->prepare($query)){
 		$stmt->bind_param("s",$username);
 		$stmt->execute();
-		$stmt->bind_result($fullName,$passwordHashDB,$salt);
+		$stmt->bind_result($fullName,$passwordHashDB);
 		if($stmt->fetch()){
 			//Validate the password
-			if(password_verify(concatPasswordWithSalt($password,$salt),$passwordHashDB)){
+			if(password_verify($password,$passwordHashDB)){
 				$response["status"] = 0;
 				$response["message"] = "Login successful";
 				$response["full_name"] = $fullName;
