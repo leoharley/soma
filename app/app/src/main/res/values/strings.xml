@@ -11,4 +11,17 @@
     <string name="not_having_account">Não Tem Cadastro?</string>
     <string name="sign_up">Cadastre</string>
     <string name="logout">Sair</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string name="hello_blank_fragment">HOME</string>
+    <string name="textview">TextView</string>
+
+    <array name="menuOptions">
+        <item>Home</item>
+        <item>Personal</item>
+        <item>High scores</item>
+        <item>Settings</item>
+        <item>About</item>
+    </array>
 </resources>

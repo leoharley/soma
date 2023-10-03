@@ -3,7 +3,7 @@ package com.androidigniter.loginandregistration;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private String username;
     private String password;
     private ProgressDialog pDialog;
-    private String login_url = "http://192.168.0.101/member/login.php";
+    private String login_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/login.php";
     private SessionHandler session;
 
     @Override
@@ -75,7 +75,9 @@ public class LoginActivity extends AppCompatActivity {
      * Launch Dashboard Activity on Successful Login
      */
     private void loadDashboard() {
-        Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
+    /*    Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
+        startActivity(i);*/
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
         finish();
 
@@ -119,7 +121,9 @@ public class LoginActivity extends AppCompatActivity {
 
                             }else{
                                 Toast.makeText(getApplicationContext(),
-                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                                        "Usuário ou senha incorretos.", Toast.LENGTH_SHORT).show();
+                                /*Toast.makeText(getApplicationContext(),
+                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();*/
 
                             }
                         } catch (JSONException e) {
@@ -149,12 +153,12 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean validateInputs() {
         if(KEY_EMPTY.equals(username)){
-            etUsername.setError("Username cannot be empty");
+            etUsername.setError("Usuário não informado");
             etUsername.requestFocus();
             return false;
         }
         if(KEY_EMPTY.equals(password)){
-            etPassword.setError("Password cannot be empty");
+            etPassword.setError("Senha não informada");
             etPassword.requestFocus();
             return false;
         }

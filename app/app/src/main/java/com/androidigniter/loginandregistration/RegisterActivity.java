@@ -3,7 +3,7 @@ package com.androidigniter.loginandregistration;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -160,29 +160,29 @@ public class RegisterActivity extends AppCompatActivity {
      */
     private boolean validateInputs() {
         if (KEY_EMPTY.equals(fullName)) {
-            etFullName.setError("Full Name cannot be empty");
+            etFullName.setError("Nome completo não informado");
             etFullName.requestFocus();
             return false;
 
         }
         if (KEY_EMPTY.equals(username)) {
-            etUsername.setError("Username cannot be empty");
+            etUsername.setError("Usuário não informado");
             etUsername.requestFocus();
             return false;
         }
         if (KEY_EMPTY.equals(password)) {
-            etPassword.setError("Password cannot be empty");
+            etPassword.setError("Senha não informada");
             etPassword.requestFocus();
             return false;
         }
 
         if (KEY_EMPTY.equals(confirmPassword)) {
-            etConfirmPassword.setError("Confirm Password cannot be empty");
+            etConfirmPassword.setError("Confirmação de senha não informada");
             etConfirmPassword.requestFocus();
             return false;
         }
         if (!password.equals(confirmPassword)) {
-            etConfirmPassword.setError("Password and Confirm Password does not match");
+            etConfirmPassword.setError("Senha e confirmação não são iguais");
             etConfirmPassword.requestFocus();
             return false;
         }

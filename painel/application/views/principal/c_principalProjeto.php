@@ -92,6 +92,31 @@ if(!empty($infoProjeto))
                                 </div>
                             </div>
 
+                            <div class="row">
+                            <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_parcela">Responsável Técnico</label>
+                                        <select id="id_parcela" name="id_parcela">
+                                            <option></option>                                         
+                                            <?php
+                                            if(!empty($infoRespTecnico))
+                                            {
+                                                foreach ($infoRespTecnico as $responsavel)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $responsavel->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $responsavel->id  == $id_resp_tecnico) { echo 'selected'; } ?>>
+                                                    <?php echo $parcela->no_resp_tecnico ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        
+
                         </div>
                         <!-- /.box-body -->
 

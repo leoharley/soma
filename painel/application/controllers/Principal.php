@@ -76,7 +76,7 @@ class Principal extends BaseController
                 $this->global['pageTitle'] = 'SOMA : Cadastro de Projeto';
                 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
-
+                $data['infoRespTecnico'] = $this->PrincipalModel->carregaInfoRespTecnico();
                 $data['nextIdProjeto'] = $this->PrincipalModel->carregaNextIdProjeto();
 
                 $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL); 
@@ -89,6 +89,7 @@ class Principal extends BaseController
                 }
 
                 $data['infoPerfil'] = $this->PrincipalModel->carregaInfoPerfil();
+                $data['infoRespTecnico'] = $this->PrincipalModel->carregaInfoRespTecnico();
                 $data['infoProjeto'] = $this->PrincipalModel->carregaInfoProjetoExistente($IdProjeto);
                 
                 $this->global['pageTitle'] = 'SOMA : Editar projeto';      
