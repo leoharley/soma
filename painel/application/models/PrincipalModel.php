@@ -798,7 +798,7 @@ function carregaInfoPermissao($IdPermissao)
 
     function carregaInfoRespTecnico()
     {
-        $this->db->select('CadastroPessoa.id as id_resp_tecnico, CadastroPessoa.nome as no_resp_tecnico');
+        $this->db->select('CadastroPessoa.co_seq_cadastro_pessoa as id_resp_tecnico, CadastroPessoa.nome as no_resp_tecnico');
         $this->db->from('tb_cadastro_pessoa as CadastroPessoa');
         $this->db->join('tb_perfil as Perfil', 'Perfil.id = CadastroPessoa.id_perfil and Perfil.st_registro_ativo = \'S\'','left');
         $this->db->where('Perfil.ds_perfil','Engenheiro');
