@@ -43,11 +43,24 @@ class SelecaoModel extends CI_Model
 
     function apagaFaunaClassificacao($id)
     {
-        $info['st_registro_ativo'] = 'N';
+        $this->db->where('id', $id);
+        $res = $this->db->delete('tb_fauna_classificacao');
+
+        if(!$res)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+        /*$info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
         $this->db->update('tb_fauna_classificacao', $info);
 
-        return TRUE;
+        return TRUE;*/
     /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_fauna_classificacao');
 
@@ -115,11 +128,24 @@ class SelecaoModel extends CI_Model
 
     function apagaTipoParcela($id)
     {
-        $info['st_registro_ativo'] = 'N';
+        $this->db->where('id', $id);
+        $res = $this->db->delete('tb_tipo_parcela');
+
+        if(!$res)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+        /*$info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
         $this->db->update('tb_tipo_parcela', $info);
         
-        return TRUE;
+        return TRUE;*/
 
     /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_tipo_parcela');
@@ -188,11 +214,24 @@ class SelecaoModel extends CI_Model
 
     function apagaTipoBioma($id)
     {
-        $info['st_registro_ativo'] = 'N';
+        $this->db->where('id', $id);
+        $res = $this->db->delete('tb_tipo_bioma');
+
+        if(!$res)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+        /*$info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
         $this->db->update('tb_tipo_bioma', $info);
         
-        return TRUE;
+        return TRUE;*/
 
     /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_tipo_bioma');
@@ -261,11 +300,24 @@ class SelecaoModel extends CI_Model
 
     function apagaGrauEpifitismo($id)
     {
-        $info['st_registro_ativo'] = 'N';
+        $this->db->where('id', $id);
+        $res = $this->db->delete('tb_grau_epifitismo');
+
+        if(!$res)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+        /*$info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
         $this->db->update('tb_grau_epifitismo', $info);
        
-        return TRUE;
+        return TRUE;*/
 
     /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_grau_epifitismo');
@@ -324,11 +376,24 @@ class SelecaoModel extends CI_Model
 
     function apagaEstagioRegeneracao($id)
     {
-        $info['st_registro_ativo'] = 'N';
+        $this->db->where('id', $id);
+        $res = $this->db->delete('tb_estagio_regeneracao');
+
+        if(!$res)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+        /*$info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
         $this->db->update('tb_estagio_regeneracao', $info);
         
-        return TRUE;
+        return TRUE;*/
 
     /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_estagio_regeneracao');
@@ -407,11 +472,24 @@ class SelecaoModel extends CI_Model
 
     function apagaGrauProtecao($id)
     {
-        $info['st_registro_ativo'] = 'N';
+        $this->db->where('id', $id);
+        $res = $this->db->delete('tb_grau_protecao');
+
+        if(!$res)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+        /*$info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
         $this->db->update('tb_grau_protecao', $info);
         
-        return TRUE;
+        return TRUE;*/
 
     /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_grau_protecao');
@@ -480,11 +558,24 @@ class SelecaoModel extends CI_Model
 
     function apagaFaunaTipoObservacao($id)
     {
-        $info['st_registro_ativo'] = 'N';
+        $this->db->where('id', $id);
+        $res = $this->db->delete('tb_fauna_tipo_observacao');
+
+        if(!$res)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+        /*$info['st_registro_ativo'] = 'N';
         $this->db->where('id', $id);
         $this->db->update('tb_fauna_tipo_observacao', $info);
 
-        return TRUE;
+        return TRUE;*/
     /*    $this->db->where('id', $id);
         $res2 = $this->db->delete('tb_fauna_tipo_observacao');
 

@@ -68,7 +68,20 @@ class CadastroModel extends CI_Model
     
     function apagaUsuario($IdUsuario)
     {
-        $info['st_registro_ativo'] = 'N';
+        $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
+        $res = $this->db->delete('tb_cadastro_pessoa');
+
+        if(!$res)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+        /*$info['st_registro_ativo'] = 'N';
 
         $this->db->where('co_seq_acesso', $this->carregaInfoIdAcesso($IdUsuario)[0]->id_acesso);
         $this->db->update('tb_acesso', $info);
@@ -76,7 +89,7 @@ class CadastroModel extends CI_Model
         $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
         $this->db->update('tb_cadastro_pessoa', $info);
 
-        return TRUE;
+        return TRUE;*/
     }
 
     function carregaInfoIdAcesso($id)
@@ -184,13 +197,26 @@ function editaPerfil($infoPerfil, $IdPerfil)
 
 function apagaPerfil($infoPerfil, $IdPerfil)
 {
-    $info['st_registro_ativo'] = 'N';
+    $this->db->where('id_perfil', $IdPerfil);
+    $res = $this->db->delete('tb_perfil');
+
+    if(!$res)
+    {
+        $error = $this->db->error();
+        return $error['code'];
+    }
+    else
+    {
+        return TRUE;
+    }
+
+    /*$info['st_registro_ativo'] = 'N';
     $this->db->where('id_perfil', $IdPerfil);
     $this->db->update('tb_permissao', $info);
     $this->db->where('id_perfil', $IdPerfil);
     $this->db->update('tb_perfil', $info);
 
-    return TRUE;
+    return TRUE;*/
     
     /*    $this->db->where('id_perfil', $IdPerfil);
         $res1 = $this->db->delete('tb_permissao');
