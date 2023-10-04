@@ -79,6 +79,8 @@ class Principal extends BaseController
                 $data['infoRespTecnico'] = $this->PrincipalModel->carregaInfoRespTecnico();
                 $data['nextIdProjeto'] = $this->PrincipalModel->carregaNextIdProjeto();
 
+                var_dump($data['infoRespTecnico']);exit;
+
                 $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
