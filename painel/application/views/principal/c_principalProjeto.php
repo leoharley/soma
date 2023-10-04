@@ -104,8 +104,8 @@ if(!empty($infoProjeto))
                                                 foreach ($infoRespTecnico as $responsavel)
                                                 {
                                                     ?>
-                                                <option value="<?php echo $responsavel->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $responsavel->id  == $id_resp_tecnico) { echo 'selected'; } ?>>
-                                                    <?php echo $parcela->no_resp_tecnico ?>
+                                                <option value="<?php echo $responsavel->id_resp_tecnico ?>" <?php if ($this->uri->segment(2) == 'editar' && $responsavel->id_resp_tecnico == $id_resp_tecnico) { echo 'selected'; } ?>>
+                                                    <?php echo $responsavel->no_resp_tecnico ?>
                                                 </option>
                                                 <?php
                                                 }
