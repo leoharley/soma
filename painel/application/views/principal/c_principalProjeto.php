@@ -84,7 +84,7 @@ if(!empty($infoProjeto))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="dt_inicio">Data de início</label>
-                                        <input type="date" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('dt_inicio') : $dt_inicio; ?>" id="dt_inicio" name="dt_inicio">
+                                        <input type="date" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('dt_inicio') : $dt_inicio; ?>" id="dt_inicio" name="dt_inicio" required>
                                     </div>
                                 </div>
                             
@@ -100,7 +100,7 @@ if(!empty($infoProjeto))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_resp_tecnico">Responsável Técnico</label>
-                                        <select id="id_resp_tecnico" name="id_resp_tecnico" class="required">
+                                        <select id="id_resp_tecnico" name="id_resp_tecnico" class="required" required>
                                             <option></option>                                         
                                             <?php
                                             if(!empty($infoRespTecnico))
@@ -122,7 +122,7 @@ if(!empty($infoProjeto))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_art">No. ART</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_art') : $nu_art ; ?>" id="nu_art" name="nu_art" maxlength="100">    
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_art') : $nu_art ; ?>" id="nu_art" name="nu_art" maxlength="100" required>    
                                     </div>
                                 </div>
 
