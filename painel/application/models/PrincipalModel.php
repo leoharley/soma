@@ -1125,8 +1125,8 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
    //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
         if(!empty($searchText)) {
-            $likeCriteria = "(Epifitas.latitude LIKE '%".$searchText."%'
-                            OR Epifitas.longitude LIKE '%".$searchText."%')";
+            $likeCriteria = "(Epifitas.latitude_gms LIKE '%".$searchText."%'
+                            OR Epifitas.longitude_gms LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
 
@@ -1180,8 +1180,8 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
 
         if(!empty($searchText)) {
-            $likeCriteria = "(Hidrologia.latitude LIKE '%".$searchText."%'
-                            OR Hidrologia.longitude LIKE '%".$searchText."%')";
+            $likeCriteria = "(Hidrologia.latitude_gms LIKE '%".$searchText."%'
+                            OR Hidrologia.longitude_gms LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
 
