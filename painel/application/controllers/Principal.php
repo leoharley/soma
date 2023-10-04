@@ -103,10 +103,13 @@ class Principal extends BaseController
                 $perimetro = $this->input->post('perimetro');
                 $dt_inicio = $this->input->post('dt_inicio');
                 $dt_final = $this->input->post('dt_final');
+                $id_resp_tecnico = $this->input->post('id_resp_tecnico');
+                $nu_art = $this->input->post('nu_art');
             //    $roleId = $this->input->post('role');
 
-                $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
-                'dt_final'=> $dt_final, 'st_registro_ativo'=>'S');
+                $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 
+                'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio, 'dt_final'=> $dt_final, 'id_resp_tecnico'=> $id_resp_tecnico, 
+                'nu_art'=> $nu_art, 'st_registro_ativo'=>'S');
                 
                 $result = $this->PrincipalModel->adicionaProjeto($infoProjeto);
                 
@@ -141,9 +144,12 @@ class Principal extends BaseController
                 $perimetro = $this->input->post('perimetro');
                 $dt_inicio = $this->input->post('dt_inicio');
                 $dt_final = $this->input->post('dt_final');
+                $id_resp_tecnico = $this->input->post('id_resp_tecnico');
+                $nu_art = $this->input->post('nu_art');
                         
-                $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio,
-                'dt_final'=> $dt_final, 'st_registro_ativo'=>'S');
+                $infoProjeto = array('nome'=> $nome, 'id_acesso'=> $this->session->userdata('userId'), 
+                'perimetro'=>$perimetro, 'dt_inicio'=>$dt_inicio, 'dt_final'=> $dt_final, 'id_resp_tecnico'=> $id_resp_tecnico, 
+                'nu_art'=> $nu_art, 'st_registro_ativo'=>'S');
                 
                 $resultado = $this->PrincipalModel->editaProjeto($infoProjeto, $IdProjeto);   
                 

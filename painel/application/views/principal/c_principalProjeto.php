@@ -6,7 +6,7 @@ $perimetro = '';
 $dt_inicio = '';
 $dt_final = '';
 $id_resp_tecnico = '';
-$ds_art = '';
+$nu_art = '';
 
 if ($this->uri->segment(2) == 'editar') {
 if(!empty($infoProjeto))
@@ -19,7 +19,7 @@ if(!empty($infoProjeto))
         $dt_inicio = $r->dt_inicio;
         $dt_final = $r->dt_final;
         $id_resp_tecnico = $r->id_resp_tecnico;
-        $ds_art = $r->ds_art;
+        $nu_art = $r->nu_art;
     }
 }
 }
@@ -121,8 +121,8 @@ if(!empty($infoProjeto))
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ds_art">No. ART</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_art') : $ds_art ; ?>" id="ds_art" name="ds_art" maxlength="100">    
+                                        <label for="nu_art">No. ART</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_art') : $nu_art ; ?>" id="nu_art" name="nu_art" maxlength="100">    
                                     </div>
                                 </div>
 
