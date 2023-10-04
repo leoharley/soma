@@ -45,7 +45,20 @@ class PrincipalModel extends CI_Model
 
     function apagaProjeto($IdProjeto)
     {
-        $infoProjeto['st_registro_ativo'] = 'N';
+        $this->db->where('id', $IdProjeto);
+        $res = $this->db->delete('tb_projetos');
+
+        if(!$res)
+        {
+            $error = $this->db->error();
+            return $error['code'];
+        }
+        else
+        {
+            return TRUE;
+        }
+
+        /*$infoProjeto['st_registro_ativo'] = 'N';
 
         $id_propriedade = $this->carregaInfoIdPropriedade($IdProjeto)[0]->id;
 
@@ -110,7 +123,7 @@ class PrincipalModel extends CI_Model
         $this->db->stop_cache();
         $this->db->flush_cache();
     
-        return TRUE;
+        return TRUE;*/
     }
 
     function carregaInfoIdPropriedade($id)
