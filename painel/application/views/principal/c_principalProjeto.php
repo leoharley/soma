@@ -95,8 +95,8 @@ if(!empty($infoProjeto))
                             <div class="row">
                             <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="id_parcela">Responsável Técnico</label>
-                                        <select id="id_parcela" name="id_parcela">
+                                        <label for="id_resp_tecnico">Responsável Técnico</label>
+                                        <select id="id_resp_tecnico" name="id_resp_tecnico">
                                             <option></option>                                         
                                             <?php
                                             if(!empty($infoRespTecnico))
