@@ -68,6 +68,7 @@
                     <th>Perímetro</th>
                     <th>Dt. Início</th>
                     <th>Dt. Final</th>
+                    <th>Resp. Técnico</th>
                   <!--  <th>Admin?</th> -->
                   <!--  <th>Data ativo</th>
                     <th>Data inativo</th> -->                    
@@ -99,15 +100,9 @@
                         <?= ($registro->dt_final == '0000-00-00')?'<font style="color:red;font-weight:bold;">NÃO CADASTRADO
                         </font>':date("d/m/Y", strtotime($registro->dt_final)); ?>
                       </td>
-                    <!--  <td>
-                        <?php //echo ($registro->Admin == 'S') ? 'Sim' : 'Não'; ?>
-                      </td> -->
-                  <!--    <td>
-                        <?php //echo ($registro->Dt_Ativo != null) ? date("d/m/Y", strtotime($registro->Dt_Ativo)) : ''; ?>
-                      </td>
                       <td>
-                        <?php //echo ($registro->Dt_Inativo != null) ? date("d/m/Y", strtotime($registro->Dt_Inativo)) : ''; ?>
-                      </td> -->
+                        <?php echo $registro->no_resp_tecnico ?>
+                      </td>
                       <td class="text-center">
                           <a class="btn btn-sm btn-info" href="<?= base_url().'principalProjeto/editar/'.$registro->id ?>" title="Editar">
                               <i class="fa fa-pencil"></i>

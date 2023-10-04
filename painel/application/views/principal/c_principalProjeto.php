@@ -5,6 +5,8 @@ $nome = '';
 $perimetro = '';
 $dt_inicio = '';
 $dt_final = '';
+$id_resp_tecnico = '';
+$ds_art = '';
 
 if ($this->uri->segment(2) == 'editar') {
 if(!empty($infoProjeto))
@@ -16,6 +18,8 @@ if(!empty($infoProjeto))
         $perimetro = $r->perimetro;
         $dt_inicio = $r->dt_inicio;
         $dt_final = $r->dt_final;
+        $id_resp_tecnico = $r->id_resp_tecnico;
+        $ds_art = $r->ds_art;
     }
 }
 }
@@ -93,7 +97,7 @@ if(!empty($infoProjeto))
                             </div>
 
                             <div class="row">
-                            <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_resp_tecnico">Responsável Técnico</label>
                                         <select id="id_resp_tecnico" name="id_resp_tecnico">
@@ -114,6 +118,14 @@ if(!empty($infoProjeto))
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ds_art">No. ART</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('ds_art') : $ds_art ; ?>" id="ds_art" name="ds_art" maxlength="100">    
+                                    </div>
+                                </div>
+
                             </div>
                         
 
