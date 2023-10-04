@@ -73,7 +73,7 @@ if(!empty($infoProjeto))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="perimetro">Perímetro (ha)</label>
-                                        <input type="text" class="form-control 4decimais required" id="perimetro" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('perimetro') : $perimetro; ?>" name="perimetro"
+                                        <input type="text" class="form-control 4decimais" id="perimetro" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('perimetro') : $perimetro; ?>" name="perimetro"
                                             maxlength="14">
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@ if(!empty($infoProjeto))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="dt_final">Data final</label>
-                                        <input type="date" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('dt_final') : $dt_final; ?>" id="dt_final" name="dt_final">
+                                        <input type="date" class="form-control" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('dt_final') : $dt_final; ?>" id="dt_final" name="dt_final">
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@ if(!empty($infoProjeto))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_resp_tecnico">Responsável Técnico</label>
-                                        <select id="id_resp_tecnico" name="id_resp_tecnico">
+                                        <select id="id_resp_tecnico" name="id_resp_tecnico" class="required">
                                             <option></option>                                         
                                             <?php
                                             if(!empty($infoRespTecnico))
