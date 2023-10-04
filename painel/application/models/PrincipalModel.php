@@ -6,7 +6,7 @@ class PrincipalModel extends CI_Model
 // INICIO DAS CONSULTAS NA TELA DE USUÁRIO
     function listaProjetos($searchText = '', $page, $segment)
     {
-        $this->db->select('Projetos.id, Projetos.nome, Projetos.perimetro, Projetos.dt_inicio, Projetos.dt_final, CadastroPessoa.no_resp_tecnico');
+        $this->db->select('Projetos.id, Projetos.nome, Projetos.perimetro, Projetos.dt_inicio, Projetos.dt_final, CadastroPessoa.ds_nome as no_resp_tecnico');
         $this->db->from('tb_projetos as Projetos');        
         $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Projetos.id_resp_tecnico','left');
         if(!empty($searchText)) {
