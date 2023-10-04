@@ -146,6 +146,13 @@ if(!empty($infoProjeto))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
+
+    $('#id_resp_tecnico').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
     $(":input").inputmask();
 
     $(".4decimais").inputmask({
