@@ -25,8 +25,8 @@ if(!empty($infoArvoreViva))
     {
         $id = $r->id;
         $id_parcela = $r->id_parcela;
-        $latitude = $r->latitude;
-        $longitude = $r->longitude;
+        $latitude = $r->latitude_gms;
+        $longitude = $r->longitude_gms;
         $id_familia = $r->id_familia;
         $id_genero = $r->id_genero;
         $id_especie = $r->id_especie;

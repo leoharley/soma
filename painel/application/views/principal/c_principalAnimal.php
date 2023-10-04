@@ -24,8 +24,8 @@ if(!empty($infoAnimal))
         $id_tipo_observacao = $r->id_tipo_observacao;
         $id_classificacao = $r->id_classificacao;
         $id_grau_protecao = $r->id_grau_protecao;
-        $latitude = $r->latitude;
-        $longitude = $r->longitude;
+        $latitude = $r->latitude_gms;
+        $longitude = $r->longitude_gms;
     }
 }
 }

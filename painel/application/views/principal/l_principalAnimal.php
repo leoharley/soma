@@ -99,10 +99,10 @@
                         <?php echo $registro->nome_classificacao ?>
                       </td>
                       <td>
-                        <?php echo $registro->latitude ?>
+                        <?php echo $registro->latitude_gms ?>
                       </td>
                       <td>
-                        <?php echo $registro->longitude ?>
+                        <?php echo $registro->longitude_gms ?>
                       </td>
                       <td>
                         <?= ($registro->dt_cadastro == '0000-00-00')?'<font style="color:red;font-weight:bold;">NÃO CADASTRADO

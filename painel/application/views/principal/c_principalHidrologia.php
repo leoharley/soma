@@ -14,8 +14,8 @@ if(!empty($infoHidrologia))
         $id = $r->id;
         $id_parcela = $r->id_parcela;
         $descricao = $r->descricao;
-        $latitude = $r->latitude;
-        $longitude = $r->longitude;
+        $latitude = $r->latitude_gms;
+        $longitude = $r->longitude_gms;
     }
 }
 }
