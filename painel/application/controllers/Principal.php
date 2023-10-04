@@ -79,8 +79,6 @@ class Principal extends BaseController
                 $data['infoRespTecnico'] = $this->PrincipalModel->carregaInfoRespTecnico();
                 $data['nextIdProjeto'] = $this->PrincipalModel->carregaNextIdProjeto();
 
-                var_dump($data['infoRespTecnico']);exit;
-
                 $this->loadViews("principal/c_principalProjeto", $this->global, $data, NULL); 
             }
             else if ($tpTela == 'editar') {
@@ -638,8 +636,8 @@ function principalArvoreViva()
                 $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
                 $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
 
-                $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
-                                    'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'identificacao'=>$identificacao, 
+                $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude_gms'=>$latitude, 
+                                    'longitude_gms'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'identificacao'=>$identificacao, 
                                     'id_grau_protecao'=>$id_grau_protecao, 'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura,
                                     'nu_altura_total'=>$nu_altura_total, 'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa,
                                     'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao, 'latitude_gd'=>$latitude_gd,
@@ -694,8 +692,8 @@ function principalArvoreViva()
                 $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
                 $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
 
-                $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
-                                    'longitude'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'identificacao'=>$identificacao, 
+                $infoArvoreViva = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude_gms'=>$latitude, 
+                                    'longitude_gms'=>$longitude,'nu_biomassa'=> $nu_biomassa, 'identificacao'=>$identificacao, 
                                     'id_grau_protecao'=>$id_grau_protecao, 'nu_circunferencia'=>$nu_circunferencia, 'nu_altura'=>$nu_altura,
                                     'nu_altura_total'=>$nu_altura_total, 'nu_altura_fuste'=>$nu_altura_fuste, 'nu_altura_copa'=>$nu_altura_copa,
                                     'isolada'=>$isolada, 'floracao_frutificacao'=>$floracao_frutificacao, 'latitude_gd'=>$latitude_gd,
@@ -830,8 +828,8 @@ function principalAnimal()
             $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
             $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
             
-            $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
-                                'longitude'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
+            $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude_gms'=>$latitude, 
+                                'longitude_gms'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
                                 'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao,
                                 'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                                 
@@ -877,8 +875,8 @@ function principalAnimal()
             $latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
             $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
 
-            $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude'=>$latitude, 
-                                'longitude'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
+            $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude_gms'=>$latitude, 
+                                'longitude_gms'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
                                 'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao,
                                 'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                                 
@@ -1000,7 +998,7 @@ function principalAnimal()
         $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
         
         $infoEpifita = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'),
-                             'latitude'=>$latitude, 'longitude'=>$longitude, 'latitude_gd'=>$latitude_gd,
+                             'latitude_gms'=>$latitude, 'longitude_gms'=>$longitude, 'latitude_gd'=>$latitude_gd,
                              'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                             
         $result = $this->PrincipalModel->adicionaEpifita($infoEpifita);
@@ -1043,7 +1041,7 @@ function principalAnimal()
                 $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
 
                 $infoEpifita = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 
-                                     'latitude'=>$latitude, 'longitude'=>$longitude, 'latitude_gd'=>$latitude_gd,
+                                     'latitude_gms'=>$latitude, 'longitude_gms'=>$longitude, 'latitude_gd'=>$latitude_gd,
                                      'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                                     
                 $result = $this->PrincipalModel->editaEpifita($infoEpifita, $IdEpifita);
@@ -1159,7 +1157,7 @@ function principalAnimal()
         $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
         
         $infoHidrologia = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'),
-                             'descricao'=>$descricao, 'latitude'=>$latitude, 'longitude'=>$longitude, 'latitude_gd'=>$latitude_gd,
+                             'descricao'=>$descricao, 'latitude_gms'=>$latitude, 'longitude_gms'=>$longitude, 'latitude_gd'=>$latitude_gd,
                              'longitude_gd'=>$longitude_gd, 'dt_cadastro'=>date('d-m-y'), 'st_registro_ativo'=>'S');
                             
         $result = $this->PrincipalModel->adicionaHidrologia($infoHidrologia);
@@ -1194,7 +1192,7 @@ function principalAnimal()
         $longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
         
         $infoHidrologia = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'),
-                                'descricao'=>$descricao, 'latitude'=>$latitude, 'longitude'=>$longitude, 'latitude_gd'=>$latitude_gd,
+                                'descricao'=>$descricao, 'latitude_gms'=>$latitude, 'longitude_gms'=>$longitude, 'latitude_gd'=>$latitude_gd,
                                 'longitude_gd'=>$longitude_gd, 'dt_cadastro'=>date('d-m-y'), 'st_registro_ativo'=>'S');
                                 
         $result = $this->PrincipalModel->editaHidrologia($infoHidrologia, $IdHidrologia);            
