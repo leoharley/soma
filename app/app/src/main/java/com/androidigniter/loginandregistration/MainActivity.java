@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         Toast.makeText(this, "onHeaderClicked", Toast.LENGTH_SHORT).show();
     }
 
-    private void goToFragment(Fragment fragment, boolean addToBackStack) {
+    public void goToFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         if (addToBackStack) {

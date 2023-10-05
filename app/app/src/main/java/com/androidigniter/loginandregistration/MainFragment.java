@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -29,6 +29,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.soma.data.arvoresvivas.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +40,9 @@ public class MainFragment extends Fragment {
     ProgressBar progressBar;
     TextView textLatLong;
     ResultReceiver resultReceiver;
+    LocationManager locationManager ;
+    boolean GpsStatus ;
+    com.androidigniter.loginandregistration.MainActivity mainActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +53,15 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Clicked a button!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), MainActivity.class);
+                startActivity(i);
+            //    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container,new PersonalFragment()).commit();
             }
         });
 
@@ -82,7 +95,21 @@ public class MainFragment extends Fragment {
         }
     }
 
+
+    public void CheckGpsStatus(){
+        locationManager = (LocationManager)getContext().getSystemService(Context.LOCATION_SERVICE);
+        assert locationManager != null;
+        GpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if(GpsStatus == true) {
+            Toast.makeText(getContext(), "GPS Is Enabled!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "GPS Is Disabled!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     private void getCurrentLocation() {
+        CheckGpsStatus();
         progressBar.setVisibility(View.VISIBLE);
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(10000);
