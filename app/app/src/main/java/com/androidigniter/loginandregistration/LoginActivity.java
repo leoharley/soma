@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private String password;
     private ProgressDialog pDialog;
     private String login_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/login.php";
+    private String painel_info_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_info_parcelas.php";
     private SessionHandler session;
 
     @Override
@@ -126,6 +127,49 @@ public class LoginActivity extends AppCompatActivity {
                                         response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();*/
 
                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        pDialog.dismiss();
+
+                        //Display error message whenever an error occurs
+                        Toast.makeText(getApplicationContext(),
+                                error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+        carregaPainelDB();
+    }
+
+
+
+    private void carregaPainelDB() {
+        JSONObject request = new JSONObject();
+        /*try {
+            //Populate the request parameters
+            request.put(KEY_USERNAME, username);
+            request.put(KEY_PASSWORD, password);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                (Request.Method.POST, painel_info_url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        pDialog.dismiss();
+                        try {
+                            //Check if user got logged in successfully
+                            System.out.println("LEOHARLEY"+response.getInt("no_propriedade"));
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
