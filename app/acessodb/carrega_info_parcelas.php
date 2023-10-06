@@ -22,5 +22,5 @@ if($stmt = $con->prepare($query)){
 }
 
 //Display the JSON response
-echo $response;
+echo json_encode($response);
 ?>
