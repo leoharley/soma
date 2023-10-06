@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,8 +16,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
@@ -32,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     private String login_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/login.php";
     private String painel_info_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_info_parcelas.php";
     private SessionHandler session;
+
+    private ArrayList mylist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,11 +175,20 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         pDialog.dismiss();
                         try {
-                            //Check if user got logged in successfully
-                            System.out.println("LEOHARLEY"+response.getInt("no_propriedade"));
+                            JSONArray internships = new JSONArray(response);
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            //Loop the Array
+                            for(int i=0;i < internships.length();i++) {
+                                Log.e("Message","loop");
+                                HashMap<String, String> map = new HashMap<String, String>();
+                                JSONObject e = internships.getJSONObject(i);
+                                map.put("id",  String.valueOf("id"));
+                                map.put("title", "Title :" + e.getString("no_propriedade"));
+                                mylist.add(map);
+                            }
+                            System.out.println("LEOHARLEY"+mylist);
+                        } catch(JSONException e) {
+                            Log.e("log_tag", "Error parsing data "+e.toString());
                         }
                     }
                 }, new Response.ErrorListener() {
