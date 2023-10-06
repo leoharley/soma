@@ -158,33 +158,20 @@ public class LoginActivity extends AppCompatActivity {
         carregaPainelDB();
     }
 
-
-
     private void carregaPainelDB() {
         JSONObject request = new JSONObject();
-        /*try {
-            //Populate the request parameters
-            request.put(KEY_USERNAME, username);
-            request.put(KEY_PASSWORD, password);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
         JsonArrayRequest jsArrayRequest = new JsonArrayRequest
                 (Request.Method.POST, painel_info_url, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         pDialog.dismiss();
                         try {
-                            System.out.println("LEOHARLEY"+response.toString());
-                           /* for(int i=0; i < response.length(); i++) {
-                              //  JSONObject jsonobject = jsonArray.getJSONObject(i);
-                                String id       = response.getString(0);
-                             //   String no_propriedade    = response.getString(0);
-                                System.out.println("LEOHARLEY"+id);
-                            }*/
-
-
+                            for(int i=0; i < response.length(); i++) {
+                                JSONObject jsonObject1 = response.getJSONObject(i);
+                                String id       = jsonObject1.getString("id");
+                                String no_propriedade    = jsonObject1.getString("no_propriedade");
+                                System.out.println("LEOHARLEY"+no_propriedade);
+                            }
                         }
                         catch (Exception e){
                             e.printStackTrace();
