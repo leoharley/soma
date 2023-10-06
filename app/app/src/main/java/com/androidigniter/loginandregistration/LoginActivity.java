@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
@@ -169,19 +170,19 @@ public class LoginActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }*/
-        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, painel_info_url, null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest jsArrayRequest = new JsonArrayRequest
+                (Request.Method.POST, painel_info_url, null, new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(JSONArray response) {
                         pDialog.dismiss();
                         try {
-                            JSONArray jsonArray = new JSONArray(response.toString());
-                            for(int i=0; i < jsonArray.length(); i++) {
-                                JSONObject jsonobject = jsonArray.getJSONObject(i);
-                                String id       = jsonobject.getString("id");
-                                String no_propriedade    = jsonobject.getString("no_propriedade");
-                                System.out.println("LEOHARLEY"+no_propriedade);
-                            }
+                            System.out.println("LEOHARLEY"+response.toString());
+                           /* for(int i=0; i < response.length(); i++) {
+                              //  JSONObject jsonobject = jsonArray.getJSONObject(i);
+                                String id       = response.getString(0);
+                             //   String no_propriedade    = response.getString(0);
+                                System.out.println("LEOHARLEY"+id);
+                            }*/
 
 
                         }
