@@ -176,12 +176,11 @@ public class LoginActivity extends AppCompatActivity {
                         pDialog.dismiss();
                         try {
                             JSONArray jsonArray = new JSONArray(response.toString());
-                            for (int i=0;i<jsonArray.length();i++){
-
-                                String id=jsonArray.getJSONObject(i).getString("id");
-                                String no_propriedade=jsonArray.getJSONObject(i).getString("no_propriedade");
-
-                                System.out.println("PORRA"+no_propriedade);
+                            for(int i=0; i < jsonArray.length(); i++) {
+                                JSONObject jsonobject = jsonArray.getJSONObject(i);
+                                String id       = jsonobject.getString("id");
+                                String no_propriedade    = jsonobject.getString("no_propriedade");
+                                System.out.println("LEOHARLEY"+no_propriedade);
                             }
 
 
