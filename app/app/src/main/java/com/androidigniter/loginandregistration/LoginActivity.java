@@ -175,20 +175,19 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         pDialog.dismiss();
                         try {
-                            JSONArray internships = new JSONArray(response);
+                            JSONArray jsonArray = new JSONArray(response.toString());
+                            for (int i=0;i<jsonArray.length();i++){
 
-                            //Loop the Array
-                            for(int i=0;i < internships.length();i++) {
-                                Log.e("Message","loop");
-                                HashMap<String, String> map = new HashMap<String, String>();
-                                JSONObject e = internships.getJSONObject(i);
-                                map.put("id",  String.valueOf("id"));
-                                map.put("title", "Title :" + e.getString("no_propriedade"));
-                                mylist.add(map);
+                                String id=jsonArray.getJSONObject(i).getString("id");
+                                String no_propriedade=jsonArray.getJSONObject(i).getString("no_propriedade");
+
+                                System.out.println("PORRA"+no_propriedade);
                             }
-                            System.out.println("LEOHARLEY"+mylist);
-                        } catch(JSONException e) {
-                            Log.e("log_tag", "Error parsing data "+e.toString());
+
+
+                        }
+                        catch (Exception e){
+                            e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
