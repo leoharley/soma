@@ -17,7 +17,7 @@ $query    = "SELECT Parcelas.id, Propriedades.no_propriedade
  
 if($stmt = $con->prepare($query)){
 	$stmt->execute();
-	$response = $stmt->get_result();
+	$response = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 	$stmt->close();
 }
 
