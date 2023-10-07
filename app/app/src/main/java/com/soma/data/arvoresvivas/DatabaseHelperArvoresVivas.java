@@ -119,7 +119,8 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
                 arvoresVivasModel.setetespecie(c.getString(c.getColumnIndex(KEY_ETESPECIE)));
                 arvoresVivasModel.setetbiomassa(c.getString(c.getColumnIndex(KEY_ETBIOMASSA)));
                 arvoresVivasModel.setetidentificado(c.getString(c.getColumnIndex(KEY_ETIDENTIFICADO)));
-                arvoresVivasModel.setetcircunferencia(c.getString(c.getColumnIndex(KEY_ETGRAUPROTECAO)));
+                arvoresVivasModel.setetcircunferencia(c.getString(c.getColumnIndex(KEY_ETCIRCUNFERENCIA)));
+				arvoresVivasModel.setetgrauprotecao(c.getString(c.getColumnIndex(KEY_ETGRAUPROTECAO)));
                 arvoresVivasModel.setetaltura(c.getString(c.getColumnIndex(KEY_ETALTURA)));
                 arvoresVivasModel.setetalturatotal(c.getString(c.getColumnIndex(KEY_ETALTURATOTAL)));
                 arvoresVivasModel.setetalturafuste(c.getString(c.getColumnIndex(KEY_ETALTURAFUSTE)));

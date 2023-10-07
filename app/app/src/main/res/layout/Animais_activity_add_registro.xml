@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context="com.soma.data.arvoresvivas.AddRegistroArvoresVivas" >
+    tools:context="com.soma.data.Animais.AddRegistroAnimais" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -141,7 +141,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Biomassa"
+            android:text="Tipo de Observação"
             android:textColor="#000"
             android:textSize="10sp"
 
@@ -150,8 +150,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_biomassa"
-            android:hint="biomassa"
+            android:id="@+id/et_tipo_observacao"
+            android:hint="tipoobservacao"
             android:textColor="#000"
             android:textSize="10sp"
             android:inputType="phone"/>
@@ -166,7 +166,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Identificado"
+            android:text="Classificação"
             android:textColor="#000"
             android:textSize="10sp"
 
@@ -175,8 +175,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_identificado"
-            android:hint="identificado"
+            android:id="@+id/et_classificacao"
+            android:hint="classificacao"
             android:textColor="#000"
             android:textSize="10sp"
             android:inputType=""/>
@@ -207,180 +207,6 @@
             android:inputType=""/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Circunferência"
-            android:textColor="#000"
-            android:textSize="10sp"
-
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_circunferencia"
-            android:hint="circunferencia"
-            android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Altura"
-            android:textColor="#000"
-            android:textSize="10sp"
-
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_altura"
-            android:hint="altura"
-            android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Altura Total"
-            android:textColor="#000"
-            android:textSize="10sp"
-
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_altura_total"
-            android:hint="alturatotal"
-            android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Altura Fuste"
-            android:textColor="#000"
-            android:textSize="10sp"
-
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_altura_fuste"
-            android:hint="alturafuste"
-            android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Altura da Copa"
-            android:textColor="#000"
-            android:textSize="10sp"
-
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_altura_copa"
-            android:hint="alturacopa"
-            android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Isolada"
-            android:textColor="#000"
-            android:textSize="10sp"
-
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_isolada"
-            android:hint="isolada"
-            android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Floração/Frutificação"
-            android:textColor="#000"
-            android:textSize="10sp"
-
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_floracao_frutificacao"
-            android:hint="floracaofrutificacao"
-            android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
-    </LinearLayout>
 
 
     <Button
@@ -400,7 +226,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context="com.soma.data.arvoresvivas.AddRegistroArvoresVivas" >
+    tools:context="com.soma.data.Animais.AddRegistroAnimais" >
 
     <LinearLayout
         android:layout_width="match_parent"
