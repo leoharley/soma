@@ -93,7 +93,10 @@ if(!empty($infoHidrologia))
                                         <label for="longitude">Longitude</label>
                                         <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
                                     </div>
-                                </div>
+                                </div>                                
+                            </div>
+
+                            <div class="row">     
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="descricao">Descrição</label>
@@ -103,7 +106,7 @@ if(!empty($infoHidrologia))
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
-                            </div>
+                            </div>    
 
                         </div>
                         <!-- /.box-body -->
