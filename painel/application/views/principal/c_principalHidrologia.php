@@ -98,7 +98,7 @@ if(!empty($infoHidrologia))
                                 <div class="col-md-6">
                                 <label for="descricao">Descrição</label>
                                     <div class="form-group">                                        
-                                        <textarea id="descricao" name="descricao" rows="5" cols="38" style="resize: none;">
+                                        <textarea id="descricao" name="descricao" rows="5" cols="40" style="resize: none;">
                                         <?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('descricao') : $descricao; ?>
                                         </textarea>
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
