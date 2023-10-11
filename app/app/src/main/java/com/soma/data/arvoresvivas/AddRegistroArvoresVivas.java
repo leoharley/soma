@@ -84,8 +84,6 @@ public class AddRegistroArvoresVivas extends AppCompatActivity {
                         etalturacopa.getText().toString(),
                         etisolada.getText().toString(),
                         etfloracaofrutificacao.getText().toString());
-              /*  etcourse.setText("");
-                etphone.setText("");*/
 
                 Toast.makeText(AddRegistroArvoresVivas.this, "Cadastro com sucesso!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AddRegistroArvoresVivas.this, MainActivity.class);

@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.soma.data.arvoresvivas.ArvoresVivasFragment;
+import com.soma.data.arvoresvivas.ModArvoresVivasFragment;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         mTitles = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.menuOptions)));
 
         SQLiteDatabase myDB =
-                openOrCreateDatabase("my.db", MODE_PRIVATE, null);
+                openOrCreateDatabase("campo_data", MODE_PRIVATE, null);
 
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
@@ -46,6 +49,22 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         final TextView hello = findViewById(R.id.hello);
 
         myDB.execSQL(
+                "CREATE TABLE IF NOT EXISTS arvoresvivas(id INTEGER PRIMARY KEY AUTOINCREMENT,etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, etbiomassa VARCHAR, etidentificado VARCHAR, etgrauprotecao VARCHAR, etcircunferencia VARCHAR, etaltura VARCHAR, etalturatotal VARCHAR, etalturafuste VARCHAR, etalturacopa VARCHAR, etisolada VARCHAR, etfloracaofrutificacao VARCHAR)"
+        );
+
+        myDB.execSQL(
+                "CREATE TABLE IF NOT EXISTS animais(id INTEGER PRIMARY KEY AUTOINCREMENT,etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, ettipoobservacao VARCHAR, etclassificacao VARCHAR, etgrauprotecao VARCHAR )"
+        );
+
+        myDB.execSQL(
+                "CREATE TABLE IF NOT EXISTS hidrologia (id INTEGER PRIMARY KEY AUTOINCREMENT,etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etdescricao VARCHAR)"
+        );
+
+        myDB.execSQL(
+                "CREATE TABLE IF NOT EXISTS epifitas (id INTEGER PRIMARY KEY AUTOINCREMENT, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR)"
+        );
+
+       /* myDB.execSQL(
                 "CREATE TABLE IF NOT EXISTS user (name VARCHAR(200), age INT, is_single INT)"
         );
 
@@ -59,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         row2.put("is_single", 0);
 
         myDB.insert("user", null, row1);
-        myDB.insert("user", null, row2);
+        myDB.insert("user", null, row2);*/
 
 
         hello.setText("Olá, " + user.fullName);
@@ -153,9 +172,12 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
                 for (Fragment fragment : getSupportFragmentManager().getFragments()) {
                     getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                 }
-                goToFragment(new PersonalFragment(), false);
+                goToFragment(new ModArvoresVivasFragment(), false);
                 break;
             default:
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                }
                 goToFragment(new MainFragment(), false);
                 break;
         }
@@ -163,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         // Close the drawer
         mViewHolder.mDuoDrawerLayout.closeDrawer();
     }
+
 
     private class ViewHolder {
         private DuoDrawerLayout mDuoDrawerLayout;

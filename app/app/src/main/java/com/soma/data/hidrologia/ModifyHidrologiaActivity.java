@@ -1,4 +1,4 @@
-package com.soma.data.Hidrologia;
+package com.soma.data.hidrologia;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ public class ModifyHidrologiaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Hidrologia_activity_modify);
+        setContentView(R.layout.hidrologia_activity_modify);
 
         Intent intent = getIntent();
         HidrologiaModel = (HidrologiaModel) intent.getSerializableExtra("Hidrologia");

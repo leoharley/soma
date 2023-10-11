@@ -1,4 +1,4 @@
-package com.soma.data.Epifitas;
+package com.soma.data.epifitas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Epifitas_activity_main);
+        setContentView(R.layout.epifitas_activity_main);
 
         addTeachersActivity();
         modTeachersActivity();
 
-        listView = (ListView) findViewById(R.id.teachers_lv);
+        listView = (ListView) findViewById(R.id.epifitas_lv);
 
         databaseHelperEpifitas = new DatabaseHelperEpifitas(this);
 

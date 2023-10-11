@@ -1,4 +1,4 @@
-package com.soma.data.Epifitas;
+package com.soma.data.epifitas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +27,7 @@ public class AddRegistroEpifitas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Epifitas_activity_add_registro);
+        setContentView(R.layout.epifitas_activity_add_registro);
 
         databaseHelperEpifitas = new DatabaseHelperEpifitas(this);
 
@@ -55,7 +55,7 @@ public class AddRegistroEpifitas extends AppCompatActivity {
                         etlongitude.getText().toString(),
                         etfamilia.getText().toString(),
                         etgenero.getText().toString(),
-                        etespecie.getText().toString(),
+                        etespecie.getText().toString());
 
               /*  etcourse.setText("");
                 etphone.setText("");*/

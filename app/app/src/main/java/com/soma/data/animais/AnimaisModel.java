@@ -1,4 +1,4 @@
-package com.soma.data.Animais;
+package com.soma.data.animais;
 
 import java.io.Serializable;
 
@@ -78,7 +78,7 @@ public class AnimaisModel implements Serializable {
         return etclassificacao;
     }
 
-    public void setetidentificado(String etclassificacao) {
+    public void setetclassificacao(String etclassificacao) {
         this.etclassificacao = etclassificacao;
     }
 

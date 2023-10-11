@@ -71,7 +71,6 @@ public class CustomMod extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        System.out.println("PORRA"+ arvoresVivasModelArrayList.get(position).getetlatitude());
         holder.etlatitude.setText("Latitude: "+ arvoresVivasModelArrayList.get(position).getetlatitude());
         holder.etlongitude.setText("Longitude: "+ arvoresVivasModelArrayList.get(position).getetlongitude());
         holder.etfamilia.setText("Família: "+ arvoresVivasModelArrayList.get(position).getetfamilia());

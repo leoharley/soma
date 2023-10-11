@@ -1,4 +1,4 @@
-package com.soma.data.Animais;
+package com.soma.data.animais;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -47,16 +47,16 @@ public class CustomAdapterAnimais extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.Animais_model, null, true);
+            convertView = inflater.inflate(R.layout.animais_model, null, true);
 
-            holder.etlatitude = (TextView) convertView.findViewById(R.id.Animais_etlatitude);
-            holder.etlongitude = (TextView) convertView.findViewById(R.id.Animais_etlongitude);
-            holder.etfamilia = (TextView) convertView.findViewById(R.id.Animais_etfamilia);
-            holder.etgenero = (TextView) convertView.findViewById(R.id.Animais_etgenero);
-            holder.etespecie = (TextView) convertView.findViewById(R.id.Animais_etespecie);			
-            holder.ettipoobservacao = (TextView) convertView.findViewById(R.id.Animais_ettipoobservacao);
-            holder.etclassificacao = (TextView) convertView.findViewById(R.id.Animais_etclassificacao);
-            holder.etgrauprotecao = (TextView) convertView.findViewById(R.id.Animais_etgrauprotecao);
+            holder.etlatitude = (TextView) convertView.findViewById(R.id.animais_etlatitude);
+            holder.etlongitude = (TextView) convertView.findViewById(R.id.animais_etlongitude);
+            holder.etfamilia = (TextView) convertView.findViewById(R.id.animais_etfamilia);
+            holder.etgenero = (TextView) convertView.findViewById(R.id.animais_etgenero);
+            holder.etespecie = (TextView) convertView.findViewById(R.id.animais_etespecie);
+            holder.ettipoobservacao = (TextView) convertView.findViewById(R.id.animais_ettipoobservacao);
+            holder.etclassificacao = (TextView) convertView.findViewById(R.id.animais_etclassificacao);
+            holder.etgrauprotecao = (TextView) convertView.findViewById(R.id.animais_etgrauprotecao);
 
             convertView.setTag(holder);
         }else {
@@ -73,8 +73,6 @@ public class CustomAdapterAnimais extends BaseAdapter {
         holder.etclassificacao.setText("Identificado"+ AnimaisModelArrayList.get(position).getetclassificacao());
         holder.etgrauprotecao.setText("Grau de Proteção"+ AnimaisModelArrayList.get(position).getetgrauprotecao());
 
-
-
         return convertView;
     }
 
@@ -88,7 +86,6 @@ public class CustomAdapterAnimais extends BaseAdapter {
                 ettipoobservacao,
                 etclassificacao,
                 etgrauprotecao;
-
     }
 
 }

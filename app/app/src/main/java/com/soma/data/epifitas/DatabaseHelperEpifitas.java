@@ -1,5 +1,6 @@
-package com.soma.data.Epifitas;
+package com.soma.data.epifitas;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,7 +18,7 @@ public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "campo_data";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "Epifitas";
+    private static final String TABLE_NAME = "epifitas";
     private static final String KEY_ID = "id";
     private static final String KEY_ETLATITUDE = "etlatitude";
     private static final String KEY_ETLONGITUDE = "etlongitude";
@@ -25,27 +26,25 @@ public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
     private static final String KEY_ETGENERO = "etgenero";
     private static final String KEY_ETESPECIE = "etespecie";
 
-
-
-    private static final String CREATE_TABLE_Epifitas = "CREATE TABLE "
-            + TABLE_NAME + "(" + KEY_ID
-            + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+    private static final String CREATE_TABLE_EPIFITAS = "CREATE TABLE IF NOT EXISTS "
+            + TABLE_NAME + " (" + KEY_ID
+            + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             KEY_ETLATITUDE + " TEXT NOT NULL, "+
             KEY_ETLONGITUDE + " TEXT NOT NULL, "+
             KEY_ETFAMILIA + " VARCHAR, "+
             KEY_ETGENERO + " VARCHAR, " +
-            KEY_ETESPECIE + " VARCHAR, " +
+            KEY_ETESPECIE + " VARCHAR" +
             "); ";
 
     public DatabaseHelperEpifitas(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
-        Log.d("table", CREATE_TABLE_Epifitas);
+        Log.d("table", CREATE_TABLE_EPIFITAS);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_Epifitas);
+        db.execSQL(CREATE_TABLE_EPIFITAS);
     }
 
     @Override
@@ -71,6 +70,7 @@ public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
         return insert;
     }
 
+    @SuppressLint("Range")
     public ArrayList<EpifitasModel> getAllEpifitas() {
         ArrayList<EpifitasModel> EpifitasModelArrayList = new ArrayList<EpifitasModel>();
 

@@ -1,4 +1,4 @@
-package com.soma.data.Animais;
+package com.soma.data.animais;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -47,16 +47,16 @@ public class CustomMod extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.Animais_model_mod, null, true);
+            convertView = inflater.inflate(R.layout.animais_model_mod, null, true);
 
-            holder.etlatitude = (TextView) convertView.findViewById(R.id.Animais_latitude);
-            holder.etlongitude = (TextView) convertView.findViewById(R.id.Animais_longitude);
-            holder.etfamilia = (TextView) convertView.findViewById(R.id.Animais_familia);
-            holder.etgenero = (TextView) convertView.findViewById(R.id.Animais_genero);
-            holder.etespecie = (TextView) convertView.findViewById(R.id.Animais_especie);			
-            holder.ettipoobservacao = (TextView) convertView.findViewById(R.id.Animais_tipoobservacao);
-            holder.etclassificacao = (TextView) convertView.findViewById(R.id.Animais_classificacao);
-            holder.etgrauprotecao = (TextView) convertView.findViewById(R.id.Animais_grauprotecao);
+            holder.etlatitude = (TextView) convertView.findViewById(R.id.animais_latitude);
+            holder.etlongitude = (TextView) convertView.findViewById(R.id.animais_longitude);
+            holder.etfamilia = (TextView) convertView.findViewById(R.id.animais_familia);
+            holder.etgenero = (TextView) convertView.findViewById(R.id.animais_genero);
+            holder.etespecie = (TextView) convertView.findViewById(R.id.animais_especie);
+            holder.ettipoobservacao = (TextView) convertView.findViewById(R.id.animais_tipoobservacao);
+            holder.etclassificacao = (TextView) convertView.findViewById(R.id.animais_classificacao);
+            holder.etgrauprotecao = (TextView) convertView.findViewById(R.id.animais_grauprotecao);
 
 
             convertView.setTag(holder);

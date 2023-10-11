@@ -16,6 +16,22 @@
         android:layout_marginTop="100dp"
         android:text="LER GPS" />
 
+    <Button
+        android:id="@+id/abreImageFolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="ABRE IMAGE FOLDER"
+        android:layout_below="@id/leGPS"/>
+
+    <Button
+        android:id="@+id/abreCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="ABRE CAMERA"
+        android:layout_below="@id/abreImageFolder"/>
+
     <ProgressBar
         android:id="@+id/progress_circular"
         android:layout_width="wrap_content"
@@ -43,5 +59,60 @@
         android:layout_height="wrap_content"
         android:text="ÁRVORES VIVAS"
         android:layout_marginTop="300dp"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ANIMAIS"
+        android:layout_marginTop="340dp"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EPIFITAS"
+        android:layout_marginTop="380dp"/>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HIDROLOGIA"
+        android:layout_marginTop="420dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="3dp"
+        android:layout_weight=".28"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:background="@drawable/background_spinner"
+        android:orientation="horizontal"
+        android:layout_below="@id/button5">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:spinnerMode="dropdown"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_arrow_drop_down_24" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.soma.data.Animais;
+package com.soma.data.animais;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +29,7 @@ public class ModifyAnimaisActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Animais_activity_modify);
+        setContentView(R.layout.animais_activity_modify);
 
         Intent intent = getIntent();
         AnimaisModel = (AnimaisModel) intent.getSerializableExtra("Animais");

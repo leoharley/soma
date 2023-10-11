@@ -1,4 +1,4 @@
-package com.soma.data.Hidrologia;
+package com.soma.data.hidrologia;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -47,11 +47,11 @@ public class CustomAdapterHidrologia extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.Hidrologia_model, null, true);
+            convertView = inflater.inflate(R.layout.hidrologia_model, null, true);
 
-            holder.etlatitude = (TextView) convertView.findViewById(R.id.Hidrologia_etlatitude);
-            holder.etlongitude = (TextView) convertView.findViewById(R.id.Hidrologia_etlongitude);
-            holder.etdescricao = (TextView) convertView.findViewById(R.id.Hidrologia_etdescricao);
+            holder.etlatitude = (TextView) convertView.findViewById(R.id.hidrologia_etlatitude);
+            holder.etlongitude = (TextView) convertView.findViewById(R.id.hidrologia_etlongitude);
+            holder.etdescricao = (TextView) convertView.findViewById(R.id.hidrologia_etdescricao);
 
 
 

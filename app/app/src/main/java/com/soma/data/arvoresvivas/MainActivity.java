@@ -63,4 +63,5 @@ public class MainActivity extends AppCompatActivity {
         customAdapterTeacher = new CustomAdapterArvoresVivas(this, arvoresVivasModelArrayList);
         listView.setAdapter(customAdapterTeacher);
     }
+
 }

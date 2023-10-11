@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,13 +16,19 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 
+import android.os.Environment;
 import android.os.Looper;
 import android.os.ResultReceiver;
+import android.os.storage.StorageManager;
+import android.provider.DocumentsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +36,9 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.soma.data.arvoresvivas.MainActivity;
+
+import java.io.File;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +51,7 @@ public class MainFragment extends Fragment {
     ResultReceiver resultReceiver;
     LocationManager locationManager ;
     boolean GpsStatus ;
+    Spinner spinner;
     com.androidigniter.loginandregistration.MainActivity mainActivity;
 
     @Override
@@ -49,6 +59,8 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         progressBar = view.findViewById(R.id.progress_circular);
         textLatLong = view.findViewById(R.id.textLatLong);
+        spinner = view.findViewById(R.id.spinner);
+
         view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,9 +71,36 @@ public class MainFragment extends Fragment {
         view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(), MainActivity.class);
+                Intent i = new Intent(getContext(), com.soma.data.arvoresvivas.MainActivity.class);
                 startActivity(i);
             //    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container,new PersonalFragment()).commit();
+            }
+        });
+
+        view.findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), com.soma.data.animais.MainActivity.class);
+                startActivity(i);
+                //    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container,new PersonalFragment()).commit();
+            }
+        });
+
+        view.findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), com.soma.data.epifitas.MainActivity.class);
+                startActivity(i);
+                //    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container,new PersonalFragment()).commit();
+            }
+        });
+
+        view.findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), com.soma.data.hidrologia.MainActivity.class);
+                startActivity(i);
+                //    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container,new PersonalFragment()).commit();
             }
         });
 
@@ -81,7 +120,48 @@ public class MainFragment extends Fragment {
             }
         });
 
+        view.findViewById(R.id.abreImageFolder).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), com.soma.utils.galeria.MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+        view.findViewById(R.id.abreCamera).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), com.soma.utils.camera.MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+        loadSpinnerData();
+
         return view;
+    }
+
+    private void loadSpinnerData() {
+        DatabaseMainHandler db = new DatabaseMainHandler(getContext());
+        List<String> parcelas = db.getAllParcelas();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item, parcelas);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setPrompt("Select your favorite Planet!");
+
+        spinner.setAdapter(
+                new NothingSelectedSpinnerAdapter(
+                        dataAdapter,
+                        R.layout.contact_spinner_row_nothing_selected,
+                        // R.layout.contact_spinner_nothing_selected_dropdown, // Optional
+                        getContext()));
+
+        // attaching data adapter to spinner
+       // spinner.setAdapter(dataAdapter);
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -140,11 +220,6 @@ public class MainFragment extends Fragment {
                             double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
                             textLatLong.setText(String.format("Latitude : %s\n Longitude: %s", lati, longi));
                             progressBar.setVisibility(View.GONE);
-                            //System.out.println("PORRA"+longi);
-                            //Location location = new Location("providerNA");
-                            //location.setLongitude(longi);
-                            //location.setLatitude(lati);
-                            //fetchaddressfromlocation(location);
 
                         } else {
                             progressBar.setVisibility(View.GONE);

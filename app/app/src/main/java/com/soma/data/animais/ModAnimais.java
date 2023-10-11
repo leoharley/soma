@@ -1,4 +1,4 @@
-package com.soma.data.Animais;
+package com.soma.data.animais;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ public class ModAnimais extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Animais_activity_mod);
+        setContentView(R.layout.animais_activity_mod);
 
         listView = (ListView) findViewById(R.id.Animais_lvi);
 

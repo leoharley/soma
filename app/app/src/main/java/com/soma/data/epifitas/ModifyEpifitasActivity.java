@@ -1,4 +1,4 @@
-package com.soma.data.Epifitas;
+package com.soma.data.epifitas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +26,7 @@ public class ModifyEpifitasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Epifitas_activity_modify);
+        setContentView(R.layout.epifitas_activity_modify);
 
         Intent intent = getIntent();
         EpifitasModel = (EpifitasModel) intent.getSerializableExtra("Epifitas");

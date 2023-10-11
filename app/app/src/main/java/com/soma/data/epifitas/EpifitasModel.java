@@ -1,4 +1,4 @@
-package com.soma.data.Epifitas;
+package com.soma.data.epifitas;
 
 import java.io.Serializable;
 

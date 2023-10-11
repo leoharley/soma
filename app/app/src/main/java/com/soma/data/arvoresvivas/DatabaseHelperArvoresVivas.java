@@ -1,5 +1,6 @@
 package com.soma.data.arvoresvivas;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -36,7 +37,7 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
     private static final String KEY_ETFLORACAOFRUTIFICACAO = "etfloracaofrutificacao";
 
 
-    private static final String CREATE_TABLE_ARVORES_VIVAS = "CREATE TABLE "
+    private static final String CREATE_TABLE_ARVORES_VIVAS = "CREATE TABLE IF NOT EXISTS "
             + TABLE_NAME + "(" + KEY_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             KEY_ETLATITUDE + " TEXT NOT NULL, "+
@@ -101,6 +102,7 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
         return insert;
     }
 
+    @SuppressLint("Range")
     public ArrayList<ArvoresVivasModel> getAllArvoresVivas() {
         ArrayList<ArvoresVivasModel> arvoresVivasModelArrayList = new ArrayList<ArvoresVivasModel>();
 

@@ -1,4 +1,4 @@
-package com.soma.data.Epifitas;
+package com.soma.data.epifitas;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -47,7 +47,7 @@ public class CustomMod extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.Epifitas_model_mod, null, true);
+            convertView = inflater.inflate(R.layout.epifitas_model_mod, null, true);
 
             holder.etlatitude = (TextView) convertView.findViewById(R.id.Epifitas_latitude);
             holder.etlongitude = (TextView) convertView.findViewById(R.id.Epifitas_longitude);

@@ -1,4 +1,4 @@
-package com.soma.data.Animais;
+package com.soma.data.animais;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +29,7 @@ public class AddRegistroAnimais extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Animais_activity_add_registro);
+        setContentView(R.layout.animais_activity_add_registro);
 
         databaseHelperAnimais = new DatabaseHelperAnimais(this);
 
@@ -63,7 +63,7 @@ public class AddRegistroAnimais extends AppCompatActivity {
                         etespecie.getText().toString(),						
                         ettipoobservacao.getText().toString(),
                         etclassificacao.getText().toString(),
-                        etgrauprotecao.getText().toString();
+                        etgrauprotecao.getText().toString());
 
               /*  etcourse.setText("");
                 etphone.setText("");*/

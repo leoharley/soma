@@ -1,5 +1,6 @@
-package com.soma.data.Animais;
+package com.soma.data.animais;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,7 +18,7 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "campo_data";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "Animais";
+    private static final String TABLE_NAME = "animais";
     private static final String KEY_ID = "id";
     private static final String KEY_ETLATITUDE = "etlatitude";
     private static final String KEY_ETLONGITUDE = "etlongitude";
@@ -30,7 +31,7 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
 
 
 
-    private static final String CREATE_TABLE_Animais = "CREATE TABLE "
+    private static final String CREATE_TABLE_ANIMAIS = "CREATE TABLE IF NOT EXISTS "
             + TABLE_NAME + "(" + KEY_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             KEY_ETLATITUDE + " TEXT NOT NULL, "+
@@ -40,19 +41,18 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
             KEY_ETESPECIE + " VARCHAR, " +
             KEY_ETTIPOOBSERVACAO + " VARCHAR, " +
             KEY_ETCLASSIFICACAO + " VARCHAR, " +
-            KEY_ETGRAUPROTECAO + " VARCHAR, " +
-
+            KEY_ETGRAUPROTECAO + " VARCHAR " +
             "); ";
 
     public DatabaseHelperAnimais(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
-        Log.d("table", CREATE_TABLE_Animais);
+        Log.d("table", CREATE_TABLE_ANIMAIS);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_Animais);
+        db.execSQL(CREATE_TABLE_ANIMAIS);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
         values.put(KEY_ETFAMILIA, etfamilia);
         values.put(KEY_ETGENERO, etgenero);
         values.put(KEY_ETESPECIE, etespecie);
-        VALUES.PUT(KEY_ETTIPOOBSERVACAO, ettipoobservacao);
+        values.put(KEY_ETTIPOOBSERVACAO, ettipoobservacao);
         values.put(KEY_ETCLASSIFICACAO, etclassificacao);
         values.put(KEY_ETGRAUPROTECAO, etgrauprotecao);
 
@@ -81,6 +81,7 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
         return insert;
     }
 
+    @SuppressLint("Range")
     public ArrayList<AnimaisModel> getAllAnimais() {
         ArrayList<AnimaisModel> AnimaisModelArrayList = new ArrayList<AnimaisModel>();
 

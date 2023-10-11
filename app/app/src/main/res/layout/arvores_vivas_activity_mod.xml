@@ -4,20 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="10dp"
     tools:context="com.soma.data.arvoresvivas.ModArvoresVivas">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/btn_add_arvores_vivas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicionar" />
+    </TableRow>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Árvores Vivas"
         android:textAlignment="center"
-        android:textColor="#919191"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:background="@color/black"/>
 
     <ListView
         android:id="@+id/arvoresvivas_lvi"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        />
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.soma.data.Hidrologia;
+package com.soma.data.hidrologia;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ public class ModHidrologia extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Hidrologia_activity_mod);
+        setContentView(R.layout.hidrologia_activity_mod);
 
         listView = (ListView) findViewById(R.id.Hidrologia_lvi);
 

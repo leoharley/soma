@@ -1,4 +1,4 @@
-package com.soma.data.Epifitas;
+package com.soma.data.epifitas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ public class ModEpifitas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Epifitas_activity_mod);
+        setContentView(R.layout.epifitas_activity_mod);
 
         listView = (ListView) findViewById(R.id.Epifitas_lvi);
 

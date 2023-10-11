@@ -166,11 +166,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         pDialog.dismiss();
                         try {
+                            DatabaseMainHandler db = new DatabaseMainHandler(getApplicationContext());
+                            db.apagaTabelaParcela();
                             for(int i=0; i < response.length(); i++) {
                                 JSONObject jsonObject1 = response.getJSONObject(i);
                                 String id       = jsonObject1.getString("id");
                                 String no_propriedade    = jsonObject1.getString("no_propriedade");
                                 System.out.println("LEOHARLEY"+no_propriedade);
+                                db.insertParcela(id,no_propriedade);
                             }
                         }
                         catch (Exception e){

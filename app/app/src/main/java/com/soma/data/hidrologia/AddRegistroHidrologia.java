@@ -1,4 +1,4 @@
-package com.soma.data.Hidrologia;
+package com.soma.data.hidrologia;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ public class AddRegistroHidrologia extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Hidrologia_activity_add_registro);
+        setContentView(R.layout.hidrologia_activity_add_registro);
 
         databaseHelperHidrologia = new DatabaseHelperHidrologia(this);
 
@@ -48,7 +48,7 @@ public class AddRegistroHidrologia extends AppCompatActivity {
                 databaseHelperHidrologia.addHidrologiaDetail(
                         etlatitude.getText().toString(),
                         etlongitude.getText().toString(),
-                        etdescricao.getText().toString(),
+                        etdescricao.getText().toString());
 
               /*  etcourse.setText("");
                 etphone.setText("");*/

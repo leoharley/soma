@@ -1,5 +1,6 @@
-package com.soma.data.Hidrologia;
+package com.soma.data.hidrologia;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,31 +18,31 @@ public class DatabaseHelperHidrologia extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "campo_data";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "Hidrologia";
+    private static final String TABLE_NAME = "hidrologia";
     private static final String KEY_ID = "id";
     private static final String KEY_ETLATITUDE = "etlatitude";
     private static final String KEY_ETLONGITUDE = "etlongitude";
-    private static final String KEY_ETFAMILIA = "etdescricao";
+    private static final String KEY_ETDESCRICAO = "etdescricao";
 
 
 
-    private static final String CREATE_TABLE_Hidrologia = "CREATE TABLE "
-            + TABLE_NAME + "(" + KEY_ID
+    private static final String CREATE_TABLE_HIDROLOGIA = "CREATE TABLE IF NOT EXISTS "
+            + TABLE_NAME + " (" + KEY_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             KEY_ETLATITUDE + " TEXT NOT NULL, "+
             KEY_ETLONGITUDE + " TEXT NOT NULL, "+
-            KEY_ETDESCRICAO + " VARCHAR, "+
+            KEY_ETDESCRICAO + " VARCHAR"+
             "); ";
 
     public DatabaseHelperHidrologia(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
-        Log.d("table", CREATE_TABLE_Hidrologia);
+        Log.d("table", CREATE_TABLE_HIDROLOGIA);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_Hidrologia);
+        db.execSQL(CREATE_TABLE_HIDROLOGIA);
     }
 
     @Override
@@ -64,6 +65,7 @@ public class DatabaseHelperHidrologia extends SQLiteOpenHelper {
         return insert;
     }
 
+    @SuppressLint("Range")
     public ArrayList<HidrologiaModel> getAllHidrologia() {
         ArrayList<HidrologiaModel> HidrologiaModelArrayList = new ArrayList<HidrologiaModel>();
 
@@ -86,7 +88,7 @@ public class DatabaseHelperHidrologia extends SQLiteOpenHelper {
         return HidrologiaModelArrayList;
     }
 
-    public int updateHidrologia(int id, String etlatitude, String etlongitude, String etfamilia) {
+    public int updateHidrologia(int id, String etlatitude, String etlongitude, String etdescricao) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Creating content values
