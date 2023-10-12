@@ -1870,7 +1870,7 @@ function carregaInfoPermissao($IdPermissao)
 
     function carregaNextIdHidrologia()
     {
-        $this->db->select('auto_increment');
+        $this->db->select('auto_increment as id');
         $this->db->where('table_name','tb_hidrologia');
         $this->db->limit(1);
         $query = $this->db->get('INFORMATION_SCHEMA.TABLES');
