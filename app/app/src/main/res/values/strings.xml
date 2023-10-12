@@ -24,4 +24,12 @@
         <item>Settings</item>
         <item>About</item>
     </array>
+
+    <string-array name="Animals">
+        <item>Teste de SELECT com Search!!</item>
+        <item>1-Em perigo (EN)</item>
+        <item>2-Criticamente em perigo (CR)</item>
+        <item>99-NÃO INFORMADO</item>
+    </string-array>
+
 </resources>

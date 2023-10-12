@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +48,8 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
             etalturacopa,
             etisolada,
             etfloracaofrutificacao;
+
+    String[] options;
 
     private DatabaseHelperArvoresVivas databaseHelperArvoresVivas;
 
@@ -107,6 +111,29 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
                 goToFragment(new ModArvoresVivasFragment(), false);
             }
         });
+
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+        // Creating ArrayAdapter using the string array and default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.Animals, android.R.layout.simple_spinner_item);
+        // Specify layout to be used when list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Applying the adapter to our spinner
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), " You select >> "+options[position], Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        options = getContext().getResources().getStringArray(R.array.Animals);
 
         return view;
     }

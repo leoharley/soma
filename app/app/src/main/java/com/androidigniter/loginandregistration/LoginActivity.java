@@ -172,7 +172,6 @@ public class LoginActivity extends AppCompatActivity {
                                 JSONObject jsonObject1 = response.getJSONObject(i);
                                 String id       = jsonObject1.getString("id");
                                 String no_propriedade    = jsonObject1.getString("no_propriedade");
-                                System.out.println("LEOHARLEY"+no_propriedade);
                                 db.insertParcela(id,no_propriedade);
                             }
                         }
