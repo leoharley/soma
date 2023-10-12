@@ -1825,45 +1825,50 @@ function carregaInfoPermissao($IdPermissao)
 
     function carregaNextIdParcela()
     {
-        $this->db->select('max(id)+1 as id');
+        $this->db->select('auto_increment as id');
+        $this->db->where('table_name','tb_parcelas');
         $this->db->limit(1);
-        $query = $this->db->get('tb_parcelas');
+        $query = $this->db->get('INFORMATION_SCHEMA.TABLES');
 
         return $query->row();
     }
 
     function carregaNextIdProjeto()
     {
-        $this->db->select('max(id)+1 as id');
+        $this->db->select('auto_increment as id');
+        $this->db->where('table_name','tb_projetos');
         $this->db->limit(1);
-        $query = $this->db->get('tb_projetos');
+        $query = $this->db->get('INFORMATION_SCHEMA.TABLES');
 
         return $query->row();
     }
 
     function carregaNextIdAnimal()
     {
-        $this->db->select('max(id)+1 as id');
+        $this->db->select('auto_increment as id');
+        $this->db->where('table_name','tb_animais');
         $this->db->limit(1);
-        $query = $this->db->get('tb_animais');
+        $query = $this->db->get('INFORMATION_SCHEMA.TABLES');
 
         return $query->row();
     }
 
     function carregaNextIdArvoreViva()
     {
-        $this->db->select('max(id)+1 as id');
+        $this->db->select('auto_increment as id');
+        $this->db->where('table_name','tb_arvores_vivas');
         $this->db->limit(1);
-        $query = $this->db->get('tb_arvores_vivas');
+        $query = $this->db->get('INFORMATION_SCHEMA.TABLES');
 
         return $query->row();
     }
 
     function carregaNextIdEpifita()
     {
-        $this->db->select('max(id)+1 as id');
+        $this->db->select('auto_increment as id');
+        $this->db->where('table_name','tb_epifitas');
         $this->db->limit(1);
-        $query = $this->db->get('tb_epifitas');
+        $query = $this->db->get('INFORMATION_SCHEMA.TABLES');
 
         return $query->row();
     }
@@ -1880,9 +1885,10 @@ function carregaInfoPermissao($IdPermissao)
 
     function carregaNextIdPropriedade()
     {
-        $this->db->select('max(id)+1 as id');
+        $this->db->select('auto_increment as id');
+        $this->db->where('table_name','tb_propriedades');
         $this->db->limit(1);
-        $query = $this->db->get('tb_propriedades');
+        $query = $this->db->get('INFORMATION_SCHEMA.TABLES');
 
         return $query->row();
     }
