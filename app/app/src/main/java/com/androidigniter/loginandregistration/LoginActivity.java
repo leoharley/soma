@@ -152,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
         DatabaseMainHandler db = new DatabaseMainHandler(getApplicationContext());
 
         /*CARREGA PARCELA*/
-        new JsonArrayRequest
+        JsonArrayRequest jsArrayRequest_parcela = new JsonArrayRequest
                 (Request.Method.POST, painel_parcela_url, null, response -> {
                     pDialog.dismiss();
                     try {
@@ -173,12 +173,14 @@ public class LoginActivity extends AppCompatActivity {
                             error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_parcela);
+
         /*CARREGA FAMÍLIA*/
-        new JsonArrayRequest
+        JsonArrayRequest jsArrayRequest_familia = new JsonArrayRequest
                 (Request.Method.POST, painel_familia_url, null, response -> {
                     pDialog.dismiss();
                     try {
-                        db.apagaTabelaParcela();
+                        db.apagaTabelaFamilia();
                         for(int i=0; i < response.length(); i++) {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
@@ -194,6 +196,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
+
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_familia);
 
     }
 
