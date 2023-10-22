@@ -24,7 +24,7 @@
       <img src="<?php echo base_url(); ?>assets/images/logo2.png" style="width:60%;height:auto">
       <br/>
       <a href="#">
-       <span style="color:white;font-size:0.8em"><b>Painel Administrativo</b></span></a>
+       <span style="color:white;font-size:0.8em"><b>Panel Administrativo</b></span></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
