@@ -15,23 +15,23 @@ import java.util.ArrayList;
 public class CustomAdapterEpifitas extends BaseAdapter {
 
     private Context context;
-    private ArrayList<EpifitasModel> EpifitasModelArrayList;
+    private ArrayList<EpifitasModel> epifitasModelArrayList;
 
-    public CustomAdapterEpifitas(Context context, ArrayList<EpifitasModel> EpifitasModelArrayList) {
+    public CustomAdapterEpifitas(Context context, ArrayList<EpifitasModel> epifitasModelArrayList) {
 
         this.context = context;
-        this.EpifitasModelArrayList = EpifitasModelArrayList;
+        this.epifitasModelArrayList = epifitasModelArrayList;
     }
 
 
     @Override
     public int getCount() {
-        return EpifitasModelArrayList.size();
+        return epifitasModelArrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return EpifitasModelArrayList.get(position);
+        return epifitasModelArrayList.get(position);
     }
 
     @Override
@@ -49,14 +49,11 @@ public class CustomAdapterEpifitas extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.epifitas_model, null, true);
 
-            holder.etlatitude = (TextView) convertView.findViewById(R.id.Epifitas_etlatitude);
-            holder.etlongitude = (TextView) convertView.findViewById(R.id.Epifitas_etlongitude);
-            holder.etfamilia = (TextView) convertView.findViewById(R.id.Epifitas_etfamilia);
-            holder.etgenero = (TextView) convertView.findViewById(R.id.Epifitas_etgenero);
-            holder.etespecie = (TextView) convertView.findViewById(R.id.Epifitas_etespecie);
-
-
-
+            holder.etlatitude = (TextView) convertView.findViewById(R.id.animais_etlatitude);
+            holder.etlongitude = (TextView) convertView.findViewById(R.id.animais_etlongitude);
+            holder.etfamilia = (TextView) convertView.findViewById(R.id.animais_etfamilia);
+            holder.etgenero = (TextView) convertView.findViewById(R.id.animais_etgenero);
+            holder.etespecie = (TextView) convertView.findViewById(R.id.animais_etespecie);
 
             convertView.setTag(holder);
         }else {
@@ -64,12 +61,11 @@ public class CustomAdapterEpifitas extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        holder.etlatitude.setText("Latitude: "+ EpifitasModelArrayList.get(position).getetlatitude());
-        holder.etlongitude.setText("Longitude: "+ EpifitasModelArrayList.get(position).getetlongitude());
-        holder.etfamilia.setText("Família: "+ EpifitasModelArrayList.get(position).getetfamilia());
-        holder.etgenero.setText("Gênero"+ EpifitasModelArrayList.get(position).getetgenero());
-        holder.etespecie.setText("Espécie"+ EpifitasModelArrayList.get(position).getetespecie());
-
+        holder.etlatitude.setText("Latitude: "+ epifitasModelArrayList.get(position).getetlatitude());
+        holder.etlongitude.setText("Longitude: "+ epifitasModelArrayList.get(position).getetlongitude());
+        holder.etfamilia.setText("Família: "+ epifitasModelArrayList.get(position).getetfamilia());
+        holder.etgenero.setText("Gênero"+ epifitasModelArrayList.get(position).getetgenero());
+        holder.etespecie.setText("Espécie"+ epifitasModelArrayList.get(position).getetespecie());
 
         return convertView;
     }
@@ -81,7 +77,6 @@ public class CustomAdapterEpifitas extends BaseAdapter {
                 etfamilia,
                 etgenero,
                 etespecie;
-
     }
 
 }

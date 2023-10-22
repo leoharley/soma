@@ -1,4 +1,4 @@
-package com.soma.data.arvoresvivas;
+package com.soma.data.epifitas;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,11 +8,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
@@ -20,66 +18,46 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
-import androidx.cursoradapter.widget.SimpleCursorAdapter;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.androidigniter.loginandregistration.DatabaseMainHandler;
-import com.androidigniter.loginandregistration.MainActivity;
-import com.androidigniter.loginandregistration.NothingSelectedSpinnerAdapter;
 import com.androidigniter.loginandregistration.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ModifyArvoresVivasFragment extends Fragment {
+public class ModifyEpifitasFragment extends Fragment {
 
-    private ArvoresVivasModel arvoresVivasModel;
-    private EditText
-            etidcontrole,
+    private EpifitasModel epifitasModel;
+    EditText etidcontrole,
             etlatitude,
-            etlongitude,
-            etfamilia,
-            etgenero,
-            etespecie,
-            etbiomassa,
-            etidentificado,
-            etgrauprotecao,
-            etcircunferencia,
-            etaltura,
-            etalturatotal,
-            etalturafuste,
-            etalturacopa,
-            etisolada,
-            etfloracaofrutificacao;
+            etlongitude;
 
-    private TextView etidparcela;
-    private Button btnupdate, btndelete;
-    private DatabaseHelperArvoresVivas databaseHelperArvoresVivas;
+    Spinner spinner_parcela;
+
     SearchableSpinner
             spinner_familia,
             spinner_genero,
-            spinner_especie,
-            spinner_identificado,
-            spinner_grau_de_protecao;
+            spinner_especie;
+    private TextView etidparcela;
+    private Button btnupdate, btndelete;
+    private DatabaseHelperEpifitas databaseHelperEpifitas;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.arvores_vivas_activity_modify, container, false);
+        View view = inflater.inflate(R.layout.epifitas_activity_modify, container, false);
 
         Bundle bundle=getArguments();
-        arvoresVivasModel = (ArvoresVivasModel) bundle.getSerializable("arvoresvivas");
+        epifitasModel = (EpifitasModel) bundle.getSerializable("epifitas");
 
-        databaseHelperArvoresVivas = new DatabaseHelperArvoresVivas(getContext());
+        databaseHelperEpifitas = new DatabaseHelperEpifitas(getContext());
 
+        /* BUTTONS */
+        btndelete = (Button) view.findViewById(R.id.btndelete);
+        btnupdate = (Button) view.findViewById(R.id.btnupdate);
+
+        /* SPINNERS */
         etidparcela = (TextView) view.findViewById(R.id.et_idparcela);
-        etidcontrole = (EditText) view.findViewById(R.id.et_idcontrole);
-        etlatitude = (EditText) view.findViewById(R.id.et_latitude);
-        etlongitude = (EditText) view.findViewById(R.id.et_longitude);
-
         spinner_familia = view.findViewById(R.id.spinner_familia);
         ArrayAdapter<CharSequence> adapter_spinner_familia = ArrayAdapter.createFromResource(getContext(),
                 R.array.familia_tmp, android.R.layout.simple_spinner_item);
@@ -104,77 +82,41 @@ public class ModifyArvoresVivasFragment extends Fragment {
         spinner_especie.setPositiveButton("Fechar");
         spinner_especie.setAdapter(adapter_spinner_especie);
 
-        etbiomassa = (EditText) view.findViewById(R.id.et_biomassa);
+        /* EDITTEXT */
+        etidcontrole = (EditText) view.findViewById(R.id.et_idcontrole);
+        etlatitude = (EditText) view.findViewById(R.id.et_latitude);
+        etlongitude = (EditText) view.findViewById(R.id.et_longitude);
 
-        spinner_identificado = view.findViewById(R.id.spinner_identificado);
-        ArrayAdapter<CharSequence> adapter_spinner_identificado = ArrayAdapter.createFromResource(getContext(),
-                R.array.identificado_tmp, android.R.layout.simple_spinner_item);
-        adapter_spinner_identificado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_identificado.setTitle("Pesquisar");
-        spinner_identificado.setPositiveButton("Fechar");
-        spinner_identificado.setAdapter(adapter_spinner_identificado);
-
-        spinner_grau_de_protecao = view.findViewById(R.id.spinner_grau_de_protecao);
-        ArrayAdapter<CharSequence> adapter_spinner_grau_de_protecao = ArrayAdapter.createFromResource(getContext(),
-                R.array.grau_de_protecao_tmp, android.R.layout.simple_spinner_item);
-        adapter_spinner_grau_de_protecao.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_grau_de_protecao.setTitle("Pesquisar");
-        spinner_grau_de_protecao.setPositiveButton("Fechar");
-        spinner_grau_de_protecao.setAdapter(adapter_spinner_grau_de_protecao);
-
-        etcircunferencia = (EditText) view.findViewById(R.id.et_circunferencia);
-        etaltura = (EditText) view.findViewById(R.id.et_altura);
-        etalturatotal = (EditText) view.findViewById(R.id.et_altura_total);
-        etalturafuste = (EditText) view.findViewById(R.id.et_altura_fuste);
-        etalturacopa = (EditText) view.findViewById(R.id.et_altura_copa);
-        etisolada = (EditText) view.findViewById(R.id.et_isolada);
-        etfloracaofrutificacao = (EditText) view.findViewById(R.id.et_floracao_frutificacao);
-
-        btndelete = (Button) view.findViewById(R.id.btndelete);
-        btnupdate = (Button) view.findViewById(R.id.btnupdate);
-
-        etidcontrole.setText(arvoresVivasModel.getetidcontrole());
-        etidparcela.setText(arvoresVivasModel.getetidparcela());
-        etlatitude.setText(arvoresVivasModel.getetlatitude());
-        etlongitude.setText(arvoresVivasModel.getetlongitude());
-        selectValue(spinner_familia,arvoresVivasModel.getetfamilia());
-        selectValue(spinner_genero,arvoresVivasModel.getetgenero());
-        selectValue(spinner_especie,arvoresVivasModel.getetespecie());
-        etbiomassa.setText(arvoresVivasModel.getetbiomassa());
-        selectValue(spinner_identificado,arvoresVivasModel.getetidentificado());
-        selectValue(spinner_grau_de_protecao,arvoresVivasModel.getetgrauprotecao());
-        etcircunferencia.setText(arvoresVivasModel.getetcircunferencia());
-        etaltura.setText(arvoresVivasModel.getetaltura());
-        etalturatotal.setText(arvoresVivasModel.getetalturatotal());
-        etalturafuste.setText(arvoresVivasModel.getetalturafuste());
-        etalturacopa.setText(arvoresVivasModel.getetalturacopa());
-        etisolada.setText(arvoresVivasModel.getetisolada());
-        etfloracaofrutificacao.setText(arvoresVivasModel.getetfloracaofrutificacao());
+        etidcontrole.setText(epifitasModel.getetidcontrole());
+        etidparcela.setText(epifitasModel.getetidparcela());
+        etlatitude.setText(epifitasModel.getetlatitude());
+        etlongitude.setText(epifitasModel.getetlongitude());
+        selectValue(spinner_familia, epifitasModel.getetfamilia());
+        selectValue(spinner_genero, epifitasModel.getetgenero());
+        selectValue(spinner_especie, epifitasModel.getetespecie());
 
         btnupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseHelperArvoresVivas.updateArvoresVivas(arvoresVivasModel.getId(),etlatitude.getText().toString(),etlongitude.getText().toString(),spinner_familia.getSelectedItem().toString(),
-                        spinner_genero.getSelectedItem().toString(), spinner_especie.getSelectedItem().toString(), etbiomassa.getText().toString(), spinner_identificado.getSelectedItem().toString(),
-                        spinner_grau_de_protecao.getSelectedItem().toString(), etcircunferencia.getText().toString(), etaltura.getText().toString(), etalturatotal.getText().toString(),
-                        etalturafuste.getText().toString(), etalturacopa.getText().toString(), etisolada.getText().toString(), etfloracaofrutificacao.getText().toString());
+                databaseHelperEpifitas.updateEpifitas(epifitasModel.getId(),etlatitude.getText().toString(),etlongitude.getText().toString(),spinner_familia.getSelectedItem().toString(),
+                        spinner_genero.getSelectedItem().toString(), spinner_especie.getSelectedItem().toString());
                 Toast.makeText(getContext(), "Atualizado com sucesso!", Toast.LENGTH_LONG).show();
                 for (Fragment fragment : getParentFragmentManager().getFragments()) {
                     getParentFragmentManager().beginTransaction().remove(fragment).commit();
                 }
-                goToFragment(new ModArvoresVivasFragment(), false);
+                goToFragment(new ModEpifitasFragment(), false);
             }
         });
 
         btndelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseHelperArvoresVivas.deleteUSer(arvoresVivasModel.getId());
+                databaseHelperEpifitas.deleteTable(epifitasModel.getId());
                 Toast.makeText(getContext(), "Apagado com sucesso!", Toast.LENGTH_LONG).show();
                 for (Fragment fragment : getParentFragmentManager().getFragments()) {
                     getParentFragmentManager().beginTransaction().remove(fragment).commit();
                 }
-                goToFragment(new ModArvoresVivasFragment(), false);
+                goToFragment(new ModEpifitasFragment(), false);
             }
         });
 
@@ -183,7 +125,7 @@ public class ModifyArvoresVivasFragment extends Fragment {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getContext(), com.soma.utils.camera.MainActivity.class);
                 myIntent.putExtra("idcontrole",etidcontrole.getText().toString());
-                myIntent.putExtra("dscategoria","arvoresvivas");
+                myIntent.putExtra("dscategoria","epifitas");
                 startActivity(myIntent);
             }
         });
@@ -193,12 +135,10 @@ public class ModifyArvoresVivasFragment extends Fragment {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getContext(), com.soma.utils.galeria.MainActivity.class);
                 myIntent.putExtra("idcontrole",etidcontrole.getText().toString());
-                myIntent.putExtra("dscategoria","arvoresvivas");
+                myIntent.putExtra("dscategoria","epifitas");
                 startActivity(myIntent);
             }
         });
-
-        //selectValue(spinner_parcela,arvoresVivasModel.getetidparcela());
 
         return view;
     }

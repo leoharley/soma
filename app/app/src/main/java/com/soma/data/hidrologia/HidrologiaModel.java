@@ -8,10 +8,11 @@ import java.io.Serializable;
 
 public class HidrologiaModel implements Serializable {
 
+    private String etidparcela;
+    private String etidcontrole;
     private String etlatitude;
     private String etlongitude;
     private String etdescricao;
-
     private int id;
 
     public int getId() {
@@ -20,6 +21,22 @@ public class HidrologiaModel implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+
+    public String getetidparcela() {
+        return etidparcela;
+    }
+
+    public void setetidparcela(String etidparcela) {
+        this.etidparcela = etidparcela;
+    }
+    public String getetidcontrole() {
+        return etidcontrole;
+    }
+
+    public void setetidcontrole(String etidcontrole) {
+        this.etidcontrole = etidcontrole;
     }
 
     public String getetlatitude() {
@@ -45,7 +62,5 @@ public class HidrologiaModel implements Serializable {
     public void setetdescricao(String etdescricao) {
         this.etdescricao = etdescricao;
     }
-
-   
 
 }

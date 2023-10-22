@@ -19,17 +19,56 @@
 
     <array name="menuOptions">
         <item>Home</item>
-        <item>Personal</item>
-        <item>High scores</item>
-        <item>Settings</item>
-        <item>About</item>
+        <item>Árvores vivas</item>
+        <item>Animais</item>
+        <item>Epífitas</item>
+        <item>Hidrologia</item>
     </array>
 
-    <string-array name="Animals">
-        <item>Teste de SELECT com Search!!</item>
-        <item>1-Em perigo (EN)</item>
-        <item>2-Criticamente em perigo (CR)</item>
-        <item>99-NÃO INFORMADO</item>
+    <string-array name="familia_tmp">
+        <item>SELECIONE</item>
+        <item>1 - Acanthaceae</item>
+        <item>2 - Achariaceae</item>
+        <item>3 - Achatocarpaceae</item>
+    </string-array>
+
+    <string-array name="genero_tmp">
+        <item>SELECIONE</item>
+        <item>1 - Acanthura</item>
+        <item>2 - Acelica</item>
+        <item>3 - Adhatoda</item>
+    </string-array>
+
+    <string-array name="especie_tmp">
+        <item>SELECIONE</item>
+        <item>324 - Acanthura mattogrossensis</item>
+    </string-array>
+
+    <string-array name="identificado_tmp">
+        <item>SELECIONE</item>
+        <item>Sim</item>
+        <item>Não</item>
+    </string-array>
+
+    <string-array name="grau_de_protecao_tmp">
+        <item>SELECIONE</item>
+        <item>1 - Em perigo (EN)</item>
+        <item>2 - Criticamente em perigo (CR)</item>
+        <item>99 - NÃO INFORMADO</item>
+    </string-array>
+
+    <string-array name="tpobservacao_tmp">
+        <item>SELECIONE</item>
+        <item>1 - Em perigo (EN)</item>
+        <item>2 - Criticamente em perigo (CR)</item>
+        <item>99 - NÃO INFORMADO</item>
+    </string-array>
+
+    <string-array name="classificacao_tmp">
+        <item>SELECIONE</item>
+        <item>1 - Em perigo (EN)</item>
+        <item>2 - Criticamente em perigo (CR)</item>
+        <item>99 - NÃO INFORMADO</item>
     </string-array>
 
 </resources>

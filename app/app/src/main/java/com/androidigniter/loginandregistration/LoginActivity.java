@@ -37,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private String password;
     private ProgressDialog pDialog;
     private String login_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/login.php";
-    private String painel_info_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_info_parcelas.php";
+    private String painel_parcela_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_info_parcelas.php";
+    private String painel_familia_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_info_familias.php";
     private SessionHandler session;
 
     private ArrayList mylist;
@@ -55,18 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etLoginUsername);
         etPassword = findViewById(R.id.etLoginPassword);
 
-        Button register = findViewById(R.id.btnLoginRegister);
         Button login = findViewById(R.id.btnLogin);
-
-        //Launch Registration screen when Register Button is clicked
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void displayLoader() {
         pDialog = new ProgressDialog(LoginActivity.this);
-        pDialog.setMessage("Logging In.. Please wait...");
+        pDialog.setMessage("Fazendo o login.. Aguarde..");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();
@@ -159,41 +149,52 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void carregaPainelDB() {
-        JSONObject request = new JSONObject();
-        JsonArrayRequest jsArrayRequest = new JsonArrayRequest
-                (Request.Method.POST, painel_info_url, null, new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        pDialog.dismiss();
-                        try {
-                            DatabaseMainHandler db = new DatabaseMainHandler(getApplicationContext());
-                            db.apagaTabelaParcela();
-                            for(int i=0; i < response.length(); i++) {
-                                JSONObject jsonObject1 = response.getJSONObject(i);
-                                String id       = jsonObject1.getString("id");
-                                String no_propriedade    = jsonObject1.getString("no_propriedade");
-                                db.insertParcela(id,no_propriedade);
-                            }
-                        }
-                        catch (Exception e){
-                            e.printStackTrace();
+        DatabaseMainHandler db = new DatabaseMainHandler(getApplicationContext());
+
+        /*CARREGA PARCELA*/
+        new JsonArrayRequest
+                (Request.Method.POST, painel_parcela_url, null, response -> {
+                    pDialog.dismiss();
+                    try {
+                        db.apagaTabelaParcela();
+                        for(int i=0; i < response.length(); i++) {
+                            JSONObject jsonObject1 = response.getJSONObject(i);
+                            String id       = jsonObject1.getString("id");
+                            String no_propriedade    = jsonObject1.getString("no_propriedade");
+                            db.insertParcela(id,no_propriedade);
                         }
                     }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        pDialog.dismiss();
-
-                        //Display error message whenever an error occurs
-                        Toast.makeText(getApplicationContext(),
-                                error.getMessage(), Toast.LENGTH_SHORT).show();
-
+                    catch (Exception e){
+                        e.printStackTrace();
                     }
+                }, error -> {
+                    pDialog.dismiss();
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
-        // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+        /*CARREGA FAMÍLIA*/
+        new JsonArrayRequest
+                (Request.Method.POST, painel_familia_url, null, response -> {
+                    pDialog.dismiss();
+                    try {
+                        db.apagaTabelaParcela();
+                        for(int i=0; i < response.length(); i++) {
+                            JSONObject jsonObject1 = response.getJSONObject(i);
+                            String id       = jsonObject1.getString("id");
+                            String no_familia    = jsonObject1.getString("no_familia");
+                            db.insertFamilia(id,no_familia);
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }, error -> {
+                    pDialog.dismiss();
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
     }
 
     /**

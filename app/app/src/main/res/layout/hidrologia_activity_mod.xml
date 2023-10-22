@@ -4,20 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp"
-    tools:context="com.soma.data.Hidrologia.ModHidrologia">
+    android:padding="10dp"
+    tools:context="com.soma.data.hidrologia.ModHidrologiaFragment">
 
-    <TextView
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Árvores Vivas"
-        android:textAlignment="center"
-        android:textColor="#919191"
-        android:textSize="20sp" />
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/btn_add_hidrologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicionar" />
+    </TableRow>
 
     <ListView
-        android:id="@+id/Hidrologia_lvi"
+        android:layout_marginTop="20dp"
+        android:id="@+id/hidrologia_lvi"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        />
 
 </LinearLayout>

@@ -15,23 +15,23 @@ import java.util.ArrayList;
 public class CustomAdapterAnimais extends BaseAdapter {
 
     private Context context;
-    private ArrayList<AnimaisModel> AnimaisModelArrayList;
+    private ArrayList<AnimaisModel> animaisModelArrayList;
 
-    public CustomAdapterAnimais(Context context, ArrayList<AnimaisModel> AnimaisModelArrayList) {
+    public CustomAdapterAnimais(Context context, ArrayList<AnimaisModel> animaisModelArrayList) {
 
         this.context = context;
-        this.AnimaisModelArrayList = AnimaisModelArrayList;
+        this.animaisModelArrayList = animaisModelArrayList;
     }
 
 
     @Override
     public int getCount() {
-        return AnimaisModelArrayList.size();
+        return animaisModelArrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return AnimaisModelArrayList.get(position);
+        return animaisModelArrayList.get(position);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class CustomAdapterAnimais extends BaseAdapter {
             holder.etfamilia = (TextView) convertView.findViewById(R.id.animais_etfamilia);
             holder.etgenero = (TextView) convertView.findViewById(R.id.animais_etgenero);
             holder.etespecie = (TextView) convertView.findViewById(R.id.animais_etespecie);
-            holder.ettipoobservacao = (TextView) convertView.findViewById(R.id.animais_ettipoobservacao);
+            holder.ettpobservacao = (TextView) convertView.findViewById(R.id.animais_ettpobservacao);
             holder.etclassificacao = (TextView) convertView.findViewById(R.id.animais_etclassificacao);
             holder.etgrauprotecao = (TextView) convertView.findViewById(R.id.animais_etgrauprotecao);
 
@@ -64,14 +64,14 @@ public class CustomAdapterAnimais extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        holder.etlatitude.setText("Latitude: "+ AnimaisModelArrayList.get(position).getetlatitude());
-        holder.etlongitude.setText("Longitude: "+ AnimaisModelArrayList.get(position).getetlongitude());
-        holder.etfamilia.setText("Família: "+ AnimaisModelArrayList.get(position).getetfamilia());
-        holder.etgenero.setText("Gênero"+ AnimaisModelArrayList.get(position).getetgenero());
-        holder.etespecie.setText("Espécie"+ AnimaisModelArrayList.get(position).getetespecie());
-        holder.ettipoobservacao.setText("Biomassa"+ AnimaisModelArrayList.get(position).getettipoobservacao());
-        holder.etclassificacao.setText("Identificado"+ AnimaisModelArrayList.get(position).getetclassificacao());
-        holder.etgrauprotecao.setText("Grau de Proteção"+ AnimaisModelArrayList.get(position).getetgrauprotecao());
+        holder.etlatitude.setText("Latitude: "+ animaisModelArrayList.get(position).getetlatitude());
+        holder.etlongitude.setText("Longitude: "+ animaisModelArrayList.get(position).getetlongitude());
+        holder.etfamilia.setText("Família: "+ animaisModelArrayList.get(position).getetfamilia());
+        holder.etgenero.setText("Gênero"+ animaisModelArrayList.get(position).getetgenero());
+        holder.etespecie.setText("Espécie"+ animaisModelArrayList.get(position).getetespecie());
+        holder.ettpobservacao.setText("Tipo de Observação"+ animaisModelArrayList.get(position).getettpobservacao());
+        holder.etclassificacao.setText("Classificação"+ animaisModelArrayList.get(position).getetclassificacao());
+        holder.etgrauprotecao.setText("Grau de Proteção"+ animaisModelArrayList.get(position).getetgrauprotecao());
 
         return convertView;
     }
@@ -83,7 +83,7 @@ public class CustomAdapterAnimais extends BaseAdapter {
                 etfamilia,
                 etgenero,
                 etespecie,
-                ettipoobservacao,
+                ettpobservacao,
                 etclassificacao,
                 etgrauprotecao;
     }

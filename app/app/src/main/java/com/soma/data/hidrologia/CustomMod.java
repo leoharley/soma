@@ -15,23 +15,23 @@ import java.util.ArrayList;
 public class CustomMod extends BaseAdapter {
 
     private Context context;
-    private ArrayList<HidrologiaModel> HidrologiaModelArrayList;
+    private ArrayList<HidrologiaModel> hidrologiaModelArrayList;
 
-    public CustomMod(Context context, ArrayList<HidrologiaModel> HidrologiaModelArrayList) {
+    public CustomMod(Context context, ArrayList<HidrologiaModel> hidrologiaModelArrayList) {
 
         this.context = context;
-        this.HidrologiaModelArrayList = HidrologiaModelArrayList;
+        this.hidrologiaModelArrayList = hidrologiaModelArrayList;
     }
 
 
     @Override
     public int getCount() {
-        return HidrologiaModelArrayList.size();
+        return hidrologiaModelArrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return HidrologiaModelArrayList.get(position);
+        return hidrologiaModelArrayList.get(position);
     }
 
     @Override
@@ -49,10 +49,11 @@ public class CustomMod extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.hidrologia_model_mod, null, true);
 
+            holder.etidcontrole = (TextView) convertView.findViewById(R.id.hidrologia_idcontrole);
+            holder.etidparcela = (TextView) convertView.findViewById(R.id.hidrologia_idparcela);
             holder.etlatitude = (TextView) convertView.findViewById(R.id.hidrologia_latitude);
             holder.etlongitude = (TextView) convertView.findViewById(R.id.hidrologia_longitude);
             holder.etdescricao = (TextView) convertView.findViewById(R.id.hidrologia_descricao);
-
 
             convertView.setTag(holder);
         }else {
@@ -60,11 +61,11 @@ public class CustomMod extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        System.out.println("PORRA"+ HidrologiaModelArrayList.get(position).getetlatitude());
-        holder.etlatitude.setText("Latitude: "+ HidrologiaModelArrayList.get(position).getetlatitude());
-        holder.etlongitude.setText("Longitude: "+ HidrologiaModelArrayList.get(position).getetlongitude());
-        holder.etdescricao.setText("Família: "+ HidrologiaModelArrayList.get(position).getetdescricao());
-
+        holder.etidcontrole.setText("Cadastro ID: " + hidrologiaModelArrayList.get(position).getetidcontrole());
+        holder.etidparcela.setText("Parcela: "+ hidrologiaModelArrayList.get(position).getetidparcela());
+        holder.etlatitude.setText("Latitude: "+ hidrologiaModelArrayList.get(position).getetlatitude());
+        holder.etlongitude.setText("Longitude: "+ hidrologiaModelArrayList.get(position).getetlongitude());
+        holder.etdescricao.setText("Descrição: "+ hidrologiaModelArrayList.get(position).getetdescricao());
 
         return convertView;
     }
@@ -72,6 +73,8 @@ public class CustomMod extends BaseAdapter {
     private class ViewHolder {
 
         protected TextView
+                etidcontrole,
+                etidparcela,
                 etlatitude,
                 etlongitude,
                 etdescricao;

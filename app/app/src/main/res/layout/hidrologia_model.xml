@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
              android:textColor="#000"
              android:textSize="20sp"
-            android:text="nome"
+            android:text="Latitude"
              android:layout_marginTop="10dp"/>
 
         <TextView
@@ -19,20 +19,18 @@
             android:layout_height="wrap_content"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="curso"
+            android:text="Longitude"
             android:layout_marginTop="10dp"/>
 
-        <TextView
+      <!--  <TextView
             android:id="@+id/hidrologia_etdescricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="curso"
-            android:layout_marginTop="10dp"/>
+            android:text="Descrição"
+            android:layout_marginTop="10dp"/> -->
 
-        
- 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

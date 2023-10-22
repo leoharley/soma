@@ -13,7 +13,8 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="119dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60sp"
+        android:layout_marginTop="-60sp"
         android:baselineAlignBottom="false"
         android:src="@drawable/logo" />
 
@@ -49,25 +50,5 @@
         android:background="#f05924"
         android:text="@string/sign_in"
         android:textColor="@android:color/white" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="@string/not_having_account"
-        android:textColor="#fff" />
-
-    <Button
-        android:id="@+id/btnLoginRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="25dp"
-        android:background="#aaa"
-        android:text="@string/register"
-        android:textColor="@android:color/white" />
-
 
 </LinearLayout>

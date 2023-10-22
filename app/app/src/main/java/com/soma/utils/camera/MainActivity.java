@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.app.Activity;
@@ -22,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.androidigniter.loginandregistration.R;
+import com.soma.data.arvoresvivas.ArvoresVivasFragment;
+import com.soma.data.arvoresvivas.ModArvoresVivasFragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView selectedImage;
     Button cameraBtn;
     String currentPhotoPath;
+    String idcontrole;
+    String dscategoria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         selectedImage = findViewById(R.id.displayImageView);
         cameraBtn = findViewById(R.id.cameraBtn);
+
+        Intent myIntent = getIntent();
+        idcontrole = myIntent.getStringExtra("idcontrole");
+        dscategoria = myIntent.getStringExtra("dscategoria");
 
         // Open Camera
         cameraBtn.setOnClickListener(new View.OnClickListener() {
@@ -55,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.fecharCamera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), com.androidigniter.loginandregistration.MainActivity.class);
-                startActivity(i);
+               // if (dscategoria.equals("arvoresvivas")) {
+                    finish();
+               // }
             }
         });
 
@@ -99,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode == Activity.RESULT_OK){
                 File f = new File(currentPhotoPath);
                 selectedImage.setImageURI(Uri.fromFile(f));
-                Log.d("tag", "ABsolute Url of Image is " + Uri.fromFile(f));
+                Log.d("tag", "Absolute Url of Image is " + Uri.fromFile(f));
 
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                 Uri contentUri = Uri.fromFile(f);
@@ -115,10 +126,24 @@ public class MainActivity extends AppCompatActivity {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
 //        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
+       /* File directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/soma/arvoresvivas/23423");
+        if (! directory.exists()){
+            directory.mkdir();
+            // If you require it to make the entire directory path including parents,
+            // use directory.mkdirs(); here instead.
+        }*/
+
+        File storageDir = new File(Environment.getExternalStorageDirectory()+File.separator+"images/"+dscategoria);
+        if (!storageDir.exists()){
+            storageDir.mkdirs();
+            // If you require it to make the entire directory path including parents,
+            // use directory.mkdirs(); here instead.
+        }
+
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
+                dscategoria+"-"+idcontrole+".jpg",         /* suffix */
                 storageDir      /* directory */
         );
 

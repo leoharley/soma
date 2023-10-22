@@ -17,6 +17,23 @@
         app:layout_constraintVertical_bias="0.23000002"
         app:srcCompat="@drawable/ic_launcher_background" />
 
+    <TextView
+        android:id="@+id/myImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/displayImageView"
+        android:layout_alignTop="@id/displayImageView"
+        android:layout_alignRight="@id/displayImageView"
+        android:layout_alignBottom="@id/displayImageView"
+        android:layout_margin="1dp"
+        android:text="PRÉVIA"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/displayImageView"
+        app:layout_constraintEnd_toEndOf="@id/displayImageView"
+        app:layout_constraintStart_toStartOf="@id/displayImageView"
+        app:layout_constraintTop_toTopOf="@id/displayImageView" />
+
     <Button
         android:id="@+id/cameraBtn"
         android:layout_width="wrap_content"

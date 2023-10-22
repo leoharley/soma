@@ -17,21 +17,23 @@ import java.util.ArrayList;
 public class DatabaseHelperHidrologia extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "campo_data";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 6;
     private static final String TABLE_NAME = "hidrologia";
     private static final String KEY_ID = "id";
+    private static final String KEY_ETIDPARCELA = "etidparcela";
+    private static final String KEY_ETIDCONTROLE = "etidcontrole";
     private static final String KEY_ETLATITUDE = "etlatitude";
     private static final String KEY_ETLONGITUDE = "etlongitude";
     private static final String KEY_ETDESCRICAO = "etdescricao";
 
-
-
     private static final String CREATE_TABLE_HIDROLOGIA = "CREATE TABLE IF NOT EXISTS "
-            + TABLE_NAME + " (" + KEY_ID
+            + TABLE_NAME + "(" + KEY_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            KEY_ETIDPARCELA + " VARCHAR NOT NULL, "+
+            KEY_ETIDCONTROLE + " VARCHAR NOT NULL, "+
             KEY_ETLATITUDE + " TEXT NOT NULL, "+
             KEY_ETLONGITUDE + " TEXT NOT NULL, "+
-            KEY_ETDESCRICAO + " VARCHAR"+
+            KEY_ETDESCRICAO + " VARCHAR "+
             "); ";
 
     public DatabaseHelperHidrologia(Context context) {
@@ -51,14 +53,15 @@ public class DatabaseHelperHidrologia extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long addHidrologiaDetail(String etlatitude, String etlongitude, String etdescricao) {
+    public long addHidrologiaDetail(String etidparcela, String etidcontrole, String etlatitude, String etlongitude, String etdescricao) {
         SQLiteDatabase db = this.getWritableDatabase();
         // Creating content values
         ContentValues values = new ContentValues();
+        values.put(KEY_ETIDPARCELA, etidparcela);
+        values.put(KEY_ETIDCONTROLE, etidcontrole);
         values.put(KEY_ETLATITUDE, etlatitude);
         values.put(KEY_ETLONGITUDE, etlongitude);
         values.put(KEY_ETDESCRICAO, etdescricao);
-
         //insert row in table
         long insert = db.insert(TABLE_NAME, null, values);
 
@@ -67,7 +70,7 @@ public class DatabaseHelperHidrologia extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public ArrayList<HidrologiaModel> getAllHidrologia() {
-        ArrayList<HidrologiaModel> HidrologiaModelArrayList = new ArrayList<HidrologiaModel>();
+        ArrayList<HidrologiaModel> hidrologiaModelArrayList = new ArrayList<HidrologiaModel>();
 
         String selectQuery = "SELECT  * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -75,17 +78,18 @@ public class DatabaseHelperHidrologia extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (c.moveToFirst()) {
             do {
-                HidrologiaModel HidrologiaModel = new HidrologiaModel();
-                HidrologiaModel.setId(c.getInt(c.getColumnIndex(KEY_ID)));
-                HidrologiaModel.setetlatitude(c.getString(c.getColumnIndex(KEY_ETLATITUDE)));
-                HidrologiaModel.setetlongitude(c.getString(c.getColumnIndex(KEY_ETLONGITUDE)));
-                HidrologiaModel.setetdescricao(c.getString(c.getColumnIndex(KEY_ETDESCRICAO)));
-
+                HidrologiaModel hidrologiaModel = new HidrologiaModel();
+                hidrologiaModel.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+                hidrologiaModel.setetidparcela(c.getString(c.getColumnIndex(KEY_ETIDPARCELA)));
+                hidrologiaModel.setetidcontrole(c.getString(c.getColumnIndex(KEY_ETIDCONTROLE)));
+                hidrologiaModel.setetlatitude(c.getString(c.getColumnIndex(KEY_ETLATITUDE)));
+                hidrologiaModel.setetlongitude(c.getString(c.getColumnIndex(KEY_ETLONGITUDE)));
+                hidrologiaModel.setetdescricao(c.getString(c.getColumnIndex(KEY_ETDESCRICAO)));
                 // adding to list
-                HidrologiaModelArrayList.add(HidrologiaModel);
+                hidrologiaModelArrayList.add(hidrologiaModel);
             } while (c.moveToNext());
         }
-        return HidrologiaModelArrayList;
+        return hidrologiaModelArrayList;
     }
 
     public int updateHidrologia(int id, String etlatitude, String etlongitude, String etdescricao) {
@@ -93,16 +97,15 @@ public class DatabaseHelperHidrologia extends SQLiteOpenHelper {
 
         // Creating content values
         ContentValues values = new ContentValues();
-        values.put(KEY_ETLATITUDE, etlatitude);
-        values.put(KEY_ETLONGITUDE, etlongitude);
+        //values.put(KEY_ETLATITUDE, etlatitude);
+        //values.put(KEY_ETLONGITUDE, etlongitude);
         values.put(KEY_ETDESCRICAO, etdescricao);
-
         // update row in table base on students.is value
         return db.update(TABLE_NAME, values, KEY_ID + " = ?",
                 new String[]{String.valueOf(id)});
     }
 
-    public void deleteUSer(int id) {
+    public void deleteTable(int id) {
 
         // delete row in table based on id
         SQLiteDatabase db = this.getWritableDatabase();

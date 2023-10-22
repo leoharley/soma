@@ -1,10 +1,14 @@
 package com.soma.data.arvoresvivas;
 
+import static android.text.Html.fromHtml;
+
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.androidigniter.loginandregistration.R;
@@ -49,6 +53,9 @@ public class CustomMod extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.arvores_vivas_model_mod, null, true);
 
+            holder.etidcontrole = (TextView) convertView.findViewById(R.id.arvoresvivas_idcontrole);
+            holder.etidparcela = (TextView) convertView.findViewById(R.id.arvoresvivas_idparcela);
+            holder.etlatitude = (TextView) convertView.findViewById(R.id.arvoresvivas_latitude);
             holder.etlatitude = (TextView) convertView.findViewById(R.id.arvoresvivas_latitude);
             holder.etlongitude = (TextView) convertView.findViewById(R.id.arvoresvivas_longitude);
             holder.etfamilia = (TextView) convertView.findViewById(R.id.arvoresvivas_familia);
@@ -71,21 +78,23 @@ public class CustomMod extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
+        holder.etidcontrole.setText("Cadastro ID: " + arvoresVivasModelArrayList.get(position).getetidcontrole());
+        holder.etidparcela.setText("Parcela: "+ arvoresVivasModelArrayList.get(position).getetidparcela());
         holder.etlatitude.setText("Latitude: "+ arvoresVivasModelArrayList.get(position).getetlatitude());
         holder.etlongitude.setText("Longitude: "+ arvoresVivasModelArrayList.get(position).getetlongitude());
         holder.etfamilia.setText("Família: "+ arvoresVivasModelArrayList.get(position).getetfamilia());
-        holder.etgenero.setText("Gênero"+ arvoresVivasModelArrayList.get(position).getetgenero());
-        holder.etespecie.setText("Espécie"+ arvoresVivasModelArrayList.get(position).getetespecie());
-        holder.etbiomassa.setText("Biomassa"+ arvoresVivasModelArrayList.get(position).getetbiomassa());
-        holder.etidentificado.setText("Identificado"+ arvoresVivasModelArrayList.get(position).getetidentificado());
-        holder.etgrauprotecao.setText("Grau de Proteção"+ arvoresVivasModelArrayList.get(position).getetgrauprotecao());
-        holder.etcircunferencia.setText("Circunferência"+ arvoresVivasModelArrayList.get(position).getetcircunferencia());
-        holder.etaltura.setText("Altura"+ arvoresVivasModelArrayList.get(position).getetaltura());
-        holder.etalturatotal.setText("Altura Total"+ arvoresVivasModelArrayList.get(position).getetalturatotal());
-        holder.etalturafuste.setText("Altura Fuste"+ arvoresVivasModelArrayList.get(position).getetalturafuste());
-        holder.etalturacopa.setText("Altura da Copa"+ arvoresVivasModelArrayList.get(position).getetalturacopa());
-        holder.etisolada.setText("Isolada"+ arvoresVivasModelArrayList.get(position).getetisolada());
-        holder.etfloracaofrutificacao.setText("Floração/Frutificação"+ arvoresVivasModelArrayList.get(position).getetfloracaofrutificacao());
+        holder.etgenero.setText("Gênero: "+ arvoresVivasModelArrayList.get(position).getetgenero());
+        holder.etespecie.setText("Espécie: "+ arvoresVivasModelArrayList.get(position).getetespecie());
+        holder.etbiomassa.setText("Biomassa: "+ arvoresVivasModelArrayList.get(position).getetbiomassa());
+        holder.etidentificado.setText("Identificado: "+ arvoresVivasModelArrayList.get(position).getetidentificado());
+        holder.etgrauprotecao.setText("Grau de Proteção: "+ arvoresVivasModelArrayList.get(position).getetgrauprotecao());
+        holder.etcircunferencia.setText("Circunferência: "+ arvoresVivasModelArrayList.get(position).getetcircunferencia());
+        holder.etaltura.setText("Altura: "+ arvoresVivasModelArrayList.get(position).getetaltura());
+        holder.etalturatotal.setText("Altura Total: "+ arvoresVivasModelArrayList.get(position).getetalturatotal());
+        holder.etalturafuste.setText("Altura Fuste: "+ arvoresVivasModelArrayList.get(position).getetalturafuste());
+        holder.etalturacopa.setText("Altura da Copa: "+ arvoresVivasModelArrayList.get(position).getetalturacopa());
+        holder.etisolada.setText("Isolada: "+ arvoresVivasModelArrayList.get(position).getetisolada());
+        holder.etfloracaofrutificacao.setText("Floração/Frutificação: "+ arvoresVivasModelArrayList.get(position).getetfloracaofrutificacao());
 
         return convertView;
     }
@@ -93,6 +102,8 @@ public class CustomMod extends BaseAdapter {
     private class ViewHolder {
 
         protected TextView
+                etidcontrole,
+                etidparcela,
                 etlatitude,
                 etlongitude,
                 etfamilia,
@@ -108,6 +119,7 @@ public class CustomMod extends BaseAdapter {
                 etalturacopa,
                 etisolada,
                 etfloracaofrutificacao;
+
     }
 
 }

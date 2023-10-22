@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 public class ArvoresVivasModel implements Serializable {
 
+    private String etidparcela;
+    private String etidcontrole;
     private String etlatitude;
     private String etlongitude;
     private String etfamilia;
@@ -31,6 +33,22 @@ public class ArvoresVivasModel implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+
+    public String getetidparcela() {
+        return etidparcela;
+    }
+
+    public void setetidparcela(String etidparcela) {
+        this.etidparcela = etidparcela;
+    }
+    public String getetidcontrole() {
+        return etidcontrole;
+    }
+
+    public void setetidcontrole(String etidcontrole) {
+        this.etidcontrole = etidcontrole;
     }
 
     public String getetlatitude() {

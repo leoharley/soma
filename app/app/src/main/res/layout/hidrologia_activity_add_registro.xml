@@ -1,23 +1,80 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context="com.soma.data.Hidrologia.AddRegistroHidrologia" >
+    android:layout_marginTop="-35dp"
+    tools:context="com.soma.data.hidrologia.AddRegistroHidrologia" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20sp"
+        android:visibility="gone"
+        >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Id controle: "
+        android:textColor="#000"
+        android:textSize="15sp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_idcontrole"
+        android:hint="idcontrole"
+        android:textSize="15sp"
+        android:textColor="#000"
+        />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="3dp"
+        android:layout_weight=".28"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:background="@android:color/darker_gray"
+        android:orientation="horizontal"
+        android:layout_below="@id/button5"
+        >
+
+        <Spinner
+            android:id="@+id/spinner_parcela"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20sp"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Latitude"
+            android:text="Latitude: "
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
             />
 
         <EditText
@@ -25,11 +82,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/et_latitude"
             android:hint="latitude"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textColor="#000"/>
     </LinearLayout>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,9 +95,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Longitude"
+            android:text="Longitude: "
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -51,7 +106,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/et_longitude"
             android:hint="longitude"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textColor="#000"/>
     </LinearLayout>
 
@@ -65,9 +120,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Descrição"
+            android:text="Descrição: "
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -75,25 +130,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_descricao"
-            android:hint="descricao"
-            android:inputType="textEmailAddress"
-            android:textSize="10sp"
-            android:textColor="#000"/>
+            android:hint="descrição"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20sp"
+        android:visibility="gone"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btncapturar"
+            android:text="Capturar imagens"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20sp"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnsalvar"
+            android:text="Salvar"
+            android:textSize="15sp"
+            />
     </LinearLayout>
 
 
-
-
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnsalvar"
-        android:text="Salvar"
-        android:textSize="10sp"
-        />
-
 </LinearLayout>
+
+</ScrollView>
 
 <!--<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -102,7 +182,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context="com.soma.data.Hidrologia.AddRegistroHidrologia" >
+    tools:context="com.soma.data.arvoresvivas.AddRegistroArvoresVivas" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -115,7 +195,7 @@
             android:layout_height="wrap_content"
             android:text="nome"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
             />
 
         <EditText
@@ -139,7 +219,7 @@
             android:layout_height="wrap_content"
             android:text="curso"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -163,7 +243,7 @@
             android:layout_height="wrap_content"
             android:text="email"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -188,7 +268,7 @@
             android:layout_height="wrap_content"
             android:text="fone"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -207,7 +287,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnstore"
         android:text="Salvar"
-        android:textSize="10sp"
+        android:textSize="15sp"
         />
 
 </LinearLayout>-->

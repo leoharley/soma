@@ -14,8 +14,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.soma.data.animais.ModAnimaisFragment;
 import com.soma.data.arvoresvivas.ArvoresVivasFragment;
 import com.soma.data.arvoresvivas.ModArvoresVivasFragment;
+import com.soma.data.epifitas.ModEpifitasFragment;
+import com.soma.data.hidrologia.ModHidrologiaFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
     private SessionHandler session;
 
     private ArrayList<String> mTitles = new ArrayList<>();
+    String dscategoria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,21 +52,96 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         final TextView button = findViewById(R.id.logout);
         final TextView hello = findViewById(R.id.hello);
 
+        final TextView home = findViewById(R.id.home);
+        final TextView opcao_arvoresvivas = findViewById(R.id.opcao_arvoresvivas);
+        final TextView opcao_animais = findViewById(R.id.opcao_animais);
+        final TextView opcao_epifitas = findViewById(R.id.opcao_epifitas);
+        final TextView opcao_hidrologia = findViewById(R.id.opcao_hidrologia);
+
         myDB.execSQL(
-                "CREATE TABLE IF NOT EXISTS arvoresvivas(id INTEGER PRIMARY KEY AUTOINCREMENT,etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, etbiomassa VARCHAR, etidentificado VARCHAR, etgrauprotecao VARCHAR, etcircunferencia VARCHAR, etaltura VARCHAR, etalturatotal VARCHAR, etalturafuste VARCHAR, etalturacopa VARCHAR, etisolada VARCHAR, etfloracaofrutificacao VARCHAR)"
+                "CREATE TABLE IF NOT EXISTS arvoresvivas(id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, etbiomassa VARCHAR, etidentificado VARCHAR, etgrauprotecao VARCHAR, etcircunferencia VARCHAR, etaltura VARCHAR, etalturatotal VARCHAR, etalturafuste VARCHAR, etalturacopa VARCHAR, etisolada VARCHAR, etfloracaofrutificacao VARCHAR)"
         );
 
         myDB.execSQL(
-                "CREATE TABLE IF NOT EXISTS animais(id INTEGER PRIMARY KEY AUTOINCREMENT,etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, ettipoobservacao VARCHAR, etclassificacao VARCHAR, etgrauprotecao VARCHAR )"
+                "CREATE TABLE IF NOT EXISTS animais(id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, ettpobservacao VARCHAR, etclassificacao VARCHAR, etgrauprotecao VARCHAR )"
         );
 
         myDB.execSQL(
-                "CREATE TABLE IF NOT EXISTS hidrologia (id INTEGER PRIMARY KEY AUTOINCREMENT,etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etdescricao VARCHAR)"
+                "CREATE TABLE IF NOT EXISTS hidrologia (id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etdescricao VARCHAR)"
         );
 
         myDB.execSQL(
-                "CREATE TABLE IF NOT EXISTS epifitas (id INTEGER PRIMARY KEY AUTOINCREMENT, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR)"
+                "CREATE TABLE IF NOT EXISTS epifitas (id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR)"
         );
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                }
+                setTitle(mTitles.get(0));
+                goToFragment(new MainFragment(), false);
+                mViewHolder.mDuoDrawerLayout.closeDrawer();
+                //    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container,new PersonalFragment()).commit();
+            }
+        });
+
+        opcao_arvoresvivas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                }
+                setTitle(mTitles.get(1));
+                goToFragment(new ModArvoresVivasFragment(), false);
+                mViewHolder.mDuoDrawerLayout.closeDrawer();
+            }
+        });
+
+        opcao_animais.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                }
+                setTitle(mTitles.get(2));
+                goToFragment(new ModAnimaisFragment(), false);
+                mViewHolder.mDuoDrawerLayout.closeDrawer();
+            }
+        });
+
+        opcao_epifitas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                }
+                setTitle(mTitles.get(3));
+                goToFragment(new ModEpifitasFragment(), false);
+                mViewHolder.mDuoDrawerLayout.closeDrawer();
+            }
+        });
+
+        opcao_hidrologia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                }
+                setTitle(mTitles.get(4));
+                goToFragment(new ModHidrologiaFragment(), false);
+                mViewHolder.mDuoDrawerLayout.closeDrawer();
+            }
+        });
+
+        /*Intent myIntent = getIntent();
+        dscategoria = myIntent.getStringExtra("dscategoria");
+        if (dscategoria!=null) {
+            if (dscategoria.equals("arvoresvivas")) {
+                opcao_arvoresvivas.performClick();
+            }
+        }*/
 
        /* myDB.execSQL(
                 "CREATE TABLE IF NOT EXISTS user (name VARCHAR(200), age INT, is_single INT)"
@@ -79,7 +158,6 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
 
         myDB.insert("user", null, row1);
         myDB.insert("user", null, row2);*/
-
 
         hello.setText("Olá, " + user.fullName);
         button.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +188,6 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         goToFragment(new MainFragment(), false);
         mMenuAdapter.setViewSelected(0, true);
         setTitle(mTitles.get(0));
-
     }
 
     private void handleToolbar() {
@@ -161,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
     @Override
     public void onOptionClicked(int position, Object objectClicked) {
         // Set the toolbar title
-        setTitle(mTitles.get(position));
+       /* setTitle(mTitles.get(position));
 
         // Set the right options selected
         mMenuAdapter.setViewSelected(position, true);
@@ -183,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         }
 
         // Close the drawer
-        mViewHolder.mDuoDrawerLayout.closeDrawer();
+        mViewHolder.mDuoDrawerLayout.closeDrawer();*/
     }
 
 

@@ -17,9 +17,11 @@ import java.util.ArrayList;
 public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "campo_data";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 6;
     private static final String TABLE_NAME = "arvoresvivas";
     private static final String KEY_ID = "id";
+    private static final String KEY_ETIDPARCELA = "etidparcela";
+    private static final String KEY_ETIDCONTROLE = "etidcontrole";
     private static final String KEY_ETLATITUDE = "etlatitude";
     private static final String KEY_ETLONGITUDE = "etlongitude";
     private static final String KEY_ETFAMILIA = "etfamilia";
@@ -40,6 +42,8 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_ARVORES_VIVAS = "CREATE TABLE IF NOT EXISTS "
             + TABLE_NAME + "(" + KEY_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            KEY_ETIDPARCELA + " VARCHAR NOT NULL, "+
+            KEY_ETIDCONTROLE + " VARCHAR NOT NULL, "+
             KEY_ETLATITUDE + " TEXT NOT NULL, "+
             KEY_ETLONGITUDE + " TEXT NOT NULL, "+
             KEY_ETFAMILIA + " VARCHAR, "+
@@ -74,13 +78,15 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long addArvoresVivasDetail(String etlatitude, String etlongitude, String etfamilia, String etgenero,
+    public long addArvoresVivasDetail(String etidparcela, String etidcontrole, String etlatitude, String etlongitude, String etfamilia, String etgenero,
                                       String etespecie, String etbiomassa, String etidentificado, String etgrauprotecao,
                                       String etcircunferencia, String etaltura, String etalturatotal, String etalturafuste,
                                       String etalturacopa, String etisolada, String etfloracaofrutificacao) {
         SQLiteDatabase db = this.getWritableDatabase();
         // Creating content values
         ContentValues values = new ContentValues();
+        values.put(KEY_ETIDPARCELA, etidparcela);
+        values.put(KEY_ETIDCONTROLE, etidcontrole);
         values.put(KEY_ETLATITUDE, etlatitude);
         values.put(KEY_ETLONGITUDE, etlongitude);
         values.put(KEY_ETFAMILIA, etfamilia);
@@ -114,6 +120,8 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
             do {
                 ArvoresVivasModel arvoresVivasModel = new ArvoresVivasModel();
                 arvoresVivasModel.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+                arvoresVivasModel.setetidparcela(c.getString(c.getColumnIndex(KEY_ETIDPARCELA)));
+                arvoresVivasModel.setetidcontrole(c.getString(c.getColumnIndex(KEY_ETIDCONTROLE)));
                 arvoresVivasModel.setetlatitude(c.getString(c.getColumnIndex(KEY_ETLATITUDE)));
                 arvoresVivasModel.setetlongitude(c.getString(c.getColumnIndex(KEY_ETLONGITUDE)));
                 arvoresVivasModel.setetfamilia(c.getString(c.getColumnIndex(KEY_ETFAMILIA)));
@@ -144,8 +152,8 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
 
         // Creating content values
         ContentValues values = new ContentValues();
-        values.put(KEY_ETLATITUDE, etlatitude);
-        values.put(KEY_ETLONGITUDE, etlongitude);
+        //values.put(KEY_ETLATITUDE, etlatitude);
+        //values.put(KEY_ETLONGITUDE, etlongitude);
         values.put(KEY_ETFAMILIA, etfamilia);
         values.put(KEY_ETGENERO, etgenero);
         values.put(KEY_ETESPECIE, etespecie);

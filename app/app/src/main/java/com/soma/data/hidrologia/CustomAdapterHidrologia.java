@@ -15,23 +15,23 @@ import java.util.ArrayList;
 public class CustomAdapterHidrologia extends BaseAdapter {
 
     private Context context;
-    private ArrayList<HidrologiaModel> HidrologiaModelArrayList;
+    private ArrayList<HidrologiaModel> hidrologiaModelArrayList;
 
-    public CustomAdapterHidrologia(Context context, ArrayList<HidrologiaModel> HidrologiaModelArrayList) {
+    public CustomAdapterHidrologia(Context context, ArrayList<HidrologiaModel> hidrologiaModelArrayList) {
 
         this.context = context;
-        this.HidrologiaModelArrayList = HidrologiaModelArrayList;
+        this.hidrologiaModelArrayList = hidrologiaModelArrayList;
     }
 
 
     @Override
     public int getCount() {
-        return HidrologiaModelArrayList.size();
+        return hidrologiaModelArrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return HidrologiaModelArrayList.get(position);
+        return hidrologiaModelArrayList.get(position);
     }
 
     @Override
@@ -51,10 +51,7 @@ public class CustomAdapterHidrologia extends BaseAdapter {
 
             holder.etlatitude = (TextView) convertView.findViewById(R.id.hidrologia_etlatitude);
             holder.etlongitude = (TextView) convertView.findViewById(R.id.hidrologia_etlongitude);
-            holder.etdescricao = (TextView) convertView.findViewById(R.id.hidrologia_etdescricao);
-
-
-
+            //holder.etdescricao = (TextView) convertView.findViewById(R.id.hidrologia_descricao);
 
             convertView.setTag(holder);
         }else {
@@ -62,10 +59,9 @@ public class CustomAdapterHidrologia extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        holder.etlatitude.setText("Latitude: "+ HidrologiaModelArrayList.get(position).getetlatitude());
-        holder.etlongitude.setText("Longitude: "+ HidrologiaModelArrayList.get(position).getetlongitude());
-        holder.etdescricao.setText("Família: "+ HidrologiaModelArrayList.get(position).getetdescricao());
-
+        holder.etlatitude.setText("Latitude: "+ hidrologiaModelArrayList.get(position).getetlatitude());
+        holder.etlongitude.setText("Longitude: "+ hidrologiaModelArrayList.get(position).getetlongitude());
+        //holder.etdescricao.setText("Descrição: "+ hidrologiaModelArrayList.get(position).getetdescricao());
 
         return convertView;
     }
@@ -75,7 +71,6 @@ public class CustomAdapterHidrologia extends BaseAdapter {
         protected TextView etlatitude,
                 etlongitude,
                 etdescricao;
-
     }
 
 }

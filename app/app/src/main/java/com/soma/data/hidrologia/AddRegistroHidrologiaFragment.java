@@ -1,4 +1,4 @@
-package com.soma.data.arvoresvivas;
+package com.soma.data.hidrologia;
 
 import android.Manifest;
 import android.app.Activity;
@@ -10,18 +10,14 @@ import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
-import android.os.ResultReceiver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,118 +27,56 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.androidigniter.loginandregistration.DatabaseMainHandler;
-import com.androidigniter.loginandregistration.MainFragment;
 import com.androidigniter.loginandregistration.NothingSelectedSpinnerAdapter;
 import com.androidigniter.loginandregistration.R;
-
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.soma.utils.camera.MainActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddRegistroArvoresVivasFragment extends Fragment {
+public class AddRegistroHidrologiaFragment extends Fragment {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private Button btnSalvar;
-    private EditText etlatitude;
-    private EditText etlongitude;
-    private EditText etbiomassa;
-    private EditText etcircunferencia;
-    private EditText etaltura;
-    private EditText etalturatotal;
-    private EditText etalturafuste;
-    private EditText etalturacopa;
-    private EditText etisolada;
-    private EditText etfloracaofrutificacao;
-    private EditText etidcontrole;
+    private
+    EditText etidcontrole,
+            etlatitude,
+            etlongitude,
+            etdescricao;
+
+    Spinner spinner_parcela;
 
     LocationManager locationManager ;
     boolean GpsStatus ;
 
-    Spinner spinner_parcela;
-    SearchableSpinner
-            spinner_familia,
-            spinner_genero,
-            spinner_especie,
-            spinner_identificado,
-            spinner_grau_de_protecao;
-
     String[] options;
 
-    private DatabaseHelperArvoresVivas databaseHelperArvoresVivas;
+    private DatabaseHelperHidrologia databaseHelperHidrologia;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.arvores_vivas_activity_add_registro, container, false);
+        View view = inflater.inflate(R.layout.hidrologia_activity_add_registro, container, false);
 
-        databaseHelperArvoresVivas = new DatabaseHelperArvoresVivas(getContext());
+        databaseHelperHidrologia = new DatabaseHelperHidrologia(getContext());
 
         /* BUTTONS */
         btnSalvar = (Button) view.findViewById(R.id.btnsalvar);
 
         /* SPINNERS */
         spinner_parcela = view.findViewById(R.id.spinner_parcela);
-        spinner_familia = view.findViewById(R.id.spinner_familia);
-        ArrayAdapter<CharSequence> adapter_spinner_familia = ArrayAdapter.createFromResource(getContext(),
-                R.array.familia_tmp, android.R.layout.simple_spinner_item);
-        adapter_spinner_familia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_familia.setTitle("Pesquisar");
-        spinner_familia.setPositiveButton("Fechar");
-        spinner_familia.setAdapter(adapter_spinner_familia);
-
-        spinner_genero = view.findViewById(R.id.spinner_genero);
-        ArrayAdapter<CharSequence> adapter_spinner_genero = ArrayAdapter.createFromResource(getContext(),
-                R.array.genero_tmp, android.R.layout.simple_spinner_item);
-        adapter_spinner_genero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_genero.setTitle("Pesquisar");
-        spinner_genero.setPositiveButton("Fechar");
-        spinner_genero.setAdapter(adapter_spinner_genero);
-
-        spinner_especie = view.findViewById(R.id.spinner_especie);
-        ArrayAdapter<CharSequence> adapter_spinner_especie = ArrayAdapter.createFromResource(getContext(),
-                R.array.especie_tmp, android.R.layout.simple_spinner_item);
-        adapter_spinner_especie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_especie.setTitle("Pesquisar");
-        spinner_especie.setPositiveButton("Fechar");
-        spinner_especie.setAdapter(adapter_spinner_especie);
-
-        etbiomassa = (EditText) view.findViewById(R.id.et_biomassa);
-
-        spinner_identificado = view.findViewById(R.id.spinner_identificado);
-        ArrayAdapter<CharSequence> adapter_spinner_identificado = ArrayAdapter.createFromResource(getContext(),
-                R.array.identificado_tmp, android.R.layout.simple_spinner_item);
-        adapter_spinner_identificado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_identificado.setTitle("Pesquisar");
-        spinner_identificado.setPositiveButton("Fechar");
-        spinner_identificado.setAdapter(adapter_spinner_identificado);
-
-        spinner_grau_de_protecao = view.findViewById(R.id.spinner_grau_de_protecao);
-        ArrayAdapter<CharSequence> adapter_spinner_grau_de_protecao = ArrayAdapter.createFromResource(getContext(),
-                R.array.grau_de_protecao_tmp, android.R.layout.simple_spinner_item);
-        adapter_spinner_grau_de_protecao.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_grau_de_protecao.setTitle("Pesquisar");
-        spinner_grau_de_protecao.setPositiveButton("Fechar");
-        spinner_grau_de_protecao.setAdapter(adapter_spinner_grau_de_protecao);
 
         /* EDITTEXT */
         etidcontrole = (EditText) view.findViewById(R.id.et_idcontrole);
         etlatitude = (EditText) view.findViewById(R.id.et_latitude);
         etlongitude = (EditText) view.findViewById(R.id.et_longitude);
-        etcircunferencia = (EditText) view.findViewById(R.id.et_circunferencia);
-        etaltura = (EditText) view.findViewById(R.id.et_altura);
-        etalturatotal = (EditText) view.findViewById(R.id.et_altura_total);
-        etalturafuste = (EditText) view.findViewById(R.id.et_altura_fuste);
-        etalturacopa = (EditText) view.findViewById(R.id.et_altura_copa);
-        etisolada = (EditText) view.findViewById(R.id.et_isolada);
-        etfloracaofrutificacao = (EditText) view.findViewById(R.id.et_floracao_frutificacao);
+        etdescricao = (EditText) view.findViewById(R.id.et_descricao);
 
         etidcontrole.setText(Integer.toString(generateRandomNumber(1,10000)));
 
@@ -160,14 +94,14 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
         view.findViewById(R.id.btncapturar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(getContext(), com.soma.utils.camera.MainActivity.class);
+                Intent myIntent = new Intent(getContext(), MainActivity.class);
                 myIntent.putExtra("idcontrole",etidcontrole.getText().toString());
-                myIntent.putExtra("dscategoria","arvoresvivas");
+                myIntent.putExtra("dscategoria","hidrologia");
                 startActivity(myIntent);
             }
         });
 
-        spinner_identificado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*spinner_identificacao.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //       Toast.makeText(getContext(), " Selecionado >> "+options[position], Toast.LENGTH_SHORT).show();
@@ -176,7 +110,7 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        }); */
         //spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         options = getContext().getResources().getStringArray(R.array.identificado_tmp);
         loadSpinnerData();
@@ -192,30 +126,18 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
                     return;
                 } */ //CAMPOS OBRIGATÓRIOS
 
-                databaseHelperArvoresVivas.addArvoresVivasDetail(
+                databaseHelperHidrologia.addHidrologiaDetail(
                         spinner_parcela.getSelectedItem().toString(),
                         etidcontrole.getText().toString(),
                         etlatitude.getText().toString(),
                         etlongitude.getText().toString(),
-                        spinner_familia.getSelectedItem().toString(),
-                        spinner_genero.getSelectedItem().toString(),
-                        spinner_especie.getSelectedItem().toString(),
-                        etbiomassa.getText().toString(),
-                        spinner_identificado.getSelectedItem().toString(),
-                        spinner_grau_de_protecao.getSelectedItem().toString(),
-                        etcircunferencia.getText().toString(),
-                        etaltura.getText().toString(),
-                        etalturatotal.getText().toString(),
-                        etalturafuste.getText().toString(),
-                        etalturacopa.getText().toString(),
-                        etisolada.getText().toString(),
-                        etfloracaofrutificacao.getText().toString());
+                        etdescricao.getText().toString());
 
                 Toast.makeText(getContext(), "Cadastro com sucesso!", Toast.LENGTH_SHORT).show();
                 for (Fragment fragment : getParentFragmentManager().getFragments()) {
                     getParentFragmentManager().beginTransaction().remove(fragment).commit();
                 }
-                goToFragment(new ModArvoresVivasFragment(), false);
+                goToFragment(new ModHidrologiaFragment(), false);
             }
         });
 

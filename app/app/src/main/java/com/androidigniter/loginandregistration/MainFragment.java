@@ -36,6 +36,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.soma.data.arvoresvivas.ModArvoresVivasFragment;
 
 import java.io.File;
 import java.util.List;
@@ -46,7 +47,6 @@ import java.util.List;
 public class MainFragment extends Fragment {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-    ProgressBar progressBar;
     TextView textLatLong;
     ResultReceiver resultReceiver;
     LocationManager locationManager ;
@@ -57,112 +57,24 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        progressBar = view.findViewById(R.id.progress_circular);
-        textLatLong = view.findViewById(R.id.textLatLong);
-        spinner = view.findViewById(R.id.spinner);
 
-        view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Clicked a button!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), com.soma.data.arvoresvivas.MainActivity.class);
-                startActivity(i);
-            //    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container,new PersonalFragment()).commit();
-            }
-        });
-
-        view.findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), com.soma.data.animais.MainActivity.class);
-                startActivity(i);
-                //    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container,new PersonalFragment()).commit();
-            }
-        });
-
-        view.findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), com.soma.data.epifitas.MainActivity.class);
-                startActivity(i);
-                //    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container,new PersonalFragment()).commit();
-            }
-        });
-
-        view.findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), com.soma.data.hidrologia.MainActivity.class);
-                startActivity(i);
-                //    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container,new PersonalFragment()).commit();
-            }
-        });
-
-        final TextView button = view.findViewById(R.id.leGPS);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getContext(),
-                        Manifest.permission.ACCESS_FINE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions((Activity) getContext(),
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                            LOCATION_PERMISSION_REQUEST_CODE);
-                } else {
-                    getCurrentLocation();
-                }
-            }
-        });
-
-        view.findViewById(R.id.abreImageFolder).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), com.soma.utils.galeria.MainActivity.class);
-                startActivity(i);
-            }
-        });
-
-        view.findViewById(R.id.abreCamera).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), com.soma.utils.camera.MainActivity.class);
-                startActivity(i);
-            }
-        });
-
-        loadSpinnerData();
+        leGPS();
 
         return view;
     }
 
-    private void loadSpinnerData() {
-        DatabaseMainHandler db = new DatabaseMainHandler(getContext());
-        List<String> parcelas = db.getAllParcelas();
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item, parcelas);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setPrompt("Select your favorite Planet!");
-
-        spinner.setAdapter(
-                new NothingSelectedSpinnerAdapter(
-                        dataAdapter,
-                        R.layout.contact_spinner_row_nothing_selected,
-                        // R.layout.contact_spinner_nothing_selected_dropdown, // Optional
-                        getContext()));
-
-        // attaching data adapter to spinner
-       // spinner.setAdapter(dataAdapter);
+    private void leGPS() {
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) getContext(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_PERMISSION_REQUEST_CODE);
+        } else {
+            getCurrentLocation();
+        }
     }
+
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -181,16 +93,15 @@ public class MainFragment extends Fragment {
         assert locationManager != null;
         GpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if(GpsStatus == true) {
-            Toast.makeText(getContext(), "GPS Is Enabled!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "GPS ativado!", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getContext(), "GPS Is Disabled!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "GPS está desativado!", Toast.LENGTH_SHORT).show();
         }
     }
 
 
     private void getCurrentLocation() {
         CheckGpsStatus();
-        progressBar.setVisibility(View.VISIBLE);
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(3000);
@@ -218,16 +129,9 @@ public class MainFragment extends Fragment {
                             int latestlocIndex = locationResult.getLocations().size() - 1;
                             double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
                             double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
-                            textLatLong.setText(String.format("Latitude : %s\n Longitude: %s", lati, longi));
-                            progressBar.setVisibility(View.GONE);
-
-                        } else {
-                            progressBar.setVisibility(View.GONE);
-
                         }
                     }
                 }, Looper.getMainLooper());
-
     }
 
     private class PagerAdapter extends androidx.viewpager.widget.PagerAdapter {

@@ -1,44 +1,80 @@
-<ScrollView android:layout_width="match_parent"
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="20dp"
+    android:layout_marginTop="-35dp"
     tools:context="com.soma.data.arvoresvivas.AddRegistroArvoresVivas" >
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="20sp"
+        android:visibility="gone"
         >
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:background="@drawable/background_spinner"
-            />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Id controle: "
+        android:textColor="#000"
+        android:textSize="15sp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_idcontrole"
+        android:hint="idcontrole"
+        android:textSize="15sp"
+        android:textColor="#000"
+        />
+
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="3dp"
+        android:layout_weight=".28"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:background="@android:color/darker_gray"
+        android:orientation="horizontal"
+        android:layout_below="@id/button5"
+        >
+
+        <Spinner
+            android:id="@+id/spinner_parcela"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            />
+
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20sp"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Latitude"
+            android:text="Latitude: "
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
             />
 
         <EditText
@@ -46,7 +82,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/et_latitude"
             android:hint="latitude"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textColor="#000"/>
     </LinearLayout>
 
@@ -59,9 +95,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Longitude"
+            android:text="Longitude: "
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -70,7 +106,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/et_longitude"
             android:hint="longitude"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textColor="#000"/>
     </LinearLayout>
 
@@ -79,25 +115,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20sp"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Família"
+            android:text="Família :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
+            android:layout_marginRight="8sp"
 
             />
 
-        <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:orientation="horizontal">
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/spinner_familia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_spinner"
+                android:padding="5dp" />
+        </LinearLayout>
+
+        <!--<EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_familia"
             android:hint="familia"
             android:inputType="textEmailAddress"
-            android:textSize="10sp"
-            android:textColor="#000"/>
+            android:textSize="15sp"
+            android:textColor="#000"/> -->
     </LinearLayout>
 
 
@@ -105,64 +157,98 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20sp"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gênero"
+            android:text="Gênero :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
+            android:layout_marginRight="8sp"
+            android:labelFor="@+id/spinner_genero"
 
             />
 
-        <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:orientation="horizontal">
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/spinner_genero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_spinner"
+                android:padding="5dp" />
+        </LinearLayout>
+
+       <!-- <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_genero"
             android:hint="genero"
             android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType="phone"/>
+            android:textSize="15sp"
+            android:inputType="phone"/> -->
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20sp"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Espécie"
+            android:text="Espécie :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
+            android:layout_marginRight="8sp"
 
             />
 
-        <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:orientation="horizontal">
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/spinner_especie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_spinner"
+                android:padding="5dp" />
+        </LinearLayout>
+
+        <!--<EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_especie"
             android:hint="especie"
             android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType="phone"/>
+            android:textSize="15sp"
+            android:inputType="phone"/> -->
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20sp"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Biomassa"
+            android:text="Biomassa :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -172,58 +258,83 @@
             android:id="@+id/et_biomassa"
             android:hint="biomassa"
             android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType="phone"/>
+            android:textSize="15sp"
+            android:digits="0123456789."
+            android:inputType="numberDecimal"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20sp"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Identificado"
+            android:text="Identificado?"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
+            android:layout_marginRight="8sp"
 
             />
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_identificado"
-            android:hint="identificado"
-            android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
+            android:background="@android:color/darker_gray"
+            android:orientation="horizontal">
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/spinner_identificado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_spinner"
+                android:padding="5dp" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20sp"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Grau de proteção"
+            android:text="Grau de proteção :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
+            android:layout_marginRight="8sp"
 
             />
 
-        <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:orientation="horizontal">
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/spinner_grau_de_protecao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_spinner"
+                android:padding="5dp" />
+        </LinearLayout>
+
+        <!--<EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_grau_protecao"
             android:hint="grauprotecao"
             android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
+            android:textSize="15sp"
+            android:inputType=""/> -->
     </LinearLayout>
 
     <LinearLayout
@@ -235,9 +346,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Circunferência"
+            android:text="Circunferência :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -247,8 +358,9 @@
             android:id="@+id/et_circunferencia"
             android:hint="circunferencia"
             android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
+            android:textSize="15sp"
+            android:digits="0123456789."
+            android:inputType="numberDecimal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -260,10 +372,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Altura"
+            android:text="Altura :"
             android:textColor="#000"
-            android:textSize="10sp"
-
+            android:textSize="15sp"
             />
 
         <EditText
@@ -272,8 +383,9 @@
             android:id="@+id/et_altura"
             android:hint="altura"
             android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
+            android:textSize="15sp"
+            android:digits="0123456789."
+            android:inputType="numberDecimal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -285,9 +397,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Altura Total"
+            android:text="Altura Total :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -297,8 +409,9 @@
             android:id="@+id/et_altura_total"
             android:hint="alturatotal"
             android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
+            android:textSize="15sp"
+            android:digits="0123456789."
+            android:inputType="numberDecimal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -310,9 +423,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Altura Fuste"
+            android:text="Altura Fuste :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -322,8 +435,9 @@
             android:id="@+id/et_altura_fuste"
             android:hint="alturafuste"
             android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
+            android:textSize="15sp"
+            android:digits="0123456789."
+            android:inputType="numberDecimal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -335,9 +449,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Altura da Copa"
+            android:text="Altura da Copa :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -347,8 +461,9 @@
             android:id="@+id/et_altura_copa"
             android:hint="alturacopa"
             android:textColor="#000"
-            android:textSize="10sp"
-            android:inputType=""/>
+            android:textSize="15sp"
+            android:digits="0123456789."
+            android:inputType="numberDecimal"/>
     </LinearLayout>
 
     <LinearLayout
@@ -360,9 +475,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Isolada"
+            android:text="Isolada :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -372,7 +487,7 @@
             android:id="@+id/et_isolada"
             android:hint="isolada"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:inputType=""/>
     </LinearLayout>
 
@@ -385,9 +500,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Floração/Frutificação"
+            android:text="Floração/Frutificação :"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -397,18 +512,43 @@
             android:id="@+id/et_floracao_frutificacao"
             android:hint="floracaofrutificacao"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:inputType=""/>
     </LinearLayout>
 
 
-    <Button
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnsalvar"
-        android:text="Salvar"
-        android:textSize="10sp"
-        />
+        android:orientation="horizontal"
+        android:layout_marginTop="20sp"
+        android:visibility="gone"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btncapturar"
+            android:text="Capturar imagens"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20sp"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnsalvar"
+            android:text="Salvar"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+
 
 </LinearLayout>
 
@@ -434,7 +574,7 @@
             android:layout_height="wrap_content"
             android:text="nome"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
             />
 
         <EditText
@@ -458,7 +598,7 @@
             android:layout_height="wrap_content"
             android:text="curso"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -482,7 +622,7 @@
             android:layout_height="wrap_content"
             android:text="email"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -507,7 +647,7 @@
             android:layout_height="wrap_content"
             android:text="fone"
             android:textColor="#000"
-            android:textSize="10sp"
+            android:textSize="15sp"
 
             />
 
@@ -526,7 +666,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnstore"
         android:text="Salvar"
-        android:textSize="10sp"
+        android:textSize="15sp"
         />
 
 </LinearLayout>-->

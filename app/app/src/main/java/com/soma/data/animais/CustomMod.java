@@ -15,23 +15,23 @@ import java.util.ArrayList;
 public class CustomMod extends BaseAdapter {
 
     private Context context;
-    private ArrayList<AnimaisModel> AnimaisModelArrayList;
+    private ArrayList<AnimaisModel> animaisModelArrayList;
 
-    public CustomMod(Context context, ArrayList<AnimaisModel> AnimaisModelArrayList) {
+    public CustomMod(Context context, ArrayList<AnimaisModel> animaisModelArrayList) {
 
         this.context = context;
-        this.AnimaisModelArrayList = AnimaisModelArrayList;
+        this.animaisModelArrayList = animaisModelArrayList;
     }
 
 
     @Override
     public int getCount() {
-        return AnimaisModelArrayList.size();
+        return animaisModelArrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return AnimaisModelArrayList.get(position);
+        return animaisModelArrayList.get(position);
     }
 
     @Override
@@ -49,15 +49,16 @@ public class CustomMod extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.animais_model_mod, null, true);
 
+            holder.etidcontrole = (TextView) convertView.findViewById(R.id.animais_idcontrole);
+            holder.etidparcela = (TextView) convertView.findViewById(R.id.animais_idparcela);
             holder.etlatitude = (TextView) convertView.findViewById(R.id.animais_latitude);
             holder.etlongitude = (TextView) convertView.findViewById(R.id.animais_longitude);
             holder.etfamilia = (TextView) convertView.findViewById(R.id.animais_familia);
             holder.etgenero = (TextView) convertView.findViewById(R.id.animais_genero);
             holder.etespecie = (TextView) convertView.findViewById(R.id.animais_especie);
-            holder.ettipoobservacao = (TextView) convertView.findViewById(R.id.animais_tipoobservacao);
+            holder.ettpobservacao = (TextView) convertView.findViewById(R.id.animais_tpobservacao);
             holder.etclassificacao = (TextView) convertView.findViewById(R.id.animais_classificacao);
-            holder.etgrauprotecao = (TextView) convertView.findViewById(R.id.animais_grauprotecao);
-
+            holder.etgrauprotecao = (TextView) convertView.findViewById(R.id.animais_graudeprotecao);
 
             convertView.setTag(holder);
         }else {
@@ -65,16 +66,16 @@ public class CustomMod extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        System.out.println("PORRA"+ AnimaisModelArrayList.get(position).getetlatitude());
-        holder.etlatitude.setText("Latitude: "+ AnimaisModelArrayList.get(position).getetlatitude());
-        holder.etlongitude.setText("Longitude: "+ AnimaisModelArrayList.get(position).getetlongitude());
-        holder.etfamilia.setText("Família: "+ AnimaisModelArrayList.get(position).getetfamilia());
-        holder.etgenero.setText("Gênero"+ AnimaisModelArrayList.get(position).getetgenero());
-        holder.etespecie.setText("Espécie"+ AnimaisModelArrayList.get(position).getetespecie());		
-        holder.ettipoobservacao.setText("Biomassa"+ AnimaisModelArrayList.get(position).getettipoobservacao());
-        holder.etclassificacao.setText("Identificado"+ AnimaisModelArrayList.get(position).getetclassificacao());
-        holder.etgrauprotecao.setText("Grau de Proteção"+ AnimaisModelArrayList.get(position).getetgrauprotecao());
-
+        holder.etidcontrole.setText("Cadastro ID: " + animaisModelArrayList.get(position).getetidcontrole());
+        holder.etidparcela.setText("Parcela: "+ animaisModelArrayList.get(position).getetidparcela());
+        holder.etlatitude.setText("Latitude: "+ animaisModelArrayList.get(position).getetlatitude());
+        holder.etlongitude.setText("Longitude: "+ animaisModelArrayList.get(position).getetlongitude());
+        holder.etfamilia.setText("Família: "+ animaisModelArrayList.get(position).getetfamilia());
+        holder.etgenero.setText("Gênero"+ animaisModelArrayList.get(position).getetgenero());
+        holder.etespecie.setText("Espécie"+ animaisModelArrayList.get(position).getetespecie());
+        holder.ettpobservacao.setText("Tipo de Observação"+ animaisModelArrayList.get(position).getettpobservacao());
+        holder.etclassificacao.setText("Classificação"+ animaisModelArrayList.get(position).getetclassificacao());
+        holder.etgrauprotecao.setText("Grau de Proteção"+ animaisModelArrayList.get(position).getetgrauprotecao());
 
         return convertView;
     }
@@ -82,12 +83,14 @@ public class CustomMod extends BaseAdapter {
     private class ViewHolder {
 
         protected TextView
+                etidcontrole,
+                etidparcela,
                 etlatitude,
                 etlongitude,
                 etfamilia,
                 etgenero,
                 etespecie,
-                ettipoobservacao,
+                ettpobservacao,
                 etclassificacao,
                 etgrauprotecao;
 

@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
          <TextView
-            android:id="@+id/Epifitas_etlatitude"
+            android:id="@+id/epifitas_etlatitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
              android:textColor="#000"
@@ -14,7 +14,7 @@
              android:layout_marginTop="10dp"/>
 
         <TextView
-            android:id="@+id/Epifitas_etlongitude"
+            android:id="@+id/epifitas_etlongitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
@@ -23,7 +23,7 @@
             android:layout_marginTop="10dp"/>
 
         <TextView
-            android:id="@+id/Epifitas_etfamilia"
+            android:id="@+id/epifitas_etfamilia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
@@ -32,7 +32,7 @@
             android:layout_marginTop="10dp"/>
 
         <TextView
-            android:id="@+id/Epifitas_etgenero"
+            android:id="@+id/epifitas_etgenero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
@@ -41,7 +41,7 @@
             android:layout_marginTop="10dp"/>
 
         <TextView
-            android:id="@+id/Epifitas_etespecie"
+            android:id="@+id/epifitas_etespecie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
@@ -49,7 +49,6 @@
             android:text="curso"
             android:layout_marginTop="10dp"/>
 
- 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

@@ -15,23 +15,23 @@ import java.util.ArrayList;
 public class CustomMod extends BaseAdapter {
 
     private Context context;
-    private ArrayList<EpifitasModel> EpifitasModelArrayList;
+    private ArrayList<EpifitasModel> epifitasModelArrayList;
 
-    public CustomMod(Context context, ArrayList<EpifitasModel> EpifitasModelArrayList) {
+    public CustomMod(Context context, ArrayList<EpifitasModel> epifitasModelArrayList) {
 
         this.context = context;
-        this.EpifitasModelArrayList = EpifitasModelArrayList;
+        this.epifitasModelArrayList = epifitasModelArrayList;
     }
 
 
     @Override
     public int getCount() {
-        return EpifitasModelArrayList.size();
+        return epifitasModelArrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return EpifitasModelArrayList.get(position);
+        return epifitasModelArrayList.get(position);
     }
 
     @Override
@@ -49,12 +49,13 @@ public class CustomMod extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.epifitas_model_mod, null, true);
 
-            holder.etlatitude = (TextView) convertView.findViewById(R.id.Epifitas_latitude);
-            holder.etlongitude = (TextView) convertView.findViewById(R.id.Epifitas_longitude);
-            holder.etfamilia = (TextView) convertView.findViewById(R.id.Epifitas_familia);
-            holder.etgenero = (TextView) convertView.findViewById(R.id.Epifitas_genero);
-            holder.etespecie = (TextView) convertView.findViewById(R.id.Epifitas_especie);
-
+            holder.etidcontrole = (TextView) convertView.findViewById(R.id.epifitas_idcontrole);
+            holder.etidparcela = (TextView) convertView.findViewById(R.id.epifitas_idparcela);
+            holder.etlatitude = (TextView) convertView.findViewById(R.id.epifitas_latitude);
+            holder.etlongitude = (TextView) convertView.findViewById(R.id.epifitas_longitude);
+            holder.etfamilia = (TextView) convertView.findViewById(R.id.epifitas_familia);
+            holder.etgenero = (TextView) convertView.findViewById(R.id.epifitas_genero);
+            holder.etespecie = (TextView) convertView.findViewById(R.id.epifitas_especie);
 
             convertView.setTag(holder);
         }else {
@@ -62,13 +63,13 @@ public class CustomMod extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        System.out.println("PORRA"+ EpifitasModelArrayList.get(position).getetlatitude());
-        holder.etlatitude.setText("Latitude: "+ EpifitasModelArrayList.get(position).getetlatitude());
-        holder.etlongitude.setText("Longitude: "+ EpifitasModelArrayList.get(position).getetlongitude());
-        holder.etfamilia.setText("Família: "+ EpifitasModelArrayList.get(position).getetfamilia());
-        holder.etgenero.setText("Gênero"+ EpifitasModelArrayList.get(position).getetgenero());
-        holder.etespecie.setText("Espécie"+ EpifitasModelArrayList.get(position).getetespecie());
-
+        holder.etidcontrole.setText("Cadastro ID: " + epifitasModelArrayList.get(position).getetidcontrole());
+        holder.etidparcela.setText("Parcela: "+ epifitasModelArrayList.get(position).getetidparcela());
+        holder.etlatitude.setText("Latitude: "+ epifitasModelArrayList.get(position).getetlatitude());
+        holder.etlongitude.setText("Longitude: "+ epifitasModelArrayList.get(position).getetlongitude());
+        holder.etfamilia.setText("Família: "+ epifitasModelArrayList.get(position).getetfamilia());
+        holder.etgenero.setText("Gênero"+ epifitasModelArrayList.get(position).getetgenero());
+        holder.etespecie.setText("Espécie"+ epifitasModelArrayList.get(position).getetespecie());
 
         return convertView;
     }
@@ -76,6 +77,8 @@ public class CustomMod extends BaseAdapter {
     private class ViewHolder {
 
         protected TextView
+                etidcontrole,
+                etidparcela,
                 etlatitude,
                 etlongitude,
                 etfamilia,

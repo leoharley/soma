@@ -4,6 +4,26 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/arvoresvivas_idcontrole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:text="Latitude"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/arvoresvivas_idparcela"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:text="Latitude"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
         android:id="@+id/arvoresvivas_latitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,7 +31,8 @@
         android:gravity="center_vertical"
         android:textSize="10sp"
         android:text="Latitude"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_longitude"
@@ -20,7 +41,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="curso"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_familia"
@@ -29,7 +51,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="email"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_genero"
@@ -38,7 +61,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_especie"
@@ -47,7 +71,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_biomassa"
@@ -56,7 +81,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_identificado"
@@ -65,7 +91,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_grauprotecao"
@@ -74,7 +101,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_circunferencia"
@@ -83,7 +111,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_altura"
@@ -92,7 +121,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_alturatotal"
@@ -101,7 +131,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_alturafuste"
@@ -110,7 +141,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_alturacopa"
@@ -119,7 +151,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_isolada"
@@ -128,7 +161,8 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/arvoresvivas_floracaofrutificacao"
@@ -137,12 +171,13 @@
         android:textColor="#000"
         android:textSize="10sp"
         android:text="fone"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/colorAccent"/>

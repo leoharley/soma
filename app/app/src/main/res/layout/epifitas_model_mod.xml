@@ -4,58 +4,80 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/Epifitas_latitude"
+        android:id="@+id/epifitas_idcontrole"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000"
         android:gravity="center_vertical"
-        android:textSize="20sp"
+        android:textSize="15sp"
+        android:text="ID Controle"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/epifitas_idparcela"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:text="Parcela"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/epifitas_latitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:gravity="center_vertical"
+        android:textSize="10sp"
         android:text="Latitude"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/Epifitas_longitude"
+        android:id="@+id/epifitas_longitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000"
-        android:textSize="20sp"
-        android:text="curso"
-        android:layout_marginTop="10dp"/>
+        android:textSize="10sp"
+        android:text="Longitude"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/Epifitas_familia"
+        android:id="@+id/epifitas_familia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000"
-        android:textSize="20sp"
-        android:text="email"
-        android:layout_marginTop="10dp"/>
+        android:textSize="10sp"
+        android:text="Familia"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/Epifitas_genero"
+        android:id="@+id/epifitas_genero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
-        android:textSize="20sp"
-        android:text="fone"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:textSize="10sp"
+        android:text="Genero"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/Epifitas_especie"
+        android:id="@+id/epifitas_especie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
-        android:textSize="20sp"
-        android:text="fone"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:textSize="10sp"
+        android:text="Especie"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"/>
 
- 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/colorAccent"/>

@@ -56,7 +56,7 @@
 
             <TextView
                 android:drawableLeft="@drawable/ic_baseline_home_24"
-                android:drawablePadding="8dp"
+                android:drawablePadding="20dp"
                 android:id="@+id/home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,8 +72,8 @@
 
             <TextView
                 android:drawableLeft="@drawable/baseline_nature_24"
-                android:drawablePadding="8dp"
-                android:id="@+id/profile"
+                android:drawablePadding="20dp"
+                android:id="@+id/opcao_arvoresvivas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily=""
@@ -88,8 +88,8 @@
 
             <TextView
                 android:drawableLeft="@drawable/baseline_emoji_nature_24"
-                android:drawablePadding="8dp"
-                android:id="@+id/products"
+                android:drawablePadding="20dp"
+                android:id="@+id/opcao_animais"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily=""
@@ -104,8 +104,8 @@
 
             <TextView
                 android:drawableLeft="@drawable/baseline_local_florist_24"
-                android:drawablePadding="8dp"
-                android:id="@+id/balance"
+                android:drawablePadding="20dp"
+                android:id="@+id/opcao_epifitas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily=""
@@ -120,8 +120,8 @@
 
             <TextView
                 android:drawableLeft="@drawable/baseline_water_24"
-                android:drawablePadding="8dp"
-                android:id="@+id/cart"
+                android:drawablePadding="20dp"
+                android:id="@+id/opcao_hidrologia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily=""
