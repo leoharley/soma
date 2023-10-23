@@ -38,7 +38,12 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog pDialog;
     private String login_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/login.php";
     private String painel_parcela_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_info_parcelas.php";
-    private String painel_familia_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_info_familias.php";
+    private String painel_fauna_familia_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_fauna_familias.php";
+    private String painel_fauna_genero_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_fauna_generos.php";
+    private String painel_fauna_especie_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_fauna_especies.php";
+    private String painel_flora_familia_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_familias.php";
+    private String painel_flora_genero_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_generos.php";
+    private String painel_flora_especie_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_especies.php";
     private SessionHandler session;
 
     private ArrayList mylist;
@@ -175,17 +180,17 @@ public class LoginActivity extends AppCompatActivity {
 
         MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_parcela);
 
-        /*CARREGA FAMÍLIA*/
-        JsonArrayRequest jsArrayRequest_familia = new JsonArrayRequest
-                (Request.Method.POST, painel_familia_url, null, response -> {
+        /*CARREGA FAUNA FAMÍLIA*/
+        JsonArrayRequest jsArrayRequest_fauna_familia = new JsonArrayRequest
+                (Request.Method.POST, painel_fauna_familia_url, null, response -> {
                     pDialog.dismiss();
                     try {
-                        db.apagaTabelaFamilia();
+                        db.apagaTabelaFaunaFamilia();
                         for(int i=0; i < response.length(); i++) {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
                             String no_familia    = jsonObject1.getString("no_familia");
-                            db.insertFamilia(id,no_familia);
+                            db.insertFaunaFamilia(id,no_familia);
                         }
                     }
                     catch (Exception e){
@@ -197,7 +202,127 @@ public class LoginActivity extends AppCompatActivity {
                             error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_familia);
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_fauna_familia);
+
+        /*CARREGA FAUNA GENERO*/
+        JsonArrayRequest jsArrayRequest_fauna_genero = new JsonArrayRequest
+                (Request.Method.POST, painel_fauna_genero_url, null, response -> {
+                    pDialog.dismiss();
+                    try {
+                        db.apagaTabelaFaunaFamilia();
+                        for(int i=0; i < response.length(); i++) {
+                            JSONObject jsonObject1 = response.getJSONObject(i);
+                            String id       = jsonObject1.getString("id");
+                            String no_familia    = jsonObject1.getString("no_familia");
+                            db.insertFaunaGenero(id,no_familia);
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }, error -> {
+                    pDialog.dismiss();
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_fauna_genero);
+
+        /*CARREGA FAUNA ESPECIE*/
+        JsonArrayRequest jsArrayRequest_fauna_especie = new JsonArrayRequest
+                (Request.Method.POST, painel_fauna_especie_url, null, response -> {
+                    pDialog.dismiss();
+                    try {
+                        db.apagaTabelaFaunaEspecie();
+                        for(int i=0; i < response.length(); i++) {
+                            JSONObject jsonObject1 = response.getJSONObject(i);
+                            String id       = jsonObject1.getString("id");
+                            String no_familia    = jsonObject1.getString("no_familia");
+                            db.insertFaunaEspecie(id,no_familia);
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }, error -> {
+                    pDialog.dismiss();
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_fauna_especie);
+
+        /*CARREGA FLORA FAMÍLIA*/
+        JsonArrayRequest jsArrayRequest_flora_familia = new JsonArrayRequest
+                (Request.Method.POST, painel_flora_familia_url, null, response -> {
+                    pDialog.dismiss();
+                    try {
+                        db.apagaTabelaFloraFamilia();
+                        for(int i=0; i < response.length(); i++) {
+                            JSONObject jsonObject1 = response.getJSONObject(i);
+                            String id       = jsonObject1.getString("id");
+                            String no_familia    = jsonObject1.getString("no_familia");
+                            db.insertFloraFamilia(id,no_familia);
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }, error -> {
+                    pDialog.dismiss();
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_flora_familia);
+
+        /*CARREGA FLORA GENERO*/
+        JsonArrayRequest jsArrayRequest_flora_genero = new JsonArrayRequest
+                (Request.Method.POST, painel_flora_genero_url, null, response -> {
+                    pDialog.dismiss();
+                    try {
+                        db.apagaTabelaFloraGenero();
+                        for(int i=0; i < response.length(); i++) {
+                            JSONObject jsonObject1 = response.getJSONObject(i);
+                            String id       = jsonObject1.getString("id");
+                            String no_familia    = jsonObject1.getString("no_familia");
+                            db.insertFloraGenero(id,no_familia);
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }, error -> {
+                    pDialog.dismiss();
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_flora_genero);
+
+        /*CARREGA FLORA ESPECIE*/
+        JsonArrayRequest jsArrayRequest_flora_especie = new JsonArrayRequest
+                (Request.Method.POST, painel_flora_especie_url, null, response -> {
+                    pDialog.dismiss();
+                    try {
+                        db.apagaTabelaFloraEspecie();
+                        for(int i=0; i < response.length(); i++) {
+                            JSONObject jsonObject1 = response.getJSONObject(i);
+                            String id       = jsonObject1.getString("id");
+                            String no_familia    = jsonObject1.getString("no_familia");
+                            db.insertFloraEspecie(id,no_familia);
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }, error -> {
+                    pDialog.dismiss();
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_flora_especie);
 
     }
 
