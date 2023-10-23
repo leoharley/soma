@@ -10,7 +10,7 @@ $input = json_decode($inputJSON, TRUE); //convert JSON into array
 //Check for Mandatory parameters
 
 $query    = "SELECT Generos.id, Generos.nome
-			 FROM tb_fauna_genero as Generos
+			 FROM tb_flora_genero as Generos
 			 WHERE Generos.st_registro_ativo = 'S'";
  
 if($stmt = $con->prepare($query)){

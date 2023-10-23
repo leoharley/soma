@@ -9,7 +9,7 @@ $input = json_decode($inputJSON, TRUE); //convert JSON into array
  
 //Check for Mandatory parameters
 
-$query    = "SELECT Familias.id, Familias.nome as no_familia 
+$query    = "SELECT Familias.id, Familias.nome
 			 FROM tb_fauna_familia as Familias
 			 WHERE Familias.st_registro_ativo = 'S'";
  
