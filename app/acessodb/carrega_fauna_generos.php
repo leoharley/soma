@@ -9,8 +9,13 @@ $input = json_decode($inputJSON, TRUE); //convert JSON into array
  
 //Check for Mandatory parameters
 
-$query    = "SELECT Generos.id, Generos.nome
+$query    = "SELECT Generos.id, Generos.nome, resultados.totais as contador
 			 FROM tb_fauna_genero as Generos
+			 LEFT JOIN (SELECT COUNT(*) AS totais, 0 AS Bonus
+			 FROM tb_fauna_genero
+			 WHERE st_registro_ativo = 'S'
+			 GROUP BY NULL) resultados
+			 ON 0 = resultados.Bonus
 			 WHERE Generos.st_registro_ativo = 'S'";
  
 if($stmt = $con->prepare($query)){

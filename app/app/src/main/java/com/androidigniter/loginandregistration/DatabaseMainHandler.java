@@ -264,9 +264,36 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
 
         if (cursor.moveToFirst()) {
-            contador = cursor.getInt(1);
+            contador = cursor.getInt(0);
         }
-        System.out.println("PORRA"+ String.valueOf(contador));
+        cursor.close();
+        db.close();
+        return contador;
+    }
+
+    public int CountFaunaGeneros(){
+        String selectQuery = "SELECT COUNT(*) FROM " + TABLE_FAUNA_GENERO;
+        int contador = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            contador = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return contador;
+    }
+
+    public int CountFaunaEspecies(){
+        String selectQuery = "SELECT COUNT(*) FROM " + TABLE_FAUNA_ESPECIE;
+        int contador = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            contador = cursor.getInt(0);
+        }
         cursor.close();
         db.close();
         return contador;
