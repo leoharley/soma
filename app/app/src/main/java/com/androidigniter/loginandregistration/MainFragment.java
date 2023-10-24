@@ -186,12 +186,14 @@ public class MainFragment extends Fragment {
                                         JsonArrayRequest jsArrayRequest_fauna_genero = new JsonArrayRequest
                                                 (Request.Method.POST, painel_fauna_genero_url, null, response3 -> {
                                                     try {
-                                                        db.apagaTabelaFaunaGenero();
-                                                        for(int i=0; i < response3.length(); i++) {
-                                                            JSONObject jsonObject1 = response3.getJSONObject(i);
-                                                            String id       = jsonObject1.getString("id");
-                                                            String nome    = jsonObject1.getString("nome");
-                                                            db.insertFaunaGenero(id,nome);
+                                                        if (!String.valueOf(db.CountFaunaGeneros()).equals(response3.getJSONObject(0).getString("contador"))) {
+                                                            db.apagaTabelaFaunaGenero();
+                                                            for (int i = 0; i < response3.length(); i++) {
+                                                                JSONObject jsonObject1 = response3.getJSONObject(i);
+                                                                String id = jsonObject1.getString("id");
+                                                                String nome = jsonObject1.getString("nome");
+                                                                db.insertFaunaGenero(id, nome);
+                                                            }
                                                         }
                                                         db2.close();
                                                     }
@@ -203,13 +205,15 @@ public class MainFragment extends Fragment {
                                                         JsonArrayRequest jsArrayRequest_fauna_especie = new JsonArrayRequest
                                                                 (Request.Method.POST, painel_fauna_especie_url, null, response4 -> {
                                                                     try {
-                                                                        db.apagaTabelaFaunaEspecie();
-                                                                        for(int i=0; i < response4.length(); i++) {
-                                                                            JSONObject jsonObject1 = response4.getJSONObject(i);
-                                                                            String id       = jsonObject1.getString("id");
-                                                                            String nome    = jsonObject1.getString("nome");
-                                                                            String no_popular    = jsonObject1.getString("no_popular");
-                                                                            db.insertFaunaEspecie(id,nome,no_popular);
+                                                                        if (!String.valueOf(db.CountFaunaEspecies()).equals(response4.getJSONObject(0).getString("contador"))) {
+                                                                            db.apagaTabelaFaunaEspecie();
+                                                                            for (int i = 0; i < response4.length(); i++) {
+                                                                                JSONObject jsonObject1 = response4.getJSONObject(i);
+                                                                                String id = jsonObject1.getString("id");
+                                                                                String nome = jsonObject1.getString("nome");
+                                                                                String no_popular = jsonObject1.getString("no_popular");
+                                                                                db.insertFaunaEspecie(id, nome, no_popular);
+                                                                            }
                                                                         }
                                                                         db2.close();
                                                                     }
