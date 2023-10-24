@@ -167,15 +167,16 @@ public class MainFragment extends Fragment {
                         JsonArrayRequest jsArrayRequest_fauna_familia = new JsonArrayRequest
                                 (Request.Method.POST, painel_fauna_familia_url, null, response2 -> {
                                     try {
+                                        System.out.println("PORRA"+response2.getJSONObject(0).getString("contador"));
                                         db.apagaTabelaFaunaFamilia();
-                                        if (!String.valueOf(db.CountFaunaFamilias()).equals(response2.getJSONObject(0).getString("contador"))) {
+                                      //  if (!String.valueOf(db.CountFaunaFamilias()).equals(response2.getJSONObject(0).getString("contador"))) {
                                         for(int i=0; i < response2.length(); i++) {
                                             JSONObject jsonObject1 = response2.getJSONObject(i);
                                             String id       = jsonObject1.getString("id");
                                             String nome    = jsonObject1.getString("nome");
                                             db.insertFaunaFamilia(id,nome);
                                         }
-                                        }
+                                       // }
                                         db2.close();
                                     }
                                     catch (Exception e){

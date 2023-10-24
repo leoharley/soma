@@ -264,8 +264,9 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
 
         if (cursor.moveToFirst()) {
-            contador = cursor.getInt(0);
+            contador = cursor.getInt(1);
         }
+        System.out.println("PORRA"+ String.valueOf(contador));
         cursor.close();
         db.close();
         return contador;
