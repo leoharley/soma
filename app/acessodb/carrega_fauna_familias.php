@@ -12,7 +12,7 @@ $input = json_decode($inputJSON, TRUE); //convert JSON into array
 $query    = "SELECT Familias.id, Familias.nome, resultados.totais as contador
 			 FROM tb_fauna_familia as Familias
 			 LEFT JOIN (SELECT COUNT(*) AS totais, 0 AS Bonus
-			 FROM tb_flora_especie
+			 FROM tb_fauna_familia
 			 WHERE st_registro_ativo = 'S'
 			 GROUP BY NULL) resultados
 			 ON 0 = resultados.Bonus
