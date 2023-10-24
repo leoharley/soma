@@ -24,6 +24,8 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -57,70 +59,6 @@
         <activity android:name="com.androidigniter.loginandregistration.DashboardActivity" />
 
         <activity android:name="com.androidigniter.loginandregistration.MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.arvoresvivas.MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.arvoresvivas.ModifyArvoresVivasActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.arvoresvivas.AddRegistroArvoresVivas"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.arvoresvivas.ModArvoresVivas"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.animais.MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.animais.ModifyAnimaisActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.animais.AddRegistroAnimais"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.animais.ModAnimais"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.epifitas.MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.epifitas.ModifyEpifitasActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.epifitas.AddRegistroEpifitas"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.epifitas.ModEpifitas"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.hidrologia.MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.hidrologia.ModifyHidrologiaActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.hidrologia.AddRegistroHidrologia"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
-
-        <activity android:name="com.soma.data.hidrologia.ModHidrologia"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
 

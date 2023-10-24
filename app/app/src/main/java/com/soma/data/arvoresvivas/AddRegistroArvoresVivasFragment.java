@@ -84,6 +84,7 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
         View view = inflater.inflate(R.layout.arvores_vivas_activity_add_registro, container, false);
 
         databaseHelperArvoresVivas = new DatabaseHelperArvoresVivas(getContext());
+        DatabaseMainHandler db = new DatabaseMainHandler(getContext());
 
         /* BUTTONS */
         btnSalvar = (Button) view.findViewById(R.id.btnsalvar);
@@ -91,24 +92,34 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
         /* SPINNERS */
         spinner_parcela = view.findViewById(R.id.spinner_parcela);
         spinner_familia = view.findViewById(R.id.spinner_familia);
-        ArrayAdapter<CharSequence> adapter_spinner_familia = ArrayAdapter.createFromResource(getContext(),
-                R.array.familia_tmp, android.R.layout.simple_spinner_item);
+
+        List<String> familias = new ArrayList<String>();
+        familias.add(0,"SELECIONE");
+        familias.addAll(db.getAllFloraFamilias());
+        ArrayAdapter<String> adapter_spinner_familia = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, familias);
+
         adapter_spinner_familia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_familia.setTitle("Pesquisar");
         spinner_familia.setPositiveButton("Fechar");
         spinner_familia.setAdapter(adapter_spinner_familia);
 
         spinner_genero = view.findViewById(R.id.spinner_genero);
-        ArrayAdapter<CharSequence> adapter_spinner_genero = ArrayAdapter.createFromResource(getContext(),
-                R.array.genero_tmp, android.R.layout.simple_spinner_item);
+        List<String> generos = new ArrayList<String>();
+        generos.add(0,"SELECIONE");
+        generos.addAll(db.getAllFloraGeneros());
+        ArrayAdapter<String> adapter_spinner_genero = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, generos);
+
         adapter_spinner_genero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_genero.setTitle("Pesquisar");
         spinner_genero.setPositiveButton("Fechar");
         spinner_genero.setAdapter(adapter_spinner_genero);
 
         spinner_especie = view.findViewById(R.id.spinner_especie);
-        ArrayAdapter<CharSequence> adapter_spinner_especie = ArrayAdapter.createFromResource(getContext(),
-                R.array.especie_tmp, android.R.layout.simple_spinner_item);
+        List<String> especies = new ArrayList<String>();
+        especies.add(0,"SELECIONE");
+        especies.addAll(db.getAllFloraEspecies());
+        ArrayAdapter<String> adapter_spinner_especie = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, especies);
+
         adapter_spinner_especie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_especie.setTitle("Pesquisar");
         spinner_especie.setPositiveButton("Fechar");

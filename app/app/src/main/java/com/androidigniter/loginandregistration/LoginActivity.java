@@ -2,6 +2,7 @@ package com.androidigniter.loginandregistration;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private String painel_flora_genero_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_generos.php";
     private String painel_flora_especie_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_especies.php";
     private SessionHandler session;
+    public static boolean isRecursionEnable = true;
 
     private ArrayList mylist;
 
@@ -150,11 +152,31 @@ public class LoginActivity extends AppCompatActivity {
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
-        carregaPainelDB();
+
+ //       runInBackground();
+
     }
+
+    void runInBackground() {
+        if (!isRecursionEnable)
+            // Handle not to start multiple parallel threads
+            return;
+
+        // isRecursionEnable = false; when u want to stop
+        // on exception on thread make it true again
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                carregaPainelDB();
+
+            }
+        }).start();
+    }
+
 
     private void carregaPainelDB() {
         DatabaseMainHandler db = new DatabaseMainHandler(getApplicationContext());
+        SQLiteDatabase db2 = db.getWritableDatabase();
 
         /*CARREGA PARCELA*/
         JsonArrayRequest jsArrayRequest_parcela = new JsonArrayRequest
@@ -178,20 +200,24 @@ public class LoginActivity extends AppCompatActivity {
                             error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_parcela);
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsArrayRequest_parcela);
 
         /*CARREGA FAUNA FAMÍLIA*/
-        JsonArrayRequest jsArrayRequest_fauna_familia = new JsonArrayRequest
+        /*JsonArrayRequest jsArrayRequest_fauna_familia = new JsonArrayRequest
                 (Request.Method.POST, painel_fauna_familia_url, null, response -> {
                     pDialog.dismiss();
                     try {
                         db.apagaTabelaFaunaFamilia();
+                        db2.beginTransaction();
                         for(int i=0; i < response.length(); i++) {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
-                            String no_familia    = jsonObject1.getString("no_familia");
-                            db.insertFaunaFamilia(id,no_familia);
+                            String nome    = jsonObject1.getString("nome");
+                            db.insertFaunaFamilia(id,nome);
                         }
+                        db2.setTransactionSuccessful();
+                        db2.endTransaction();
+                        db2.close();
                     }
                     catch (Exception e){
                         e.printStackTrace();
@@ -202,20 +228,25 @@ public class LoginActivity extends AppCompatActivity {
                             error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_fauna_familia);
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsArrayRequest_fauna_familia);*/
+
 
         /*CARREGA FAUNA GENERO*/
-        JsonArrayRequest jsArrayRequest_fauna_genero = new JsonArrayRequest
+       /* JsonArrayRequest jsArrayRequest_fauna_genero = new JsonArrayRequest
                 (Request.Method.POST, painel_fauna_genero_url, null, response -> {
                     pDialog.dismiss();
                     try {
                         db.apagaTabelaFaunaFamilia();
+                        db2.beginTransaction();
                         for(int i=0; i < response.length(); i++) {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
-                            String no_familia    = jsonObject1.getString("no_familia");
-                            db.insertFaunaGenero(id,no_familia);
+                            String nome    = jsonObject1.getString("nome");
+                            db.insertFaunaGenero(id,nome);
                         }
+                        db2.setTransactionSuccessful();
+                        db2.endTransaction();
+                        db2.close();
                     }
                     catch (Exception e){
                         e.printStackTrace();
@@ -226,10 +257,10 @@ public class LoginActivity extends AppCompatActivity {
                             error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_fauna_genero);
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_fauna_genero);*/
 
         /*CARREGA FAUNA ESPECIE*/
-        JsonArrayRequest jsArrayRequest_fauna_especie = new JsonArrayRequest
+     /*   JsonArrayRequest jsArrayRequest_fauna_especie = new JsonArrayRequest
                 (Request.Method.POST, painel_fauna_especie_url, null, response -> {
                     pDialog.dismiss();
                     try {
@@ -237,8 +268,8 @@ public class LoginActivity extends AppCompatActivity {
                         for(int i=0; i < response.length(); i++) {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
-                            String no_familia    = jsonObject1.getString("no_familia");
-                            db.insertFaunaEspecie(id,no_familia);
+                            String nome    = jsonObject1.getString("nome");
+                            db.insertFaunaEspecie(id,nome);
                         }
                     }
                     catch (Exception e){
@@ -250,10 +281,10 @@ public class LoginActivity extends AppCompatActivity {
                             error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_fauna_especie);
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_fauna_especie);*/
 
         /*CARREGA FLORA FAMÍLIA*/
-        JsonArrayRequest jsArrayRequest_flora_familia = new JsonArrayRequest
+       /* JsonArrayRequest jsArrayRequest_flora_familia = new JsonArrayRequest
                 (Request.Method.POST, painel_flora_familia_url, null, response -> {
                     pDialog.dismiss();
                     try {
@@ -261,8 +292,8 @@ public class LoginActivity extends AppCompatActivity {
                         for(int i=0; i < response.length(); i++) {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
-                            String no_familia    = jsonObject1.getString("no_familia");
-                            db.insertFloraFamilia(id,no_familia);
+                            String nome    = jsonObject1.getString("nome");
+                            db.insertFloraFamilia(id,nome);
                         }
                     }
                     catch (Exception e){
@@ -274,10 +305,10 @@ public class LoginActivity extends AppCompatActivity {
                             error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_flora_familia);
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_flora_familia);*/
 
         /*CARREGA FLORA GENERO*/
-        JsonArrayRequest jsArrayRequest_flora_genero = new JsonArrayRequest
+       /* JsonArrayRequest jsArrayRequest_flora_genero = new JsonArrayRequest
                 (Request.Method.POST, painel_flora_genero_url, null, response -> {
                     pDialog.dismiss();
                     try {
@@ -285,8 +316,8 @@ public class LoginActivity extends AppCompatActivity {
                         for(int i=0; i < response.length(); i++) {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
-                            String no_familia    = jsonObject1.getString("no_familia");
-                            db.insertFloraGenero(id,no_familia);
+                            String nome    = jsonObject1.getString("nome");
+                            db.insertFloraGenero(id,nome);
                         }
                     }
                     catch (Exception e){
@@ -298,10 +329,10 @@ public class LoginActivity extends AppCompatActivity {
                             error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_flora_genero);
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_flora_genero);*/
 
         /*CARREGA FLORA ESPECIE*/
-        JsonArrayRequest jsArrayRequest_flora_especie = new JsonArrayRequest
+     /*   JsonArrayRequest jsArrayRequest_flora_especie = new JsonArrayRequest
                 (Request.Method.POST, painel_flora_especie_url, null, response -> {
                     pDialog.dismiss();
                     try {
@@ -309,8 +340,8 @@ public class LoginActivity extends AppCompatActivity {
                         for(int i=0; i < response.length(); i++) {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
-                            String no_familia    = jsonObject1.getString("no_familia");
-                            db.insertFloraEspecie(id,no_familia);
+                            String nome    = jsonObject1.getString("nome");
+                            db.insertFloraEspecie(id,nome);
                         }
                     }
                     catch (Exception e){
@@ -322,7 +353,7 @@ public class LoginActivity extends AppCompatActivity {
                             error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_flora_especie);
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest_flora_especie);*/
 
     }
 

@@ -26,4 +26,31 @@
         android:textColor="@color/black"
         android:text="Empresa brasileira, fundada em 2006 em Goiânia, com extensão em Brasília.
 Atuante na área da comunicação e sustentabilidade, desenvolvendo projetos de meio ambiente voltados para, educação, cultura, inclusão, bem-estar e networking." />
+
+    <Button
+        android:id="@+id/btnAtualizarTudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atualizar tudo"
+        android:layout_marginTop="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textView2"/>
+
+    <Button
+        android:id="@+id/btnAtualizarFlora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atualizar flora"
+        android:layout_marginTop="10sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnAtualizarTudo"/>
+
+    <Button
+        android:id="@+id/btnAtualizarFauna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atualizar fauna"
+        android:layout_marginTop="10sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnAtualizarFlora"/>
 </RelativeLayout>

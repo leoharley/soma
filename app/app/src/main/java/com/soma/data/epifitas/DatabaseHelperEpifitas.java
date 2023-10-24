@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "campo_data";
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 10;
     private static final String TABLE_NAME = "epifitas";
     private static final String KEY_ID = "id";
     private static final String KEY_ETIDPARCELA = "etidparcela";

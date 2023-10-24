@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class DatabaseMainHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 10;
     private static final String DATABASE_NAME = "painel_data";
     private static final String TABLE_PARCELA_NAME = "tb_parcelas";
     private static final String TABLE_FAUNA_FAMILIA = "tb_fauna_familia";
@@ -29,6 +29,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
     private static final String KEY_NOPROPRIEDADE = "etnopropriedade";
     private static final String KEY_IDFAMILIA = "etidfamilia";
     private static final String KEY_NOFAMILIA = "etnofamilia";
+    private static final String KEY_NOPOPULAR = "etnopopular";
 
     public DatabaseMainHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -65,7 +66,8 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
                 + TABLE_FAUNA_ESPECIE + "(" + COLUMN_ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 KEY_IDFAMILIA + " VARCHAR, "+
-                KEY_NOFAMILIA + " VARCHAR " +
+                KEY_NOFAMILIA + " VARCHAR, " +
+                KEY_NOPOPULAR + " VARCHAR " +
                 "); ";
         db.execSQL(CREATE_FAUNA_ESPECIE_TABLE);
 
@@ -89,7 +91,8 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
                 + TABLE_FLORA_ESPECIE + "(" + COLUMN_ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 KEY_IDFAMILIA + " VARCHAR, "+
-                KEY_NOFAMILIA + " VARCHAR " +
+                KEY_NOFAMILIA + " VARCHAR, " +
+                KEY_NOPOPULAR + " VARCHAR " +
                 "); ";
         db.execSQL(CREATE_FLORA_ESPECIE_TABLE);
     }
@@ -160,19 +163,18 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(TABLE_PARCELA_NAME, null, values);//tableName, nullColumnHack, CotentValues
-        db.close(); // Closing database connection
+    //    db.close();
     }
 
     public void insertFaunaFamilia(String idfamilia, String nofamilia){
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(KEY_IDFAMILIA, idfamilia);//column name, column value
         values.put(KEY_NOFAMILIA, nofamilia);//column name, column value
 
         // Inserting Row
         db.insert(TABLE_FAUNA_FAMILIA, null, values);//tableName, nullColumnHack, CotentValues
-        db.close(); // Closing database connection
+         // Closing database connection
     }
 
     public void insertFaunaGenero(String idfamilia, String nofamilia){
@@ -184,15 +186,15 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(TABLE_FAUNA_GENERO, null, values);//tableName, nullColumnHack, CotentValues
-        db.close(); // Closing database connection
     }
 
-    public void insertFaunaEspecie(String idfamilia, String nofamilia){
+    public void insertFaunaEspecie(String idfamilia, String nofamilia, String nopopular){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_IDFAMILIA, idfamilia);//column name, column value
         values.put(KEY_NOFAMILIA, nofamilia);//column name, column value
+        values.put(KEY_NOPOPULAR, nopopular);//column name, column value
 
         // Inserting Row
         db.insert(TABLE_FAUNA_ESPECIE, null, values);//tableName, nullColumnHack, CotentValues
@@ -223,12 +225,13 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    public void insertFloraEspecie(String idfamilia, String nofamilia){
+    public void insertFloraEspecie(String idfamilia, String nofamilia, String nopopular){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_IDFAMILIA, idfamilia);//column name, column value
         values.put(KEY_NOFAMILIA, nofamilia);//column name, column value
+        values.put(KEY_NOPOPULAR, nopopular);//column name, column value
 
         // Inserting Row
         db.insert(TABLE_FLORA_ESPECIE, null, values);//tableName, nullColumnHack, CotentValues
@@ -252,6 +255,20 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return list;
+    }
+
+    public int CountFaunaFamilias(){
+        String selectQuery = "SELECT COUNT(*) FROM " + TABLE_FAUNA_FAMILIA;
+        int contador = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            contador = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return contador;
     }
 
     public List<String> getAllFaunaFamilias(){
@@ -298,11 +315,16 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + TABLE_FAUNA_ESPECIE;
 
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
 
         if (cursor.moveToFirst()) {
             do {
-                list.add(cursor.getString(1)+" - "+cursor.getString(2));//adding 2nd column data
+                if (!cursor.getString(3).isEmpty()) {
+                    list.add(cursor.getString(1) + " - " + cursor.getString(2) + " (" + cursor.getString(3) + ")");//adding 2nd column data
+                } else {
+                    list.add(cursor.getString(1) + " - " + cursor.getString(2));
+                }
             } while (cursor.moveToNext());
         }
         // closing connection
@@ -317,6 +339,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + TABLE_FLORA_FAMILIA;
 
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
 
         if (cursor.moveToFirst()) {
@@ -336,6 +359,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + TABLE_FLORA_GENERO;
 
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
 
         if (cursor.moveToFirst()) {
@@ -355,11 +379,16 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + TABLE_FLORA_ESPECIE;
 
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
 
         if (cursor.moveToFirst()) {
             do {
-                list.add(cursor.getString(1)+" - "+cursor.getString(2));//adding 2nd column data
+                if (!cursor.getString(3).isEmpty()) {
+                    list.add(cursor.getString(1)+" - "+cursor.getString(2)+" ("+cursor.getString(3)+")");//adding 2nd column data
+                } else {
+                    list.add(cursor.getString(1)+" - "+cursor.getString(2));
+                }
             } while (cursor.moveToNext());
         }
         // closing connection

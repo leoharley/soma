@@ -87,7 +87,6 @@ public class AddRegistroAnimaisFragment extends Fragment {
         spinner_parcela = view.findViewById(R.id.spinner_parcela);
 
         spinner_familia = view.findViewById(R.id.spinner_familia);
-
         List<String> familias = new ArrayList<String>();
         familias.add(0,"SELECIONE");
         familias.addAll(db.getAllFaunaFamilias());
@@ -99,7 +98,6 @@ public class AddRegistroAnimaisFragment extends Fragment {
         spinner_familia.setAdapter(adapter_spinner_familia);
 
         spinner_genero = view.findViewById(R.id.spinner_genero);
-
         List<String> generos = new ArrayList<String>();
         generos.add(0,"SELECIONE");
         generos.addAll(db.getAllFaunaGeneros());
@@ -111,12 +109,11 @@ public class AddRegistroAnimaisFragment extends Fragment {
         spinner_genero.setAdapter(adapter_spinner_genero);
 
         spinner_especie = view.findViewById(R.id.spinner_especie);
-
         List<String> especies = new ArrayList<String>();
         especies.add(0,"SELECIONE");
         especies.addAll(db.getAllFaunaEspecies());
-
         ArrayAdapter<String> adapter_spinner_especie = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, especies);
+
         adapter_spinner_especie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_especie.setTitle("Pesquisar");
         spinner_especie.setPositiveButton("Fechar");
