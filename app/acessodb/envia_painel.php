@@ -15,7 +15,7 @@ if(isset($input['registroanimais'])){
 	//Query to register new user
 	$insertQuery  = "INSERT INTO teste_envia_painel(descricao) VALUES (?)";
 	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("ssss",$registroanimais);
+		$stmt->bind_param("s",$registroanimais);
 		$stmt->execute();
 		$response["status"] = 0;
 		$response["message"] = "Registro animais adicionado";
