@@ -1,6 +1,7 @@
 package com.soma.data.arvoresvivas;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -15,10 +16,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+
+import com.soma.data.animais.ModAnimaisFragment;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.cursoradapter.widget.SimpleCursorAdapter;
 import androidx.fragment.app.Fragment;
@@ -74,6 +78,7 @@ public class ModifyArvoresVivasFragment extends Fragment {
         arvoresVivasModel = (ArvoresVivasModel) bundle.getSerializable("arvoresvivas");
 
         databaseHelperArvoresVivas = new DatabaseHelperArvoresVivas(getContext());
+        DatabaseMainHandler db = new DatabaseMainHandler(getContext());
 
         etidparcela = (TextView) view.findViewById(R.id.et_idparcela);
         etidcontrole = (EditText) view.findViewById(R.id.et_idcontrole);
@@ -81,24 +86,34 @@ public class ModifyArvoresVivasFragment extends Fragment {
         etlongitude = (EditText) view.findViewById(R.id.et_longitude);
 
         spinner_familia = view.findViewById(R.id.spinner_familia);
-        ArrayAdapter<CharSequence> adapter_spinner_familia = ArrayAdapter.createFromResource(getContext(),
-                R.array.familia_tmp, android.R.layout.simple_spinner_item);
+
+        List<String> familias = new ArrayList<String>();
+        familias.add(0,"SELECIONE");
+        familias.addAll(db.getAllFloraFamilias());
+        ArrayAdapter<String> adapter_spinner_familia = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, familias);
+
         adapter_spinner_familia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_familia.setTitle("Pesquisar");
         spinner_familia.setPositiveButton("Fechar");
         spinner_familia.setAdapter(adapter_spinner_familia);
 
         spinner_genero = view.findViewById(R.id.spinner_genero);
-        ArrayAdapter<CharSequence> adapter_spinner_genero = ArrayAdapter.createFromResource(getContext(),
-                R.array.genero_tmp, android.R.layout.simple_spinner_item);
+        List<String> generos = new ArrayList<String>();
+        generos.add(0,"SELECIONE");
+        generos.addAll(db.getAllFloraGeneros());
+        ArrayAdapter<String> adapter_spinner_genero = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, generos);
+
         adapter_spinner_genero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_genero.setTitle("Pesquisar");
         spinner_genero.setPositiveButton("Fechar");
         spinner_genero.setAdapter(adapter_spinner_genero);
 
         spinner_especie = view.findViewById(R.id.spinner_especie);
-        ArrayAdapter<CharSequence> adapter_spinner_especie = ArrayAdapter.createFromResource(getContext(),
-                R.array.especie_tmp, android.R.layout.simple_spinner_item);
+        List<String> especies = new ArrayList<String>();
+        especies.add(0,"SELECIONE");
+        especies.addAll(db.getAllFloraEspecies());
+        ArrayAdapter<String> adapter_spinner_especie = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, especies);
+
         adapter_spinner_especie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_especie.setTitle("Pesquisar");
         spinner_especie.setPositiveButton("Fechar");
@@ -169,12 +184,30 @@ public class ModifyArvoresVivasFragment extends Fragment {
         btndelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseHelperArvoresVivas.deleteUSer(arvoresVivasModel.getId());
-                Toast.makeText(getContext(), "Apagado com sucesso!", Toast.LENGTH_LONG).show();
-                for (Fragment fragment : getParentFragmentManager().getFragments()) {
-                    getParentFragmentManager().beginTransaction().remove(fragment).commit();
-                }
-                goToFragment(new ModArvoresVivasFragment(), false);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("CONFIRMAÇÃO");
+                builder.setMessage("Deseja a exclusão deste registro?");
+                // builder.setIcon(R.drawable.common_google_signin_btn_icon_light);
+                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+
+                        databaseHelperArvoresVivas.deleteUSer(arvoresVivasModel.getId());
+                        Toast.makeText(getContext(), "Apagado com sucesso!", Toast.LENGTH_LONG).show();
+                        for (Fragment fragment : getParentFragmentManager().getFragments()) {
+                            getParentFragmentManager().beginTransaction().remove(fragment).commit();
+                        }
+                        goToFragment(new ModArvoresVivasFragment(), false);
+
+                    }
+                });
+                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 

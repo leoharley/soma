@@ -1,6 +1,7 @@
 package com.soma.data.hidrologia;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -16,11 +17,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.androidigniter.loginandregistration.R;
+import com.soma.data.animais.ModAnimaisFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,12 +82,30 @@ public class ModifyHidrologiaFragment extends Fragment {
         btndelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseHelperHidrologia.deleteTable(hidrologiaModel.getId());
-                Toast.makeText(getContext(), "Apagado com sucesso!", Toast.LENGTH_LONG).show();
-                for (Fragment fragment : getParentFragmentManager().getFragments()) {
-                    getParentFragmentManager().beginTransaction().remove(fragment).commit();
-                }
-                goToFragment(new ModHidrologiaFragment(), false);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("CONFIRMAÇÃO");
+                builder.setMessage("Deseja a exclusão deste registro?");
+                // builder.setIcon(R.drawable.common_google_signin_btn_icon_light);
+                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+
+                        databaseHelperHidrologia.deleteTable(hidrologiaModel.getId());
+                        Toast.makeText(getContext(), "Apagado com sucesso!", Toast.LENGTH_LONG).show();
+                        for (Fragment fragment : getParentFragmentManager().getFragments()) {
+                            getParentFragmentManager().beginTransaction().remove(fragment).commit();
+                        }
+                        goToFragment(new ModHidrologiaFragment(), false);
+
+                    }
+                });
+                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 

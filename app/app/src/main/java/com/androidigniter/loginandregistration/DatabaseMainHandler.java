@@ -299,6 +299,48 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         return contador;
     }
 
+    public int CountFloraFamilias(){
+        String selectQuery = "SELECT COUNT(*) FROM " + TABLE_FLORA_FAMILIA;
+        int contador = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            contador = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return contador;
+    }
+
+    public int CountFloraGeneros(){
+        String selectQuery = "SELECT COUNT(*) FROM " + TABLE_FLORA_GENERO;
+        int contador = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            contador = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return contador;
+    }
+
+    public int CountFloraEspecies(){
+        String selectQuery = "SELECT COUNT(*) FROM " + TABLE_FLORA_ESPECIE;
+        int contador = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            contador = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return contador;
+    }
+
     public List<String> getAllFaunaFamilias(){
         List<String> list = new ArrayList<String>();
 

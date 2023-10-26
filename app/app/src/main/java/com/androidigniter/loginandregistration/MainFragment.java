@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
 import android.os.storage.StorageManager;
@@ -39,13 +40,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.soma.data.arvoresvivas.ModArvoresVivasFragment;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -71,7 +76,10 @@ public class MainFragment extends Fragment {
     private String painel_flora_familia_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_familias.php";
     private String painel_flora_genero_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_generos.php";
     private String painel_flora_especie_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_especies.php";
+    private String envia_painel_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/envia_painel.php";
     private AlertDialog alertDialog1;
+    private static final String KEY_STATUS = "status";
+    private static final String KEY_REGISTRO_ANIMAIS = "registroanimais";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -117,6 +125,14 @@ public class MainFragment extends Fragment {
             }
         });
 
+        Button btnEnviarPainel = view.findViewById(R.id.btnEnviarPainel);
+        btnEnviarPainel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                runEnviarPainelInBackground();
+            }
+        });
+
+
         return view;
     }
 
@@ -142,10 +158,26 @@ public class MainFragment extends Fragment {
         }).start();
     }
 
+    void runEnviarPainelInBackground() {
+        alertDialog1.show();
+        if (!isRecursionEnable)
+            // Handle not to start multiple parallel threads
+            return;
+
+        // isRecursionEnable = false; when u want to stop
+        // on exception on thread make it true again
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                enviaPainel();
+            }
+        }).start();
+    }
+
     private void atualizaTudoPainel() {
         DatabaseMainHandler db = new DatabaseMainHandler(getContext());
         SQLiteDatabase db2 = db.getWritableDatabase();
-
+        alertDialog1.setMessage("Atualizando parcelas...");
         /*CARREGA PARCELA*/
         JsonArrayRequest jsArrayRequest_parcela = new JsonArrayRequest
                 (Request.Method.POST, painel_parcela_url, null, response -> {
@@ -225,12 +257,14 @@ public class MainFragment extends Fragment {
                                                                         JsonArrayRequest jsArrayRequest_flora_familia = new JsonArrayRequest
                                                                                 (Request.Method.POST, painel_flora_familia_url, null, response5 -> {
                                                                                     try {
-                                                                                        db.apagaTabelaFloraFamilia();
-                                                                                        for(int i=0; i < response5.length(); i++) {
-                                                                                            JSONObject jsonObject1 = response5.getJSONObject(i);
-                                                                                            String id       = jsonObject1.getString("id");
-                                                                                            String nome    = jsonObject1.getString("nome");
-                                                                                            db.insertFloraFamilia(id,nome);
+                                                                                        if (!String.valueOf(db.CountFloraFamilias()).equals(response5.getJSONObject(0).getString("contador"))) {
+                                                                                            db.apagaTabelaFloraFamilia();
+                                                                                            for (int i = 0; i < response5.length(); i++) {
+                                                                                                JSONObject jsonObject1 = response5.getJSONObject(i);
+                                                                                                String id = jsonObject1.getString("id");
+                                                                                                String nome = jsonObject1.getString("nome");
+                                                                                                db.insertFloraFamilia(id, nome);
+                                                                                            }
                                                                                         }
                                                                                         db2.close();
                                                                                     }
@@ -242,12 +276,14 @@ public class MainFragment extends Fragment {
                                                                                         JsonArrayRequest jsArrayRequest_flora_genero = new JsonArrayRequest
                                                                                                 (Request.Method.POST, painel_flora_genero_url, null, response6 -> {
                                                                                                     try {
-                                                                                                        db.apagaTabelaFloraGenero();
-                                                                                                        for(int i=0; i < response6.length(); i++) {
-                                                                                                            JSONObject jsonObject1 = response6.getJSONObject(i);
-                                                                                                            String id       = jsonObject1.getString("id");
-                                                                                                            String nome    = jsonObject1.getString("nome");
-                                                                                                            db.insertFloraGenero(id,nome);
+                                                                                                        if (!String.valueOf(db.CountFloraGeneros()).equals(response6.getJSONObject(0).getString("contador"))) {
+                                                                                                            db.apagaTabelaFloraGenero();
+                                                                                                            for (int i = 0; i < response6.length(); i++) {
+                                                                                                                JSONObject jsonObject1 = response6.getJSONObject(i);
+                                                                                                                String id = jsonObject1.getString("id");
+                                                                                                                String nome = jsonObject1.getString("nome");
+                                                                                                                db.insertFloraGenero(id, nome);
+                                                                                                            }
                                                                                                         }
                                                                                                         db2.close();
                                                                                                     }
@@ -260,20 +296,28 @@ public class MainFragment extends Fragment {
                                                                                                         JsonArrayRequest jsArrayRequest_flora_especie = new JsonArrayRequest
                                                                                                                 (Request.Method.POST, painel_flora_especie_url, null, response7 -> {
                                                                                                                     try {
-                                                                                                                        db.apagaTabelaFloraEspecie();
-                                                                                                                        for(int i=0; i < response7.length(); i++) {
-                                                                                                                            JSONObject jsonObject1 = response7.getJSONObject(i);
-                                                                                                                            String id       = jsonObject1.getString("id");
-                                                                                                                            String nome    = jsonObject1.getString("nome");
-                                                                                                                            String no_popular    = jsonObject1.getString("no_popular");
-                                                                                                                            db.insertFloraEspecie(id,nome,no_popular);
+                                                                                                                        if (!String.valueOf(db.CountFloraEspecies()).equals(response7.getJSONObject(0).getString("contador"))) {
+                                                                                                                            db.apagaTabelaFloraEspecie();
+                                                                                                                            for (int i = 0; i < response7.length(); i++) {
+                                                                                                                                JSONObject jsonObject1 = response7.getJSONObject(i);
+                                                                                                                                String id = jsonObject1.getString("id");
+                                                                                                                                String nome = jsonObject1.getString("nome");
+                                                                                                                                String no_popular = jsonObject1.getString("no_popular");
+                                                                                                                                db.insertFloraEspecie(id, nome, no_popular);
+                                                                                                                            }
                                                                                                                         }
                                                                                                                         db2.close();
                                                                                                                     }
                                                                                                                     catch (Exception e){
                                                                                                                         e.printStackTrace();
                                                                                                                     } finally {
-                                                                                                                        alertDialog1.dismiss();
+                                                                                                                        alertDialog1.setMessage("Tudo atualizado!");
+                                                                                                                        Handler handler = new Handler();
+                                                                                                                        handler.postDelayed(new Runnable() {
+                                                                                                                            public void run() {
+                                                                                                                                alertDialog1.dismiss();
+                                                                                                                            }
+                                                                                                                        }, 1200);
                                                                                                                     }
                                                                                                                 }, error -> {
                                                                                                                     Toast.makeText(getContext(),
@@ -495,7 +539,66 @@ public class MainFragment extends Fragment {
                 });
 
         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_familia);
+    }
 
+
+    private void enviaPainel() {
+        alertDialog1.setMessage("Enviando registros para o painel...");
+        alertDialog1.show();
+        DatabaseMainHandler db = new DatabaseMainHandler(getContext());
+
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            request.put(KEY_REGISTRO_ANIMAIS, db.getAllParcelas());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        alertDialog1.dismiss();
+                        try {
+                            //Check if user got registered successfully
+                            if (response.getInt(KEY_STATUS) == 0) {
+                                alertDialog1.setMessage("Registros enviados!");
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        alertDialog1.dismiss();
+                                    }
+                                }, 1200);
+                            } else if (response.getInt(KEY_STATUS) == 2) {
+                                alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        alertDialog1.dismiss();
+                                    }
+                                }, 1200);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        alertDialog1.setMessage(error.getMessage());
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                alertDialog1.dismiss();
+                            }
+                        }, 1200);
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
     }
 
     private void leGPS() {

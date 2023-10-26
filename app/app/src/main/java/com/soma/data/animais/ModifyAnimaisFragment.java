@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+
+import com.androidigniter.loginandregistration.DatabaseMainHandler;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.androidigniter.loginandregistration.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,6 +61,7 @@ public class ModifyAnimaisFragment extends Fragment {
         animaisModel = (AnimaisModel) bundle.getSerializable("animais");
 
         databaseHelperAnimais = new DatabaseHelperAnimais(getContext());
+        DatabaseMainHandler db = new DatabaseMainHandler(getContext());
 
         /* BUTTONS */
         btndelete = (Button) view.findViewById(R.id.btndelete);
@@ -63,25 +69,35 @@ public class ModifyAnimaisFragment extends Fragment {
 
         /* SPINNERS */
         etidparcela = (TextView) view.findViewById(R.id.et_idparcela);
+
         spinner_familia = view.findViewById(R.id.spinner_familia);
-        ArrayAdapter<CharSequence> adapter_spinner_familia = ArrayAdapter.createFromResource(getContext(),
-                R.array.familia_tmp, android.R.layout.simple_spinner_item);
+        List<String> familias = new ArrayList<String>();
+        familias.add(0,"SELECIONE");
+        familias.addAll(db.getAllFaunaFamilias());
+        ArrayAdapter<String> adapter_spinner_familia = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, familias);
+
         adapter_spinner_familia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_familia.setTitle("Pesquisar");
         spinner_familia.setPositiveButton("Fechar");
         spinner_familia.setAdapter(adapter_spinner_familia);
 
         spinner_genero = view.findViewById(R.id.spinner_genero);
-        ArrayAdapter<CharSequence> adapter_spinner_genero = ArrayAdapter.createFromResource(getContext(),
-                R.array.genero_tmp, android.R.layout.simple_spinner_item);
+        List<String> generos = new ArrayList<String>();
+        generos.add(0,"SELECIONE");
+        generos.addAll(db.getAllFaunaGeneros());
+        ArrayAdapter<String> adapter_spinner_genero = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, generos);
+
         adapter_spinner_genero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_genero.setTitle("Pesquisar");
         spinner_genero.setPositiveButton("Fechar");
         spinner_genero.setAdapter(adapter_spinner_genero);
 
         spinner_especie = view.findViewById(R.id.spinner_especie);
-        ArrayAdapter<CharSequence> adapter_spinner_especie = ArrayAdapter.createFromResource(getContext(),
-                R.array.especie_tmp, android.R.layout.simple_spinner_item);
+        List<String> especies = new ArrayList<String>();
+        especies.add(0,"SELECIONE");
+        especies.addAll(db.getAllFaunaEspecies());
+        ArrayAdapter<String> adapter_spinner_especie = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, especies);
+
         adapter_spinner_especie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_especie.setTitle("Pesquisar");
         spinner_especie.setPositiveButton("Fechar");
