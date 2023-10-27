@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String KEY_FULL_NAME = "full_name";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
+    private static final String KEY_IDACESSO = "idacesso";
     private static final String KEY_EMPTY = "";
     private EditText etUsername;
     private EditText etPassword;
@@ -123,7 +124,8 @@ public class LoginActivity extends AppCompatActivity {
                             //Check if user got logged in successfully
 
                             if (response.getInt(KEY_STATUS) == 0) {
-                                session.loginUser(username,response.getString(KEY_FULL_NAME));
+                                session.loginUser(username,response.getString(KEY_FULL_NAME),response.getString(KEY_IDACESSO));
+
                                 loadDashboard();
 
                             }else{

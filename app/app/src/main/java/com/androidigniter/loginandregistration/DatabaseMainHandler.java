@@ -248,7 +248,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                list.add("ID: "+cursor.getString(1)+"- Prop: "+cursor.getString(2));//adding 2nd column data
+                list.add(cursor.getString(1)+" - Prop: "+cursor.getString(2));//adding 2nd column data
             } while (cursor.moveToNext());
         }
         // closing connection

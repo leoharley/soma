@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adeel.library.easyFTP;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -48,12 +50,18 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.soma.data.animais.DatabaseHelperAnimais;
 import com.soma.data.arvoresvivas.ModArvoresVivasFragment;
 
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -79,7 +87,8 @@ public class MainFragment extends Fragment {
     private String envia_painel_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/envia_painel.php";
     private AlertDialog alertDialog1;
     private static final String KEY_STATUS = "status";
-    private static final String KEY_REGISTRO_ANIMAIS = "registroanimais";
+    private static final String KEY_IDCONTROLE_ANIMAIS = "idcontroleanimais";
+    private static final String KEY_IDPARCELA_ANIMAIS = "idparcelaanimais";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -132,6 +141,33 @@ public class MainFragment extends Fragment {
             }
         });
 
+        Button btnUploadArquivos = view.findViewById(R.id.btnUploadArquivos);
+        btnUploadArquivos.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas/");
+
+                // get all the files from a directory
+                File[] fList = directory.listFiles();
+                for (File file : fList) {
+                    if (file.isFile()) {
+                        runUploadArquivosInBackground(file.getName());
+
+                    }
+                }
+
+                alertDialog1.dismiss();
+                alertDialog1.setMessage("Atualizando arquivos em background!");
+                alertDialog1.show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        alertDialog1.dismiss();
+                    }
+                }, 2000);
+
+            }
+        });
+
 
         return view;
     }
@@ -172,6 +208,68 @@ public class MainFragment extends Fragment {
                 enviaPainel();
             }
         }).start();
+    }
+
+    void runUploadArquivosInBackground(String nomeArquivo) {
+        alertDialog1.show();
+        if (!isRecursionEnable)
+            // Handle not to start multiple parallel threads
+            return;
+
+        // isRecursionEnable = false; when u want to stop
+        // on exception on thread make it true again
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                uploadTask(nomeArquivo);
+
+
+
+            }
+        }).start();
+    }
+
+    private void uploadTask(String filename) {
+        FTPClient con = null;
+        boolean result = false;
+        String remotePath = "homologacao/testeUpload/";
+        String localPath = "/storage/emulated/0/images/arvoresvivas/";
+
+        try {
+            alertDialog1.setMessage("Enviando arquivos...");
+            alertDialog1.show();
+
+            con = new FTPClient();
+            con.connect("185.211.7.223");
+
+            if (con.login("u699148595.somasustentabilidade.com.br", "%Teste006")) {
+                con.enterLocalPassiveMode(); // important!
+                con.setFileType(FTP.BINARY_FILE_TYPE);
+
+
+                String data = localPath+filename;
+                FTPFile remoteFile = con.mlistFile(remotePath+filename);
+
+                if (remoteFile == null) {
+                    FileInputStream in = new FileInputStream(new File(data));
+                    result = con.storeFile(remotePath + filename, in);
+                    in.close();
+                    if (result) {
+                        alertDialog1.dismiss();
+                        Log.v("upload result", "succeeded");
+                    }
+                } /*else {
+                    alertDialog1.dismiss();
+                } */
+                con.logout();
+                con.disconnect();
+            }
+        } catch (Exception e) {
+            String t="Erro : " + e.getLocalizedMessage();
+        } finally {
+            alertDialog1.dismiss();
+        }
     }
 
     private void atualizaTudoPainel() {
@@ -545,60 +643,65 @@ public class MainFragment extends Fragment {
     private void enviaPainel() {
         alertDialog1.setMessage("Enviando registros para o painel...");
         alertDialog1.show();
-        DatabaseMainHandler db = new DatabaseMainHandler(getContext());
+        DatabaseHelperAnimais db = new DatabaseHelperAnimais(getContext());
 
         JSONObject request = new JSONObject();
         try {
             //Populate the request parameters
-            request.put(KEY_REGISTRO_ANIMAIS, db.getAllParcelas());
+            String[] newArray = new String[db.getAllAnimais().size()];
+            for(int i = 0; i<db.getAllAnimais().size();i++){
+            //    newArray[i]= String.valueOf(db.getAllAnimais().get(0).getetidcontrole());
+                request.put(KEY_IDCONTROLE_ANIMAIS, String.valueOf(db.getAllAnimais().get(i).getetidcontrole()));
+                request.put(KEY_IDPARCELA_ANIMAIS, String.valueOf(db.getAllAnimais().get(i).getetidparcela()));
+
+                JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                        (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                alertDialog1.dismiss();
+                                try {
+                                    //Check if user got registered successfully
+                                    if (response.getInt(KEY_STATUS) == 0) {
+                                        alertDialog1.setMessage("Registros enviados!");
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    } else if (response.getInt(KEY_STATUS) == 2) {
+                                        alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                alertDialog1.setMessage(error.getMessage());
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        alertDialog1.dismiss();
+                                    }
+                                }, 1200);
+                            }
+                        });
+                MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
+                
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        alertDialog1.dismiss();
-                        try {
-                            //Check if user got registered successfully
-                            if (response.getInt(KEY_STATUS) == 0) {
-                                alertDialog1.setMessage("Registros enviados!");
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    public void run() {
-                                        alertDialog1.dismiss();
-                                    }
-                                }, 1200);
-                            } else if (response.getInt(KEY_STATUS) == 2) {
-                                alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    public void run() {
-                                        alertDialog1.dismiss();
-                                    }
-                                }, 1200);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        alertDialog1.setMessage(error.getMessage());
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                alertDialog1.dismiss();
-                            }
-                        }, 1200);
-                    }
-                });
-
-        // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
     }
 
     private void leGPS() {

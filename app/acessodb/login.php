@@ -11,7 +11,7 @@ $input = json_decode($inputJSON, TRUE); //convert JSON into array
 if(isset($input['username']) && isset($input['password'])){
 	$username = $input['username'];
 	$password = $input['password'];
-	$query    = "SELECT cadastro.ds_nome,acesso.ds_senha 
+	$query    = "SELECT cadastro.ds_nome,acesso.ds_senha,acesso.co_seq_acesso
 				 FROM tb_cadastro_pessoa as cadastro 
 				 INNER JOIN tb_acesso as acesso on acesso.co_seq_acesso = cadastro.id_acesso 
 				 WHERE cadastro.nu_cpf = ?";
@@ -19,13 +19,14 @@ if(isset($input['username']) && isset($input['password'])){
 	if($stmt = $con->prepare($query)){
 		$stmt->bind_param("s",$username);
 		$stmt->execute();
-		$stmt->bind_result($fullName,$passwordHashDB);
+		$stmt->bind_result($fullName,$passwordHashDB,$idacesso);
 		if($stmt->fetch()){
 			//Validate the password
 			if(password_verify($password,$passwordHashDB)){
 				$response["status"] = 0;
 				$response["message"] = "Login successful";
 				$response["full_name"] = $fullName;
+				$response["idacesso"] = $idacesso;
 			}
 			else{
 				$response["status"] = 1;
