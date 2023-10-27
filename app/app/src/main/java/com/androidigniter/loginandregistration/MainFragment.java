@@ -639,6 +639,15 @@ public class MainFragment extends Fragment {
         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_familia);
     }
 
+    isset($input['dscategoria']) {
+
+        if ($input['dscategoria'] == 'animais') {
+            //Check for Mandatory parameters
+            if(isset($input['idcontroleanimais']) && isset($input['idparcelaanimais'])
+                    && isset($input['idacesso']) && isset($input['idtpobservacao'])
+                    && isset($input['idclassificacao']) && isset($input['idgrauprotecao'])
+                    && isset($input['latitudecampogd']) && isset($input['longitudecampogd'])
+                
 
     private void enviaPainel() {
         alertDialog1.setMessage("Enviando registros para o painel...");

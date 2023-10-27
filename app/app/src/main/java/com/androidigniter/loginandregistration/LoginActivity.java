@@ -125,9 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (response.getInt(KEY_STATUS) == 0) {
                                 session.loginUser(username,response.getString(KEY_FULL_NAME),response.getString(KEY_IDACESSO));
-
                                 loadDashboard();
-
                             }else{
                                 Toast.makeText(getApplicationContext(),
                                         "Usuário ou senha incorretos.", Toast.LENGTH_SHORT).show();
