@@ -154,7 +154,7 @@ public class MainFragment extends Fragment {
                 for (File file : fList) {
                     if (file.isFile()) {
                         runUploadArquivosInBackground(file.getName());
-                        enviaInfoArquivoPainel("arvoresvivas",file.getName().substring(file.getName().indexOf("-") + 1, file.getName().indexOf(".")),file.getName(), "2023-10-28", "uploads/"+file.getName(),"uploads/"+file.getName());
+                        enviaInfoArquivoPainel("arvoresvivas",file.getName().substring(file.getName().indexOf("-") + 1, file.getName().indexOf(".")),"teste", "2023-10-28", "uploads/"+file.getName(),"uploads/"+file.getName());
                     }
                 }
 
@@ -267,7 +267,7 @@ public class MainFragment extends Fragment {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                alertDialog1.setMessage("AQUI");
+                                alertDialog1.setMessage(error.getMessage());
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
