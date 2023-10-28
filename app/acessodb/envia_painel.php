@@ -57,7 +57,7 @@ if ($input['dscategoria'] == 'animais') {
 		$stmt->execute();
 		$response["status"] = 0;
 		
-		$response["message"] = "Informação de arquivos atualizadas com sucesso!";
+		$response["message"] = $input['name'];
 		$stmt->close();
 	}
 
