@@ -267,7 +267,7 @@ public class MainFragment extends Fragment {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                alertDialog1.setMessage(error.getMessage());
+                                alertDialog1.setMessage("AQUI");
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
