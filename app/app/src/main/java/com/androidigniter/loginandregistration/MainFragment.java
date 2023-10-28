@@ -1,5 +1,7 @@
 package com.androidigniter.loginandregistration;
 
+import static android.text.TextUtils.indexOf;
+import static android.text.TextUtils.substring;
 import static com.androidigniter.loginandregistration.LoginActivity.isRecursionEnable;
 
 import android.Manifest;
@@ -51,7 +53,10 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.soma.data.animais.DatabaseHelperAnimais;
+import com.soma.data.arvoresvivas.DatabaseHelperArvoresVivas;
 import com.soma.data.arvoresvivas.ModArvoresVivasFragment;
+import com.soma.data.epifitas.DatabaseHelperEpifitas;
+import com.soma.data.hidrologia.DatabaseHelperHidrologia;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -87,8 +92,6 @@ public class MainFragment extends Fragment {
     private String envia_painel_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/envia_painel.php";
     private AlertDialog alertDialog1;
     private static final String KEY_STATUS = "status";
-    private static final String KEY_IDCONTROLE_ANIMAIS = "idcontroleanimais";
-    private static final String KEY_IDPARCELA_ANIMAIS = "idparcelaanimais";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -151,11 +154,11 @@ public class MainFragment extends Fragment {
                 for (File file : fList) {
                     if (file.isFile()) {
                         runUploadArquivosInBackground(file.getName());
-
+                        enviaInfoArquivoPainel("arvoresvivas",file.getName().substring(file.getName().indexOf("-") + 1, file.getName().indexOf(".")),"teste", "2023-10-28", "uploads/"+file.getName(),"uploads/"+file.getName());
                     }
                 }
 
-                alertDialog1.dismiss();
+              /*  alertDialog1.dismiss();
                 alertDialog1.setMessage("Atualizando arquivos em background!");
                 alertDialog1.show();
                 Handler handler = new Handler();
@@ -163,7 +166,7 @@ public class MainFragment extends Fragment {
                     public void run() {
                         alertDialog1.dismiss();
                     }
-                }, 2000);
+                }, 2000);*/
 
             }
         });
@@ -192,6 +195,94 @@ public class MainFragment extends Fragment {
                 }
             }
         }).start();
+    }
+
+
+    private void enviaInfoArquivoPainel(String dscategoria, String idcategoria, String description, String date,
+                                        String link, String link_thumb) {
+        alertDialog1.setMessage("Informado dados de arquivo");
+        alertDialog1.show();
+
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+                request.put("name", "teste");
+                request.put("dscategoria", "infoarquivo");
+                request.put("dscategoriatabela", dscategoria);
+                request.put("idcategoria", idcategoria);
+                request.put("description", description);
+                request.put("date", date);
+                request.put("link", link);
+                request.put("linkthumb", link_thumb);
+                request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+
+                JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                        (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    //Check if user got registered successfully
+                                    if (response.getInt(KEY_STATUS) == 0) {
+                                        alertDialog1.setMessage(response.getString("message"));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    } else if (response.getInt(KEY_STATUS) == 2) {
+                                        alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    } else {
+                                        alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    try {
+                                        alertDialog1.setMessage(response.getString("message"));
+                                    } catch (JSONException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                    //   alertDialog1.setMessage("Dados do arquivo informados com sucesso!");
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        public void run() {
+                                            alertDialog1.dismiss();
+                                        }
+                                    }, 1400);
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                alertDialog1.setMessage(error.getMessage());
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        alertDialog1.dismiss();
+                                    }
+                                }, 1200);
+                            }
+                        });
+                MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     void runEnviarPainelInBackground() {
@@ -233,7 +324,7 @@ public class MainFragment extends Fragment {
     private void uploadTask(String filename) {
         FTPClient con = null;
         boolean result = false;
-        String remotePath = "homologacao/testeUpload/";
+        String remotePath = "homologacao/inventario/painel/uploads/";
         String localPath = "/storage/emulated/0/images/arvoresvivas/";
 
         try {
@@ -639,39 +730,271 @@ public class MainFragment extends Fragment {
         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_familia);
     }
 
-    isset($input['dscategoria']) {
-
-        if ($input['dscategoria'] == 'animais') {
-            //Check for Mandatory parameters
-            if(isset($input['idcontroleanimais']) && isset($input['idparcelaanimais'])
-                    && isset($input['idacesso']) && isset($input['idtpobservacao'])
-                    && isset($input['idclassificacao']) && isset($input['idgrauprotecao'])
-                    && isset($input['latitudecampogd']) && isset($input['longitudecampogd'])
-                
-
     private void enviaPainel() {
-        alertDialog1.setMessage("Enviando registros para o painel...");
+        alertDialog1.setMessage("Enviando animais para o painel");
         alertDialog1.show();
+
         DatabaseHelperAnimais db = new DatabaseHelperAnimais(getContext());
 
         JSONObject request = new JSONObject();
         try {
             //Populate the request parameters
-            String[] newArray = new String[db.getAllAnimais().size()];
+            if (db.getAllAnimais().size() == 0) {enviaArvoresVivasPainel();}
             for(int i = 0; i<db.getAllAnimais().size();i++){
-            //    newArray[i]= String.valueOf(db.getAllAnimais().get(0).getetidcontrole());
-                request.put(KEY_IDCONTROLE_ANIMAIS, String.valueOf(db.getAllAnimais().get(i).getetidcontrole()));
-                request.put(KEY_IDPARCELA_ANIMAIS, String.valueOf(db.getAllAnimais().get(i).getetidparcela()));
+                request.put("dscategoria", "animais");
+                request.put("idcontroleanimais", String.valueOf(db.getAllAnimais().get(i).getetidcontrole()));
+                request.put("idparcelaanimais", String.valueOf(db.getAllAnimais().get(i).getetidparcela()));
+                request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+                request.put("idtpobservacao", String.valueOf(db.getAllAnimais().get(i).getettpobservacao()));
+                request.put("idclassificacao", String.valueOf(db.getAllAnimais().get(i).getetclassificacao()));
+                request.put("idgrauprotecao", String.valueOf(db.getAllAnimais().get(i).getetgrauprotecao()));
+                request.put("latitudecampogd", db.getAllAnimais().get(i).getetlatitude());
+                request.put("longitudecampogd", db.getAllAnimais().get(i).getetlongitude());
 
                 JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                         (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                alertDialog1.dismiss();
                                 try {
                                     //Check if user got registered successfully
                                     if (response.getInt(KEY_STATUS) == 0) {
-                                        alertDialog1.setMessage("Registros enviados!");
+                                        alertDialog1.setMessage(response.getString("message"));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                //alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    } else if (response.getInt(KEY_STATUS) == 2) {
+                                        alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                //alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    } else {
+                                        alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                //alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    enviaArvoresVivasPainel();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                alertDialog1.setMessage(error.getMessage());
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        //alertDialog1.dismiss();
+                                    }
+                                }, 1200);
+                            }
+                        });
+                MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
+                
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void enviaArvoresVivasPainel() {
+        alertDialog1.show();
+        alertDialog1.setMessage("Enviando arvores vivas para o painel");
+
+        DatabaseHelperArvoresVivas db = new DatabaseHelperArvoresVivas(getContext());
+
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            if (db.getAllArvoresVivas().size() == 0) {enviaEpifitasPainel();}
+            for(int i = 0; i<db.getAllArvoresVivas().size();i++){
+                request.put("dscategoria", "arvoresvivas");
+                request.put("idcontrolearvoresvivas", db.getAllArvoresVivas().get(i).getetidcontrole());
+                request.put("idparcelaarvoresvivas", db.getAllArvoresVivas().get(i).getetidparcela());
+                request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+                request.put("idgrauprotecao", db.getAllArvoresVivas().get(i).getetgrauprotecao());
+                request.put("latitudecampogd", db.getAllArvoresVivas().get(i).getetlatitude());
+                request.put("longitudecampogd", db.getAllArvoresVivas().get(i).getetlongitude());
+                request.put("nubiomassa", db.getAllArvoresVivas().get(i).getetbiomassa());
+                request.put("identificacao", db.getAllArvoresVivas().get(i).getetidentificado());
+                request.put("nucircunferencia", db.getAllArvoresVivas().get(i).getetcircunferencia());
+                request.put("nualtura", db.getAllArvoresVivas().get(i).getetaltura());
+                request.put("nualturatotal", db.getAllArvoresVivas().get(i).getetalturatotal());
+                request.put("nualturafuste", db.getAllArvoresVivas().get(i).getetalturafuste());
+                request.put("nualturacopa", db.getAllArvoresVivas().get(i).getetalturacopa());
+                request.put("isolada", db.getAllArvoresVivas().get(i).getetisolada());
+                request.put("floracaofrutificacao", db.getAllArvoresVivas().get(i).getetfloracaofrutificacao());
+
+                JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                        (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    //Check if user got registered successfully
+                                    if (response.getInt(KEY_STATUS) == 0) {
+                                        alertDialog1.setMessage(response.getString("message"));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                            //    alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    } else if (response.getInt(KEY_STATUS) == 2) {
+                                        alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                            //    alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    } else {
+                                        alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                             //   alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    enviaEpifitasPainel();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                alertDialog1.setMessage(error.getMessage());
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                    //    alertDialog1.dismiss();
+                                    }
+                                }, 1200);
+                            }
+                        });
+                MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void enviaEpifitasPainel() {
+        alertDialog1.setMessage("Enviando epifitas para o painel");
+
+        DatabaseHelperEpifitas db = new DatabaseHelperEpifitas(getContext());
+
+        JSONObject request = new JSONObject();
+        try {
+            if (db.getAllEpifitas().size() == 0) {enviaHidrologiaPainel();}
+            for(int i = 0; i<db.getAllEpifitas().size();i++){
+                request.put("dscategoria", "epifitas");
+                request.put("idcontrolearvoresvivas", db.getAllEpifitas().get(i).getetidcontrole());
+                request.put("idparcelaarvoresvivas", db.getAllEpifitas().get(i).getetidparcela());
+                request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+                request.put("latitudecampogd", db.getAllEpifitas().get(i).getetlatitude());
+                request.put("longitudecampogd", db.getAllEpifitas().get(i).getetlongitude());
+
+                JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                        (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    //Check if user got registered successfully
+                                    if (response.getInt(KEY_STATUS) == 0) {
+                                        alertDialog1.setMessage(response.getString("message"));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                             //   alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    } else if (response.getInt(KEY_STATUS) == 2) {
+                                        alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                             //   alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    } else {
+                                        alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                            //    alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    enviaHidrologiaPainel();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                alertDialog1.setMessage("AQUI");
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                    //    alertDialog1.dismiss();
+                                    }
+                                }, 1200);
+                            }
+                        });
+                MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void enviaHidrologiaPainel() {
+        alertDialog1.setMessage("Enviando hidrologia para o painel");
+
+        DatabaseHelperHidrologia db = new DatabaseHelperHidrologia(getContext());
+
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            for(int i = 0; i<db.getAllHidrologia().size();i++){
+                request.put("dscategoria", "hidrologia");
+                request.put("idcontrolehidrologia", db.getAllHidrologia().get(i).getetidcontrole());
+                request.put("idparcelahidrologia", db.getAllHidrologia().get(i).getetidparcela());
+                request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+                request.put("descricao", db.getAllHidrologia().get(i).getetdescricao());
+                request.put("latitudecampogd", db.getAllHidrologia().get(i).getetlatitude());
+                request.put("longitudecampogd", db.getAllHidrologia().get(i).getetlongitude());
+
+                JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                        (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    //Check if user got registered successfully
+                                    if (response.getInt(KEY_STATUS) == 0) {
+                                        alertDialog1.setMessage(response.getString("message"));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
@@ -686,13 +1009,28 @@ public class MainFragment extends Fragment {
                                                 alertDialog1.dismiss();
                                             }
                                         }, 1200);
+                                    } else {
+                                        alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                alertDialog1.dismiss();
+                                            }
+                                        }, 1200);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                } finally {
+                                    alertDialog1.setMessage("Enviado com sucesso!");
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        public void run() {
+                                            alertDialog1.dismiss();
+                                        }
+                                    }, 1400);
                                 }
                             }
                         }, new Response.ErrorListener() {
-
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 alertDialog1.setMessage(error.getMessage());
@@ -705,7 +1043,7 @@ public class MainFragment extends Fragment {
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
-                
+
             }
 
         } catch (JSONException e) {

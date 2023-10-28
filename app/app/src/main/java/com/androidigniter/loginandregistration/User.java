@@ -9,6 +9,7 @@ import java.util.Date;
 public class User {
     String username;
     String fullName;
+    String idAcesso;
     Date sessionExpiryDate;
 
     public void setUsername(String username) {
@@ -17,6 +18,10 @@ public class User {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public void setIdAcesso(String idAcesso) {
+        this.idAcesso = idAcesso;
     }
 
     public void setSessionExpiryDate(Date sessionExpiryDate) {
@@ -29,6 +34,10 @@ public class User {
 
     public String getFullName() {
         return fullName;
+    }
+
+    public String getIdAcesso() {
+        return idAcesso;
     }
 
     public Date getSessionExpiryDate() {

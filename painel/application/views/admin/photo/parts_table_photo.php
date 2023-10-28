@@ -23,7 +23,7 @@
      if (preg_match_all('#\b(png|jpg|jpeg)\b#', $photo['link'] )) {
       echo '<img
       src="'. base_url($photo['link_thumb']).'"
-      alt="'.$photo['name'].'"';
+      alt="'.$photo['name'].'" width="5%" height="auto"';
      } else {
       echo '<a href="'.base_url($photo['link']).'">'.$photo['name'].'</a>';
      }

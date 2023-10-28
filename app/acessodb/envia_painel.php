@@ -18,9 +18,9 @@ if (isset($input['dscategoria']) {
 		){
 
 			//Query to register new user
-			$insertQuery  = "INSERT INTO tb_animais(id,id_parcela,id_acesso,id_tipo_observacao,id_classificacao,id_grau_protecao,latitude_campo_gd,longitude_campo_gd) VALUES (?,?,?,?,?,?,?,?)";
+			$insertQuery  = "INSERT INTO tb_animais(id,id_parcela,id_acesso) VALUES (?,?,?)";
 			if($stmt = $con->prepare($insertQuery)){
-				$stmt->bind_param("ssssssss",$input['idcontroleanimais'],strtok($input['idparcelaanimais'], '-'),$input['idacesso'],strtok($input['idtpobservacao'], '-'),strtok($input['idclassificacao'], '-'),strtok($input['idgrauprotecao'], '-'),$input['latitudecampogd'],$input['longitudecampogd']);
+				$stmt->bind_param("sss",$input['idcontroleanimais'],strtok($input['idparcelaanimais'], '-'),$input['idacesso']);
 				$stmt->execute();
 				$response["status"] = 0;
 				$response["message"] = "Registro animais adicionado";

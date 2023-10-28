@@ -32,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String password;
     private String confirmPassword;
     private String fullName;
+    private String idAcesso;
     private ProgressDialog pDialog;
     private String register_url = "http://192.168.0.101/member/register.php";
     private SessionHandler session;
@@ -120,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
                             //Check if user got registered successfully
                             if (response.getInt(KEY_STATUS) == 0) {
                                 //Set the user session
-                                session.loginUser(username,fullName);
+                                session.loginUser(username,fullName,idAcesso);
                                 loadDashboard();
 
                             }else if(response.getInt(KEY_STATUS) == 1){
