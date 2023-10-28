@@ -50,6 +50,17 @@ if ($input['dscategoria'] == 'animais') {
 		$stmt->close();
 	}
 
+} else if ($input['dscategoria'] == 'infoarquivo') {
+    $insertQuery  = "INSERT INTO photos(name,ds_categoria,id_categoria,description,date,link,link_thumb,id_acesso) VALUES (?,?,?,?,?,?,?,?)";
+	if($stmt = $con->prepare($insertQuery)){
+		$stmt->bind_param("ssssssss",$input['name'],$input['dscategoriatabela'],$input['idcategoria'],$input['description'],$input['date'],$input['link'],$input['linkthumb'],$input['idacesso']);
+		$stmt->execute();
+		$response["status"] = 0;
+		
+		$response["message"] = "Informação de arquivos atualizadas com sucesso!";
+		$stmt->close();
+	}
+
 }
 else{
 	$response["status"] = 2;
