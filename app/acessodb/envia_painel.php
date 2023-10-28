@@ -57,7 +57,7 @@ if ($input['dscategoria'] == 'animais') {
 		$stmt->execute();
 		$response["status"] = 0;
 		
-		$response["message"] = $input['name'];
+		$response["message"] = $input['description'];
 		$stmt->close();
 	}
 
