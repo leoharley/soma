@@ -101,10 +101,10 @@
                         <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
-                        <?php echo $registro->latitude_gms ?>
+                        <?php echo $registro->latitude_campo_gd ?>
                       </td>
                       <td>
-                        <?php echo $registro->longitude_gms ?>
+                        <?php echo $registro->longitude_campo_gd ?>
                       </td>
                       <td>
                         <?php echo $registro->nu_biomassa ?>

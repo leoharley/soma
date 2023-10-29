@@ -154,7 +154,6 @@ public class MainFragment extends Fragment {
                 for (File file : fList) {
                     if (file.isFile()) {
                         runUploadArquivosInBackground(file.getName());
-                        enviaInfoArquivoPainel("arvoresvivas",file.getName().substring(file.getName().indexOf("-") + 1, file.getName().indexOf(".")),"teste", "2023-10-28", "uploads/"+file.getName(),"uploads/"+file.getName());
                     }
                 }
 
@@ -198,10 +197,40 @@ public class MainFragment extends Fragment {
     }
 
 
-    private void enviaInfoArquivoPainel(String dscategoria, String idcategoria, String description, String date,
+    private void runUploadArquivosInBackground0() {
+        File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas/");
+
+        // get all the files from a directory
+        File[] fList = directory.listFiles();
+        for (File file : fList) {
+            if (file.isFile()) {
+                runUploadArquivosInBackground(file.getName());
+            }
+        }
+    }
+
+    void enviaInfoArquivoPainel(String dscategoria, String idcategoria, String description, String date,
+                                String link, String link_thumb) {
+      //  alertDialog1.show();
+        if (!isRecursionEnable)
+            // Handle not to start multiple parallel threads
+            return;
+
+        // isRecursionEnable = false; when u want to stop
+        // on exception on thread make it true again
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                enviaInfoArquivoPainel2(dscategoria,idcategoria, description, date,
+                        link, link_thumb);
+            }
+        }).start();
+    }
+
+    private void enviaInfoArquivoPainel2(String dscategoria, String idcategoria, String description, String date,
                                         String link, String link_thumb) {
-        alertDialog1.setMessage("Informado dados de arquivo");
-        alertDialog1.show();
+        /*alertDialog1.setMessage("Informado dados de arquivo");
+        alertDialog1.show();*/
 
         JSONObject request = new JSONObject();
         try {
@@ -223,13 +252,13 @@ public class MainFragment extends Fragment {
                                 try {
                                     //Check if user got registered successfully
                                     if (response.getInt(KEY_STATUS) == 0) {
-                                        alertDialog1.setMessage(response.getString("message"));
+                                        /*alertDialog1.setMessage(response.getString("message"));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
                                                 alertDialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     } else if (response.getInt(KEY_STATUS) == 2) {
                                         alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
@@ -250,7 +279,7 @@ public class MainFragment extends Fragment {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 } finally {
-                                    try {
+                                  /*  try {
                                         alertDialog1.setMessage(response.getString("message"));
                                     } catch (JSONException e) {
                                         throw new RuntimeException(e);
@@ -261,7 +290,7 @@ public class MainFragment extends Fragment {
                                         public void run() {
                                             alertDialog1.dismiss();
                                         }
-                                    }, 1400);
+                                    }, 1400);*/
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -312,11 +341,7 @@ public class MainFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 uploadTask(nomeArquivo);
-
-
-
             }
         }).start();
     }
@@ -338,7 +363,6 @@ public class MainFragment extends Fragment {
                 con.enterLocalPassiveMode(); // important!
                 con.setFileType(FTP.BINARY_FILE_TYPE);
 
-
                 String data = localPath+filename;
                 FTPFile remoteFile = con.mlistFile(remotePath+filename);
 
@@ -347,18 +371,21 @@ public class MainFragment extends Fragment {
                     result = con.storeFile(remotePath + filename, in);
                     in.close();
                     if (result) {
-                        alertDialog1.dismiss();
+                        enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
+                    //    alertDialog1.dismiss();
                         Log.v("upload result", "succeeded");
                     }
-                } /*else {
+                }
+                /*else {
                     alertDialog1.dismiss();
-                } */
+                }*/
                 con.logout();
                 con.disconnect();
             }
         } catch (Exception e) {
             String t="Erro : " + e.getLocalizedMessage();
         } finally {
+            //enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
             alertDialog1.dismiss();
         }
     }
@@ -501,12 +528,13 @@ public class MainFragment extends Fragment {
                                                                                                                         e.printStackTrace();
                                                                                                                     } finally {
                                                                                                                         alertDialog1.setMessage("Tudo atualizado!");
-                                                                                                                        Handler handler = new Handler();
+                                                                                                                      /*  Handler handler = new Handler();
                                                                                                                         handler.postDelayed(new Runnable() {
                                                                                                                             public void run() {
                                                                                                                                 alertDialog1.dismiss();
                                                                                                                             }
-                                                                                                                        }, 1200);
+                                                                                                                        }, 1200);*/
+                                                                                                                        runEnviarPainelInBackground();
                                                                                                                     }
                                                                                                                 }, error -> {
                                                                                                                     Toast.makeText(getContext(),
@@ -994,13 +1022,14 @@ public class MainFragment extends Fragment {
                                 try {
                                     //Check if user got registered successfully
                                     if (response.getInt(KEY_STATUS) == 0) {
-                                        alertDialog1.setMessage(response.getString("message"));
-                                        Handler handler = new Handler();
+                                      //  alertDialog1.setMessage(response.getString("message"));
+                                      /*  Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
                                                 alertDialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
+
                                     } else if (response.getInt(KEY_STATUS) == 2) {
                                         alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
@@ -1021,13 +1050,15 @@ public class MainFragment extends Fragment {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 } finally {
-                                    alertDialog1.setMessage("Enviado com sucesso!");
+                                    alertDialog1.setMessage("Tudo feito! Os arquivos estão atualizando em background.");
+                                   /* alertDialog1.setMessage("Enviado com sucesso!");
                                     Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         public void run() {
                                             alertDialog1.dismiss();
                                         }
-                                    }, 1400);
+                                    }, 1400);*/
+                                    runUploadArquivosInBackground0();
                                 }
                             }
                         }, new Response.ErrorListener() {
