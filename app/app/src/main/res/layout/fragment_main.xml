@@ -75,4 +75,13 @@ Atuante na área da comunicação e sustentabilidade, desenvolvendo projetos de 
         android:layout_centerHorizontal="true"
         android:layout_below="@id/btnAtualizarFlora"
         android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnAtualizarFauna"/>
 </RelativeLayout>

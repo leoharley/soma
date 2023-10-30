@@ -63,6 +63,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -93,11 +94,15 @@ public class MainFragment extends Fragment {
     private AlertDialog alertDialog1;
     private static final String KEY_STATUS = "status";
 
+    private TextView statuslabel;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         leGPS();
+
+        this.statuslabel = view.findViewById(R.id.textView3);
 
        // carregaPainelDB();
 
@@ -116,7 +121,23 @@ public class MainFragment extends Fragment {
         Button btnAtualizarTudo = view.findViewById(R.id.btnAtualizarTudo);
         btnAtualizarTudo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                runInBackground("tudo");
+                //    alertDialog1.show();
+                //    alertDialog1.setMessage("Atualizando parcelas...");
+
+            //    Toast.makeText(getContext(), "ATUALIZANDO", Toast.LENGTH_LONG).show();
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            runInBackground("tudo");
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+                t.start();
+
+
                 // Code here executes on main thread after user presses button
             }
         });
@@ -124,7 +145,11 @@ public class MainFragment extends Fragment {
         Button btnAtualizarFauna = view.findViewById(R.id.btnAtualizarFauna);
         btnAtualizarFauna.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                runInBackground("fauna");
+                try {
+                    runInBackground("fauna");
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 // Code here executes on main thread after user presses button
             }
         });
@@ -132,7 +157,11 @@ public class MainFragment extends Fragment {
         Button btnAtualizarFlora = view.findViewById(R.id.btnAtualizarFlora);
         btnAtualizarFlora.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                runInBackground("flora");
+                try {
+                    runInBackground("flora");
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 // Code here executes on main thread after user presses button
             }
         });
@@ -140,7 +169,11 @@ public class MainFragment extends Fragment {
         Button btnEnviarPainel = view.findViewById(R.id.btnEnviarPainel);
         btnEnviarPainel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                runEnviarPainelInBackground();
+                try {
+                    runEnviarPainelInBackground();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -153,17 +186,21 @@ public class MainFragment extends Fragment {
                 File[] fList = directory.listFiles();
                 for (File file : fList) {
                     if (file.isFile()) {
-                        runUploadArquivosInBackground1(file.getName());
+                        try {
+                            runUploadArquivosInBackground1(file.getName());
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
 
-              /*  alertDialog1.dismiss();
+              /*  //alertdialog1.dismiss();
                 alertDialog1.setMessage("Atualizando arquivos em background!");
                 alertDialog1.show();
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
-                        alertDialog1.dismiss();
+                        //alertdialog1.dismiss();
                     }
                 }, 2000);*/
 
@@ -174,15 +211,16 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-    void runInBackground(String tpAtualizacao) {
-        alertDialog1.show();
+    void runInBackground(String tpAtualizacao) throws InterruptedException {
+        //  alertDialog1.show();
+        //  alertDialog1.setMessage("Processando");
         if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
             return;
 
         // isRecursionEnable = false; when u want to stop
         // on exception on thread make it true again
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 if (tpAtualizacao.equals("tudo")) {
@@ -193,11 +231,15 @@ public class MainFragment extends Fragment {
                     atualizaFloraPainel();
                 }
             }
-        }).start();
+        });
+        t.start();
+        t.join();
+      //  statuslabel.setText("LEO");
+        runEnviarPainelInBackground();
     }
 
     void enviaInfoArquivoPainel(String dscategoria, String idcategoria, String description, String date,
-                                String link, String link_thumb) {
+                                String link, String link_thumb) throws InterruptedException {
       //  alertDialog1.show();
        /* if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
@@ -205,13 +247,18 @@ public class MainFragment extends Fragment {
 
         // isRecursionEnable = false; when u want to stop
         // on exception on thread make it true again
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 enviaInfoArquivoPainel2(dscategoria,idcategoria, description, date,
                         link, link_thumb);
             }
-        }).start();
+        });
+        t.start();
+       /* if (dscategoria == "hidrologia") {
+            t.join();
+            alertDialog1.dismiss();
+        }*/
     }
 
     private void enviaInfoArquivoPainel2(String dscategoria, String idcategoria, String description, String date,
@@ -243,25 +290,25 @@ public class MainFragment extends Fragment {
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                                alertDialog1.dismiss();
+                                                //alertdialog1.dismiss();
                                             }
                                         }, 1200);*/
                                     } else if (response.getInt(KEY_STATUS) == 2) {
-                                        alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                   /*     alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                                alertDialog1.dismiss();
+                                                //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     } else {
-                                        alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                      /*  alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                                alertDialog1.dismiss();
+                                                //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -275,7 +322,7 @@ public class MainFragment extends Fragment {
                                     Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         public void run() {
-                                            alertDialog1.dismiss();
+                                            //alertdialog1.dismiss();
                                         }
                                     }, 1400);*/
                                 }
@@ -283,13 +330,13 @@ public class MainFragment extends Fragment {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                alertDialog1.setMessage(error.getMessage());
+                             /*   alertDialog1.setMessage(error.getMessage());
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                        alertDialog1.dismiss();
+                                        //alertdialog1.dismiss();
                                     }
-                                }, 1200);
+                                }, 1200);*/
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
@@ -301,20 +348,24 @@ public class MainFragment extends Fragment {
         }
     }
 
-    void runEnviarPainelInBackground() {
-        alertDialog1.show();
+    void runEnviarPainelInBackground() throws InterruptedException {
+      //  alertDialog1.show();
         if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
             return;
 
         // isRecursionEnable = false; when u want to stop
         // on exception on thread make it true again
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
+                statuslabel.setText("LEO");
                 enviaPainel();
             }
-        }).start();
+        });
+        t.start();
+        t.join();
+        runUploadArquivosInBackground0();
     }
 
     private void runUploadArquivosInBackground0() {
@@ -336,20 +387,23 @@ public class MainFragment extends Fragment {
 
     }
 
-    void runUploadArquivosInBackground1(String nomeArquivo) {
-        alertDialog1.show();
+    void runUploadArquivosInBackground1(String nomeArquivo) throws InterruptedException {
+    //    alertDialog1.show();
         if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
             return;
 
         // isRecursionEnable = false; when u want to stop
         // on exception on thread make it true again
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 runUploadArquivosInBackground2(nomeArquivo);
             }
-        }).start();
+        });
+        t.start();
+        t.join();
+        enviaInfoArquivoPainel("arvoresvivas",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
     }
 
     private void runUploadArquivosInBackground2(String filename) {
@@ -359,8 +413,8 @@ public class MainFragment extends Fragment {
         String localPath = "/storage/emulated/0/images/arvoresvivas/";
 
         try {
-            alertDialog1.setMessage("Enviando arquivos...");
-            alertDialog1.show();
+         //   alertDialog1.setMessage("Enviando arquivos...");
+         //   alertDialog1.show();
 
             con = new FTPClient();
             con.connect("185.211.7.223");
@@ -377,13 +431,12 @@ public class MainFragment extends Fragment {
                     result = con.storeFile(remotePath + filename, in);
                     in.close();
                     if (result) {
-                        enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
-                    //    alertDialog1.dismiss();
+                    //    //alertdialog1.dismiss();
                         Log.v("upload result", "succeeded");
                     }
                 }
                 /*else {
-                    alertDialog1.dismiss();
+                    //alertdialog1.dismiss();
                 }*/
                 con.logout();
                 con.disconnect();
@@ -392,7 +445,7 @@ public class MainFragment extends Fragment {
             String t="Erro : " + e.getLocalizedMessage();
         } finally {
             //enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
-            alertDialog1.dismiss();
+            //alertdialog1.dismiss();
         }
     }
 
@@ -415,20 +468,23 @@ public class MainFragment extends Fragment {
         }
     }
 
-    void runUploadArquivosInBackground4(String nomeArquivo) {
-        alertDialog1.show();
+    void runUploadArquivosInBackground4(String nomeArquivo) throws InterruptedException {
+    //    alertDialog1.show();
         if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
             return;
 
         // isRecursionEnable = false; when u want to stop
         // on exception on thread make it true again
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 runUploadArquivosInBackground5(nomeArquivo);
             }
-        }).start();
+        });
+        t.start();
+        t.join();
+        enviaInfoArquivoPainel("animais",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
     }
 
     private void runUploadArquivosInBackground5(String filename) {
@@ -438,8 +494,8 @@ public class MainFragment extends Fragment {
         String localPath = "/storage/emulated/0/images/animais/";
 
         try {
-            alertDialog1.setMessage("Enviando arquivos...");
-            alertDialog1.show();
+         //   alertDialog1.setMessage("Enviando arquivos...");
+         //   alertDialog1.show();
 
             con = new FTPClient();
             con.connect("185.211.7.223");
@@ -456,13 +512,12 @@ public class MainFragment extends Fragment {
                     result = con.storeFile(remotePath + filename, in);
                     in.close();
                     if (result) {
-                        enviaInfoArquivoPainel("animais",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
-                        //    alertDialog1.dismiss();
+                        //    //alertdialog1.dismiss();
                         Log.v("upload result", "succeeded");
                     }
                 }
                 /*else {
-                    alertDialog1.dismiss();
+                    //alertdialog1.dismiss();
                 }*/
                 con.logout();
                 con.disconnect();
@@ -471,7 +526,7 @@ public class MainFragment extends Fragment {
             String t="Erro : " + e.getLocalizedMessage();
         } finally {
             //enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
-            alertDialog1.dismiss();
+            //alertdialog1.dismiss();
         }
     }
 
@@ -494,20 +549,23 @@ public class MainFragment extends Fragment {
 
     }
 
-    void runUploadArquivosInBackground7(String nomeArquivo) {
-        alertDialog1.show();
+    void runUploadArquivosInBackground7(String nomeArquivo) throws InterruptedException {
+    //    alertDialog1.show();
         if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
             return;
 
         // isRecursionEnable = false; when u want to stop
         // on exception on thread make it true again
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 runUploadArquivosInBackground8(nomeArquivo);
             }
-        }).start();
+        });
+        t.start();
+        t.join();
+        enviaInfoArquivoPainel("epifitas",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
     }
 
     private void runUploadArquivosInBackground8(String filename) {
@@ -517,8 +575,8 @@ public class MainFragment extends Fragment {
         String localPath = "/storage/emulated/0/images/epifitas/";
 
         try {
-            alertDialog1.setMessage("Enviando arquivos...");
-            alertDialog1.show();
+         //   alertDialog1.setMessage("Enviando arquivos...");
+         //   alertDialog1.show();
 
             con = new FTPClient();
             con.connect("185.211.7.223");
@@ -535,13 +593,12 @@ public class MainFragment extends Fragment {
                     result = con.storeFile(remotePath + filename, in);
                     in.close();
                     if (result) {
-                        enviaInfoArquivoPainel("epifitas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
-                        //    alertDialog1.dismiss();
+                        //    //alertdialog1.dismiss();
                         Log.v("upload result", "succeeded");
                     }
                 }
                 /*else {
-                    alertDialog1.dismiss();
+                    //alertdialog1.dismiss();
                 }*/
                 con.logout();
                 con.disconnect();
@@ -550,7 +607,7 @@ public class MainFragment extends Fragment {
             String t="Erro : " + e.getLocalizedMessage();
         } finally {
             //enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
-            alertDialog1.dismiss();
+            //alertdialog1.dismiss();
         }
     }
 
@@ -568,25 +625,28 @@ public class MainFragment extends Fragment {
         } catch (Exception e) {
             String t="Erro : " + e.getLocalizedMessage();
         } finally {
-            alertDialog1.dismiss();
+            //alertdialog1.dismiss();
         }
 
     }
 
-    void runUploadArquivosInBackground10(String nomeArquivo) {
-        alertDialog1.show();
+    void runUploadArquivosInBackground10(String nomeArquivo) throws InterruptedException {
+    //    alertDialog1.show();
         if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
             return;
 
         // isRecursionEnable = false; when u want to stop
         // on exception on thread make it true again
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 runUploadArquivosInBackground11(nomeArquivo);
             }
-        }).start();
+        });
+        t.start();
+        t.join();
+        enviaInfoArquivoPainel("hidrologia",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
     }
 
     private void runUploadArquivosInBackground11(String filename) {
@@ -596,8 +656,8 @@ public class MainFragment extends Fragment {
         String localPath = "/storage/emulated/0/images/hidrologia/";
 
         try {
-            alertDialog1.setMessage("Enviando arquivos...");
-            alertDialog1.show();
+        //    alertDialog1.setMessage("Enviando arquivos...");
+        //    alertDialog1.show();
 
             con = new FTPClient();
             con.connect("185.211.7.223");
@@ -614,13 +674,12 @@ public class MainFragment extends Fragment {
                     result = con.storeFile(remotePath + filename, in);
                     in.close();
                     if (result) {
-                        enviaInfoArquivoPainel("hidrologia",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
-                        //    alertDialog1.dismiss();
+                        //    //alertdialog1.dismiss();
                         Log.v("upload result", "succeeded");
                     }
                 }
                 /*else {
-                    alertDialog1.dismiss();
+                    //alertdialog1.dismiss();
                 }*/
                 con.logout();
                 con.disconnect();
@@ -628,15 +687,16 @@ public class MainFragment extends Fragment {
         } catch (Exception e) {
             String t="Erro : " + e.getLocalizedMessage();
         } finally {
+//            Toast.makeText(getContext(), "FINALIZOU", Toast.LENGTH_LONG).show();
             //enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
-            alertDialog1.dismiss();
+            //alertdialog1.dismiss();
         }
     }
 
     private void atualizaTudoPainel() {
         DatabaseMainHandler db = new DatabaseMainHandler(getContext());
         SQLiteDatabase db2 = db.getWritableDatabase();
-        alertDialog1.setMessage("Atualizando parcelas...");
+    //    alertDialog1.setMessage("Atualizando parcelas...");
         /*CARREGA PARCELA*/
         JsonArrayRequest jsArrayRequest_parcela = new JsonArrayRequest
                 (Request.Method.POST, painel_parcela_url, null, response -> {
@@ -653,7 +713,9 @@ public class MainFragment extends Fragment {
                     catch (Exception e){
                         e.printStackTrace();
                     } finally {
-                        alertDialog1.setMessage("Atualizando famílias da fauna...");
+                        alertDialog1.show();
+                        alertDialog1.setMessage("Sincronizando...");
+                    //    alertDialog1.setMessage("Atualizando famílias da fauna...");
                         /*CARREGA FAUNA FAMÍLIA*/
                         JsonArrayRequest jsArrayRequest_fauna_familia = new JsonArrayRequest
                                 (Request.Method.POST, painel_fauna_familia_url, null, response2 -> {
@@ -672,7 +734,7 @@ public class MainFragment extends Fragment {
                                     catch (Exception e){
                                         e.printStackTrace();
                                     } finally {
-                                        alertDialog1.setMessage("Atualizando gêneros da fauna...");
+                                    //    alertDialog1.setMessage("Atualizando gêneros da fauna...");
                                         /*CARREGA FAUNA GENERO*/
                                         JsonArrayRequest jsArrayRequest_fauna_genero = new JsonArrayRequest
                                                 (Request.Method.POST, painel_fauna_genero_url, null, response3 -> {
@@ -691,7 +753,7 @@ public class MainFragment extends Fragment {
                                                     catch (Exception e){
                                                         e.printStackTrace();
                                                     } finally {
-                                                        alertDialog1.setMessage("Atualizando espécies da fauna...");
+                                                    //    alertDialog1.setMessage("Atualizando espécies da fauna...");
                                                         /*CARREGA FAUNA ESPECIE*/
                                                         JsonArrayRequest jsArrayRequest_fauna_especie = new JsonArrayRequest
                                                                 (Request.Method.POST, painel_fauna_especie_url, null, response4 -> {
@@ -711,7 +773,7 @@ public class MainFragment extends Fragment {
                                                                     catch (Exception e){
                                                                         e.printStackTrace();
                                                                     } finally {
-                                                                        alertDialog1.setMessage("Atualizando famílias da flora...");
+                                                                    //    alertDialog1.setMessage("Atualizando famílias da flora...");
                                                                         /*CARREGA FLORA FAMÍLIA*/
                                                                         JsonArrayRequest jsArrayRequest_flora_familia = new JsonArrayRequest
                                                                                 (Request.Method.POST, painel_flora_familia_url, null, response5 -> {
@@ -730,7 +792,7 @@ public class MainFragment extends Fragment {
                                                                                     catch (Exception e){
                                                                                         e.printStackTrace();
                                                                                     } finally {
-                                                                                        alertDialog1.setMessage("Atualizando gêneros da flora...");
+                                                                                    //    alertDialog1.setMessage("Atualizando gêneros da flora...");
                                                                                         /*CARREGA FLORA GENERO*/
                                                                                         JsonArrayRequest jsArrayRequest_flora_genero = new JsonArrayRequest
                                                                                                 (Request.Method.POST, painel_flora_genero_url, null, response6 -> {
@@ -749,7 +811,7 @@ public class MainFragment extends Fragment {
                                                                                                     catch (Exception e){
                                                                                                         e.printStackTrace();
                                                                                                     } finally {
-                                                                                                        alertDialog1.setMessage("Atualizando espécies da flora...");
+                                                                                                    //    alertDialog1.setMessage("Atualizando espécies da flora...");
 
                                                                                                         /*CARREGA FLORA ESPECIE*/
                                                                                                         JsonArrayRequest jsArrayRequest_flora_especie = new JsonArrayRequest
@@ -770,14 +832,14 @@ public class MainFragment extends Fragment {
                                                                                                                     catch (Exception e){
                                                                                                                         e.printStackTrace();
                                                                                                                     } finally {
-                                                                                                                        alertDialog1.setMessage("Tudo atualizado!");
+                                                                                                                    //    alertDialog1.setMessage("Tudo atualizado!");
                                                                                                                       /*  Handler handler = new Handler();
                                                                                                                         handler.postDelayed(new Runnable() {
                                                                                                                             public void run() {
-                                                                                                                                alertDialog1.dismiss();
+                                                                                                                                //alertdialog1.dismiss();
                                                                                                                             }
                                                                                                                         }, 1200);*/
-                                                                                                                        runEnviarPainelInBackground();
+                                                                                                                        //runEnviarPainelInBackground();
                                                                                                                     }
                                                                                                                 }, error -> {
                                                                                                                     Toast.makeText(getContext(),
@@ -836,7 +898,7 @@ public class MainFragment extends Fragment {
         DatabaseMainHandler db = new DatabaseMainHandler(getContext());
         SQLiteDatabase db2 = db.getWritableDatabase();
 
-        alertDialog1.setMessage("Atualizando famílias da fauna...");
+    //    alertDialog1.setMessage("Atualizando famílias da fauna...");
         /*CARREGA FAUNA FAMÍLIA*/
         JsonArrayRequest jsArrayRequest_fauna_familia = new JsonArrayRequest
                 (Request.Method.POST, painel_fauna_familia_url, null, response2 -> {
@@ -855,7 +917,7 @@ public class MainFragment extends Fragment {
                     catch (Exception e){
                         e.printStackTrace();
                     } finally {
-                        alertDialog1.setMessage("Atualizando gêneros da fauna...");
+                    //    alertDialog1.setMessage("Atualizando gêneros da fauna...");
                         /*CARREGA FAUNA GENERO*/
                         JsonArrayRequest jsArrayRequest_fauna_genero = new JsonArrayRequest
                                 (Request.Method.POST, painel_fauna_genero_url, null, response3 -> {
@@ -874,7 +936,7 @@ public class MainFragment extends Fragment {
                                     catch (Exception e){
                                         e.printStackTrace();
                                     } finally {
-                                        alertDialog1.setMessage("Atualizando espécies da fauna...");
+                                    //    alertDialog1.setMessage("Atualizando espécies da fauna...");
                                         /*CARREGA FAUNA ESPECIE*/
                                         JsonArrayRequest jsArrayRequest_fauna_especie = new JsonArrayRequest
                                                 (Request.Method.POST, painel_fauna_especie_url, null, response4 -> {
@@ -894,7 +956,7 @@ public class MainFragment extends Fragment {
                                                     catch (Exception e){
                                                         e.printStackTrace();
                                                     } finally {
-                                                        alertDialog1.dismiss();
+                                                        //alertdialog1.dismiss();
                                                     }
                                                 }, error -> {
                                                     Toast.makeText(getContext(),
@@ -922,7 +984,7 @@ public class MainFragment extends Fragment {
         DatabaseMainHandler db = new DatabaseMainHandler(getContext());
         SQLiteDatabase db2 = db.getWritableDatabase();
 
-        alertDialog1.setMessage("Atualizando famílias da flora...");
+    //    alertDialog1.setMessage("Atualizando famílias da flora...");
         /*CARREGA FLORA FAMÍLIA*/
         JsonArrayRequest jsArrayRequest_flora_familia = new JsonArrayRequest
                 (Request.Method.POST, painel_flora_familia_url, null, response5 -> {
@@ -939,7 +1001,7 @@ public class MainFragment extends Fragment {
                     catch (Exception e){
                         e.printStackTrace();
                     } finally {
-                        alertDialog1.setMessage("Atualizando gêneros da flora...");
+                    //    alertDialog1.setMessage("Atualizando gêneros da flora...");
                         /*CARREGA FLORA GENERO*/
                         JsonArrayRequest jsArrayRequest_flora_genero = new JsonArrayRequest
                                 (Request.Method.POST, painel_flora_genero_url, null, response6 -> {
@@ -956,7 +1018,7 @@ public class MainFragment extends Fragment {
                                     catch (Exception e){
                                         e.printStackTrace();
                                     } finally {
-                                        alertDialog1.setMessage("Atualizando espécies da flora...");
+                                    //    alertDialog1.setMessage("Atualizando espécies da flora...");
 
                                         /*CARREGA FLORA ESPECIE*/
                                         JsonArrayRequest jsArrayRequest_flora_especie = new JsonArrayRequest
@@ -975,7 +1037,7 @@ public class MainFragment extends Fragment {
                                                     catch (Exception e){
                                                         e.printStackTrace();
                                                     } finally {
-                                                        alertDialog1.dismiss();
+                                                        //alertdialog1.dismiss();
                                                     }
                                                 }, error -> {
                                                     Toast.makeText(getContext(),
@@ -1002,8 +1064,8 @@ public class MainFragment extends Fragment {
     }
 
     private void enviaPainel() {
-        alertDialog1.setMessage("Enviando animais para o painel");
-        alertDialog1.show();
+     //   alertDialog1.setMessage("Enviando animais para o painel");
+      //  alertDialog1.show();
 
         DatabaseHelperAnimais db = new DatabaseHelperAnimais(getContext());
 
@@ -1029,29 +1091,29 @@ public class MainFragment extends Fragment {
                                 try {
                                     //Check if user got registered successfully
                                     if (response.getInt(KEY_STATUS) == 0) {
-                                        alertDialog1.setMessage(response.getString("message"));
+                                    /*    alertDialog1.setMessage(response.getString("message"));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                                //alertDialog1.dismiss();
+                                                ////alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     } else if (response.getInt(KEY_STATUS) == 2) {
-                                        alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                    /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                                //alertDialog1.dismiss();
+                                                ////alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     } else {
-                                        alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                    /*    alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                                //alertDialog1.dismiss();
+                                                ////alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -1063,13 +1125,13 @@ public class MainFragment extends Fragment {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                alertDialog1.setMessage(error.getMessage());
+                            /*    alertDialog1.setMessage(error.getMessage());
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                        //alertDialog1.dismiss();
+                                        ////alertdialog1.dismiss();
                                     }
-                                }, 1200);
+                                }, 1200);*/
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
@@ -1082,8 +1144,8 @@ public class MainFragment extends Fragment {
     }
 
     private void enviaArvoresVivasPainel() {
-        alertDialog1.show();
-        alertDialog1.setMessage("Enviando arvores vivas para o painel");
+     //   alertDialog1.show();
+     //   alertDialog1.setMessage("Enviando arvores vivas para o painel");
 
         DatabaseHelperArvoresVivas db = new DatabaseHelperArvoresVivas(getContext());
 
@@ -1116,29 +1178,29 @@ public class MainFragment extends Fragment {
                                 try {
                                     //Check if user got registered successfully
                                     if (response.getInt(KEY_STATUS) == 0) {
-                                        alertDialog1.setMessage(response.getString("message"));
+                                    /*    alertDialog1.setMessage(response.getString("message"));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                            //    alertDialog1.dismiss();
+                                            //    //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     } else if (response.getInt(KEY_STATUS) == 2) {
-                                        alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                    /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                            //    alertDialog1.dismiss();
+                                            //    //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     } else {
-                                        alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                    /*    alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                             //   alertDialog1.dismiss();
+                                             //   //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -1149,13 +1211,13 @@ public class MainFragment extends Fragment {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                alertDialog1.setMessage(error.getMessage());
+                            /*    alertDialog1.setMessage(error.getMessage());
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                    //    alertDialog1.dismiss();
+                                    //    //alertdialog1.dismiss();
                                     }
-                                }, 1200);
+                                }, 1200);*/
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
@@ -1168,7 +1230,7 @@ public class MainFragment extends Fragment {
     }
 
     private void enviaEpifitasPainel() {
-        alertDialog1.setMessage("Enviando epifitas para o painel");
+    //    alertDialog1.setMessage("Enviando epifitas para o painel");
 
         DatabaseHelperEpifitas db = new DatabaseHelperEpifitas(getContext());
 
@@ -1190,29 +1252,29 @@ public class MainFragment extends Fragment {
                                 try {
                                     //Check if user got registered successfully
                                     if (response.getInt(KEY_STATUS) == 0) {
-                                        alertDialog1.setMessage(response.getString("message"));
+                                   /*     alertDialog1.setMessage(response.getString("message"));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                             //   alertDialog1.dismiss();
+                                             //   //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     } else if (response.getInt(KEY_STATUS) == 2) {
-                                        alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                    /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                             //   alertDialog1.dismiss();
+                                             //   //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     } else {
-                                        alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                     /*   alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                            //    alertDialog1.dismiss();
+                                            //    //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -1223,13 +1285,13 @@ public class MainFragment extends Fragment {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                alertDialog1.setMessage("AQUI");
+                            /*    alertDialog1.setMessage("AQUI");
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                    //    alertDialog1.dismiss();
+                                    //    //alertdialog1.dismiss();
                                     }
-                                }, 1200);
+                                }, 1200);*/
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
@@ -1242,7 +1304,7 @@ public class MainFragment extends Fragment {
     }
 
     private void enviaHidrologiaPainel() {
-        alertDialog1.setMessage("Enviando hidrologia para o painel");
+      //  alertDialog1.setMessage("Enviando hidrologia para o painel");
 
         DatabaseHelperHidrologia db = new DatabaseHelperHidrologia(getContext());
 
@@ -1269,51 +1331,51 @@ public class MainFragment extends Fragment {
                                       /*  Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                                alertDialog1.dismiss();
+                                                //alertdialog1.dismiss();
                                             }
                                         }, 1200);*/
 
                                     } else if (response.getInt(KEY_STATUS) == 2) {
-                                        alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                    /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                                alertDialog1.dismiss();
+                                                //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     } else {
-                                        alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                    /*    alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                                alertDialog1.dismiss();
+                                                //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 } finally {
-                                    alertDialog1.setMessage("Tudo feito! Os arquivos estão atualizando em background.");
+                                //    alertDialog1.setMessage("Tudo feito! Os arquivos estão atualizando em background.");
                                    /* alertDialog1.setMessage("Enviado com sucesso!");
                                     Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         public void run() {
-                                            alertDialog1.dismiss();
+                                            //alertdialog1.dismiss();
                                         }
                                     }, 1400);*/
-                                    runUploadArquivosInBackground0();
+                                //    runUploadArquivosInBackground0();
                                 }
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                alertDialog1.setMessage(error.getMessage());
+                            /*    alertDialog1.setMessage(error.getMessage());
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                        alertDialog1.dismiss();
+                                        //alertdialog1.dismiss();
                                     }
-                                }, 1200);
+                                }, 1200);*/
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
