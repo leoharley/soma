@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.androidigniter.loginandregistration.R;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -138,6 +144,16 @@ public class ModifyEpifitasFragment extends Fragment {
                         dialog.dismiss();
 
                         databaseHelperEpifitas.deleteTable(epifitasModel.getId());
+
+                        /* APAGA OS ARQUIVOS VINCULADOS */
+                        File dir = new File(Environment.getExternalStorageDirectory()+File.separator+"images/epifitas");
+                        File[] files = dir.listFiles();
+                        for (File file : files) {
+                            if (file.getName().contains("-"+epifitasModel.getetidcontrole())) {
+                                file.delete();
+                            }
+                        }
+
                         Toast.makeText(getContext(), "Apagado com sucesso!", Toast.LENGTH_LONG).show();
                         for (Fragment fragment : getParentFragmentManager().getFragments()) {
                             getParentFragmentManager().beginTransaction().remove(fragment).commit();

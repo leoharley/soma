@@ -153,7 +153,7 @@ public class MainFragment extends Fragment {
                 File[] fList = directory.listFiles();
                 for (File file : fList) {
                     if (file.isFile()) {
-                        runUploadArquivosInBackground(file.getName());
+                        runUploadArquivosInBackground1(file.getName());
                     }
                 }
 
@@ -196,25 +196,12 @@ public class MainFragment extends Fragment {
         }).start();
     }
 
-
-    private void runUploadArquivosInBackground0() {
-        File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas/");
-
-        // get all the files from a directory
-        File[] fList = directory.listFiles();
-        for (File file : fList) {
-            if (file.isFile()) {
-                runUploadArquivosInBackground(file.getName());
-            }
-        }
-    }
-
     void enviaInfoArquivoPainel(String dscategoria, String idcategoria, String description, String date,
                                 String link, String link_thumb) {
       //  alertDialog1.show();
-        if (!isRecursionEnable)
+       /* if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
-            return;
+            return;*/
 
         // isRecursionEnable = false; when u want to stop
         // on exception on thread make it true again
@@ -330,7 +317,26 @@ public class MainFragment extends Fragment {
         }).start();
     }
 
-    void runUploadArquivosInBackground(String nomeArquivo) {
+    private void runUploadArquivosInBackground0() {
+        File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas/");
+
+        try {
+            // get all the files from a directory
+            File[] fList = directory.listFiles();
+            for (File file : fList) {
+                if (file.isFile()) {
+                    runUploadArquivosInBackground1(file.getName());
+                }
+            }
+        } catch (Exception e) {
+            String t="Erro : " + e.getLocalizedMessage();
+        } finally {
+            runUploadArquivosInBackground3();
+        }
+
+    }
+
+    void runUploadArquivosInBackground1(String nomeArquivo) {
         alertDialog1.show();
         if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
@@ -341,12 +347,12 @@ public class MainFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                uploadTask(nomeArquivo);
+                runUploadArquivosInBackground2(nomeArquivo);
             }
         }).start();
     }
 
-    private void uploadTask(String filename) {
+    private void runUploadArquivosInBackground2(String filename) {
         FTPClient con = null;
         boolean result = false;
         String remotePath = "homologacao/inventario/painel/uploads/";
@@ -373,6 +379,243 @@ public class MainFragment extends Fragment {
                     if (result) {
                         enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
                     //    alertDialog1.dismiss();
+                        Log.v("upload result", "succeeded");
+                    }
+                }
+                /*else {
+                    alertDialog1.dismiss();
+                }*/
+                con.logout();
+                con.disconnect();
+            }
+        } catch (Exception e) {
+            String t="Erro : " + e.getLocalizedMessage();
+        } finally {
+            //enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
+            alertDialog1.dismiss();
+        }
+    }
+
+
+    private void runUploadArquivosInBackground3() {
+        File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/animais/");
+
+        try {
+            // get all the files from a directory
+            File[] fList = directory.listFiles();
+            for (File file : fList) {
+                if (file.isFile()) {
+                    runUploadArquivosInBackground4(file.getName());
+                }
+            }
+        } catch (Exception e) {
+            String t="Erro : " + e.getLocalizedMessage();
+        } finally {
+            runUploadArquivosInBackground6();
+        }
+    }
+
+    void runUploadArquivosInBackground4(String nomeArquivo) {
+        alertDialog1.show();
+        if (!isRecursionEnable)
+            // Handle not to start multiple parallel threads
+            return;
+
+        // isRecursionEnable = false; when u want to stop
+        // on exception on thread make it true again
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runUploadArquivosInBackground5(nomeArquivo);
+            }
+        }).start();
+    }
+
+    private void runUploadArquivosInBackground5(String filename) {
+        FTPClient con = null;
+        boolean result = false;
+        String remotePath = "homologacao/inventario/painel/uploads/";
+        String localPath = "/storage/emulated/0/images/animais/";
+
+        try {
+            alertDialog1.setMessage("Enviando arquivos...");
+            alertDialog1.show();
+
+            con = new FTPClient();
+            con.connect("185.211.7.223");
+
+            if (con.login("u699148595.somasustentabilidade.com.br", "%Teste006")) {
+                con.enterLocalPassiveMode(); // important!
+                con.setFileType(FTP.BINARY_FILE_TYPE);
+
+                String data = localPath+filename;
+                FTPFile remoteFile = con.mlistFile(remotePath+filename);
+
+                if (remoteFile == null) {
+                    FileInputStream in = new FileInputStream(new File(data));
+                    result = con.storeFile(remotePath + filename, in);
+                    in.close();
+                    if (result) {
+                        enviaInfoArquivoPainel("animais",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
+                        //    alertDialog1.dismiss();
+                        Log.v("upload result", "succeeded");
+                    }
+                }
+                /*else {
+                    alertDialog1.dismiss();
+                }*/
+                con.logout();
+                con.disconnect();
+            }
+        } catch (Exception e) {
+            String t="Erro : " + e.getLocalizedMessage();
+        } finally {
+            //enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
+            alertDialog1.dismiss();
+        }
+    }
+
+    private void runUploadArquivosInBackground6() {
+        File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/epifitas/");
+
+        try {
+            // get all the files from a directory
+            File[] fList = directory.listFiles();
+            for (File file : fList) {
+                if (file.isFile()) {
+                    runUploadArquivosInBackground7(file.getName());
+                }
+            }
+        } catch (Exception e) {
+            String t="Erro : " + e.getLocalizedMessage();
+        } finally {
+            runUploadArquivosInBackground9();
+        }
+
+    }
+
+    void runUploadArquivosInBackground7(String nomeArquivo) {
+        alertDialog1.show();
+        if (!isRecursionEnable)
+            // Handle not to start multiple parallel threads
+            return;
+
+        // isRecursionEnable = false; when u want to stop
+        // on exception on thread make it true again
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runUploadArquivosInBackground8(nomeArquivo);
+            }
+        }).start();
+    }
+
+    private void runUploadArquivosInBackground8(String filename) {
+        FTPClient con = null;
+        boolean result = false;
+        String remotePath = "homologacao/inventario/painel/uploads/";
+        String localPath = "/storage/emulated/0/images/epifitas/";
+
+        try {
+            alertDialog1.setMessage("Enviando arquivos...");
+            alertDialog1.show();
+
+            con = new FTPClient();
+            con.connect("185.211.7.223");
+
+            if (con.login("u699148595.somasustentabilidade.com.br", "%Teste006")) {
+                con.enterLocalPassiveMode(); // important!
+                con.setFileType(FTP.BINARY_FILE_TYPE);
+
+                String data = localPath+filename;
+                FTPFile remoteFile = con.mlistFile(remotePath+filename);
+
+                if (remoteFile == null) {
+                    FileInputStream in = new FileInputStream(new File(data));
+                    result = con.storeFile(remotePath + filename, in);
+                    in.close();
+                    if (result) {
+                        enviaInfoArquivoPainel("epifitas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
+                        //    alertDialog1.dismiss();
+                        Log.v("upload result", "succeeded");
+                    }
+                }
+                /*else {
+                    alertDialog1.dismiss();
+                }*/
+                con.logout();
+                con.disconnect();
+            }
+        } catch (Exception e) {
+            String t="Erro : " + e.getLocalizedMessage();
+        } finally {
+            //enviaInfoArquivoPainel("arvoresvivas",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
+            alertDialog1.dismiss();
+        }
+    }
+
+    private void runUploadArquivosInBackground9() {
+        File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/hidrologia/");
+
+        try {
+            // get all the files from a directory
+            File[] fList = directory.listFiles();
+            for (File file : fList) {
+                if (file.isFile()) {
+                    runUploadArquivosInBackground10(file.getName());
+                }
+            }
+        } catch (Exception e) {
+            String t="Erro : " + e.getLocalizedMessage();
+        } finally {
+            alertDialog1.dismiss();
+        }
+
+    }
+
+    void runUploadArquivosInBackground10(String nomeArquivo) {
+        alertDialog1.show();
+        if (!isRecursionEnable)
+            // Handle not to start multiple parallel threads
+            return;
+
+        // isRecursionEnable = false; when u want to stop
+        // on exception on thread make it true again
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runUploadArquivosInBackground11(nomeArquivo);
+            }
+        }).start();
+    }
+
+    private void runUploadArquivosInBackground11(String filename) {
+        FTPClient con = null;
+        boolean result = false;
+        String remotePath = "homologacao/inventario/painel/uploads/";
+        String localPath = "/storage/emulated/0/images/hidrologia/";
+
+        try {
+            alertDialog1.setMessage("Enviando arquivos...");
+            alertDialog1.show();
+
+            con = new FTPClient();
+            con.connect("185.211.7.223");
+
+            if (con.login("u699148595.somasustentabilidade.com.br", "%Teste006")) {
+                con.enterLocalPassiveMode(); // important!
+                con.setFileType(FTP.BINARY_FILE_TYPE);
+
+                String data = localPath+filename;
+                FTPFile remoteFile = con.mlistFile(remotePath+filename);
+
+                if (remoteFile == null) {
+                    FileInputStream in = new FileInputStream(new File(data));
+                    result = con.storeFile(remotePath + filename, in);
+                    in.close();
+                    if (result) {
+                        enviaInfoArquivoPainel("hidrologia",filename.substring(filename.indexOf("-") + 1, filename.indexOf(".")),"teste", "2023-10-28", "uploads/"+filename,"uploads/"+filename);
+                        //    alertDialog1.dismiss();
                         Log.v("upload result", "succeeded");
                     }
                 }

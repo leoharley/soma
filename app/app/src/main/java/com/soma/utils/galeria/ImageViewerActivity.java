@@ -49,8 +49,8 @@ public class ImageViewerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Context context = new ContextThemeWrapper(ImageViewerActivity.this, R.style.AppTheme2);
                 MaterialAlertDialogBuilder alertDialogBuilder = new MaterialAlertDialogBuilder(context);
-                alertDialogBuilder.setMessage("Are you sure you want to delete this image ?");
-                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setMessage("Tem certeza que deseja excluir esta imagem?");
+                alertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String[] projection = new String[]{MediaStore.Images.Media._ID};
@@ -66,19 +66,19 @@ public class ImageViewerActivity extends AppCompatActivity {
                                 contentResolver.delete(deleteUri, null, null);
                                 boolean delete1 = new File(finalPath).delete();
                                 Log.e("TAG", delete1 + "");
-                                Toast.makeText(ImageViewerActivity.this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ImageViewerActivity.this, "Apagado com sucesso", Toast.LENGTH_SHORT).show();
                                 finish();
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                Toast.makeText(ImageViewerActivity.this, "Error Deleting Video", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ImageViewerActivity.this, "Erro ao apagar o vídeo", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(ImageViewerActivity.this, "File Not Find", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ImageViewerActivity.this, "Arquivo não encontrado", Toast.LENGTH_SHORT).show();
                         }
                         cursor.close();
                     }
                 });
-                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

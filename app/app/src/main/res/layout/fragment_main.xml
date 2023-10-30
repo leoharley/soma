@@ -31,7 +31,7 @@ Atuante na área da comunicação e sustentabilidade, desenvolvendo projetos de 
         android:id="@+id/btnAtualizarTudo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sincronizar tudo"
+        android:text="Sincronizar com painel"
         android:layout_marginTop="20sp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textView2"/>
@@ -43,7 +43,8 @@ Atuante na área da comunicação e sustentabilidade, desenvolvendo projetos de 
         android:text="Enviar para o painel"
         android:layout_marginTop="10sp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/btnAtualizarTudo"/>
+        android:layout_below="@id/btnAtualizarTudo"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btnUploadArquivos"
@@ -52,7 +53,8 @@ Atuante na área da comunicação e sustentabilidade, desenvolvendo projetos de 
         android:text="Upload de arquivos"
         android:layout_marginTop="10sp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/btnEnviarPainel"/>
+        android:layout_below="@id/btnEnviarPainel"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btnAtualizarFlora"

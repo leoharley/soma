@@ -1,7 +1,7 @@
 <br />
 
 <!-- Table to display all photo -->
-<table class="table table-bordered">
+<table class="">
 
   <tr>
     <th>Id</th>
