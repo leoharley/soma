@@ -499,13 +499,13 @@ class Admin extends BaseController
                     true
                 );
 
-                $this->init_pagination();
+             /*   $this->init_pagination();
 
                 $this->page_items['pagination'] = $this->load->view(
                     'admin/templates/parts_pagination',
                     array('links' => $this->pagination->create_links()),
                     true
-                );
+                );*/
 
                 $this->page_items['ds_categoria'] = $this->uri->segment(2);
                 $this->page_items['id_categoria'] = $this->uri->segment(3);
