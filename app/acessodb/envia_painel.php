@@ -13,7 +13,7 @@ if ($input['dscategoria'] == 'animais') {
 
 	$latitudecampogd  = $input['latitudecampogd'];
 	$longitudecampogd = $input['longitudecampogd'];
-	$result = explode(" ",DDtoDMS_string($latitudecampogd,$longitudecampogd));
+	$result = explode(" ",DDtoDMS_string(38.686290, -47.464092));
 
 	$insertQuery  = "REPLACE INTO tb_animais(id,id_parcela,id_acesso,id_tipo_observacao,id_classificacao,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
