@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void dispatchTakePictureIntent() {
-      /*  Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
@@ -172,9 +172,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
             }
 
-        }*/
+        }
 
-        Intent galleryintent = new Intent(Intent.ACTION_GET_CONTENT, null);
+       /* Intent galleryintent = new Intent(Intent.ACTION_GET_CONTENT, null);
         galleryintent.setType("image/*");
 
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 chooser.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
             }
-        }
+        }*/
 
     }
 
