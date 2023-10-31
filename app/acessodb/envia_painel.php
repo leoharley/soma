@@ -7,6 +7,7 @@ include 'functions.php';
 $inputJSON = file_get_contents('php://input');
 $input = json_decode($inputJSON, TRUE); //convert JSON into array
 
+
 if ($input['dscategoria'] == 'animais') {
 	//	$input['latitudecampogd'] e $input['longitudecampogd']//AQUI SERGIONE, PEGA OS CAMPOS QUE VEM DO APP, TRANSFORMA AQUI PRA GMS E JOGA NOS CAMPOS DE GMS NO PAINEL
 	

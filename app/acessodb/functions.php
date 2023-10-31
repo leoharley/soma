@@ -1,4 +1,6 @@
 <?php
+
+
 $random_salt_length = 32;
 /**
 * Queries the database and checks whether the user already exists
