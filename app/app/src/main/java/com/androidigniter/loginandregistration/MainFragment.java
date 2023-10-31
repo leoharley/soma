@@ -36,6 +36,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -69,7 +70,9 @@ import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetAddress;
 import java.util.List;
 
 /**
@@ -145,7 +148,13 @@ public class MainFragment extends Fragment {
                                 } catch (InterruptedException e) {
                                     throw new RuntimeException(e);
                                 }*/
-                                runUploadArquivosInBackground0();
+
+                              //  runUploadArquivosInBackground0();
+
+                                FTPModel teste = new FTPModel();
+                                teste.connect("186.233.226.4","jelastic-ftp","sqBLJegvoo",21);
+                                //testeuploadftp();
+
                                 //   alertDialog1.dismiss();
                             }
                         }
@@ -533,6 +542,119 @@ public class MainFragment extends Fragment {
         */
     }
 
+    public class FTPModel {
+        public FTPClient mFTPClient = null;
+
+        public boolean connect(String host, String username, String password, int port)
+        {
+            try
+            {
+                return new asyncConnexion(host, username, password, port).execute().get();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public class asyncConnexion extends AsyncTask<Void, Void, Boolean>
+        {
+            private String host;
+            private String username;
+            private String password;
+            private int port;
+
+            asyncConnexion(String host, String username, String password, int port)
+            {
+                this.host = host;
+                this.password = password;
+                this.port = port;
+                this.username = username;
+            }
+
+
+            @Override
+            protected Boolean doInBackground(Void... voids) {
+                try {
+
+                    mFTPClient = new FTPClient();
+                    // connecting to the host
+                    mFTPClient.connect("186.233.226.4", 21);
+
+                    mFTPClient.setSoTimeout(10000);
+                    mFTPClient.enterLocalPassiveMode();
+                    boolean status = mFTPClient.login("jelastic-ftp", "sqBLJegvoo");
+                    if (status) {
+                        mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
+                        mFTPClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+
+                        final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas");
+                        final String remotePath = "tmp/";
+
+                        for (final File fileEntry : folder.listFiles()) {
+                            try {
+                                FileInputStream fs = new FileInputStream(fileEntry);
+                                if (!fileEntry.isDirectory()) {
+                                    String fileName = fileEntry.getName();
+                                    FTPFile remoteFile = mFTPClient.mlistFile(remotePath+fileName);
+                                    if (remoteFile == null) {
+                                        mFTPClient.storeFile(remotePath + fileName, fs);
+                                        fs.close();
+                                    }
+                                }
+                            } catch (Exception e) {
+                                //   Log.i(TAG, "error uploading");
+                            }
+                        }
+                    }
+                    return status;
+
+                } catch (Exception e) {
+                    Log.i("testConnection", "Error: could not connect to host " + host);
+                    e.printStackTrace();
+
+                }
+                return false;
+            }
+        }
+    }
+
+    public void testeuploadftp() {
+        FTPClient ftpClient = new FTPClient();
+        try {
+            System.out.println("GAEL");
+            ftpClient.connect("185.211.7.223", 21);
+
+            ftpClient.setSoTimeout(10000);
+            ftpClient.enterLocalPassiveMode();
+            if (ftpClient.login("u699148595.somasustentabilidade.com.br", "%Teste006")) {
+                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                ftpClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+
+                final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas");
+                final String remotePath = "tmp/";
+
+                for (final File fileEntry : folder.listFiles()) {
+                    try {
+                        FileInputStream fs = new FileInputStream(fileEntry);
+                        if (!fileEntry.isDirectory()) {
+                            String fileName = fileEntry.getName();
+                            System.out.println("GAEL:" + fileName);
+                            ftpClient.storeFile(remotePath+fileName, fs);
+                            fs.close();
+                         //   Log.i(TAG, "sent");
+                        }
+                    } catch (Exception e) {
+                     //   Log.i(TAG, "error uploading");
+                    }
+                }
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
     private void runUploadArquivosInBackground2(String filename) {
         FTPClient con = null;
         boolean result = false;
@@ -547,10 +669,8 @@ public class MainFragment extends Fragment {
             con = new FTPClient();
         //    con.connect("185.211.7.223");
             con.connect("186.233.226.4");
-
          //   if (con.login("u699148595.somasustentabilidade.com.br", "%Teste006")) {
             if (con.login("jelastic-ftp", "sqBLJegvoo")) {
-                System.out.println("CHEGOU AQUI");
                 con.enterLocalPassiveMode(); // important!
                 con.setFileType(FTP.BINARY_FILE_TYPE);
 
