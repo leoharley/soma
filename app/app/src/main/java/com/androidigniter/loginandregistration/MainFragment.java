@@ -7,6 +7,7 @@ import static com.androidigniter.loginandregistration.LoginActivity.isRecursionE
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +28,7 @@ import androidx.core.content.ContextCompat;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.os.ResultReceiver;
 import android.os.storage.StorageManager;
 import android.provider.DocumentsContract;
@@ -93,8 +95,11 @@ public class MainFragment extends Fragment {
     private String envia_painel_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/envia_painel.php";
     private AlertDialog alertDialog1;
     private static final String KEY_STATUS = "status";
+    TextView statuslabel;
 
-    private TextView statuslabel;
+    int counter = 75;
+
+    ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -125,24 +130,39 @@ public class MainFragment extends Fragment {
                 //    alertDialog1.setMessage("Atualizando parcelas...");
 
             //    Toast.makeText(getContext(), "ATUALIZANDO", Toast.LENGTH_LONG).show();
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            runInBackground("tudo");
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+
+                Handler handler = new Handler(Looper.getMainLooper());
+                Thread t = new Thread(String.valueOf(handler.post(
+                        new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                alertDialog1.setMessage("Sincronizando43242..."+counter);
+                                try {
+                                    runInBackground("tudo");
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                //   alertDialog1.dismiss();
+                            }
                         }
-                    }
-                });
+                )));
+
                 t.start();
+                try {
+                    t.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+               // if (!t.isAlive()) alertDialog1.dismiss(); else alertDialog1.show();
 
 
                 // Code here executes on main thread after user presses button
             }
         });
 
-        Button btnAtualizarFauna = view.findViewById(R.id.btnAtualizarFauna);
+      /*  Button btnAtualizarFauna = view.findViewById(R.id.btnAtualizarFauna);
         btnAtualizarFauna.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
@@ -164,7 +184,7 @@ public class MainFragment extends Fragment {
                 }
                 // Code here executes on main thread after user presses button
             }
-        });
+        });*/
 
         Button btnEnviarPainel = view.findViewById(R.id.btnEnviarPainel);
         btnEnviarPainel.setOnClickListener(new View.OnClickListener() {
@@ -212,15 +232,51 @@ public class MainFragment extends Fragment {
     }
 
     void runInBackground(String tpAtualizacao) throws InterruptedException {
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        Thread t = new Thread(String.valueOf(handler.post(
+                new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        alertDialog1.show();
+                        alertDialog1.setMessage("Iniciando a sincronização...");
+                        atualizaTudoPainel();
+                    }
+                }
+        )));
+
+        t.start();
+        //if (!t.isAlive()) alertDialog1.dismiss(); else alertDialog1.show();
+        t.join();
+
+        runEnviarPainelInBackground();
+
+    //    Message msg = new Message();
         //  alertDialog1.show();
         //  alertDialog1.setMessage("Processando");
-        if (!isRecursionEnable)
+     /*   if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
-            return;
+            return;*/
+
+      /*  Handler handler = new Handler(new Handler.Callback() {
+
+            @Override
+            public boolean handleMessage(Message msg) {
+                if(msg.arg1==1)
+                {
+               //     Toast.makeText(getContext(),"TESTE",Toast.LENGTH_LONG).show();
+                }
+                return false;
+            }
+        });*/
 
         // isRecursionEnable = false; when u want to stop
         // on exception on thread make it true again
-        Thread t = new Thread(new Runnable() {
+      /*  Thread t = new Thread(new Runnable() {
+            public Handler mHandler;
+
             @Override
             public void run() {
                 if (tpAtualizacao.equals("tudo")) {
@@ -230,12 +286,17 @@ public class MainFragment extends Fragment {
                 } else if (tpAtualizacao.equals("flora")) {
                     atualizaFloraPainel();
                 }
+
+             //   handler.sendMessage(msg);
             }
+
+
         });
         t.start();
-        t.join();
+        t.join();*/
       //  statuslabel.setText("LEO");
-        runEnviarPainelInBackground();
+
+        //runEnviarPainelInBackground();
     }
 
     void enviaInfoArquivoPainel(String dscategoria, String idcategoria, String description, String date,
@@ -247,14 +308,46 @@ public class MainFragment extends Fragment {
 
         // isRecursionEnable = false; when u want to stop
         // on exception on thread make it true again
-        Thread t = new Thread(new Runnable() {
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        Thread t = new Thread(String.valueOf(handler.post(
+                new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        enviaInfoArquivoPainel2(dscategoria,idcategoria, description, date,
+                                link, link_thumb);
+                        alertDialog1.setMessage("A sincronização estará sendo feita em background...");
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    alertDialog1.dismiss();
+                                }
+                            }, 3400);
+                        //   alertDialog1.dismiss();
+                    }
+                }
+        )));
+
+       // if (!t.isAlive()) alertDialog1.dismiss(); else alertDialog1.show();
+
+        t.start();
+    //    if (!t.isAlive()) alertDialog1.dismiss(); else alertDialog1.show();
+        t.join();
+        /*alertDialog1.dismiss();
+
+
+        enviaInfoArquivoPainel("hidrologia",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);*/
+
+     /*   Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 enviaInfoArquivoPainel2(dscategoria,idcategoria, description, date,
                         link, link_thumb);
             }
         });
-        t.start();
+        t.start();*/
        /* if (dscategoria == "hidrologia") {
             t.join();
             alertDialog1.dismiss();
@@ -330,7 +423,7 @@ public class MainFragment extends Fragment {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                             /*   alertDialog1.setMessage(error.getMessage());
+                             /*   alertDialog1.setMessage("Banco de dados offline!");
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
@@ -350,22 +443,40 @@ public class MainFragment extends Fragment {
 
     void runEnviarPainelInBackground() throws InterruptedException {
       //  alertDialog1.show();
-        if (!isRecursionEnable)
-            // Handle not to start multiple parallel threads
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        Thread t = new Thread(String.valueOf(handler.post(
+                new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        alertDialog1.setMessage("Sincronizando3..."+counter);
+                        enviaPainel();
+                    }
+                }
+        )));
+
+        t.start();
+    //    if (!t.isAlive()) alertDialog1.dismiss(); else alertDialog1.show();
+        t.join();
+
+        runUploadArquivosInBackground0();
+
+      /*  if (!isRecursionEnable)
+
             return;
 
-        // isRecursionEnable = false; when u want to stop
-        // on exception on thread make it true again
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                statuslabel.setText("LEO");
                 enviaPainel();
             }
         });
         t.start();
         t.join();
-        runUploadArquivosInBackground0();
+        runUploadArquivosInBackground0();*/
+
     }
 
     private void runUploadArquivosInBackground0() {
@@ -389,7 +500,27 @@ public class MainFragment extends Fragment {
 
     void runUploadArquivosInBackground1(String nomeArquivo) throws InterruptedException {
     //    alertDialog1.show();
-        if (!isRecursionEnable)
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        Thread t = new Thread(String.valueOf(handler.post(
+                new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        alertDialog1.setMessage("Sincronizando4..."+counter);
+                        runUploadArquivosInBackground2(nomeArquivo);
+                    }
+                }
+        )));
+
+        t.start();
+    //    if (!t.isAlive()) alertDialog1.dismiss(); else alertDialog1.show();
+        t.join();
+
+        enviaInfoArquivoPainel("arvoresvivas",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
+
+       /* if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
             return;
 
@@ -404,6 +535,7 @@ public class MainFragment extends Fragment {
         t.start();
         t.join();
         enviaInfoArquivoPainel("arvoresvivas",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
+        */
     }
 
     private void runUploadArquivosInBackground2(String filename) {
@@ -470,7 +602,26 @@ public class MainFragment extends Fragment {
 
     void runUploadArquivosInBackground4(String nomeArquivo) throws InterruptedException {
     //    alertDialog1.show();
-        if (!isRecursionEnable)
+        Handler handler = new Handler(Looper.getMainLooper());
+        Thread t = new Thread(String.valueOf(handler.post(
+                new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        alertDialog1.setMessage("Sincronizando5..."+counter);
+                        runUploadArquivosInBackground5(nomeArquivo);
+                    }
+                }
+        )));
+
+        t.start();
+    //    if (!t.isAlive()) alertDialog1.dismiss(); else alertDialog1.show();
+        t.join();
+
+        enviaInfoArquivoPainel("animais",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
+
+        /*if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
             return;
 
@@ -485,6 +636,7 @@ public class MainFragment extends Fragment {
         t.start();
         t.join();
         enviaInfoArquivoPainel("animais",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
+         */
     }
 
     private void runUploadArquivosInBackground5(String filename) {
@@ -551,7 +703,27 @@ public class MainFragment extends Fragment {
 
     void runUploadArquivosInBackground7(String nomeArquivo) throws InterruptedException {
     //    alertDialog1.show();
-        if (!isRecursionEnable)
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        Thread t = new Thread(String.valueOf(handler.post(
+                new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        alertDialog1.setMessage("Sincronizando4..."+counter);
+                        runUploadArquivosInBackground8(nomeArquivo);
+                    }
+                }
+        )));
+
+        t.start();
+    //    if (!t.isAlive()) alertDialog1.dismiss(); else alertDialog1.show();
+        t.join();
+
+        enviaInfoArquivoPainel("epifitas",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
+
+       /* if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
             return;
 
@@ -565,7 +737,7 @@ public class MainFragment extends Fragment {
         });
         t.start();
         t.join();
-        enviaInfoArquivoPainel("epifitas",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
+        enviaInfoArquivoPainel("epifitas",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);*/
     }
 
     private void runUploadArquivosInBackground8(String filename) {
@@ -632,7 +804,26 @@ public class MainFragment extends Fragment {
 
     void runUploadArquivosInBackground10(String nomeArquivo) throws InterruptedException {
     //    alertDialog1.show();
-        if (!isRecursionEnable)
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        Thread t = new Thread(String.valueOf(handler.post(
+                new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        alertDialog1.setMessage("Sincronizando6...");
+                        runUploadArquivosInBackground11(nomeArquivo);
+                    }
+                }
+        )));
+
+        t.start();
+        t.join();
+
+        enviaInfoArquivoPainel("hidrologia",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
+
+        /*if (!isRecursionEnable)
             // Handle not to start multiple parallel threads
             return;
 
@@ -646,7 +837,7 @@ public class MainFragment extends Fragment {
         });
         t.start();
         t.join();
-        enviaInfoArquivoPainel("hidrologia",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);
+        enviaInfoArquivoPainel("hidrologia",nomeArquivo.substring(nomeArquivo.indexOf("-") + 1, nomeArquivo.indexOf(".")),"teste", "2023-10-28", "uploads/"+nomeArquivo,"uploads/"+nomeArquivo);*/
     }
 
     private void runUploadArquivosInBackground11(String filename) {
@@ -713,6 +904,7 @@ public class MainFragment extends Fragment {
                     catch (Exception e){
                         e.printStackTrace();
                     } finally {
+                    //    alertDialog1.show();
                         alertDialog1.show();
                         alertDialog1.setMessage("Sincronizando...");
                     //    alertDialog1.setMessage("Atualizando famílias da fauna...");
@@ -843,7 +1035,7 @@ public class MainFragment extends Fragment {
                                                                                                                     }
                                                                                                                 }, error -> {
                                                                                                                     Toast.makeText(getContext(),
-                                                                                                                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                                                                                                                 });
 
                                                                                                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_especie);
@@ -851,7 +1043,7 @@ public class MainFragment extends Fragment {
                                                                                                     }
                                                                                                 }, error -> {
                                                                                                     Toast.makeText(getContext(),
-                                                                                                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                                                                                                 });
 
                                                                                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_genero);
@@ -859,7 +1051,7 @@ public class MainFragment extends Fragment {
                                                                                     }
                                                                                 }, error -> {
                                                                                     Toast.makeText(getContext(),
-                                                                                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                                                                                 });
 
                                                                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_familia);
@@ -867,28 +1059,28 @@ public class MainFragment extends Fragment {
                                                                     }
                                                                 }, error -> {
                                                                     Toast.makeText(getContext(),
-                                                                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                                                                 });
 
                                                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_fauna_especie);
                                                     }
                                                 }, error -> {
                                                     Toast.makeText(getContext(),
-                                                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                                                 });
 
                                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_fauna_genero);
                                     }
                                 }, error -> {
                                     Toast.makeText(getContext(),
-                                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                                 });
 
                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_fauna_familia);
                     }
                 }, error -> {
                     Toast.makeText(getContext(),
-                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                 });
 
         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_parcela);
@@ -960,21 +1152,21 @@ public class MainFragment extends Fragment {
                                                     }
                                                 }, error -> {
                                                     Toast.makeText(getContext(),
-                                                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                                                 });
 
                                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_fauna_especie);
                                     }
                                 }, error -> {
                                     Toast.makeText(getContext(),
-                                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                                 });
 
                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_fauna_genero);
                     }
                 }, error -> {
                     Toast.makeText(getContext(),
-                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                 });
 
         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_fauna_familia);
@@ -1041,7 +1233,7 @@ public class MainFragment extends Fragment {
                                                     }
                                                 }, error -> {
                                                     Toast.makeText(getContext(),
-                                                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                                                 });
 
                                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_especie);
@@ -1049,7 +1241,7 @@ public class MainFragment extends Fragment {
                                     }
                                 }, error -> {
                                     Toast.makeText(getContext(),
-                                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                                 });
 
                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_genero);
@@ -1057,7 +1249,7 @@ public class MainFragment extends Fragment {
                     }
                 }, error -> {
                     Toast.makeText(getContext(),
-                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
                 });
 
         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_familia);
@@ -1125,7 +1317,7 @@ public class MainFragment extends Fragment {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                            /*    alertDialog1.setMessage(error.getMessage());
+                            /*    alertDialog1.setMessage("Banco de dados offline!");
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
@@ -1211,7 +1403,7 @@ public class MainFragment extends Fragment {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                            /*    alertDialog1.setMessage(error.getMessage());
+                            /*    alertDialog1.setMessage("Banco de dados offline!");
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
@@ -1369,7 +1561,7 @@ public class MainFragment extends Fragment {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                            /*    alertDialog1.setMessage(error.getMessage());
+                            /*    alertDialog1.setMessage("Banco de dados offline!");
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
