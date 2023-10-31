@@ -136,12 +136,18 @@ if(!empty($infoHidrologia))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 
+function removeTextAreaWhiteSpace() {
+var myTxtArea = document.getElementById('descricao');
+myTxtArea.value = myTxtArea.value.replace(/^\s*|\s*$/g,'');
+}
+
 function selectElement(id, valueToSelect) {    
     $(id).val(valueToSelect);
     $(id).trigger('change');
     }
 
 $(document).ready(function(){
+    removeTextAreaWhiteSpace();
     $(":input").inputmask();
     
     $("#longitude").inputmask({
