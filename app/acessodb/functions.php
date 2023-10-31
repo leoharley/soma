@@ -56,4 +56,63 @@ function concatPasswordWithSalt($password,$salt){
 	substr($salt,0,$mid - 1).$password.substr($salt,$mid,$random_salt_length - 1);
  
 }
+
+function DMStoDD($deg,$min,$sec)
+{
+
+    // Converting DMS ( Degrees / minutes / seconds ) to decimal format
+    return $deg+((($min*60)+($sec))/3600);
+}    
+
+function DDtoDMS($dec)
+{
+    // Converts decimal format to DMS ( Degrees / minutes / seconds ) 
+    $vars = explode(".",$dec);
+    $deg = $vars[0];
+    $tempma = "0.".$vars[1];
+
+    $tempma = $tempma * 3600;
+    $min = floor($tempma / 60);
+    $sec = $tempma - ($min*60);
+
+    return array("deg"=>$deg,"min"=>$min,"sec"=>$sec);
+}    
+function DDtoDMS_string($latitude=false, $longitude=false)
+{
+    $result = array();
+    
+    # latitude (N or S)
+    if($latitude)
+    {
+        $degrees = DDtoDMS($latitude);
+        
+        # data manipulation (2 digits, round, ...)
+        $degrees['min'] = sprintf('%02d',$degrees['min']);
+        $degrees['sec'] = sprintf('%04.1f',number_format($degrees['sec'], 1));
+        
+        # N or S
+        $north_south = ($degrees['deg'] < 0) ? 'S' : 'N';
+        
+        array_push($result, abs($degrees['deg']).'°'.$degrees['min'].'\''.$degrees['sec'].'"'.$north_south);
+    }
+    
+    # longitude (E or W)
+    if($longitude)
+    {
+        $degrees = DDtoDMS($longitude);
+        
+        # data manipulation (2 digits, round, ...)
+        $degrees['min'] = sprintf('%02d',$degrees['min']);
+        $degrees['sec'] = sprintf('%04.1f',number_format($degrees['sec'], 1));
+        
+        # E or W
+        $east_west = ($degrees['deg'] < 0) ? 'W' : 'E';
+        
+        array_push($result, abs($degrees['deg']).'°'.$degrees['min'].'\''.$degrees['sec'].'"'.$east_west); 
+    }
+    
+    return implode(' ', $result);
+}
+
+
 ?>
