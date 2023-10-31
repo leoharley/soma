@@ -138,7 +138,7 @@ public class MainFragment extends Fragment {
                             @Override
                             public void run()
                             {
-                                alertDialog1.setMessage("Sincronizando43242..."+counter);
+                                alertDialog1.setMessage("Sincronizando...");
                                 try {
                                     runInBackground("tudo");
                                 } catch (InterruptedException e) {
@@ -318,13 +318,6 @@ public class MainFragment extends Fragment {
                     {
                         enviaInfoArquivoPainel2(dscategoria,idcategoria, description, date,
                                 link, link_thumb);
-                        alertDialog1.setMessage("A sincronização estará sendo feita em background...");
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                public void run() {
-                                    alertDialog1.dismiss();
-                                }
-                            }, 3400);
                         //   alertDialog1.dismiss();
                     }
                 }
@@ -451,7 +444,7 @@ public class MainFragment extends Fragment {
                     @Override
                     public void run()
                     {
-                        alertDialog1.setMessage("Sincronizando3..."+counter);
+                        alertDialog1.setMessage("Sincronizando...");
                         enviaPainel();
                     }
                 }
@@ -508,7 +501,7 @@ public class MainFragment extends Fragment {
                     @Override
                     public void run()
                     {
-                        alertDialog1.setMessage("Sincronizando4..."+counter);
+                        alertDialog1.setMessage("Sincronizando...");
                         runUploadArquivosInBackground2(nomeArquivo);
                     }
                 }
@@ -609,7 +602,7 @@ public class MainFragment extends Fragment {
                     @Override
                     public void run()
                     {
-                        alertDialog1.setMessage("Sincronizando5..."+counter);
+                        alertDialog1.setMessage("Sincronizando...");
                         runUploadArquivosInBackground5(nomeArquivo);
                     }
                 }
@@ -711,7 +704,7 @@ public class MainFragment extends Fragment {
                     @Override
                     public void run()
                     {
-                        alertDialog1.setMessage("Sincronizando4..."+counter);
+                        alertDialog1.setMessage("Sincronizando...");
                         runUploadArquivosInBackground8(nomeArquivo);
                     }
                 }
@@ -812,7 +805,7 @@ public class MainFragment extends Fragment {
                     @Override
                     public void run()
                     {
-                        alertDialog1.setMessage("Sincronizando6...");
+                        alertDialog1.setMessage("Sincronizando...");
                         runUploadArquivosInBackground11(nomeArquivo);
                     }
                 }
@@ -905,8 +898,13 @@ public class MainFragment extends Fragment {
                         e.printStackTrace();
                     } finally {
                     //    alertDialog1.show();
-                        alertDialog1.show();
-                        alertDialog1.setMessage("Sincronizando...");
+                        alertDialog1.setMessage("A sincronização estará sendo feita em background...");
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                alertDialog1.dismiss();
+                            }
+                        }, 3400);
                     //    alertDialog1.setMessage("Atualizando famílias da fauna...");
                         /*CARREGA FAUNA FAMÍLIA*/
                         JsonArrayRequest jsArrayRequest_fauna_familia = new JsonArrayRequest
