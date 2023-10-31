@@ -138,12 +138,14 @@ public class MainFragment extends Fragment {
                             @Override
                             public void run()
                             {
+                                alertDialog1.show();
                                 alertDialog1.setMessage("Sincronizando...");
-                                try {
+                             /*   try {
                                     runInBackground("tudo");
                                 } catch (InterruptedException e) {
                                     throw new RuntimeException(e);
-                                }
+                                }*/
+                                runUploadArquivosInBackground0();
                                 //   alertDialog1.dismiss();
                             }
                         }
@@ -534,7 +536,8 @@ public class MainFragment extends Fragment {
     private void runUploadArquivosInBackground2(String filename) {
         FTPClient con = null;
         boolean result = false;
-        String remotePath = "homologacao/inventario/painel/uploads/";
+       // String remotePath = "homologacao/inventario/painel/uploads/";
+        String remotePath = "/tmp/";
         String localPath = "/storage/emulated/0/images/arvoresvivas/";
 
         try {
@@ -542,16 +545,19 @@ public class MainFragment extends Fragment {
          //   alertDialog1.show();
 
             con = new FTPClient();
-            con.connect("185.211.7.223");
+        //    con.connect("185.211.7.223");
+            con.connect("186.233.226.4");
 
-            if (con.login("u699148595.somasustentabilidade.com.br", "%Teste006")) {
+         //   if (con.login("u699148595.somasustentabilidade.com.br", "%Teste006")) {
+            if (con.login("jelastic-ftp", "sqBLJegvoo")) {
+                System.out.println("CHEGOU AQUI");
                 con.enterLocalPassiveMode(); // important!
                 con.setFileType(FTP.BINARY_FILE_TYPE);
 
                 String data = localPath+filename;
                 FTPFile remoteFile = con.mlistFile(remotePath+filename);
 
-                if (remoteFile == null) {
+             //   if (remoteFile == null) {
                     FileInputStream in = new FileInputStream(new File(data));
                     result = con.storeFile(remotePath + filename, in);
                     in.close();
@@ -559,7 +565,7 @@ public class MainFragment extends Fragment {
                     //    //alertdialog1.dismiss();
                         Log.v("upload result", "succeeded");
                     }
-                }
+             //   }
                 /*else {
                     //alertdialog1.dismiss();
                 }*/
