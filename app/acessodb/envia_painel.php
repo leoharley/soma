@@ -38,9 +38,9 @@ if ($input['dscategoria'] == 'animais') {
 	}
 
 } else if ($input['dscategoria'] == 'epifitas') {
-    $insertQuery  = "REPLACE INTO tb_epifitas(id,id_acesso,id_parcela,latitude_campo_gd,longitude_campo_gd) VALUES (?,?,?,?,?)";
+    $insertQuery  = "REPLACE INTO tb_epifitas(id,id_acesso,id_parcela,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("sssss",$input['idcontrolearvoresvivas'],$input['idacesso'],strtok($input['idparcelaarvoresvivas'], '-'),$input['latitudecampogd'],$input['longitudecampogd']);
+		$stmt->bind_param("sssssss",$input['idcontrolearvoresvivas'],$input['idacesso'],strtok($input['idparcelaarvoresvivas'], '-'),$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1]);
 		$stmt->execute();
 		$response["status"] = 0;
 		
@@ -49,9 +49,9 @@ if ($input['dscategoria'] == 'animais') {
 	}
 
 } else if ($input['dscategoria'] == 'hidrologia') {
-    $insertQuery  = "REPLACE INTO tb_hidrologia(id,id_parcela,id_acesso,descricao,latitude_campo_gd,longitude_campo_gd) VALUES (?,?,?,?,?,?)";
+    $insertQuery  = "REPLACE INTO tb_hidrologia(id,id_parcela,id_acesso,descricao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("ssssss",$input['idcontrolehidrologia'],strtok($input['idparcelahidrologia'], '-'),$input['idacesso'],$input['descricao'],$input['latitudecampogd'],$input['longitudecampogd']);
+		$stmt->bind_param("ssssssss",$input['idcontrolehidrologia'],strtok($input['idparcelahidrologia'], '-'),$input['idacesso'],$input['descricao'],$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1]);
 		$stmt->execute();
 		$response["status"] = 0;
 		
