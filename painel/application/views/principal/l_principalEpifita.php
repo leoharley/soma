@@ -67,7 +67,6 @@
                     <th>Id</th>
                     <th>Parcela ID: Propriedade</th>
                     <th>Cadastrado por</th>
-                    <th>Descrição</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
                     <th>Dt. cadastro</th>           
@@ -92,10 +91,10 @@
                         <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
-                        <?php echo $registro->latitude_gms  ?>
+                        <?php echo $registro->latitude_campo_gms  ?>
                       </td>
                       <td>
-                        <?php echo $registro->longitude_gms ?>
+                        <?php echo $registro->longitude_campo_gms ?>
                       </td>
                       <td>
                         <?= ($registro->dt_cadastro == '0000-00-00')?'<font style="color:red;font-weight:bold;">NÃO CADASTRADO

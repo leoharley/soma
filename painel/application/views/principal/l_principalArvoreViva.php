@@ -101,16 +101,16 @@
                         <?php echo $registro->ds_nome ?>
                       </td>
                       <td>
-                        <?php echo $registro->latitude_campo_gd ?>
+                        <?php echo $registro->latitude_campo_gms ?>
                       </td>
                       <td>
-                        <?php echo $registro->longitude_campo_gd ?>
+                        <?php echo $registro->longitude_campo_gms ?>
                       </td>
                       <td>
                         <?php echo $registro->nu_biomassa ?>
                       </td>
                       <td>
-                        <?php echo ($registro->identificacao == 'S')?'Sim':'Não'; ?>
+                        <?php echo ($registro->identificacao == 'Sim')?'Sim':'Não'; ?>
                       </td>
                       <td>
                         <?php echo $registro->nome_grau_protecao ?>
