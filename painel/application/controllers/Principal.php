@@ -430,21 +430,6 @@ class Principal extends BaseController
     function adicionaParcela() 
     {
 
-        //VALIDAÇÃO
-
-        //    $this->form_validation->set_rules('perfil','Role','trim|required|numeric');
-            
-        //    if($this->form_validation->run() == FALSE)
-        //    {
-
-        //        $data['perfis'] = $this->PrincipalModel->carregaPerfisUsuarios();
-        //        $this->global['pageTitle'] = 'SOMA : Adicionar usuário';
-        //        $this->loadViews("c_principalUsuario", $this->global, $data, NULL);
-
-        //    }
-        //    else
-        //{
-
                 $id_propriedade = $this->input->post('id_propriedade');
                 $nu_ano_emissao = $this->input->post('nu_ano_emissao');
                 $id_estagio_regeneracao = $this->input->post('id_estagio_regeneracao');
