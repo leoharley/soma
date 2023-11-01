@@ -311,7 +311,7 @@ function selectElement(id, valueToSelect) {
 $(document).ready(function(){
     $(":input").inputmask();
 
-    $("#longitude").inputmask({
+   /* $("#longitude").inputmask({
     mask: ['99°M9\'P9.99"S', '[1]79°M9\'S9.99"S'],
     definitions: {
       D: {
@@ -355,7 +355,7 @@ $(document).ready(function(){
         cardinality: 1
       }
     }
-  });
+  });*/
 
     $('#id_parcela').select2(
         {
