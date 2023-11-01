@@ -1,5 +1,6 @@
 <?php
 
+
 $id = '';
 $id_propriedade = '';
 $nu_ano_emissao = '';
