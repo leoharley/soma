@@ -145,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         //Display error message whenever an error occurs
                         Toast.makeText(getApplicationContext(),
-                                error.getMessage(), Toast.LENGTH_SHORT).show();
+                                "aqui", Toast.LENGTH_SHORT).show();
 
                     }
                 });

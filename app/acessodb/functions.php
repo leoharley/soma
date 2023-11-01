@@ -108,7 +108,7 @@ function DDtoDMS_string($latitude=false, $longitude=false)
         # E or W
         $east_west = ($degrees['deg'] < 0) ? 'W' : 'E';
         
-        array_push($result, abs($degrees['deg']).'°'.$degrees['min'].'\''.$degrees['sec'].''''.$east_west); 
+        array_push($result, abs($degrees['deg']).'°'.$degrees['min'].'\''.$degrees['sec'].'\'\''.$east_west); 
     }
     
     return implode(' ', $result);
