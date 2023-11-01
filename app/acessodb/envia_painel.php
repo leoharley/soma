@@ -42,7 +42,7 @@ if ($input['dscategoria'] == 'animais') {
 		$stmt->execute();
 		$response["status"] = 0;
 		
-		$response["message"] = $insertQuery;
+		$response["message"] = "Enviado com sucesso!";
 		$stmt->close();
 	}
 
