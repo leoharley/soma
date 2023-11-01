@@ -27,9 +27,9 @@ if ($input['dscategoria'] == 'animais') {
 		$stmt->close();
 	}
 } else if ($input['dscategoria'] == 'arvoresvivas') {
-    $insertQuery  = "REPLACE INTO tb_arvores_vivas(id,id_parcela,id_acesso,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,nu_biomassa,identificacao,nu_circunferencia,nu_altura,nu_altura_total,nu_altura_fuste,nu_altura_copa,isolada,floracao_frutificacao) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $insertQuery  = "REPLACE INTO tb_arvores_vivas(id,id_parcela,id_acesso,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,nu_biomassa,identificacao,nu_circunferencia,nu_altura,nu_altura_total,nu_altura_fuste,nu_altura_copa,isolada,floracao_frutificacao,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("sssssssssssssss",$input['idcontrolearvoresvivas'],strtok($input['idparcelaarvoresvivas'], '-'),$input['idacesso'],strtok($input['idgrauprotecao'], '-'),$input['latitudecampogd'],$input['longitudecampogd'],$input['nubiomassa'],$input['identificacao'],$input['nucircunferencia'],$input['nualtura'],$input['nualturatotal'],$input['nualturafuste'],$input['nualturacopa'],$input['isolada'],$input['floracaofrutificacao']);
+		$stmt->bind_param("sssssssssssssssss",$input['idcontrolearvoresvivas'],strtok($input['idparcelaarvoresvivas'], '-'),$input['idacesso'],strtok($input['idgrauprotecao'], '-'),$input['latitudecampogd'],$input['longitudecampogd'],$input['nubiomassa'],$input['identificacao'],$input['nucircunferencia'],$input['nualtura'],$input['nualturatotal'],$input['nualturafuste'],$input['nualturacopa'],$input['isolada'],$input['floracaofrutificacao'],$result[0],$result[1]);
 		$stmt->execute();
 		$response["status"] = 0;
 		
@@ -38,9 +38,9 @@ if ($input['dscategoria'] == 'animais') {
 	}
 
 } else if ($input['dscategoria'] == 'epifitas') {
-    $insertQuery  = "REPLACE INTO tb_epifitas(id,id_acesso,id_parcela,latitude_campo_gd,longitude_campo_gd) VALUES (?,?,?,?,?)";
+    $insertQuery  = "REPLACE INTO tb_epifitas(id,id_acesso,id_parcela,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("sssss",$input['idcontrolearvoresvivas'],$input['idacesso'],strtok($input['idparcelaarvoresvivas'], '-'),$input['latitudecampogd'],$input['longitudecampogd']);
+		$stmt->bind_param("sssssss",$input['idcontrolearvoresvivas'],$input['idacesso'],strtok($input['idparcelaarvoresvivas'], '-'),$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1]);
 		$stmt->execute();
 		$response["status"] = 0;
 		
@@ -49,9 +49,9 @@ if ($input['dscategoria'] == 'animais') {
 	}
 
 } else if ($input['dscategoria'] == 'hidrologia') {
-    $insertQuery  = "REPLACE INTO tb_hidrologia(id,id_parcela,id_acesso,descricao,latitude_campo_gd,longitude_campo_gd) VALUES (?,?,?,?,?,?)";
+    $insertQuery  = "REPLACE INTO tb_hidrologia(id,id_parcela,id_acesso,descricao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("ssssss",$input['idcontrolehidrologia'],strtok($input['idparcelahidrologia'], '-'),$input['idacesso'],$input['descricao'],$input['latitudecampogd'],$input['longitudecampogd']);
+		$stmt->bind_param("ssssssss",$input['idcontrolehidrologia'],strtok($input['idparcelahidrologia'], '-'),$input['idacesso'],$input['descricao'],$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1]);
 		$stmt->execute();
 		$response["status"] = 0;
 		

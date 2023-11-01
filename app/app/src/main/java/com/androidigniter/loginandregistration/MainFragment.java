@@ -1629,13 +1629,13 @@ public class MainFragment extends Fragment {
                                 try {
                                     //Check if user got registered successfully
                                     if (response.getInt(KEY_STATUS) == 0) {
-                                        alertDialog1.setMessage(response.getString("message"));
+                                   /*     alertDialog1.setMessage(response.getString("message"));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
                                              //   //alertdialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 1200);*/
                                     } else if (response.getInt(KEY_STATUS) == 2) {
                                     /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
