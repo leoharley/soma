@@ -116,7 +116,7 @@ if(!empty($infoAnimal))
                                                 foreach ($infoFamiliasFauna as $familia)
                                                 {
                                                     ?>
-                                                <option value="<?php echo $familia->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $familia->id  == $id_familia) { echo 'selected'; } ?> disabled>
+                                                <option value="<?php echo $familia->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $familia->id  == $id_familia) { echo 'selected'; } ?>>
                                                     <?php echo $familia->id.' - '.$familia->nome ?>
                                                 </option>
                                                 <?php
