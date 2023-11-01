@@ -108,7 +108,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
-                                        <select id="id_familia" name="id_familia" disabled>
+                                        <select id="id_familia" name="id_familia">
                                             <option></option>
                                             <?php
                                             if(!empty($infoFamiliasFauna))
@@ -116,7 +116,7 @@ if(!empty($infoAnimal))
                                                 foreach ($infoFamiliasFauna as $familia)
                                                 {
                                                     ?>
-                                                <option value="<?php echo $familia->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $familia->id  == $id_familia) { echo 'selected'; } ?>>
+                                                <option value="<?php echo $familia->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $familia->id  == $id_familia) { echo 'selected'; } ?> disabled>
                                                     <?php echo $familia->id.' - '.$familia->nome ?>
                                                 </option>
                                                 <?php
