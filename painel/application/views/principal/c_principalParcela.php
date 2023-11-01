@@ -13,6 +13,9 @@ $biomassa_vegetacao_total = '';
 $biomassa_arbustiva = '';
 $biomassa_hectare = '';
 $carbono_total = '';
+$latitude = '';
+$longitude = '';
+
 
 if ($this->uri->segment(2) == 'editar') {
 if(!empty($infoParcela))
@@ -33,6 +36,9 @@ if(!empty($infoParcela))
         $biomassa_arbustiva = $r->biomassa_arbustiva;
         $biomassa_hectare = $r->biomassa_hectare;
         $carbono_total = $r->carbono_total;
+        $latitude = $r->latitude_gms;
+        $longitude = $r->longitude_gms;
+		
     }
 }
 }
@@ -276,7 +282,21 @@ if(!empty($infoParcela))
                                         <label for="carbono_total">Carbono total</label>
                                         <input type="text" class="form-control required 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_total') : $carbono_total; ?>" id="carbono_total" name="carbono_total">
                                     </div>
-                                </div>                                
+                                </div>   
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="latitude">Latitude</label>
+                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude">
+                                        <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="longitude">Longitude</label>
+                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
+                                    </div>
+                                </div>								
+								
                             </div>                                                     
 
                         </div>
@@ -309,6 +329,58 @@ if(!empty($infoParcela))
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
+	
+    $(":input").inputmask();
+    
+    $("#longitude").inputmask({
+    mask: ['99°M9\'P9.99"S', '[1]79°M9\'S9.99"S'],
+    definitions: {
+      D: {
+        validator: '[nN|sS]',
+        cardinality: 1,
+        casing: 'upper'
+      },
+      M: {
+        validator: '[0-5]',
+        cardinality: 1
+      },
+      P: {
+        validator: '[0-5]',
+        cardinality: 1
+      },
+      7: {
+        validator: '[0-7]',
+        cardinality: 1
+      }
+    }
+    });
+
+        $("#latitude").inputmask({
+        mask: '89°M9\'P9.99"O',
+        definitions: {
+        D: {
+            validator: '[eE|oO]',
+            cardinality: 1,
+            casing: 'upper'
+        },
+        M: {
+            validator: '[0-5]',
+            cardinality: 1
+        },
+        P: {
+            validator: '[0-5]',
+            cardinality: 1
+        },
+        8: {
+            validator: '[0-8]',
+            cardinality: 1
+        }
+        }
+    });
+	
+	
+	
+	
     $(".2decimais").inputmask({
         alias: "decimal",
         digits: "2",

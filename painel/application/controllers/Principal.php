@@ -457,12 +457,19 @@ class Principal extends BaseController
                 $biomassa_arbustiva = $this->input->post('biomassa_arbustiva');
                 $biomassa_hectare = $this->input->post('biomassa_hectare');
                 $carbono_total = $this->input->post('carbono_total');
+				
+				$latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
+				$longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
+				
+				$latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
+				$longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
+
                 
                 $infoParcela = array('id_acesso'=> $this->session->userdata('userId'), 'id_propriedade'=> $id_propriedade,
                 'nu_ano_emissao'=>$nu_ano_emissao,'id_estagio_regeneracao'=>$id_estagio_regeneracao, 'id_grau_epifitismo'=>$id_grau_epifitismo,
                 'id_tipo_bioma'=>$id_tipo_bioma,'id_tipo_parcela'=>$id_tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
                 'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
-                'carbono_total'=>$carbono_total, 'st_registro_ativo'=>'S');
+                'carbono_total'=>$carbono_total, 'latitude_gms'=>$latitude, 'longitude_gms'=>$longitude, 'latitude_gd'=>$latitude_gd,'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                                     
                 $resultado = $this->PrincipalModel->adicionaParcela($infoParcela);
                 
@@ -500,12 +507,23 @@ class Principal extends BaseController
             $biomassa_arbustiva = $this->input->post('biomassa_arbustiva');
             $biomassa_hectare = $this->input->post('biomassa_hectare');
             $carbono_total = $this->input->post('carbono_total');
-            
+  
+			$latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
+			$longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
+
+
+			$latitude_gd = ($this->DMStoDD(strtok($latitude, '°'),$this->get_string_between($latitude, '°', '\''),$this->get_string_between($latitude, '\'', '.')));
+			$longitude_gd = ($this->DMStoDD(strtok($longitude, '°'),$this->get_string_between($longitude, '°', '\''),$this->get_string_between($longitude, '\'', '.')));
+
+
+
+
+  
             $infoParcela = array('id_acesso'=> $this->session->userdata('userId'), 'id_propriedade'=> $id_propriedade,
             'nu_ano_emissao'=>$nu_ano_emissao,'id_estagio_regeneracao'=>$id_estagio_regeneracao, 'id_grau_epifitismo'=>$id_grau_epifitismo,
             'id_tipo_bioma'=>$id_tipo_bioma,'id_tipo_parcela'=>$id_tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
             'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
-            'carbono_total'=>$carbono_total, 'st_registro_ativo'=>'S');
+            'carbono_total'=>$carbono_total, 'latitude_gms'=>$latitude, 'longitude_gms'=>$longitude, 'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                 
             
             
