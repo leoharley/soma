@@ -76,7 +76,7 @@ if(!empty($infoAnimal))
                                                 foreach ($infoParcelas as $parcela)
                                                 {
                                                     ?>
-                                                <option value="<?php echo $parcela->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $parcela->id  == $id_parcela) { echo 'selected'; } ?>>
+                                                <option value="<?php echo $parcela->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $parcela->id  == $id_parcela) { echo 'selected'; } ?> disabled>
                                                     <?php echo 'Parcela ID: '.$parcela->id.' / Propriedade: '.$parcela->no_propriedade ?>
                                                 </option>
                                                 <?php
@@ -108,7 +108,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
-                                        <select id="id_familia" name="id_familia">
+                                        <select id="id_familia" name="id_familia" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoFamiliasFauna))
@@ -133,7 +133,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
-                                        <select id="id_genero" name="id_genero">
+                                        <select id="id_genero" name="id_genero" disabled>
                                         <option></option>
                                         </select>
                                     </div>
@@ -142,7 +142,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_especie">Espécie</label>                                    
-                                        <select id="id_especie" name="id_especie">
+                                        <select id="id_especie" name="id_especie" disabled>
                                         <option></option>
                                         </select>
                                     </div>
@@ -154,7 +154,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_tipo_observacao">Tipo de observação</label>
-                                        <select id="id_tipo_observacao" name="id_tipo_observacao">
+                                        <select id="id_tipo_observacao" name="id_tipo_observacao" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoTiposObservacao))
