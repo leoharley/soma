@@ -360,8 +360,6 @@ public class MainFragment extends Fragment {
 
     private void enviaInfoArquivoPainel2(String dscategoria, String idcategoria, String description, String date,
                                         String link, String link_thumb) {
-        /*alertDialog1.setMessage("Informado dados de arquivo");
-        alertDialog1.show();*/
 
         JSONObject request = new JSONObject();
         try {
@@ -380,66 +378,13 @@ public class MainFragment extends Fragment {
                         (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                try {
-                                    //Check if user got registered successfully
-                                    if (response.getInt(KEY_STATUS) == 0) {
-                                        /*alertDialog1.setMessage(response.getString("message"));
-                                        Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                //alertdialog1.dismiss();
-                                            }
-                                        }, 1200);*/
-                                    } else if (response.getInt(KEY_STATUS) == 2) {
-                                   /*     alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
-                                        Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                //alertdialog1.dismiss();
-                                            }
-                                        }, 1200);*/
-                                    } else {
-                                      /*  alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
-                                        Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                                //alertdialog1.dismiss();
-                                            }
-                                        }, 1200);*/
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                } finally {
-                                  /*  try {
-                                        alertDialog1.setMessage(response.getString("message"));
-                                    } catch (JSONException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    //   alertDialog1.setMessage("Dados do arquivo informados com sucesso!");
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        public void run() {
-                                            //alertdialog1.dismiss();
-                                        }
-                                    }, 1400);*/
-                                }
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                             /*   alertDialog1.setMessage("Banco de dados offline!");
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    public void run() {
-                                        //alertdialog1.dismiss();
-                                    }
-                                }, 1200);*/
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
-
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -466,9 +411,56 @@ public class MainFragment extends Fragment {
         t.join();
 
         new upload_arvoresvivas().execute();
+
+        final File folder_arvores_vivas = new File(Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas");
+
+        for (final File fileEntry : folder_arvores_vivas.listFiles()) {
+            try {
+                String fileName = fileEntry.getName();
+                enviaInfoArquivoPainel2("arvoresvivas", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
+                } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         new upload_animais().execute();
+
+        final File folder_animais = new File(Environment.getExternalStorageDirectory()+File.separator+"images/animais");
+
+        for (final File fileEntry : folder_animais.listFiles()) {
+            try {
+                String fileName = fileEntry.getName();
+                enviaInfoArquivoPainel2("animais", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         new upload_epifitas().execute();
+
+        final File folder_epifitas = new File(Environment.getExternalStorageDirectory()+File.separator+"images/epifitas");
+
+        for (final File fileEntry : folder_epifitas.listFiles()) {
+            try {
+                String fileName = fileEntry.getName();
+                enviaInfoArquivoPainel2("epifitas", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         new upload_hidrologia().execute();
+
+        final File folder_hidrologia= new File(Environment.getExternalStorageDirectory()+File.separator+"images/hidrologia");
+
+        for (final File fileEntry : folder_hidrologia.listFiles()) {
+            try {
+                String fileName = fileEntry.getName();
+                enviaInfoArquivoPainel2("hidrologia", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
       //  runUploadArquivosInBackground0();
 
       /*  if (!isRecursionEnable)
@@ -613,6 +605,7 @@ public class MainFragment extends Fragment {
                             FileInputStream fs = new FileInputStream(fileEntry);
                             if (!fileEntry.isDirectory()) {
                                 String fileName = fileEntry.getName();
+                                enviaInfoArquivoPainel2("animais",fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")),"teste", "2023-10-28", "uploads/"+fileName,"uploads/"+fileName);
                                 mFTPClient.storeFile(remotePath + fileName, fs);
                                 fs.close();
                             }
@@ -655,6 +648,7 @@ public class MainFragment extends Fragment {
                             FileInputStream fs = new FileInputStream(fileEntry);
                             if (!fileEntry.isDirectory()) {
                                 String fileName = fileEntry.getName();
+                                enviaInfoArquivoPainel2("epifitas",fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")),"teste", "2023-10-28", "uploads/"+fileName,"uploads/"+fileName);
                                 mFTPClient.storeFile(remotePath + fileName, fs);
                                 fs.close();
                             }
@@ -697,6 +691,7 @@ public class MainFragment extends Fragment {
                             FileInputStream fs = new FileInputStream(fileEntry);
                             if (!fileEntry.isDirectory()) {
                                 String fileName = fileEntry.getName();
+                                enviaInfoArquivoPainel2("hidrologia",fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")),"teste", "2023-10-28", "uploads/"+fileName,"uploads/"+fileName);
                                 mFTPClient.storeFile(remotePath + fileName, fs);
                                 fs.close();
                             }

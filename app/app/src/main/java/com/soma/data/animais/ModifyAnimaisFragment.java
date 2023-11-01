@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.androidigniter.loginandregistration.R;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,6 +172,16 @@ public class ModifyAnimaisFragment extends Fragment {
                         dialog.dismiss();
 
                         databaseHelperAnimais.deleteTable(animaisModel.getId());
+
+                        /* APAGA OS ARQUIVOS VINCULADOS */
+                        File dir = new File(Environment.getExternalStorageDirectory()+File.separator+"images/animais");
+                        File[] files = dir.listFiles();
+                        for (File file : files) {
+                            if (file.getName().contains("-"+animaisModel.getetidcontrole())) {
+                                file.delete();
+                            }
+                        }
+
                         Toast.makeText(getContext(), "Apagado com sucesso!", Toast.LENGTH_LONG).show();
                         for (Fragment fragment : getParentFragmentManager().getFragments()) {
                             getParentFragmentManager().beginTransaction().remove(fragment).commit();
