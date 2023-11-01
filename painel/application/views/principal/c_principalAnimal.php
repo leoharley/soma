@@ -76,7 +76,7 @@ if(!empty($infoAnimal))
                                                 foreach ($infoParcelas as $parcela)
                                                 {
                                                     ?>
-                                                <option value="<?php echo $parcela->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $parcela->id  == $id_parcela) { echo 'selected'; } ?> disabled>
+                                                <option value="<?php echo $parcela->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $parcela->id  == $id_parcela) { echo 'selected'; } ?>>
                                                     <?php echo 'Parcela ID: '.$parcela->id.' / Propriedade: '.$parcela->no_propriedade ?>
                                                 </option>
                                                 <?php
