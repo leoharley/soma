@@ -99,6 +99,7 @@ public class MainFragment extends Fragment {
     private AlertDialog alertDialog1;
     private static final String KEY_STATUS = "status";
     TextView statuslabel;
+    public FTPClient mFTPClient = null;
 
     int counter = 75;
 
@@ -143,16 +144,15 @@ public class MainFragment extends Fragment {
                             {
                                 alertDialog1.show();
                                 alertDialog1.setMessage("Sincronizando...");
-                             /*   try {
+                                try {
                                     runInBackground("tudo");
                                 } catch (InterruptedException e) {
                                     throw new RuntimeException(e);
-                                }*/
+                                }
 
                               //  runUploadArquivosInBackground0();
 
-                                FTPModel teste = new FTPModel();
-                                teste.connect("186.233.226.4","jelastic-ftp","sqBLJegvoo",21);
+
                                 //testeuploadftp();
 
                                 //   alertDialog1.dismiss();
@@ -465,7 +465,11 @@ public class MainFragment extends Fragment {
     //    if (!t.isAlive()) alertDialog1.dismiss(); else alertDialog1.show();
         t.join();
 
-        runUploadArquivosInBackground0();
+        new upload_arvoresvivas().execute();
+        new upload_animais().execute();
+        new upload_epifitas().execute();
+        new upload_hidrologia().execute();
+      //  runUploadArquivosInBackground0();
 
       /*  if (!isRecursionEnable)
 
@@ -542,118 +546,175 @@ public class MainFragment extends Fragment {
         */
     }
 
-    public class FTPModel {
-        public FTPClient mFTPClient = null;
 
-        public boolean connect(String host, String username, String password, int port)
-        {
-            try
-            {
-                return new asyncConnexion(host, username, password, port).execute().get();
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
+    public class upload_arvoresvivas extends AsyncTask<String, Void, Void> {
 
-        public class asyncConnexion extends AsyncTask<Void, Void, Boolean>
-        {
-            private String host;
-            private String username;
-            private String password;
-            private int port;
+        @Override
+        protected Void doInBackground(String... params) {
+                mFTPClient = new FTPClient();
+            try {
+                // connecting to the host
+                mFTPClient.connect("185.211.7.223", 21);
 
-            asyncConnexion(String host, String username, String password, int port)
-            {
-                this.host = host;
-                this.password = password;
-                this.port = port;
-                this.username = username;
-            }
+                mFTPClient.setSoTimeout(10000);
+                mFTPClient.enterLocalPassiveMode();
+                boolean status = mFTPClient.login("u699148595.somasustentabilidade.com.br", "%Teste006");
+                if (status) {
+                    mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
+                    mFTPClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
 
+                    final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas");
+                    final String remotePath = "homologacao/inventario/painel/uploads/";
 
-            @Override
-            protected Boolean doInBackground(Void... voids) {
-                try {
-
-                    mFTPClient = new FTPClient();
-                    // connecting to the host
-                    mFTPClient.connect("186.233.226.4", 21);
-
-                    mFTPClient.setSoTimeout(10000);
-                    mFTPClient.enterLocalPassiveMode();
-                    boolean status = mFTPClient.login("jelastic-ftp", "sqBLJegvoo");
-                    if (status) {
-                        mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
-                        mFTPClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
-
-                        final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas");
-                        final String remotePath = "tmp/";
-
-                        for (final File fileEntry : folder.listFiles()) {
-                            try {
-                                FileInputStream fs = new FileInputStream(fileEntry);
-                                if (!fileEntry.isDirectory()) {
-                                    String fileName = fileEntry.getName();
-                                    FTPFile remoteFile = mFTPClient.mlistFile(remotePath+fileName);
-                                    if (remoteFile == null) {
-                                        mFTPClient.storeFile(remotePath + fileName, fs);
-                                        fs.close();
-                                    }
-                                }
-                            } catch (Exception e) {
-                                //   Log.i(TAG, "error uploading");
+                    for (final File fileEntry : folder.listFiles()) {
+                        try {
+                            FileInputStream fs = new FileInputStream(fileEntry);
+                            if (!fileEntry.isDirectory()) {
+                                String fileName = fileEntry.getName();
+                                mFTPClient.storeFile(remotePath + fileName, fs);
+                                fs.close();
                             }
+                        } catch (Exception e) {
+                            //   Log.i(TAG, "error uploading");
                         }
                     }
-                    return status;
-
-                } catch (Exception e) {
-                    Log.i("testConnection", "Error: could not connect to host " + host);
-                    e.printStackTrace();
-
                 }
-                return false;
+
+            } catch (Exception e) {
+                Log.i("testConnection", "Error: could not connect to host ");
+                e.printStackTrace();
+
             }
+            return null;
         }
     }
 
-    public void testeuploadftp() {
-        FTPClient ftpClient = new FTPClient();
-        try {
-            System.out.println("GAEL");
-            ftpClient.connect("185.211.7.223", 21);
+    public class upload_animais extends AsyncTask<String, Void, Void> {
 
-            ftpClient.setSoTimeout(10000);
-            ftpClient.enterLocalPassiveMode();
-            if (ftpClient.login("u699148595.somasustentabilidade.com.br", "%Teste006")) {
-                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-                ftpClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+        @Override
+        protected Void doInBackground(String... params) {
+            mFTPClient = new FTPClient();
+            try {
+                // connecting to the host
+                mFTPClient.connect("185.211.7.223", 21);
 
-                final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas");
-                final String remotePath = "tmp/";
+                mFTPClient.setSoTimeout(10000);
+                mFTPClient.enterLocalPassiveMode();
+                boolean status = mFTPClient.login("u699148595.somasustentabilidade.com.br", "%Teste006");
+                if (status) {
+                    mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
+                    mFTPClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
 
-                for (final File fileEntry : folder.listFiles()) {
-                    try {
-                        FileInputStream fs = new FileInputStream(fileEntry);
-                        if (!fileEntry.isDirectory()) {
-                            String fileName = fileEntry.getName();
-                            System.out.println("GAEL:" + fileName);
-                            ftpClient.storeFile(remotePath+fileName, fs);
-                            fs.close();
-                         //   Log.i(TAG, "sent");
+                    final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/animais");
+                    final String remotePath = "homologacao/inventario/painel/uploads/";
+
+                    for (final File fileEntry : folder.listFiles()) {
+                        try {
+                            FileInputStream fs = new FileInputStream(fileEntry);
+                            if (!fileEntry.isDirectory()) {
+                                String fileName = fileEntry.getName();
+                                mFTPClient.storeFile(remotePath + fileName, fs);
+                                fs.close();
+                            }
+                        } catch (Exception e) {
+                            //   Log.i(TAG, "error uploading");
                         }
-                    } catch (Exception e) {
-                     //   Log.i(TAG, "error uploading");
                     }
                 }
+
+            } catch (Exception e) {
+                Log.i("testConnection", "Error: could not connect to host ");
+                e.printStackTrace();
+
             }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            return null;
         }
     }
+
+    public class upload_epifitas extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... params) {
+            mFTPClient = new FTPClient();
+            try {
+                // connecting to the host
+                mFTPClient.connect("185.211.7.223", 21);
+
+                mFTPClient.setSoTimeout(10000);
+                mFTPClient.enterLocalPassiveMode();
+                boolean status = mFTPClient.login("u699148595.somasustentabilidade.com.br", "%Teste006");
+                if (status) {
+                    mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
+                    mFTPClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+
+                    final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/epifitas");
+                    final String remotePath = "homologacao/inventario/painel/uploads/";
+
+                    for (final File fileEntry : folder.listFiles()) {
+                        try {
+                            FileInputStream fs = new FileInputStream(fileEntry);
+                            if (!fileEntry.isDirectory()) {
+                                String fileName = fileEntry.getName();
+                                mFTPClient.storeFile(remotePath + fileName, fs);
+                                fs.close();
+                            }
+                        } catch (Exception e) {
+                            //   Log.i(TAG, "error uploading");
+                        }
+                    }
+                }
+
+            } catch (Exception e) {
+                Log.i("testConnection", "Error: could not connect to host ");
+                e.printStackTrace();
+
+            }
+            return null;
+        }
+    }
+
+    public class upload_hidrologia extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... params) {
+            mFTPClient = new FTPClient();
+            try {
+                // connecting to the host
+                mFTPClient.connect("185.211.7.223", 21);
+
+                mFTPClient.setSoTimeout(10000);
+                mFTPClient.enterLocalPassiveMode();
+                boolean status = mFTPClient.login("u699148595.somasustentabilidade.com.br", "%Teste006");
+                if (status) {
+                    mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
+                    mFTPClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+
+                    final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/hidrologia");
+                    final String remotePath = "homologacao/inventario/painel/uploads/";
+
+                    for (final File fileEntry : folder.listFiles()) {
+                        try {
+                            FileInputStream fs = new FileInputStream(fileEntry);
+                            if (!fileEntry.isDirectory()) {
+                                String fileName = fileEntry.getName();
+                                mFTPClient.storeFile(remotePath + fileName, fs);
+                                fs.close();
+                            }
+                        } catch (Exception e) {
+                            //   Log.i(TAG, "error uploading");
+                        }
+                    }
+                }
+
+            } catch (Exception e) {
+                Log.i("testConnection", "Error: could not connect to host ");
+                e.printStackTrace();
+
+            }
+            return null;
+        }
+    }
+
 
     private void runUploadArquivosInBackground2(String filename) {
         FTPClient con = null;
@@ -1568,13 +1629,13 @@ public class MainFragment extends Fragment {
                                 try {
                                     //Check if user got registered successfully
                                     if (response.getInt(KEY_STATUS) == 0) {
-                                   /*     alertDialog1.setMessage(response.getString("message"));
+                                        alertDialog1.setMessage(response.getString("message"));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
                                              //   //alertdialog1.dismiss();
                                             }
-                                        }, 1200);*/
+                                        }, 1200);
                                     } else if (response.getInt(KEY_STATUS) == 2) {
                                     /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
