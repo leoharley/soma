@@ -19,7 +19,11 @@ if ($input['dscategoria'] == 'animais') {
 
 	$insertQuery  = "REPLACE INTO tb_animais(id,id_parcela,id_acesso,id_tipo_observacao,id_classificacao,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
+<<<<<<< HEAD
 		$stmt->bind_param("ssssssssss",$input['idcontroleanimais'],strtok($input['idparcelaanimais'], '-'),$input['idacesso'],strtok($input['idtpobservacao'], '-'),strtok($input['idclassificacao'], '-'),strtok($input['idgrauprotecao'], '-'),$input['latitudecampogd'] ,$input['longitudecampogd'],$result[0],$result[1]);
+=======
+		$stmt->bind_param("ssssssss",$input['idcontroleanimais'],strtok($input['idparcelaanimais'], '-'),$input['idacesso'],strtok($input['idtpobservacao'], '-'),strtok($input['idclassificacao'], '-'),strtok($input['idgrauprotecao'], '-'),$input['latitudecampogd'] ,$input['longitudecampogd'],$result[0],$result[1]);
+>>>>>>> f8722d7cf7031d04216840a4053f1ea160228c2f
 		$stmt->execute();
 		$response["status"] = 0;
 		
@@ -44,7 +48,7 @@ if ($input['dscategoria'] == 'animais') {
 		$stmt->execute();
 		$response["status"] = 0;
 		
-		$response["message"] = $input['idcontrolearvoresvivas'];
+		$response["message"] = "Enviado com sucesso!";
 		$stmt->close();
 	}
 
