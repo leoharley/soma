@@ -108,7 +108,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
-                                        <select id="id_familia" name="id_familia">
+                                        <select id="id_familia" name="id_familia" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoFamiliasFauna))
@@ -175,7 +175,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_classificacao">Classificação</label>
-                                        <select id="id_classificacao" name="id_classificacao">
+                                        <select id="id_classificacao" name="id_classificacao" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoFaunaClassificacoes))
@@ -199,7 +199,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_grau_protecao">Grau de proteção</label>
-                                        <select id="id_grau_protecao" name="id_grau_protecao">
+                                        <select id="id_grau_protecao" name="id_grau_protecao" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoGrausProtecao))
