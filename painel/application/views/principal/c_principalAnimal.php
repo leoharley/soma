@@ -68,7 +68,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_parcela">Parcela</label>
-                                        <select id="id_parcela" name="id_parcela">
+                                        <select id="id_parcela" name="id_parcela" disabled>
                                             <option></option>                                         
                                             <?php
                                             if(!empty($infoParcelas))
