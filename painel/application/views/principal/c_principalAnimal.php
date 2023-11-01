@@ -90,7 +90,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="latitude">Latitude</label>
-                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude">
+                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude" disabled>
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="longitude">Longitude</label>
-                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
+                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude" disabled>
                                     </div>
                                 </div>
                             
@@ -252,7 +252,7 @@ function selectElement(id, valueToSelect) {
     }
 
 $(document).ready(function(){
-    $("#longitude").inputmask({
+    /*$("#longitude").inputmask({
     mask: ['99°M9\'P9.99"S', '[1]79°M9\'S9.99"S'],
     definitions: {
       D: {
@@ -296,7 +296,7 @@ $(document).ready(function(){
         cardinality: 1
       }
     }
-  });
+  });*/
 
     $('#id_parcela').select2(
         {
