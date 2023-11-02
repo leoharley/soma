@@ -18,8 +18,11 @@ if(!empty($infoEpifita))
         $latitude = $r->latitude_campo_gms;
         $longitude = $r->longitude_campo_gms;
         $id_familia = $r->id_familia;
+        $no_familia = $r->no_familia;
         $id_genero = $r->id_genero;
+        $no_genero = $r->no_genero;
         $id_especie = $r->id_especie;
+        $no_especie = $r->no_especie;
     }
 }
 }
@@ -86,7 +89,7 @@ if(!empty($infoEpifita))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="latitude">Latitude</label>
-                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude">
+                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude" disabled>
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
@@ -97,15 +100,22 @@ if(!empty($infoEpifita))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="longitude">Longitude</label>
-                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
+                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude" disabled>
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_familia">Família</label>
+                                        <input type="text" class="form-control required" id="id_familia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_familia') : $id_familia.' - '.$no_familia; ?>" name="id_familia" disabled>
+                                    </div>
+                                </div>
+                                <!--<div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
                                         <select id="id_familia" name="id_familia" required>
                                             <option></option>
-                                            <?php
+                                            <?php/*
                                             if(!empty($infoFamilias))
                                             {
                                                 foreach ($infoFamilias as $familia)
@@ -116,21 +126,36 @@ if(!empty($infoEpifita))
                                                 </option>
                                                 <?php
                                                 }
-                                            }
+                                            }*/
                                             ?>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="row">
+
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_genero">Gênero</label>
+                                        <input type="text" class="form-control required" id="id_genero" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_genero') : $id_genero.' - '.$no_genero; ?>" name="id_genero" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_especie">Espécie</label>
+                                        <input type="text" class="form-control required" id="id_especie" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_especie') : $id_especie.' - '.$no_especie; ?>" name="id_especie" disabled>
+                                    </div>
+                                </div>
+                                
+                                <!--<div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero" required>
                                             <option></option>
                                             <?php
-                                            if(!empty($infoGeneros))
+                                            /*if(!empty($infoGeneros))
                                             {
                                                 foreach ($infoGeneros as $genero)
                                                 {
@@ -140,7 +165,7 @@ if(!empty($infoEpifita))
                                                 </option>
                                                 <?php
                                                 }
-                                            }
+                                            }*/
                                             ?>
                                         </select>
                                     </div>
@@ -153,7 +178,7 @@ if(!empty($infoEpifita))
                                             <option></option>
                                         </select>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>                     
 
                         </div>
@@ -193,7 +218,7 @@ function selectElement(id, valueToSelect) {
 $(document).ready(function(){
     $(":input").inputmask();
     
-    $("#longitude").inputmask({
+   /* $("#longitude").inputmask({
     mask: ['99°M9\'P9.99"S', '[1]79°M9\'S9.99"S'],
     definitions: {
       D: {
@@ -237,7 +262,7 @@ $(document).ready(function(){
             cardinality: 1
         }
         }
-    });
+    });*/
 
     $('#id_parcela').select2(
         {
@@ -245,7 +270,7 @@ $(document).ready(function(){
         }
     );
 
-    $('#id_familia').select2(
+  /*  $('#id_familia').select2(
         {
             placeholder: "SELECIONE"
         }
@@ -265,7 +290,7 @@ $(document).ready(function(){
 
     var idFamilia = $('#id_familia').val();
         $.ajax({
-            url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+            url: '<?php //echo base_url(); ?>consultaGenero/'+idFamilia,
             type: "GET",
             dataType: "json",
             success:function(data) {
@@ -282,7 +307,7 @@ $(document).ready(function(){
             var idFamilia = $(this).val();
             if(idFamilia) {
                 $.ajax({
-                    url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+                    url: '<?php //echo base_url(); ?>consultaGenero/'+idFamilia,
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
@@ -303,7 +328,7 @@ $(document).ready(function(){
 
     var idGenero = $('#id_genero').val();
         $.ajax({
-            url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+            url: '<?php //echo base_url(); ?>consultaEspecie/'+idGenero,
             type: "GET",
             dataType: "json",
             success:function(data) {
@@ -323,7 +348,7 @@ $(document).ready(function(){
             var idGenero = $(this).val();
             if(idGenero) {
                 $.ajax({
-                    url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+                    url: '<?php //echo base_url(); ?>consultaEspecie/'+idGenero,
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
@@ -345,11 +370,11 @@ $(document).ready(function(){
     });
 
     setTimeout(function(){
-        selectElement('#id_genero', '<?php echo $id_genero ?>');
+        selectElement('#id_genero', '<?php //echo $id_genero ?>');
     }, 200);
     setTimeout(function(){
-        selectElement('#id_especie', '<?php echo $id_especie ?>');
-    }, 200); 
+        selectElement('#id_especie', '<?php //echo $id_especie ?>');
+    }, 200); */
 
 });
 

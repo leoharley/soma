@@ -82,7 +82,7 @@ if(!empty($infoHidrologia))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="latitude">Latitude</label>
-                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude">
+                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude" disabled>
                                     </div>
                                 </div>                                
                             </div>
@@ -91,14 +91,14 @@ if(!empty($infoHidrologia))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="longitude">Longitude</label>
-                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
+                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude" disabled>
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-6">
                                 <label for="descricao">Descrição</label>
                                     <div class="form-group">                                        
-                                        <textarea id="descricao" name="descricao" rows="5" cols="41" style="text-align:left;resize: none;">
+                                        <textarea id="descricao" name="descricao" rows="5" cols="41" style="text-align:left;resize: none;" disabled>
                                         <?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('descricao') : $descricao; ?>
                                         </textarea>
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />

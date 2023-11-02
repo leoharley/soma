@@ -472,9 +472,12 @@ class PrincipalModel extends CI_Model
 
     function carregaInfoArvoreViva($IdArvoreViva)
     {
-        $this->db->select('ArvoresVivas.*,Rl.id_familia,Rl.id_genero,Rl.id_especie');
+        $this->db->select('ArvoresVivas.*,Rl.id_familia,Rl.id_genero,Rl.id_especie,floraFamilia.nome as no_familia,floraGenero.nome as no_genero,floraEspecie.nome as no_especie');
         $this->db->from('tb_arvores_vivas as ArvoresVivas');
         $this->db->join('rl_flora_familia_genero_especie as Rl', 'Rl.id_arvores_vivas = ArvoresVivas.id','left'); 
+        $this->db->join('tb_flora_familia as floraFamilia', 'floraFamilia.id = Rl.id_familia','left');
+        $this->db->join('tb_flora_genero as floraGenero', 'floraGenero.id = Rl.id_genero','left');
+        $this->db->join('tb_flora_especie as floraEspecie', 'floraEspecie.id = Rl.id_especie','left');
         $this->db->where('ArvoresVivas.id', $IdArvoreViva);
         $query = $this->db->get();
         
@@ -483,9 +486,12 @@ class PrincipalModel extends CI_Model
 
     function carregaInfoEpifita($IdEpifita)
     {
-        $this->db->select('Epifitas.*,Rl.id_familia,Rl.id_genero,Rl.id_especie');
+        $this->db->select('Epifitas.*,Rl.id_familia,Rl.id_genero,Rl.id_especie,epifitaFamilia.nome as no_familia,epifitaGenero.nome as no_genero,epifitaEspecie.nome as no_especie');
         $this->db->from('tb_epifitas as Epifitas');
-        $this->db->join('rl_epifitas_familia_genero_especie as Rl', 'Rl.id_epifitas = Epifitas.id','left'); 
+        $this->db->join('rl_epifitas_familia_genero_especie as Rl', 'Rl.id_epifitas = Epifitas.id','left');
+        $this->db->join('tb_flora_familia as epifitaFamilia', 'epifitaFamilia.id = Rl.id_familia','left');
+        $this->db->join('tb_flora_genero as epifitaGenero', 'epifitaGenero.id = Rl.id_genero','left');
+        $this->db->join('tb_flora_especie as epifitaEspecie', 'epifitaEspecie.id = Rl.id_especie','left');
         $this->db->where('Epifitas.id', $IdEpifita);
         $query = $this->db->get();
         

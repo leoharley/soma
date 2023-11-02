@@ -28,8 +28,11 @@ if(!empty($infoArvoreViva))
         $latitude = $r->latitude_campo_gms;
         $longitude = $r->longitude_campo_gms;
         $id_familia = $r->id_familia;
+        $no_familia = $r->no_familia;
         $id_genero = $r->id_genero;
+        $no_genero = $r->no_genero;
         $id_especie = $r->id_especie;
+        $no_especie = $r->no_especie;
         $nu_biomassa = $r->nu_biomassa;
         $identificacao = $r->identificacao;
         $id_grau_protecao = $r->id_grau_protecao;
@@ -84,7 +87,7 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_parcela">Parcela</label>
-                                        <select id="id_parcela" name="id_parcela">
+                                        <select id="id_parcela" name="id_parcela" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoParcelas))
@@ -106,7 +109,7 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="latitude">Latitude</label>
-                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude">
+                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude" disabled>
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />
                                     </div>
                                 </div>
@@ -117,17 +120,23 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="longitude">Longitude</label>
-                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude">
+                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude" disabled>
                                     </div>
                                 </div>
                             
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
+                                        <input type="text" class="form-control required" id="id_familia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_familia') : $id_familia.' - '.$no_familia; ?>" name="id_familia" disabled>
+                                    </div>
+                                </div>
+                               <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_familia">Família</label>
                                         <select id="id_familia" name="id_familia">   
                                             <option></option>
                                             <?php
-                                            if(!empty($infoFamilias))
+                                            /*if(!empty($infoFamilias))
                                             {
                                                 foreach ($infoFamilias as $familia)
                                                 {
@@ -137,22 +146,37 @@ if(!empty($infoArvoreViva))
                                                 </option>
                                                 <?php
                                                 }
-                                            }
+                                            }*/
                                             ?>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
 
                             <div class="row">
+
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_genero">Gênero</label>
+                                        <input type="text" class="form-control required" id="id_genero" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_genero') : $id_genero.' - '.$no_genero; ?>" name="id_genero" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_especie">Espécie</label>
+                                        <input type="text" class="form-control required" id="id_especie" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_especie') : $id_especie.' - '.$no_especie; ?>" name="id_especie" disabled>
+                                    </div>
+                                </div>
+                                
+                              <!--  <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero">
                                             <option></option>
                                             <?php
-                                            if(!empty($infoGeneros))
+                                            /*if(!empty($infoGeneros))
                                             {
                                                 foreach ($infoGeneros as $genero)
                                                 {
@@ -162,7 +186,7 @@ if(!empty($infoArvoreViva))
                                                 </option>
                                                 <?php
                                                 }
-                                            }
+                                            }*/
                                             ?>
                                         </select>
                                     </div>
@@ -175,7 +199,7 @@ if(!empty($infoArvoreViva))
                                             <option></option>
                                         </select>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                                                     
 
@@ -183,13 +207,13 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_biomassa">Biomassa</label>
-                                        <input type="text" class="form-control" id="nu_biomassa" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_biomassa') : $nu_biomassa; ?>" name="nu_biomassa">
+                                        <input type="text" class="form-control" id="nu_biomassa" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_biomassa') : $nu_biomassa; ?>" name="nu_biomassa" disabled>
                                     </div>
                                 </div>                              
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="identificacao">Identificado?</label>
-                                        <select id="identificacao" name="identificacao">
+                                        <select id="identificacao" name="identificacao" disabled>
                                             <option></option>
                                             <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $identificacao == 'Sim') { echo 'selected'; } ?>>Sim</option>
                                             <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $identificacao == 'Não') { echo 'selected'; } ?>>Não</option>
@@ -202,7 +226,7 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_grau_protecao">Grau de proteção</label>
-                                        <select id="id_grau_protecao" name="id_grau_protecao">
+                                        <select id="id_grau_protecao" name="id_grau_protecao" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoGrausProtecao))
@@ -224,7 +248,7 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_circunferencia">Circunferência</label>
-                                        <input type="text" class="form-control" id="nu_circunferencia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_circunferencia') : $nu_circunferencia; ?>" name="nu_circunferencia">
+                                        <input type="text" class="form-control" id="nu_circunferencia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_circunferencia') : $nu_circunferencia; ?>" name="nu_circunferencia" disabled>
                                     </div>
                                 </div>                                                                                                
                             </div>
@@ -233,13 +257,13 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_altura">Altura</label>
-                                        <input type="text" class="form-control" id="nu_altura" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura') : $nu_altura; ?>" name="nu_altura">
+                                        <input type="text" class="form-control" id="nu_altura" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura') : $nu_altura; ?>" name="nu_altura" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_altura_total">Altura total</label>
-                                        <input type="text" class="form-control" id="nu_altura_total" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_total') : $nu_altura_total; ?>" name="nu_altura_total">
+                                        <input type="text" class="form-control" id="nu_altura_total" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_total') : $nu_altura_total; ?>" name="nu_altura_total" disabled>
                                     </div>
                                 </div>                               
                             </div>
@@ -248,13 +272,13 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_altura_fuste">Altura fuste</label>
-                                        <input type="text" class="form-control" id="nova" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_fuste') : $nu_altura_fuste; ?>" name="nu_altura_fuste">
+                                        <input type="text" class="form-control" id="nova" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_fuste') : $nu_altura_fuste; ?>" name="nu_altura_fuste" disabled>
                                     </div>
                                 </div> 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nu_altura_copa">Altura da copa</label>
-                                        <input type="text" class="form-control" id="nu_altura_copa" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_copa') : $nu_altura_copa; ?>" name="nu_altura_copa">
+                                        <input type="text" class="form-control" id="nu_altura_copa" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('nu_altura_copa') : $nu_altura_copa; ?>" name="nu_altura_copa" disabled>
                                     </div>
                                 </div>                               
                             </div>
@@ -263,13 +287,13 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="isolada">Isolada</label>
-                                        <input type="text" class="form-control" id="isolada" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('isolada') : $isolada; ?>" name="isolada">
+                                        <input type="text" class="form-control" id="isolada" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('isolada') : $isolada; ?>" name="isolada" disabled>
                                     </div>
                                 </div> 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="floracao_frutificacao">Floração/Frutificação</label>
-                                        <input type="text" class="form-control" id="floracao_frutificacao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('floracao_frutificacao') : $floracao_frutificacao; ?>" name="floracao_frutificacao">
+                                        <input type="text" class="form-control" id="floracao_frutificacao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('floracao_frutificacao') : $floracao_frutificacao; ?>" name="floracao_frutificacao" disabled>
                                     </div>
                                 </div>
                             </div>    
@@ -363,7 +387,7 @@ $(document).ready(function(){
         }
     );
 
-    $('#id_familia').select2(
+   /* $('#id_familia').select2(
         {
             placeholder: "SELECIONE"
         }
@@ -379,7 +403,7 @@ $(document).ready(function(){
         {
             placeholder: "SELECIONE"
         }
-    );
+    );*/
 
     $('#identificacao').select2(
         {
@@ -393,9 +417,9 @@ $(document).ready(function(){
         }
     );
 
-    var idFamilia = $('#id_familia').val();
+   /* var idFamilia = $('#id_familia').val();
         $.ajax({
-            url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+            url: '<?php //echo base_url(); ?>consultaGenero/'+idFamilia,
             type: "GET",
             dataType: "json",
             success:function(data) {
@@ -412,7 +436,7 @@ $(document).ready(function(){
             var idFamilia = $(this).val();
             if(idFamilia) {
                 $.ajax({
-                    url: '<?php echo base_url(); ?>consultaGenero/'+idFamilia,
+                    url: '<?php //echo base_url(); ?>consultaGenero/'+idFamilia,
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
@@ -433,7 +457,7 @@ $(document).ready(function(){
 
     var idGenero = $('#id_genero').val();
         $.ajax({
-            url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+            url: '<?php //echo base_url(); ?>consultaEspecie/'+idGenero,
             type: "GET",
             dataType: "json",
             success:function(data) {
@@ -453,7 +477,7 @@ $(document).ready(function(){
             var idGenero = $(this).val();
             if(idGenero) {
                 $.ajax({
-                    url: '<?php echo base_url(); ?>consultaEspecie/'+idGenero,
+                    url: '<?php //echo base_url(); ?>consultaEspecie/'+idGenero,
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
@@ -475,11 +499,11 @@ $(document).ready(function(){
     });
 
     setTimeout(function(){
-        selectElement('#id_genero', '<?php echo $id_genero ?>');
+        selectElement('#id_genero', '<?php //echo $id_genero ?>');
     }, 200);
     setTimeout(function(){
-        selectElement('#id_especie', '<?php echo $id_especie ?>');
-    }, 200);
+        selectElement('#id_especie', '<?php //echo $id_especie ?>');
+    }, 200);*/
     
     $('#identificacao').select2(
         {
