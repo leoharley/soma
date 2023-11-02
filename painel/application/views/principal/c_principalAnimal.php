@@ -104,14 +104,21 @@ if(!empty($infoAnimal))
                                         <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude" disabled>
                                     </div>
                                 </div>
-                            
+
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_familia">Família</label>
+                                        <input type="text" class="form-control required" id="id_familia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_familia') : $id_familia; ?>" name="id_familia" disabled>
+                                    </div>
+                                </div>
+                            
+                              <!--  <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
                                         <select id="id_familia" name="id_familia" disabled>
                                             <option></option>
                                             <?php
-                                            if(!empty($infoFamiliasFauna))
+                                            /*if(!empty($infoFamiliasFauna))
                                             {
                                                 foreach ($infoFamiliasFauna as $familia)
                                                 {
@@ -121,32 +128,47 @@ if(!empty($infoAnimal))
                                                 </option>
                                                 <?php
                                                 }
-                                            }
+                                            }*/
                                             ?>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
 
                             <div class="row">
+
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_genero">Gênero</label>
+                                        <input type="text" class="form-control required" id="id_genero" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_genero') : $id_genero; ?>" name="id_genero" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_especie">Espécie</label>
+                                        <input type="text" class="form-control required" id="id_especie" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_especie') : $id_genero; ?>" name="id_especie" disabled>
+                                    </div>
+                                </div>
+
+                              <!--  <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero" disabled>
                                         <option></option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-md-6">
+                              <!--  <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_especie">Espécie</label>                                    
                                         <select id="id_especie" name="id_especie" disabled>
                                         <option></option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                                                     
 
