@@ -930,7 +930,7 @@ function carregaInfoPermissao($IdPermissao)
         }
 
         $this->db->where('ArvoresVivas.st_registro_ativo', 'S');
-        $this->db->where('ArvoresVivas.id_acesso', $this->vendorId);
+        $this->db->where('ArvoresVivas.id_acesso', $this->session->userdata('userId'));
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
