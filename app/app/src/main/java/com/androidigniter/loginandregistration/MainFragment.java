@@ -105,7 +105,6 @@ public class MainFragment extends Fragment {
     public FTPClient mFTPClient = null;
     int counter = 75;
     String hoje = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
     ProgressDialog progressDialog;
 
     @Override

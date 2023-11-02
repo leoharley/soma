@@ -66,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20sp"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -83,13 +83,17 @@
             android:id="@+id/et_latitude"
             android:hint="latitude"
             android:textSize="15sp"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            android:layout_marginLeft="5sp"
+            android:background="@drawable/border"
+            android:editable="false"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -107,7 +111,10 @@
             android:id="@+id/et_longitude"
             android:hint="longitude"
             android:textSize="15sp"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            android:layout_marginLeft="5sp"
+            android:background="@drawable/border"
+            android:editable="false"/>
     </LinearLayout>
 
 
@@ -115,7 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20sp"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -157,7 +164,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20sp"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -199,7 +206,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20sp"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -240,7 +247,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20sp"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -260,14 +267,17 @@
             android:textColor="#000"
             android:textSize="15sp"
             android:digits="0123456789."
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="5sp"
+            android:background="@drawable/border"/>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20sp"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -300,7 +310,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20sp"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -341,6 +351,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -360,13 +371,16 @@
             android:textColor="#000"
             android:textSize="15sp"
             android:digits="0123456789."
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="5sp"
+            android:background="@drawable/border"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -385,13 +399,16 @@
             android:textColor="#000"
             android:textSize="15sp"
             android:digits="0123456789."
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="5sp"
+            android:background="@drawable/border"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -411,13 +428,16 @@
             android:textColor="#000"
             android:textSize="15sp"
             android:digits="0123456789."
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="5sp"
+            android:background="@drawable/border"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -437,13 +457,16 @@
             android:textColor="#000"
             android:textSize="15sp"
             android:digits="0123456789."
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="5sp"
+            android:background="@drawable/border"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -463,13 +486,16 @@
             android:textColor="#000"
             android:textSize="15sp"
             android:digits="0123456789."
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="5sp"
+            android:background="@drawable/border"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -488,13 +514,15 @@
             android:hint="isolada"
             android:textColor="#000"
             android:textSize="15sp"
-            android:inputType=""/>
+            android:layout_marginLeft="5sp"
+            android:background="@drawable/border"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="6sp"
         >
 
         <TextView
@@ -513,7 +541,8 @@
             android:hint="floracaofrutificacao"
             android:textColor="#000"
             android:textSize="15sp"
-            android:inputType=""/>
+            android:layout_marginLeft="5sp"
+            android:background="@drawable/border"/>
     </LinearLayout>
 
 
