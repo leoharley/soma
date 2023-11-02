@@ -148,7 +148,7 @@ function selectElement(id, valueToSelect) {
 
 $(document).ready(function(){
     removeTextAreaWhiteSpace();
-    $(":input").inputmask();
+   /* $(":input").inputmask();
     
     $("#longitude").inputmask({
     mask: ['99°M9\'P9.99"S', '[1]79°M9\'S9.99"S'],
@@ -194,7 +194,7 @@ $(document).ready(function(){
             cardinality: 1
         }
         }
-    });
+    });*/
 
     $('#id_parcela').select2(
         {
