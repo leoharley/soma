@@ -329,7 +329,7 @@ $(document).ready(function(){
         }
     );
 
-    $('#id_familia').select2(
+    /*$('#id_familia').select2(
         {
             placeholder: "SELECIONE"
         }
@@ -345,7 +345,7 @@ $(document).ready(function(){
         {
             placeholder: "SELECIONE"
         }
-    );
+    );*/
 
     $('#id_tipo_observacao').select2(
         {
