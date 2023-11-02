@@ -1459,6 +1459,11 @@ public class MainFragment extends Fragment {
                 request.put("idcontroleanimais", String.valueOf(db.getAllAnimais().get(i).getetidcontrole()));
                 request.put("idparcelaanimais", String.valueOf(db.getAllAnimais().get(i).getetidparcela()));
                 request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+
+                request.put("idfamilia", String.valueOf(db.getAllAnimais().get(i).getetfamilia()));
+                request.put("idgenero", String.valueOf(db.getAllAnimais().get(i).getetgenero()));
+                request.put("idespecie", String.valueOf(db.getAllAnimais().get(i).getetespecie()));
+
                 request.put("idtpobservacao", String.valueOf(db.getAllAnimais().get(i).getettpobservacao()));
                 request.put("idclassificacao", String.valueOf(db.getAllAnimais().get(i).getetclassificacao()));
                 request.put("idgrauprotecao", String.valueOf(db.getAllAnimais().get(i).getetgrauprotecao()));

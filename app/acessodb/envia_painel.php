@@ -26,6 +26,18 @@ if ($input['dscategoria'] == 'animais') {
 		$response["message"] = "Enviado com sucesso!";
 		$stmt->close();
 	}
+	
+	$insertQuery  = "REPLACE INTO rl_fauna_familia_genero_especie(id_animais,id_familia,id_genero,id_especie) VALUES (?,?,?,?)";
+	if($stmt = $con->prepare($insertQuery)){
+		$stmt->bind_param("ssss",$input['idcontroleanimais'],strtok($input['idfamilia'], '-'),strtok($input['idgenero'], '-'),strtok($input['idespecie'], '-'));
+		$stmt->execute();
+		$response["status"] = 0;
+		
+		$response["message"] = "Enviado com sucesso!";
+		$stmt->close();
+	}
+	
+	
 } else if ($input['dscategoria'] == 'arvoresvivas') {
     $insertQuery  = "REPLACE INTO tb_arvores_vivas(id,id_parcela,id_acesso,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,nu_biomassa,identificacao,nu_circunferencia,nu_altura,nu_altura_total,nu_altura_fuste,nu_altura_copa,isolada,floracao_frutificacao,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
