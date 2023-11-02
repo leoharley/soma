@@ -19,8 +19,11 @@ if(!empty($infoAnimal))
         $id = $r->id;
         $id_parcela = $r->id_parcela;
         $id_familia = $r->id_familia;
+        $no_familia = $r->no_familia;
         $id_genero = $r->id_genero;
+        $no_genero = $r->no_genero;
         $id_especie = $r->id_especie;
+        $no_especie = $r->no_especie;
         $id_tipo_observacao = $r->id_tipo_observacao;
         $id_classificacao = $r->id_classificacao;
         $id_grau_protecao = $r->id_grau_protecao;
@@ -108,7 +111,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
-                                        <input type="text" class="form-control required" id="id_familia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_familia') : $id_familia; ?>" name="id_familia" disabled>
+                                        <input type="text" class="form-control required" id="id_familia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_familia') : $id_familia.' - '.$no_familia; ?>" name="id_familia" disabled>
                                     </div>
                                 </div>
                             
