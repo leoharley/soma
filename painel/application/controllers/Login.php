@@ -308,7 +308,7 @@ class Login extends BaseController
             // Check activation id in database
             $is_correct = $this->login_model->checkActivationDetails($email, $activation_id);
             
-            if($is_correct == 1)
+            if($is_correct)
             {               
                 $this->login_model->createPasswordUser($email, $password);
                 
