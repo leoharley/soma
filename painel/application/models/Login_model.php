@@ -106,7 +106,7 @@ class Login_model extends CI_Model
     {
         $this->db->where('co_seq_acesso', $this->carregaInfoIdAcesso($email)[0]->id_acesso);
         $this->db->where('st_registro_ativo', 'S');
-        $this->db->update('tb_acesso', array('password'=>getHashedPassword($password)));
+        $this->db->update('tb_acesso', array('ds_senha'=>getHashedPassword($password)));
         $this->db->delete('tb_reset_password', array('email'=>$email));
     }
 
