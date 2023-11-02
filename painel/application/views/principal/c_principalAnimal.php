@@ -179,7 +179,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_tipo_observacao">Tipo de observação</label>
-                                        <select id="id_tipo_observacao" name="id_tipo_observacao">
+                                        <select id="id_tipo_observacao" name="id_tipo_observacao" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoTiposObservacao))
