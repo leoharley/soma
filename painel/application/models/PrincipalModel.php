@@ -504,7 +504,7 @@ class PrincipalModel extends CI_Model
 
     function carregaInfoAnimal($IdAnimal)
     {
-        $this->db->select('Animais.*,Rl.id_familia,Rl.id_genero,Rl.id_especie,faunaFamilia.no_familia,faunaGenero.no_genero,faunaEspecie.no_especie');
+        $this->db->select('Animais.*,Rl.id_familia,Rl.id_genero,Rl.id_especie,faunaFamilia.nome as no_familia,faunaGenero.nome as no_genero,faunaEspecie.nome as no_especie');
         $this->db->from('tb_animais as Animais');
         $this->db->join('rl_fauna_familia_genero_especie as Rl', 'Rl.id_animais = Animais.id','left'); 
         $this->db->join('tb_fauna_familia as faunaFamilia', 'faunaFamilia.id = Rl.id_familia','left');
