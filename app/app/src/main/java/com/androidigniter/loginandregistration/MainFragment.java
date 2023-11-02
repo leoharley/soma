@@ -1544,6 +1544,11 @@ public class MainFragment extends Fragment {
                 request.put("idcontrolearvoresvivas", db.getAllArvoresVivas().get(i).getetidcontrole());
                 request.put("idparcelaarvoresvivas", db.getAllArvoresVivas().get(i).getetidparcela());
                 request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+
+                request.put("idfamilia", String.valueOf(db.getAllArvoresVivas().get(i).getetfamilia()));
+                request.put("idgenero", String.valueOf(db.getAllArvoresVivas().get(i).getetgenero()));
+                request.put("idespecie", String.valueOf(db.getAllArvoresVivas().get(i).getetespecie()));
+
                 request.put("idgrauprotecao", db.getAllArvoresVivas().get(i).getetgrauprotecao());
                 request.put("latitudecampogd", db.getAllArvoresVivas().get(i).getetlatitude());
                 request.put("longitudecampogd", db.getAllArvoresVivas().get(i).getetlongitude());
@@ -1625,9 +1630,14 @@ public class MainFragment extends Fragment {
             if (db.getAllEpifitas().size() == 0) {enviaHidrologiaPainel();}
             for(int i = 0; i<db.getAllEpifitas().size();i++){
                 request.put("dscategoria", "epifitas");
-                request.put("idcontrolearvoresvivas", db.getAllEpifitas().get(i).getetidcontrole());
-                request.put("idparcelaarvoresvivas", db.getAllEpifitas().get(i).getetidparcela());
+                request.put("idcontroleepifitas", db.getAllEpifitas().get(i).getetidcontrole());
+                request.put("idparcelaepifitas", db.getAllEpifitas().get(i).getetidparcela());
                 request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+
+                request.put("idfamilia", String.valueOf(db.getAllEpifitas().get(i).getetfamilia()));
+                request.put("idgenero", String.valueOf(db.getAllEpifitas().get(i).getetgenero()));
+                request.put("idespecie", String.valueOf(db.getAllEpifitas().get(i).getetespecie()));
+
                 request.put("latitudecampogd", db.getAllEpifitas().get(i).getetlatitude());
                 request.put("longitudecampogd", db.getAllEpifitas().get(i).getetlongitude());
 
