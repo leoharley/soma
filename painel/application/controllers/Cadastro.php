@@ -203,6 +203,8 @@ class Cadastro extends BaseController
                     $infoUsuario = array('ds_nome'=> $nome, 'ds_email'=>$email, 'ds_senha'=>getHashedPassword($senha), 
                                         'id_perfil'=> $id_perfil,'st_admin'=>$admin,'nu_cpf'=>$cpf, 
                                         'st_registro_ativo'=>'S');
+                    $infoAcesso = array('ds_senha'=>getHashedPassword($senha));
+                    $resultadoAcesso = $this->CadastroModel->editaAcesso($infoAcesso, $this->vendorId);
                 }
                 
                 $resultado = $this->CadastroModel->editaUsuario($infoUsuario, $IdUsuario);

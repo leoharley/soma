@@ -50,6 +50,14 @@ class CadastroModel extends CI_Model
         return $insert_id;
     }
 
+    function editaAcesso($infoAcesso, $IdAcesso)
+    {
+        $this->db->where('co_seq_acesso', $IdAcesso);
+        $this->db->update('tb_acesso', $infoAcesso);
+        
+        return TRUE;
+    }
+
     function editaUsuario($infoUsuario, $IdUsuario)
     {
         $this->db->where('co_seq_cadastro_pessoa', $IdUsuario);
