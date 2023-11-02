@@ -16,7 +16,7 @@
   <tr>
     <td><?= ++$key?></td>
     <td><?= $photo['name']?></td>
-    <td><?= $photo['date']?></td>
+    <td><?= date("d/m/Y", strtotime($photo['date'])) ?></td>
 
     <td>
      <?php 

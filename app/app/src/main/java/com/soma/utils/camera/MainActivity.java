@@ -13,6 +13,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -28,6 +31,7 @@ import com.soma.data.arvoresvivas.ArvoresVivasFragment;
 import com.soma.data.arvoresvivas.ModArvoresVivasFragment;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     String currentPhotoPath;
     String idcontrole;
     String dscategoria;
+    int scaleSize =1024;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +115,22 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode == Activity.RESULT_OK){
                 File f = new File(currentPhotoPath);
                 selectedImage.setImageURI(Uri.fromFile(f));
-                Log.d("tag", "Absolute Url of Image is " + Uri.fromFile(f));
+                //Log.d("tag", "Absolute Url of Image is " + Uri.fromFile(f));
+
+                Bitmap b= BitmapFactory.decodeFile(currentPhotoPath);
+                Bitmap out = resizeImageForImageView(b);
+                //Bitmap out = Bitmap.createScaledBitmap(b, 100, auto, true);
+
+                File file = new File(Environment.getExternalStorageDirectory()+File.separator+"images/"+dscategoria, f.getName());
+                FileOutputStream fOut;
+                try {
+                    fOut = new FileOutputStream(file);
+                    out.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+                    fOut.flush();
+                    fOut.close();
+                    b.recycle();
+                    out.recycle();
+                } catch (Exception e) {}
 
               /*  Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                 Uri contentUri = Uri.fromFile(f);
@@ -120,6 +140,36 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+    public Bitmap resizeImageForImageView(Bitmap bitmap) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
+        Bitmap resizedBitmap = null;
+        Bitmap rotatedBitmap = null;
+
+        int originalWidth = bitmap.getWidth();
+        int originalHeight = bitmap.getHeight();
+        int newWidth = -1;
+        int newHeight = -1;
+        float multFactor = -1.0F;
+        if(originalHeight > originalWidth) {
+            newHeight = scaleSize ;
+            multFactor = (float) originalWidth/(float) originalHeight;
+            newWidth = (int) (newHeight*multFactor);
+        } else if(originalWidth > originalHeight) {
+            newWidth = scaleSize ;
+            multFactor = (float) originalHeight/ (float)originalWidth;
+            newHeight = (int) (newWidth*multFactor);
+        } else if(originalHeight == originalWidth) {
+            newHeight = scaleSize ;
+            newWidth = scaleSize ;
+        }
+        resizedBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false);
+        rotatedBitmap = Bitmap.createBitmap(resizedBitmap, 0, 0, resizedBitmap.getWidth(), resizedBitmap.getHeight(), matrix, true);
+
+        return rotatedBitmap;
+    }
+
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -149,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
+
         return image;
     }
 
