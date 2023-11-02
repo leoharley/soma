@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Soma Sustentabilidade App</string>
+    <string name="app_name">Soma Sustentabilidade</string>
     <string name="username">CPF</string>
     <string name="password">Senha</string>
     <string name="sign_in">Entrar</string>

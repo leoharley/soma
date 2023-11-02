@@ -414,12 +414,14 @@ public class MainFragment extends Fragment {
 
         final File folder_arvores_vivas = new File(Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas");
 
-        for (final File fileEntry : folder_arvores_vivas.listFiles()) {
-            try {
-                String fileName = fileEntry.getName();
-                enviaInfoArquivoPainel2("arvoresvivas", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
+        if (folder_arvores_vivas.listFiles() != null) {
+            for (final File fileEntry : folder_arvores_vivas.listFiles()) {
+                try {
+                    String fileName = fileEntry.getName();
+                    enviaInfoArquivoPainel2("arvoresvivas", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
                 } catch (Exception e) {
-                throw new RuntimeException(e);
+                    throw new RuntimeException(e);
+                }
             }
         }
 
@@ -427,12 +429,14 @@ public class MainFragment extends Fragment {
 
         final File folder_animais = new File(Environment.getExternalStorageDirectory()+File.separator+"images/animais");
 
-        for (final File fileEntry : folder_animais.listFiles()) {
-            try {
-                String fileName = fileEntry.getName();
-                enviaInfoArquivoPainel2("animais", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+        if (folder_animais.listFiles() != null) {
+            for (final File fileEntry : folder_animais.listFiles()) {
+                try {
+                    String fileName = fileEntry.getName();
+                    enviaInfoArquivoPainel2("animais", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
@@ -440,12 +444,14 @@ public class MainFragment extends Fragment {
 
         final File folder_epifitas = new File(Environment.getExternalStorageDirectory()+File.separator+"images/epifitas");
 
-        for (final File fileEntry : folder_epifitas.listFiles()) {
-            try {
-                String fileName = fileEntry.getName();
-                enviaInfoArquivoPainel2("epifitas", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+        if (folder_epifitas.listFiles() != null) {
+            for (final File fileEntry : folder_epifitas.listFiles()) {
+                try {
+                    String fileName = fileEntry.getName();
+                    enviaInfoArquivoPainel2("epifitas", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
@@ -453,12 +459,14 @@ public class MainFragment extends Fragment {
 
         final File folder_hidrologia= new File(Environment.getExternalStorageDirectory()+File.separator+"images/hidrologia");
 
-        for (final File fileEntry : folder_hidrologia.listFiles()) {
-            try {
-                String fileName = fileEntry.getName();
-                enviaInfoArquivoPainel2("hidrologia", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+        if (folder_hidrologia.listFiles() != null) {
+            for (final File fileEntry : folder_hidrologia.listFiles()) {
+                try {
+                    String fileName = fileEntry.getName();
+                    enviaInfoArquivoPainel2("hidrologia", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "teste", "2023-10-28", "uploads/" + fileName, "uploads/" + fileName);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
       //  runUploadArquivosInBackground0();
@@ -1080,13 +1088,13 @@ public class MainFragment extends Fragment {
                         e.printStackTrace();
                     } finally {
                     //    alertDialog1.show();
-                        alertDialog1.setMessage("A sincronização estará sendo feita em background...");
-                        Handler handler = new Handler();
+                        alertDialog1.setMessage("A sincronização estará sendo feita em background... Aguarde!");
+                     /*   Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             public void run() {
                                 alertDialog1.dismiss();
                             }
-                        }, 3400);
+                        }, 3400);*/
                     //    alertDialog1.setMessage("Atualizando famílias da fauna...");
                         /*CARREGA FAUNA FAMÍLIA*/
                         JsonArrayRequest jsArrayRequest_fauna_familia = new JsonArrayRequest
@@ -1204,13 +1212,14 @@ public class MainFragment extends Fragment {
                                                                                                                     catch (Exception e){
                                                                                                                         e.printStackTrace();
                                                                                                                     } finally {
-                                                                                                                    //    alertDialog1.setMessage("Tudo atualizado!");
-                                                                                                                      /*  Handler handler = new Handler();
+                                                                                                                    //    alertDialog1.dismiss();
+                                                                                                                        alertDialog1.setMessage("Tudo atualizado!");
+                                                                                                                        Handler handler = new Handler();
                                                                                                                         handler.postDelayed(new Runnable() {
                                                                                                                             public void run() {
-                                                                                                                                //alertdialog1.dismiss();
+                                                                                                                                alertDialog1.dismiss();
                                                                                                                             }
-                                                                                                                        }, 1200);*/
+                                                                                                                        }, 1200);
                                                                                                                         //runEnviarPainelInBackground();
                                                                                                                     }
                                                                                                                 }, error -> {
