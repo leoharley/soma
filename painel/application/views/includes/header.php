@@ -348,7 +348,7 @@ $(function() {
 
                   </ul>
                   </li>
-              <hr style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+              <hr>
 
               <li class="treeview" data-toggle="collapse" data-target="#selecoes" style="margin-bottom: 10px!important;cursor: pointer!important;">
                     
