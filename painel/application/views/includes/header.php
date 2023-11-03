@@ -238,7 +238,7 @@ $(function() {
             // if($role == ROLE_ADMIN)
            //  {
             ?>
-            <hr>
+            <hr style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
 
             <li class="treeview" data-toggle="collapse" data-target="#cadastro" style="margin-bottom: 10px!important;cursor: pointer!important;<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
                     
@@ -270,7 +270,7 @@ $(function() {
                 </ul>
                 </li>
 
-                <hr>
+                <hr style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
 
               <!--  <h4 style="margin-left:18px!important;color:white"><b> PRINCIPAL </b></h4> -->
 
@@ -280,21 +280,21 @@ $(function() {
 
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="principal">
 
-                    <li class="treeview">
+                    <li class="treeview" style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
                       <a href="<?php echo base_url(); ?>principalProjeto/listar">
                           <i class="fa fa-paste" style="margin-right:5px!important"></i>
                           <span>Projetos</span>
                       </a>
                     </li>
 
-                    <li class="treeview">
+                    <li class="treeview" style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
                         <a href="<?php echo base_url(); ?>principalPropriedade/listar">
                             <i class="fa fa-list" style="margin-right:5px!important"></i>
                             <span>Propriedades</span>
                         </a>
                     </li>
 
-                    <li class="treeview">
+                    <li class="treeview" style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
                         <a href="<?php echo base_url(); ?>principalParcela/listar">
                             <i class="fa fa-th" style="margin-right:5px!important"></i>
                             <span>Parcelas</span>
