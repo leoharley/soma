@@ -1331,7 +1331,7 @@ function carregaInfoPermissao($IdPermissao)
         }
 
         $this->db->where('Hidrologia.st_registro_ativo', 'S');
-        $this->db->where('Epifitas.id_acesso', $this->session->userdata('userId'));
+        $this->db->where('Hidrologia.id_acesso', $this->session->userdata('userId'));
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
