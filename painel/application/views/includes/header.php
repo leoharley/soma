@@ -350,7 +350,7 @@ $(function() {
                   </li>
               <hr style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
 
-              <li class="treeview" data-toggle="collapse" data-target="#selecoes" style="margin-bottom: 10px!important;cursor: pointer!important;<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+              <li class="treeview" data-toggle="collapse" data-target="#selecoes" style="margin-bottom: 10px!important;cursor: pointer!important;">
                     
                     <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  SELEÇÕES</b></h4>
 
@@ -407,7 +407,7 @@ $(function() {
 
                   </ul>
                   </li>
-              <hr style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+              <hr>
 
             
         </ul>
