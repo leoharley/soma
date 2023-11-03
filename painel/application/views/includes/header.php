@@ -270,7 +270,7 @@ $(function() {
                 </ul>
                 </li>
 
-                <hr>
+                <hr >
 
               <!--  <h4 style="margin-left:18px!important;color:white"><b> PRINCIPAL </b></h4> -->
 
