@@ -16,6 +16,7 @@ class PrincipalModel extends CI_Model
         }
 
         $this->db->where('Projetos.st_registro_ativo', 'S');
+        $this->db->where('Projetos.id_acesso', $this->session->userdata('userId'));
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -160,6 +161,7 @@ class PrincipalModel extends CI_Model
         }
 
         $this->db->where('Propriedades.st_registro_ativo', 'S');
+        $this->db->where('Propriedades.id_acesso', $this->session->userdata('userId'));
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -283,6 +285,7 @@ class PrincipalModel extends CI_Model
         }
 
         $this->db->where('Parcelas.st_registro_ativo', 'S');
+        $this->db->where('Parcelas.id_acesso', $this->session->userdata('userId'));
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -1096,6 +1099,7 @@ function carregaInfoPermissao($IdPermissao)
         }
 
         $this->db->where('Animais.st_registro_ativo', 'S');
+        $this->db->where('Animais.id_acesso', $this->session->userdata('userId'));
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -1258,6 +1262,7 @@ function carregaInfoPermissao($IdPermissao)
         }
 
         $this->db->where('Epifitas.st_registro_ativo', 'S');
+        $this->db->where('Epifitas.id_acesso', $this->session->userdata('userId'));
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -1326,6 +1331,7 @@ function carregaInfoPermissao($IdPermissao)
         }
 
         $this->db->where('Hidrologia.st_registro_ativo', 'S');
+        $this->db->where('Epifitas.id_acesso', $this->session->userdata('userId'));
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
