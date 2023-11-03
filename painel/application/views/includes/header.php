@@ -407,7 +407,7 @@ $(function() {
 
                   </ul>
                   </li>
-              <hr>
+              <hr style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
 
             
         </ul>
