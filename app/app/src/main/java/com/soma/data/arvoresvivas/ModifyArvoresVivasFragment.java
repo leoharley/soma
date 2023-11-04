@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -65,6 +66,8 @@ public class ModifyArvoresVivasFragment extends Fragment {
     private TextView etidparcela;
     private Button btnupdate, btndelete;
     private DatabaseHelperArvoresVivas databaseHelperArvoresVivas;
+    TextView linkLatLong;
+    String latParcela,longParcela;
     SearchableSpinner
             spinner_familia,
             spinner_genero,
@@ -167,6 +170,19 @@ public class ModifyArvoresVivasFragment extends Fragment {
         etalturacopa.setText(arvoresVivasModel.getetalturacopa());
         etisolada.setText(arvoresVivasModel.getetisolada());
         etfloracaofrutificacao.setText(arvoresVivasModel.getetfloracaofrutificacao());
+
+        linkLatLong = (TextView) view.findViewById(R.id.et_linklatlong);
+        latParcela = String.valueOf(db.getLatParcelas((String) etidparcela.getText()));
+        longParcela = String.valueOf(db.getLongParcelas((String) etidparcela.getText()));
+
+        linkLatLong.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String uri = "geo:-"+latParcela+",-"+longParcela;
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                startActivity(intent);
+            }
+        });
 
         btnupdate.setOnClickListener(new View.OnClickListener() {
             @Override

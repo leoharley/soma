@@ -263,6 +263,62 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         return list;
     }
 
+    public String getLatParcelas(String selectedItem) {
+        if (selectedItem != null) {
+        String lat = "";
+        String selectQuery = "SELECT * FROM " + TABLE_PARCELA_NAME + " WHERE etidparcela = '" + selectedItem.substring(0, selectedItem.indexOf(" -")) + "'";
+
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            do {
+                lat = cursor.getString(3);
+              //  list.add(cursor.getString(3) + "," + cursor.getString(4));//adding 2nd column data
+            } while (cursor.moveToNext());
+        }
+        // closing connection
+        cursor.close();
+        db.close();
+        return lat;
+    } else {
+            return null;
+        }
+    }
+
+    public String getLongParcelas(String selectedItem) {
+        if (selectedItem != null) {
+            String lng = "";
+            String selectQuery = "SELECT * FROM " + TABLE_PARCELA_NAME + " WHERE etidparcela = '" + selectedItem.substring(0, selectedItem.indexOf(" -")) + "'";
+
+
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+            if (cursor.moveToFirst()) {
+                do {
+                    lng = cursor.getString(4);
+                    //  list.add(cursor.getString(3) + "," + cursor.getString(4));//adding 2nd column data
+                } while (cursor.moveToNext());
+            }
+            // closing connection
+            cursor.close();
+            db.close();
+            return lng;
+        } else {
+            return null;
+        }
+    }
+
+    private String getTextBefore(final String wholeString, String before){
+        final int indexOf = wholeString.indexOf(before);
+        if(indexOf != -1){
+            return wholeString.substring(0, indexOf);
+        }
+        return wholeString;
+    }
+
     public int CountFaunaFamilias(){
         String selectQuery = "SELECT COUNT(*) FROM " + TABLE_FAUNA_FAMILIA;
         int contador = 0;

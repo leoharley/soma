@@ -104,7 +104,7 @@ public class MainFragment extends Fragment {
     TextView statuslabel;
     public FTPClient mFTPClient = null;
     int counter = 75;
-    String hoje = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+    //String hoje = new SimpleDateFormat("ddMMyyyyhhmmss", Locale.getDefault()).format(new Date());
     ProgressDialog progressDialog;
 
     @Override
@@ -420,7 +420,7 @@ public class MainFragment extends Fragment {
             for (final File fileEntry : folder_arvores_vivas.listFiles()) {
                 try {
                     String fileName = fileEntry.getName();
-                    enviaInfoArquivoPainel2("arvoresvivas", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "Árvores Vivas", hoje, "uploads/" + fileName, "uploads/" + fileName);
+                    enviaInfoArquivoPainel2("arvoresvivas", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "Árvores Vivas", null, "uploads/" + fileName, "uploads/" + fileName);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -435,7 +435,7 @@ public class MainFragment extends Fragment {
             for (final File fileEntry : folder_animais.listFiles()) {
                 try {
                     String fileName = fileEntry.getName();
-                    enviaInfoArquivoPainel2("animais", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "Animais", hoje, "uploads/" + fileName, "uploads/" + fileName);
+                    enviaInfoArquivoPainel2("animais", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "Animais", null, "uploads/" + fileName, "uploads/" + fileName);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -450,7 +450,7 @@ public class MainFragment extends Fragment {
             for (final File fileEntry : folder_epifitas.listFiles()) {
                 try {
                     String fileName = fileEntry.getName();
-                    enviaInfoArquivoPainel2("epifitas", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "Epifitas", hoje, "uploads/" + fileName, "uploads/" + fileName);
+                    enviaInfoArquivoPainel2("epifitas", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "Epifitas", null, "uploads/" + fileName, "uploads/" + fileName);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -465,7 +465,7 @@ public class MainFragment extends Fragment {
             for (final File fileEntry : folder_hidrologia.listFiles()) {
                 try {
                     String fileName = fileEntry.getName();
-                    enviaInfoArquivoPainel2("hidrologia", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "Hidrologia", hoje, "uploads/" + fileName, "uploads/" + fileName);
+                    enviaInfoArquivoPainel2("hidrologia", fileName.substring(fileName.indexOf("-") + 1, fileName.indexOf(".")), "Hidrologia", null, "uploads/" + fileName, "uploads/" + fileName);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -1082,7 +1082,9 @@ public class MainFragment extends Fragment {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
                             String no_propriedade    = jsonObject1.getString("no_propriedade");
-                            db.insertParcela(id,no_propriedade);
+                            String latitude    = jsonObject1.getString("latitude_gd");
+                            String longitude    = jsonObject1.getString("longitude_gd");
+                            db.insertParcela(id,no_propriedade,latitude,longitude);
                         }
                         db2.close();
                     }

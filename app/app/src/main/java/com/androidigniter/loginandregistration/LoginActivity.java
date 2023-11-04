@@ -188,7 +188,9 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
                             String no_propriedade    = jsonObject1.getString("no_propriedade");
-                            db.insertParcela(id,no_propriedade);
+                            String latitude    = jsonObject1.getString("latitude_gd");
+                            String longitude    = jsonObject1.getString("longitude_gd");
+                            db.insertParcela(id,no_propriedade,latitude,longitude);
                         }
                     }
                     catch (Exception e){

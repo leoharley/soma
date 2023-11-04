@@ -8,11 +8,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,6 +65,8 @@ public class AddRegistroEpifitasFragment extends Fragment {
     boolean GpsStatus ;
 
     String[] options;
+    TextView linkLatLong;
+    String latParcela,longParcela;
 
     private DatabaseHelperEpifitas databaseHelperEpifitas;
 
@@ -78,6 +82,36 @@ public class AddRegistroEpifitasFragment extends Fragment {
 
         /* SPINNERS */
         spinner_parcela = view.findViewById(R.id.spinner_parcela);
+
+        linkLatLong = (TextView) view.findViewById(R.id.et_linklatlong);
+        spinner_parcela.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                if (spinner_parcela.getSelectedItemId() != 0) {
+                    linkLatLong.setVisibility(View.GONE);
+                } else {
+                    linkLatLong.setVisibility(View.VISIBLE);
+                    latParcela = String.valueOf(db.getLatParcelas((String) spinner_parcela.getSelectedItem()));
+                    longParcela = String.valueOf(db.getLongParcelas((String) spinner_parcela.getSelectedItem()));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+
+        linkLatLong.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String uri = "geo:-"+latParcela+",-"+longParcela;
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                startActivity(intent);
+            }
+        });
 
         spinner_familia = view.findViewById(R.id.spinner_familia);
         List<String> familias = new ArrayList<String>();
