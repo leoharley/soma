@@ -334,7 +334,7 @@ $(document).ready(function(){
     $(":input").inputmask();
     
     $("#longitude").inputmask({
-    mask: ['99°M9\'P9.99"', '[1]79°M9\'S9.99"'],
+    mask: ['99°M9\'P9.99"D', '[1]79°M9\'S9.99"D'],
     definitions: {
       D: {
         validator: '[nN|sS]',
@@ -357,7 +357,7 @@ $(document).ready(function(){
     });
 
         $("#latitude").inputmask({
-        mask: '89°M9\'P9.99"',
+        mask: '89°M9\'P9.99"D',
         definitions: {
         D: {
             validator: '[eE|oO]',
