@@ -70,7 +70,7 @@ public class AddRegistroAnimaisFragment extends Fragment {
     boolean GpsStatus ;
 
     String[] options;
-    TextView linkLatLong;
+    Button linkLatLong;
     String latParcela,longParcela;
 
     private DatabaseHelperAnimais databaseHelperAnimais;
@@ -89,7 +89,7 @@ public class AddRegistroAnimaisFragment extends Fragment {
         spinner_parcela = view.findViewById(R.id.spinner_parcela);
 
 
-        linkLatLong = (TextView) view.findViewById(R.id.et_linklatlong);
+        linkLatLong = (Button) view.findViewById(R.id.et_linklatlong);
         spinner_parcela.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
