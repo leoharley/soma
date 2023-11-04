@@ -360,7 +360,7 @@ $(document).ready(function(){
         mask: '89°M9\'P9.99"D',
         definitions: {
         D: {
-            validator: '[eE|oO]',
+            validator: '[eE|wW]',
             cardinality: 1,
             casing: 'upper'
         },
