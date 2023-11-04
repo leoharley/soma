@@ -337,7 +337,7 @@ $(document).ready(function(){
     mask: ['99°M9\'P9.99"D', '[1]79°M9\'S9.99"D'],
     definitions: {
       D: {
-        validator: '[nN|sS]',
+        validator: '[eE|wW]',
         cardinality: 1,
         casing: 'upper'
       },
@@ -360,7 +360,7 @@ $(document).ready(function(){
         mask: '89°M9\'P9.99"D',
         definitions: {
         D: {
-            validator: '[eE|wW]',
+            validator: '[nN|sS]',
             cardinality: 1,
             casing: 'upper'
         },
