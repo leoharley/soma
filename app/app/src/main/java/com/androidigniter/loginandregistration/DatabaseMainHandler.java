@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class DatabaseMainHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
     private static final String DATABASE_NAME = "painel_data";
     private static final String TABLE_PARCELA_NAME = "tb_parcelas";
     private static final String TABLE_FAUNA_FAMILIA = "tb_fauna_familia";
@@ -27,6 +27,8 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "id";
     private static final String KEY_IDPARCELA = "etidparcela";
     private static final String KEY_NOPROPRIEDADE = "etnopropriedade";
+    private static final String KEY_ETLATITUDE = "etlatitude";
+    private static final String KEY_ETLONGITUDE = "etlongitude";
     private static final String KEY_IDFAMILIA = "etidfamilia";
     private static final String KEY_NOFAMILIA = "etnofamilia";
     private static final String KEY_NOPOPULAR = "etnopopular";
@@ -42,7 +44,9 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
                 + TABLE_PARCELA_NAME + "(" + COLUMN_ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 KEY_IDPARCELA + " VARCHAR, "+
-                KEY_NOPROPRIEDADE + " VARCHAR " +
+                KEY_NOPROPRIEDADE + " VARCHAR, " +
+                KEY_ETLATITUDE + " TEXT, " +
+                KEY_ETLONGITUDE + " TEXT " +
                 "); ";
         db.execSQL(CREATE_PARCELA_TABLE);
 
@@ -154,12 +158,14 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    public void insertParcela(String idparcela, String nopropriedade){
+    public void insertParcela(String idparcela, String nopropriedade, String latitude, String longitude){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_IDPARCELA, idparcela);//column name, column value
         values.put(KEY_NOPROPRIEDADE, nopropriedade);//column name, column value
+        values.put(KEY_ETLATITUDE, latitude);//column name, column value
+        values.put(KEY_ETLONGITUDE, longitude);//column name, column value
 
         // Inserting Row
         db.insert(TABLE_PARCELA_NAME, null, values);//tableName, nullColumnHack, CotentValues

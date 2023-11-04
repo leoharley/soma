@@ -152,8 +152,7 @@ class PrincipalModel extends CI_Model
     function listaPropriedades($searchText = '', $page, $segment)
     {
         $this->db->select('*');
-        $this->db->from('tb_propriedades as Propriedades');        
-   //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
+        $this->db->from('tb_propriedades as Propriedades');
         if(!empty($searchText)) {
             $likeCriteria = "(Propriedades.no_propriedade LIKE '%".$searchText."%'
                             OR Propriedades.proprietario LIKE '%".$searchText."%')";

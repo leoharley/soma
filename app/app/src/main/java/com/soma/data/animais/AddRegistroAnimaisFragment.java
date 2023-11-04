@@ -86,6 +86,20 @@ public class AddRegistroAnimaisFragment extends Fragment {
         /* SPINNERS */
         spinner_parcela = view.findViewById(R.id.spinner_parcela);
 
+        spinner_parcela.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                System.out.println("AQUI LEO"+spinner_parcela.getSelectedItem());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
         spinner_familia = view.findViewById(R.id.spinner_familia);
         List<String> familias = new ArrayList<String>();
         familias.add(0,"SELECIONE");
