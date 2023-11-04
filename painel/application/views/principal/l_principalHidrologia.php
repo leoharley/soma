@@ -108,7 +108,7 @@
                           <a class="btn btn-sm btn-info" href="<?= base_url().'principalHidrologia/editar/'.$registro->id ?>" title="Editar">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger deleteUser" href="#" data-toggle="modal" data-target="#confirma-exclusao<?= $registro->id ?>"><i class="fa fa-trash-o"></i></a>
+                        <!--  <a class="btn btn-sm btn-danger deleteUser" href="#" data-toggle="modal" data-target="#confirma-exclusao<?php //echo $registro->id ?>"><i class="fa fa-trash-o"></i></a> -->
                       </td>
                     </tr>
 

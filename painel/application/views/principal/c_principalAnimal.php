@@ -247,8 +247,8 @@ if(!empty($infoAnimal))
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" value="Salvar" />
-                            <input type="reset" class="btn btn-default" value="Limpar" />
+                            <!--<input type="submit" class="btn btn-primary" value="Salvar"/>
+                            <input type="reset" class="btn btn-default" value="Limpar" />-->
                         </div>
                     </form>
                 </div>
