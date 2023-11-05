@@ -82,7 +82,7 @@ if ($input['dscategoria'] == 'animais') {
 
 } else if ($input['dscategoria'] == 'hidrologia') {
 	
-	if ($input['limpatabelas'] == 'true') {
+	/*if ($input['limpatabelas'] == 'true') {
 		//PROVISÓRIO ANTES DO SERGIO FAZER UMA FUNÇÃO LIMPANDO TUDO, JUNTO COM AS RLS E REGISTRO DE IMAGENS
 		$insertQuery  = "DELETE FROM tb_animais WHERE id_acesso = (?)";
 		if($stmt = $con->prepare($insertQuery)){
@@ -116,7 +116,7 @@ if ($input['dscategoria'] == 'animais') {
 			$response["message"] = "Apagada com sucesso!";
 			$stmt->close();
 		}
-	}
+	}*/
 	
     $insertQuery  = "REPLACE INTO tb_hidrologia(id,id_parcela,id_acesso,descricao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
