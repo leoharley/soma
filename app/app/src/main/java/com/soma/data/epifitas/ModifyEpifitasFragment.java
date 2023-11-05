@@ -128,10 +128,10 @@ public class ModifyEpifitasFragment extends Fragment {
 
         linkLatLong.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String uri = "geo:-"+latParcela+",-"+longParcela;
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-                startActivity(intent);
+                Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse("geo:"+latParcela+","+longParcela+""));
+                i.setClassName("com.google.android.apps.maps",
+                        "com.google.android.maps.MapsActivity");
+                startActivity(i);
             }
         });
 

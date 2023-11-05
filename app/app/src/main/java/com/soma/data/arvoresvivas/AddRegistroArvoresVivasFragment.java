@@ -101,12 +101,12 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
-                if (spinner_parcela.getSelectedItemId() != 0) {
+                if (spinner_parcela.getSelectedItemId() == -1) {
                     linkLatLong.setVisibility(View.GONE);
                 } else {
                     linkLatLong.setVisibility(View.VISIBLE);
-                    latParcela = String.valueOf(db.getLatParcelas((String) spinner_parcela.getSelectedItem()));
-                    longParcela = String.valueOf(db.getLongParcelas((String) spinner_parcela.getSelectedItem()));
+                    latParcela = db.getLatParcelas((String) spinner_parcela.getSelectedItem());
+                    longParcela = db.getLongParcelas((String) spinner_parcela.getSelectedItem());
                 }
             }
 

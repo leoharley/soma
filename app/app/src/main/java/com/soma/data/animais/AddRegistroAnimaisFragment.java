@@ -44,6 +44,7 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -70,7 +71,7 @@ public class AddRegistroAnimaisFragment extends Fragment {
     boolean GpsStatus ;
 
     String[] options;
-    Button linkLatLong;
+    TextView linkLatLong;
     String latParcela,longParcela;
 
     private DatabaseHelperAnimais databaseHelperAnimais;
@@ -89,18 +90,18 @@ public class AddRegistroAnimaisFragment extends Fragment {
         spinner_parcela = view.findViewById(R.id.spinner_parcela);
 
 
-        linkLatLong = (Button) view.findViewById(R.id.et_linklatlong);
+        linkLatLong = (TextView) view.findViewById(R.id.et_linklatlong);
         spinner_parcela.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
-                if (spinner_parcela.getSelectedItemId() != 0) {
+                if (spinner_parcela.getSelectedItemId() == -1) {
                     linkLatLong.setVisibility(View.GONE);
                 } else {
                     linkLatLong.setVisibility(View.VISIBLE);
-                    latParcela = String.valueOf(db.getLatParcelas((String) spinner_parcela.getSelectedItem()));
-                    longParcela = String.valueOf(db.getLongParcelas((String) spinner_parcela.getSelectedItem()));
+                    latParcela = db.getLatParcelas((String) spinner_parcela.getSelectedItem());
+                    longParcela = db.getLongParcelas((String) spinner_parcela.getSelectedItem());
                 }
             }
 
@@ -112,10 +113,10 @@ public class AddRegistroAnimaisFragment extends Fragment {
 
         linkLatLong.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String uri = "geo:-"+latParcela+",-"+longParcela;
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-                startActivity(intent);
+                Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse("geo:"+latParcela+","+longParcela+""));
+                i.setClassName("com.google.android.apps.maps",
+                        "com.google.android.maps.MapsActivity");
+                startActivity(i);
             }
         });
 

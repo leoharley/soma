@@ -356,9 +356,9 @@ $(document).ready(function(){
     }
     });
 
-        $("#latitude").inputmask({
-        mask: '89°M9\'P9.99"D',
-        definitions: {
+    $("#latitude").inputmask({
+    mask: '89°M9\'P9.99"D',
+    definitions: {
         D: {
             validator: '[nN|sS]',
             cardinality: 1,
@@ -378,9 +378,6 @@ $(document).ready(function(){
         }
         }
     });
-	
-	
-	
 	
     $(".2decimais").inputmask({
         alias: "decimal",

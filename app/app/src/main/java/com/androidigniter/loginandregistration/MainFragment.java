@@ -1216,6 +1216,9 @@ public class MainFragment extends Fragment {
                                                                                                                     catch (Exception e){
                                                                                                                         e.printStackTrace();
                                                                                                                     } finally {
+
+
+
                                                                                                                     //    alertDialog1.dismiss();
                                                                                                                         alertDialog1.setMessage("Tudo atualizado!");
                                                                                                                         Handler handler = new Handler();
@@ -1225,6 +1228,9 @@ public class MainFragment extends Fragment {
                                                                                                                             }
                                                                                                                         }, 1200);
                                                                                                                         //runEnviarPainelInBackground();
+
+
+
                                                                                                                     }
                                                                                                                 }, error -> {
                                                                                                                     Toast.makeText(getContext(),
@@ -1232,6 +1238,7 @@ public class MainFragment extends Fragment {
                                                                                                                 });
 
                                                                                                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_especie);
+
 
                                                                                                     }
                                                                                                 }, error -> {
