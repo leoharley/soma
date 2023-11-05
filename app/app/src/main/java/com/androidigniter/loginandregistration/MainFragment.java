@@ -64,6 +64,7 @@ import com.soma.data.hidrologia.DatabaseHelperHidrologia;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -1077,8 +1078,15 @@ public class MainFragment extends Fragment {
         SQLiteDatabase db2 = db.getWritableDatabase();
     //    alertDialog1.setMessage("Atualizando parcelas...");
         /*CARREGA PARCELA*/
+        JSONArray request = new JSONArray();
+        try{
+        request.put(Integer.parseInt("idacesso"), String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //(Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
         JsonArrayRequest jsArrayRequest_parcela = new JsonArrayRequest
-                (Request.Method.POST, painel_parcela_url, null, response -> {
+                (Request.Method.POST, painel_parcela_url, request, response -> {
                     try {
                         db.apagaTabelaParcela();
                         for(int i=0; i < response.length(); i++) {
