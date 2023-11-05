@@ -1532,6 +1532,7 @@ public class MainFragment extends Fragment {
         try {
             //Populate the request parameters
                 request.put("dscategoria", "limpatabelas");
+                request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
 
                 JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                         (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {

@@ -13,7 +13,6 @@ $result = explode(" ",DDtoDMS_string($latitudecampogd,$longitudecampogd));
 
 if ($input['dscategoria'] == 'limpatabelas') {
 	
-if ($input['limpatabelas'] == 'true') {
 		//PROVISÓRIO ANTES DO SERGIO FAZER UMA FUNÇÃO LIMPANDO TUDO, JUNTO COM AS RLS E REGISTRO DE IMAGENS
 		$insertQuery  = "DELETE FROM tb_animais WHERE id_acesso = (?)";
 		if($stmt = $con->prepare($insertQuery)){
@@ -47,7 +46,6 @@ if ($input['limpatabelas'] == 'true') {
 			$response["message"] = "Apagada com sucesso!";
 			$stmt->close();
 		}
-	}
 	
 } else if ($input['dscategoria'] == 'animais') {
 	//	$input['latitudecampogd'] e $input['longitudecampogd']//AQUI SERGIONE, PEGA OS CAMPOS QUE VEM DO APP, TRANSFORMA AQUI PRA GMS E JOGA NOS CAMPOS DE GMS NO PAINEL
