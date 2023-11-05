@@ -64,7 +64,6 @@ import com.soma.data.hidrologia.DatabaseHelperHidrologia;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -1078,15 +1077,16 @@ public class MainFragment extends Fragment {
         SQLiteDatabase db2 = db.getWritableDatabase();
     //    alertDialog1.setMessage("Atualizando parcelas...");
         /*CARREGA PARCELA*/
-        JSONArray request = new JSONArray();
+
+        JSONObject request = new JSONObject();
         try{
-        request.put(Integer.parseInt("idacesso"), String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+            request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //(Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
+
         JsonArrayRequest jsArrayRequest_parcela = new JsonArrayRequest
-                (Request.Method.POST, painel_parcela_url, request, response -> {
+                (Request.Method.POST, painel_parcela_url, request.names(), response -> {
                     try {
                         db.apagaTabelaParcela();
                         for(int i=0; i < response.length(); i++) {
@@ -1796,41 +1796,38 @@ public class MainFragment extends Fragment {
                 request.put("longitudecampogd", db.getAllEpifitas().get(i).getetlongitude());
 
                 JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                        (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    //Check if user got registered successfully
-                                    if (response.getInt(KEY_STATUS) == 0) {
-                                   /*     alertDialog1.setMessage(response.getString("message"));
-                                        Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                             //   //alertdialog1.dismiss();
-                                            }
-                                        }, 1200);*/
-                                    } else if (response.getInt(KEY_STATUS) == 2) {
-                                    /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
-                                        Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                             //   //alertdialog1.dismiss();
-                                            }
-                                        }, 1200);*/
-                                    } else {
-                                     /*   alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
-                                        Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            public void run() {
-                                            //    //alertdialog1.dismiss();
-                                            }
-                                        }, 1200);*/
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                } finally {
-                                    enviaHidrologiaPainel();
+                        (Request.Method.POST, envia_painel_url, request, response -> {
+                            try {
+                                //Check if user got registered successfully
+                                if (response.getInt(KEY_STATUS) == 0) {
+                               /*     alertDialog1.setMessage(response.getString("message"));
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        public void run() {
+                                         //   //alertdialog1.dismiss();
+                                        }
+                                    }, 1200);*/
+                                } else if (response.getInt(KEY_STATUS) == 2) {
+                                /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        public void run() {
+                                         //   //alertdialog1.dismiss();
+                                        }
+                                    }, 1200);*/
+                                } else {
+                                 /*   alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        public void run() {
+                                        //    //alertdialog1.dismiss();
+                                        }
+                                    }, 1200);*/
                                 }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } finally {
+                                enviaHidrologiaPainel();
                             }
                         }, new Response.ErrorListener() {
                             @Override
