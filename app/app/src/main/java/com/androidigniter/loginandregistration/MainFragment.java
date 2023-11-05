@@ -1360,7 +1360,7 @@ public class MainFragment extends Fragment {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("idacesso", "10");
-                params.put("teste", "10");
+                params.put("teste", "S");
                 return params;
             }
 
