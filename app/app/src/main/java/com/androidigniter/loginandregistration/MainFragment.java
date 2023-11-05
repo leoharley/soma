@@ -98,6 +98,9 @@ public class MainFragment extends Fragment {
     private String painel_flora_familia_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_familias.php";
     private String painel_flora_genero_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_generos.php";
     private String painel_flora_especie_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_flora_especies.php";
+    private String painel_grau_protecao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_grau_protecao.php";
+    private String painel_fauna_classificacao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_fauna_classificacao.php";
+    private String painel_fauna_tpobservacao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_fauna_tpobservacao.php";
     private String envia_painel_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/envia_painel.php";
     private AlertDialog alertDialog1;
     private static final String KEY_STATUS = "status";
@@ -1216,21 +1219,89 @@ public class MainFragment extends Fragment {
                                                                                                                     catch (Exception e){
                                                                                                                         e.printStackTrace();
                                                                                                                     } finally {
+                                                                                                                        /*CARREGA GRAU DE PROTECAO*/
+                                                                                                                        JsonArrayRequest jsArrayRequest_grau_protecao = new JsonArrayRequest
+                                                                                                                                (Request.Method.POST, painel_grau_protecao_url, null, response8 -> {
+                                                                                                                                    try {
+                                                                                                                                        if (!String.valueOf(db.CountGrauProtecao()).equals(response8.getJSONObject(0).getString("contador"))) {
+                                                                                                                                            db.apagaTabelaGrauProtecao();
+                                                                                                                                            for (int i = 0; i < response8.length(); i++) {
+                                                                                                                                                JSONObject jsonObject1 = response8.getJSONObject(i);
+                                                                                                                                                String id = jsonObject1.getString("id");
+                                                                                                                                                String nome = jsonObject1.getString("nome");
+                                                                                                                                                db.insertGrauProtecao(id, nome);
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                        db2.close();
+                                                                                                                                    }
+                                                                                                                                    catch (Exception e){
+                                                                                                                                        e.printStackTrace();
+                                                                                                                                    } finally {
+                                                                                                                                        /*CARREGA FAUNA CLASSIFICACAO*/
+                                                                                                                                        JsonArrayRequest jsArrayRequest_fauna_classificacao = new JsonArrayRequest
+                                                                                                                                                (Request.Method.POST, painel_fauna_classificacao_url, null, response9 -> {
+                                                                                                                                                    try {
+                                                                                                                                                        if (!String.valueOf(db.CountFaunaClassificacao()).equals(response9.getJSONObject(0).getString("contador"))) {
+                                                                                                                                                            db.apagaTabelaFaunaClassificacao();
+                                                                                                                                                            for (int i = 0; i < response9.length(); i++) {
+                                                                                                                                                                JSONObject jsonObject1 = response9.getJSONObject(i);
+                                                                                                                                                                String id = jsonObject1.getString("id");
+                                                                                                                                                                String nome = jsonObject1.getString("nome");
+                                                                                                                                                                db.insertFaunaClassificacao(id, nome);
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                        db2.close();
+                                                                                                                                                    }
+                                                                                                                                                    catch (Exception e){
+                                                                                                                                                        e.printStackTrace();
+                                                                                                                                                    } finally {
+                                                                                                                                                        /*CARREGA FAUNA TIPO OBSERVACAO*/
+                                                                                                                                                        JsonArrayRequest jsArrayRequest_fauna_tpobservacao = new JsonArrayRequest
+                                                                                                                                                                (Request.Method.POST, painel_fauna_tpobservacao_url, null, response10 -> {
+                                                                                                                                                                    try {
+                                                                                                                                                                        if (!String.valueOf(db.CountFaunaTpObservacao()).equals(response10.getJSONObject(0).getString("contador"))) {
+                                                                                                                                                                            db.apagaTabelaFaunaTpObservacao();
+                                                                                                                                                                            for (int i = 0; i < response10.length(); i++) {
+                                                                                                                                                                                JSONObject jsonObject1 = response10.getJSONObject(i);
+                                                                                                                                                                                String id = jsonObject1.getString("id");
+                                                                                                                                                                                String nome = jsonObject1.getString("nome");
+                                                                                                                                                                                db.insertFaunaTpObservacao(id, nome);
+                                                                                                                                                                            }
+                                                                                                                                                                        }
+                                                                                                                                                                        db2.close();
+                                                                                                                                                                    }
+                                                                                                                                                                    catch (Exception e){
+                                                                                                                                                                        e.printStackTrace();
+                                                                                                                                                                    } finally {
+                                                                                                                                                                        //    alertDialog1.dismiss();
+                                                                                                                                                                        alertDialog1.setMessage("Tudo atualizado!");
+                                                                                                                                                                        Handler handler = new Handler();
+                                                                                                                                                                        handler.postDelayed(new Runnable() {
+                                                                                                                                                                            public void run() {
+                                                                                                                                                                                alertDialog1.dismiss();
+                                                                                                                                                                            }
+                                                                                                                                                                        }, 1200);
+                                                                                                                                                                        //runEnviarPainelInBackground();
+                                                                                                                                                                    }
+                                                                                                                                                                }, error -> {
+                                                                                                                                                                    Toast.makeText(getContext(),
+                                                                                                                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                });
+                                                                                                                                                        MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_fauna_tpobservacao);
+                                                                                                                                                    }
+                                                                                                                                                }, error -> {
+                                                                                                                                                    Toast.makeText(getContext(),
+                                                                                                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
+                                                                                                                                                });
 
+                                                                                                                                        MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_fauna_classificacao);
+                                                                                                                                    }
+                                                                                                                                }, error -> {
+                                                                                                                                    Toast.makeText(getContext(),
+                                                                                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
+                                                                                                                                });
 
-
-                                                                                                                    //    alertDialog1.dismiss();
-                                                                                                                        alertDialog1.setMessage("Tudo atualizado!");
-                                                                                                                        Handler handler = new Handler();
-                                                                                                                        handler.postDelayed(new Runnable() {
-                                                                                                                            public void run() {
-                                                                                                                                alertDialog1.dismiss();
-                                                                                                                            }
-                                                                                                                        }, 1200);
-                                                                                                                        //runEnviarPainelInBackground();
-
-
-
+                                                                                                                        MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_grau_protecao);
                                                                                                                     }
                                                                                                                 }, error -> {
                                                                                                                     Toast.makeText(getContext(),
@@ -1238,8 +1309,6 @@ public class MainFragment extends Fragment {
                                                                                                                 });
 
                                                                                                         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_especie);
-
-
                                                                                                     }
                                                                                                 }, error -> {
                                                                                                     Toast.makeText(getContext(),

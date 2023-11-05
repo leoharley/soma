@@ -170,8 +170,11 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
         spinner_identificado.setAdapter(adapter_spinner_identificado);
 
         spinner_grau_de_protecao = view.findViewById(R.id.spinner_grau_de_protecao);
-        ArrayAdapter<CharSequence> adapter_spinner_grau_de_protecao = ArrayAdapter.createFromResource(getContext(),
-                R.array.grau_de_protecao_tmp, android.R.layout.simple_spinner_item);
+        List<String> grauprotecao = new ArrayList<String>();
+        grauprotecao.add(0,"SELECIONE");
+        grauprotecao.addAll(db.getAllGrauProtecao());
+        ArrayAdapter<String> adapter_spinner_grau_de_protecao = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, grauprotecao);
+
         adapter_spinner_grau_de_protecao.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_grau_de_protecao.setTitle("Pesquisar");
         spinner_grau_de_protecao.setPositiveButton("Fechar");

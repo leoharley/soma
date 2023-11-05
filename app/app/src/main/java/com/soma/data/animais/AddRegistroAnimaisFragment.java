@@ -154,24 +154,33 @@ public class AddRegistroAnimaisFragment extends Fragment {
         spinner_especie.setAdapter(adapter_spinner_especie);
 
         spinner_tpobservacao = view.findViewById(R.id.spinner_tp_observacao);
-        ArrayAdapter<CharSequence> adapter_spinner_tpobservacao = ArrayAdapter.createFromResource(getContext(),
-                R.array.tpobservacao_tmp, android.R.layout.simple_spinner_item);
+        List<String> tpobservacao = new ArrayList<String>();
+        tpobservacao.add(0,"SELECIONE");
+        tpobservacao.addAll(db.getAllFaunaTpObservacao());
+        ArrayAdapter<String> adapter_spinner_tpobservacao = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, tpobservacao);
+
         adapter_spinner_tpobservacao.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_tpobservacao.setTitle("Pesquisar");
         spinner_tpobservacao.setPositiveButton("Fechar");
         spinner_tpobservacao.setAdapter(adapter_spinner_tpobservacao);
 
         spinner_classificacao = view.findViewById(R.id.spinner_classificacao);
-        ArrayAdapter<CharSequence> adapter_spinner_classificacao = ArrayAdapter.createFromResource(getContext(),
-                R.array.classificacao_tmp, android.R.layout.simple_spinner_item);
+        List<String> classificacao = new ArrayList<String>();
+        classificacao.add(0,"SELECIONE");
+        classificacao.addAll(db.getAllFaunaClassificacao());
+        ArrayAdapter<String> adapter_spinner_classificacao = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, classificacao);
+
         adapter_spinner_classificacao.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_classificacao.setTitle("Pesquisar");
         spinner_classificacao.setPositiveButton("Fechar");
         spinner_classificacao.setAdapter(adapter_spinner_classificacao);
 
         spinner_graudeprotecao = view.findViewById(R.id.spinner_grau_de_protecao);
-        ArrayAdapter<CharSequence> adapter_spinner_grau_de_protecao = ArrayAdapter.createFromResource(getContext(),
-                R.array.grau_de_protecao_tmp, android.R.layout.simple_spinner_item);
+        List<String> grauprotecao = new ArrayList<String>();
+        grauprotecao.add(0,"SELECIONE");
+        grauprotecao.addAll(db.getAllGrauProtecao());
+        ArrayAdapter<String> adapter_spinner_grau_de_protecao = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, grauprotecao);
+
         adapter_spinner_grau_de_protecao.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_graudeprotecao.setTitle("Pesquisar");
         spinner_graudeprotecao.setPositiveButton("Fechar");
