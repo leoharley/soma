@@ -75,10 +75,8 @@ import java.io.InputStream;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -1352,23 +1350,7 @@ public class MainFragment extends Fragment {
                 }, error -> {
                     Toast.makeText(getContext(),
                             "Banco de dados offline!", Toast.LENGTH_SHORT).show();
-                })
-
-        {
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("idacesso", "10");
-                params.put("teste", "S");
-                return params;
-            }
-
-            @Override
-            public int getMethod() {
-                return Method.POST;
-            }
-        };
+                });
 
         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_parcela);
     }
