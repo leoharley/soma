@@ -1528,6 +1528,71 @@ public class MainFragment extends Fragment {
      //   alertDialog1.setMessage("Enviando animais para o painel");
       //  alertDialog1.show();
 
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+                request.put("dscategoria", "limpatabelas");
+
+                JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                        (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    //Check if user got registered successfully
+                                    if (response.getInt(KEY_STATUS) == 0) {
+                                    /*    alertDialog1.setMessage(response.getString("message"));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                ////alertdialog1.dismiss();
+                                            }
+                                        }, 1200);*/
+                                    } else if (response.getInt(KEY_STATUS) == 2) {
+                                    /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                ////alertdialog1.dismiss();
+                                            }
+                                        }, 1200);*/
+                                    } else {
+                                    /*    alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                ////alertdialog1.dismiss();
+                                            }
+                                        }, 1200);*/
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    enviaAnimaisPainel();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                            /*    alertDialog1.setMessage("Banco de dados offline!");
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        ////alertdialog1.dismiss();
+                                    }
+                                }, 1200);*/
+                            }
+                        });
+                MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void enviaAnimaisPainel() {
+        //   alertDialog1.setMessage("Enviando animais para o painel");
+        //  alertDialog1.show();
+
         DatabaseHelperAnimais db = new DatabaseHelperAnimais(getContext());
 
         JSONObject request = new JSONObject();
@@ -1601,7 +1666,7 @@ public class MainFragment extends Fragment {
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
-                
+
             }
 
         } catch (JSONException e) {
@@ -1788,7 +1853,6 @@ public class MainFragment extends Fragment {
         try {
             //Populate the request parameters
             for(int i = 0; i<db.getAllHidrologia().size();i++){
-                if (i == 0) {request.put("limpatabelas", "true");} else {request.put("limpatabelas", "false");}
                 request.put("dscategoria", "hidrologia");
                 request.put("idcontrolehidrologia", db.getAllHidrologia().get(i).getetidcontrole());
                 request.put("idparcelahidrologia", db.getAllHidrologia().get(i).getetidparcela());
