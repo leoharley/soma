@@ -75,8 +75,10 @@ import java.io.InputStream;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -1075,18 +1077,11 @@ public class MainFragment extends Fragment {
     private void atualizaTudoPainel() {
         DatabaseMainHandler db = new DatabaseMainHandler(getContext());
         SQLiteDatabase db2 = db.getWritableDatabase();
-    //    alertDialog1.setMessage("Atualizando parcelas...");
+
+        //    alertDialog1.setMessage("Atualizando parcelas...");
         /*CARREGA PARCELA*/
-
-        JSONObject request = new JSONObject();
-        try{
-            request.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
         JsonArrayRequest jsArrayRequest_parcela = new JsonArrayRequest
-                (Request.Method.POST, painel_parcela_url, request.names(), response -> {
+                (Request.Method.POST, painel_parcela_url, null, response -> {
                     try {
                         db.apagaTabelaParcela();
                         for(int i=0; i < response.length(); i++) {
@@ -1358,7 +1353,15 @@ public class MainFragment extends Fragment {
                 }, error -> {
                     Toast.makeText(getContext(),
                             "Banco de dados offline!", Toast.LENGTH_SHORT).show();
-                });
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+                return params;
+            }
+        };
 
         MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_parcela);
     }
@@ -1796,38 +1799,41 @@ public class MainFragment extends Fragment {
                 request.put("longitudecampogd", db.getAllEpifitas().get(i).getetlongitude());
 
                 JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                        (Request.Method.POST, envia_painel_url, request, response -> {
-                            try {
-                                //Check if user got registered successfully
-                                if (response.getInt(KEY_STATUS) == 0) {
-                               /*     alertDialog1.setMessage(response.getString("message"));
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        public void run() {
-                                         //   //alertdialog1.dismiss();
-                                        }
-                                    }, 1200);*/
-                                } else if (response.getInt(KEY_STATUS) == 2) {
-                                /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        public void run() {
-                                         //   //alertdialog1.dismiss();
-                                        }
-                                    }, 1200);*/
-                                } else {
-                                 /*   alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        public void run() {
-                                        //    //alertdialog1.dismiss();
-                                        }
-                                    }, 1200);*/
+                        (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    //Check if user got registered successfully
+                                    if (response.getInt(KEY_STATUS) == 0) {
+                                   /*     alertDialog1.setMessage(response.getString("message"));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                             //   //alertdialog1.dismiss();
+                                            }
+                                        }, 1200);*/
+                                    } else if (response.getInt(KEY_STATUS) == 2) {
+                                    /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                             //   //alertdialog1.dismiss();
+                                            }
+                                        }, 1200);*/
+                                    } else {
+                                     /*   alertDialog1.setMessage("ERRO COD: "+response.getInt(KEY_STATUS));
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                            //    //alertdialog1.dismiss();
+                                            }
+                                        }, 1200);*/
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    enviaHidrologiaPainel();
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            } finally {
-                                enviaHidrologiaPainel();
                             }
                         }, new Response.ErrorListener() {
                             @Override
