@@ -14,9 +14,10 @@ $query    = "SELECT Parcelas.id, Propriedades.no_propriedade, Parcelas.latitude_
 			 INNER JOIN tb_propriedades as Propriedades on Propriedades.id = Parcelas.id_propriedade 
 			 and Propriedades.st_registro_ativo = 'S'
 			 WHERE Parcelas.st_registro_ativo = 'S'
-			 and Parcelas.id_acesso = ".$input['idacesso'];
+			 and Parcelas.id_acesso = (?)";
  
 if($stmt = $con->prepare($query)){
+	$stmt->bind_param("s",$input['idacesso']);
 	$stmt->execute();
 	$response = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 	$stmt->close();

@@ -1077,8 +1077,7 @@ public class MainFragment extends Fragment {
     private void atualizaTudoPainel() {
         DatabaseMainHandler db = new DatabaseMainHandler(getContext());
         SQLiteDatabase db2 = db.getWritableDatabase();
-
-        //    alertDialog1.setMessage("Atualizando parcelas...");
+    //    alertDialog1.setMessage("Atualizando parcelas...");
         /*CARREGA PARCELA*/
         JsonArrayRequest jsArrayRequest_parcela = new JsonArrayRequest
                 (Request.Method.POST, painel_parcela_url, null, response -> {
@@ -1353,13 +1352,21 @@ public class MainFragment extends Fragment {
                 }, error -> {
                     Toast.makeText(getContext(),
                             "Banco de dados offline!", Toast.LENGTH_SHORT).show();
-                }) {
+                })
+
+        {
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("idacesso", String.valueOf(new SessionHandler(getContext()).getUserDetails().getIdAcesso()));
+                params.put("idacesso", "10");
+                params.put("teste", "10");
                 return params;
+            }
+
+            @Override
+            public int getMethod() {
+                return Method.POST;
             }
         };
 
