@@ -9,15 +9,6 @@ $input = json_decode($inputJSON, TRUE); //convert JSON into array
  
 //Check for Mandatory parameters
 
-$query    = "INSERT INTO teste_envia_painel(id,id_parcela,id_acesso) VALUES (?,?,?)";
- 
-if($stmt = $con->prepare($query)){
-	$stmt->bind_param("sss",'4554','18',$input['idacesso']);
-	$stmt->execute();
-	$response = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-	$stmt->close();
-}
-
 $query    = "SELECT Parcelas.id, Propriedades.no_propriedade, Parcelas.latitude_gd, Parcelas.longitude_gd
 			 FROM tb_parcelas as Parcelas 
 			 INNER JOIN tb_propriedades as Propriedades on Propriedades.id = Parcelas.id_propriedade 
