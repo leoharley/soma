@@ -16,7 +16,42 @@ $result = explode(" ",DDtoDMS_string($latitudecampogd,$longitudecampogd));
 if ($input['dscategoria'] == 'animais') {
 	//	$input['latitudecampogd'] e $input['longitudecampogd']//AQUI SERGIONE, PEGA OS CAMPOS QUE VEM DO APP, TRANSFORMA AQUI PRA GMS E JOGA NOS CAMPOS DE GMS NO PAINEL
 
-
+	if ($input['limpatabelas'] == 'true') {
+		//PROVISÓRIO ANTES DO SERGIO FAZER UMA FUNÇÃO LIMPANDO TUDO, JUNTO COM AS RLS E REGISTRO DE IMAGENS
+		$insertQuery  = "DELETE FROM tb_animais WHERE id_acesso = (?)";
+		if($stmt = $con->prepare($insertQuery)){
+			$stmt->bind_param("s",$input['idacesso']);
+			$stmt->execute();
+			$response["status"] = 0;
+			$response["message"] = "Apagada com sucesso!";
+			$stmt->close();
+		}
+		$insertQuery  = "DELETE FROM tb_arvores_vivas WHERE id_acesso = (?)";
+		if($stmt = $con->prepare($insertQuery)){
+			$stmt->bind_param("s",$input['idacesso']);
+			$stmt->execute();
+			$response["status"] = 0;
+			$response["message"] = "Apagada com sucesso!";
+			$stmt->close();
+		}
+		$insertQuery  = "DELETE FROM tb_epifitas WHERE id_acesso = (?)";
+		if($stmt = $con->prepare($insertQuery)){
+			$stmt->bind_param("s",$input['idacesso']);
+			$stmt->execute();
+			$response["status"] = 0;
+			$response["message"] = "Apagada com sucesso!";
+			$stmt->close();
+		}
+		$insertQuery  = "DELETE FROM tb_hidrologia WHERE id_acesso = (?)";
+		if($stmt = $con->prepare($insertQuery)){
+			$stmt->bind_param("s",$input['idacesso']);
+			$stmt->execute();
+			$response["status"] = 0;
+			$response["message"] = "Apagada com sucesso!";
+			$stmt->close();
+		}
+	}
+		
 	$insertQuery  = "REPLACE INTO tb_animais(id,id_parcela,id_acesso,id_tipo_observacao,id_classificacao,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("ssssssssss",$input['idcontroleanimais'],strtok($input['idparcelaanimais'], '-'),$input['idacesso'],strtok($input['idtpobservacao'], '-'),strtok($input['idclassificacao'], '-'),strtok($input['idgrauprotecao'], '-'),$input['latitudecampogd'] ,$input['longitudecampogd'],$result[0],$result[1]);

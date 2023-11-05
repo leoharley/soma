@@ -677,7 +677,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         }
         // closing connection
         cursor.close();
-        db.close();
+     //   db.close();
         return list;
     }
 

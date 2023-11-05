@@ -1535,6 +1535,7 @@ public class MainFragment extends Fragment {
             //Populate the request parameters
             if (db.getAllAnimais().size() == 0) {enviaArvoresVivasPainel();}
             for(int i = 0; i<db.getAllAnimais().size();i++){
+                if (i == 0) {request.put("limpatabelas", "true");} else {request.put("limpatabelas", "false");}
                 request.put("dscategoria", "animais");
                 request.put("idcontroleanimais", String.valueOf(db.getAllAnimais().get(i).getetidcontrole()));
                 request.put("idparcelaanimais", String.valueOf(db.getAllAnimais().get(i).getetidparcela()));
