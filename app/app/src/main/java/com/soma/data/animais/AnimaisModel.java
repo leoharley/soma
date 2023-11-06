@@ -18,6 +18,7 @@ public class AnimaisModel implements Serializable {
     private String ettpobservacao;
     private String etclassificacao;
     private String etgrauprotecao;
+    private String etdescricao;
     private int id;
 
     public int getId() {
@@ -103,6 +104,12 @@ public class AnimaisModel implements Serializable {
     }
 
     public void setetgrauprotecao(String etgrauprotecao) { this.etgrauprotecao = etgrauprotecao; }
+
+    public String getetdescricao() {
+        return etdescricao;
+    }
+
+    public void setetdescricao(String etdescricao) { this.etdescricao = etdescricao; }
 
 
 }

@@ -57,7 +57,8 @@ public class AddRegistroAnimaisFragment extends Fragment {
     private
     EditText etidcontrole,
             etlatitude,
-            etlongitude;
+            etlongitude,
+            etdescricao;
     Spinner spinner_parcela;
     SearchableSpinner
             spinner_familia,
@@ -190,6 +191,7 @@ public class AddRegistroAnimaisFragment extends Fragment {
         etidcontrole = (EditText) view.findViewById(R.id.et_idcontrole);
         etlatitude = (EditText) view.findViewById(R.id.et_latitude);
         etlongitude = (EditText) view.findViewById(R.id.et_longitude);
+        etdescricao = (EditText) view.findViewById(R.id.et_descricao);
 
         etidcontrole.setText(Integer.toString(generateRandomNumber(1,10000)));
 
@@ -249,7 +251,8 @@ public class AddRegistroAnimaisFragment extends Fragment {
                         spinner_especie.getSelectedItem().toString(),
                         spinner_tpobservacao.getSelectedItem().toString(),
                         spinner_classificacao.getSelectedItem().toString(),
-                        spinner_graudeprotecao.getSelectedItem().toString());
+                        spinner_graudeprotecao.getSelectedItem().toString(),
+                        etdescricao.getText().toString());
 
                 Toast.makeText(getContext(), "Cadastro com sucesso!", Toast.LENGTH_SHORT).show();
                 for (Fragment fragment : getParentFragmentManager().getFragments()) {

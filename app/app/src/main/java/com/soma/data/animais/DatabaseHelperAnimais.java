@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class DatabaseHelperAnimais extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "campo_data";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
     private static final String TABLE_NAME = "animais";
     private static final String KEY_ID = "id";
     private static final String KEY_ETIDPARCELA = "etidparcela";
@@ -30,6 +30,7 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
     private static final String KEY_ETTPOBSERVACAO = "ettpobservacao";
     private static final String KEY_ETCLASSIFICACAO = "etclassificacao";
     private static final String KEY_ETGRAUPROTECAO = "etgrauprotecao";
+    private static final String KEY_ETDESCRICAO = "etdescricao";
 
     private static final String CREATE_TABLE_ANIMAIS = "CREATE TABLE IF NOT EXISTS "
             + TABLE_NAME + "(" + KEY_ID
@@ -43,7 +44,8 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
             KEY_ETESPECIE + " VARCHAR, " +
             KEY_ETTPOBSERVACAO + " VARCHAR, " +
             KEY_ETCLASSIFICACAO + " VARCHAR, " +
-            KEY_ETGRAUPROTECAO + " VARCHAR " +
+            KEY_ETGRAUPROTECAO + " VARCHAR, " +
+            KEY_ETDESCRICAO + " VARCHAR " +
             "); ";
 
     public DatabaseHelperAnimais(Context context) {
@@ -64,7 +66,7 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
     }
 
     public long addAnimaisDetail(String etidparcela, String etidcontrole, String etlatitude, String etlongitude, String etfamilia, String etgenero,
-                                      String etespecie, String ettpobservacao, String etclassificacao, String etgrauprotecao) {
+                                      String etespecie, String ettpobservacao, String etclassificacao, String etgrauprotecao, String etdescricao) {
         SQLiteDatabase db = this.getWritableDatabase();
         // Creating content values
         ContentValues values = new ContentValues();
@@ -78,6 +80,7 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
         values.put(KEY_ETTPOBSERVACAO, ettpobservacao);
         values.put(KEY_ETCLASSIFICACAO, etclassificacao);
         values.put(KEY_ETGRAUPROTECAO, etgrauprotecao);
+        values.put(KEY_ETDESCRICAO, etdescricao);
         //insert row in table
         long insert = db.insert(TABLE_NAME, null, values);
 
@@ -106,6 +109,7 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
                 animaisModel.setettpobservacao(c.getString(c.getColumnIndex(KEY_ETTPOBSERVACAO)));
                 animaisModel.setetclassificacao(c.getString(c.getColumnIndex(KEY_ETCLASSIFICACAO)));
                 animaisModel.setetgrauprotecao(c.getString(c.getColumnIndex(KEY_ETGRAUPROTECAO)));
+                animaisModel.setetdescricao(c.getString(c.getColumnIndex(KEY_ETDESCRICAO)));
                 // adding to list
                 animaisModelArrayList.add(animaisModel);
             } while (c.moveToNext());
@@ -114,7 +118,8 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
     }
 
     public int updateAnimais(int id, String etlatitude, String etlongitude, String etfamilia, String etgenero,
-                             String etespecie, String ettpobservacao, String etclassificacao, String etgrauprotecao) {
+                             String etespecie, String ettpobservacao, String etclassificacao, String etgrauprotecao,
+                             String etdescricao) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Creating content values
@@ -128,6 +133,7 @@ public class DatabaseHelperAnimais extends SQLiteOpenHelper {
         values.put(KEY_ETTPOBSERVACAO, ettpobservacao);
         values.put(KEY_ETCLASSIFICACAO, etclassificacao);
         values.put(KEY_ETGRAUPROTECAO, etgrauprotecao);
+        values.put(KEY_ETDESCRICAO, etdescricao);
         // update row in table base on students.is value
         return db.update(TABLE_NAME, values, KEY_ID + " = ?",
                 new String[]{String.valueOf(id)});

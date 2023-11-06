@@ -25,6 +25,7 @@ public class ArvoresVivasModel implements Serializable {
     private String etalturacopa;
     private String etisolada;
     private String etfloracaofrutificacao;
+    private String etdescricao;
     private int id;
 
     public int getId() {
@@ -169,6 +170,14 @@ public class ArvoresVivasModel implements Serializable {
 
     public void setetfloracaofrutificacao(String etfloracaofrutificacao) {
         this.etfloracaofrutificacao = etfloracaofrutificacao;
+    }
+
+    public String getetdescricao() {
+        return etdescricao;
+    }
+
+    public void setetdescricao(String etdescricao) {
+        this.etdescricao = etdescricao;
     }
 
 

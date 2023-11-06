@@ -56,6 +56,7 @@ public class CustomMod extends BaseAdapter {
             holder.etfamilia = (TextView) convertView.findViewById(R.id.epifitas_familia);
             holder.etgenero = (TextView) convertView.findViewById(R.id.epifitas_genero);
             holder.etespecie = (TextView) convertView.findViewById(R.id.epifitas_especie);
+            holder.etdescricao = (TextView) convertView.findViewById(R.id.epifitas_descricao);
 
             convertView.setTag(holder);
         }else {
@@ -70,6 +71,7 @@ public class CustomMod extends BaseAdapter {
         holder.etfamilia.setText("Família: "+ epifitasModelArrayList.get(position).getetfamilia());
         holder.etgenero.setText("Gênero"+ epifitasModelArrayList.get(position).getetgenero());
         holder.etespecie.setText("Espécie"+ epifitasModelArrayList.get(position).getetespecie());
+        holder.etdescricao.setText("Espécie"+ epifitasModelArrayList.get(position).getetdescricao());
 
         return convertView;
     }
@@ -83,7 +85,8 @@ public class CustomMod extends BaseAdapter {
                 etlongitude,
                 etfamilia,
                 etgenero,
-                etespecie;
+                etespecie,
+                etdescricao;
 
     }
 

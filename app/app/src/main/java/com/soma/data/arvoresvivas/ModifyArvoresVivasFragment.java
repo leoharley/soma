@@ -61,7 +61,8 @@ public class ModifyArvoresVivasFragment extends Fragment {
             etalturafuste,
             etalturacopa,
             etisolada,
-            etfloracaofrutificacao;
+            etfloracaofrutificacao,
+            etdescricao;
 
     private TextView etidparcela;
     private Button btnupdate, btndelete;
@@ -152,6 +153,7 @@ public class ModifyArvoresVivasFragment extends Fragment {
         etalturacopa = (EditText) view.findViewById(R.id.et_altura_copa);
         etisolada = (EditText) view.findViewById(R.id.et_isolada);
         etfloracaofrutificacao = (EditText) view.findViewById(R.id.et_floracao_frutificacao);
+        etdescricao = (EditText) view.findViewById(R.id.et_descricao);
 
         btndelete = (Button) view.findViewById(R.id.btndelete);
         btnupdate = (Button) view.findViewById(R.id.btnupdate);
@@ -173,6 +175,7 @@ public class ModifyArvoresVivasFragment extends Fragment {
         etalturacopa.setText(arvoresVivasModel.getetalturacopa());
         etisolada.setText(arvoresVivasModel.getetisolada());
         etfloracaofrutificacao.setText(arvoresVivasModel.getetfloracaofrutificacao());
+        etdescricao.setText(arvoresVivasModel.getetdescricao());
 
         linkLatLong = (TextView) view.findViewById(R.id.et_linklatlong);
         latParcela = String.valueOf(db.getLatParcelas((String) etidparcela.getText()));
@@ -193,7 +196,8 @@ public class ModifyArvoresVivasFragment extends Fragment {
                 databaseHelperArvoresVivas.updateArvoresVivas(arvoresVivasModel.getId(),etlatitude.getText().toString(),etlongitude.getText().toString(),spinner_familia.getSelectedItem().toString(),
                         spinner_genero.getSelectedItem().toString(), spinner_especie.getSelectedItem().toString(), etbiomassa.getText().toString(), spinner_identificado.getSelectedItem().toString(),
                         spinner_grau_de_protecao.getSelectedItem().toString(), etcircunferencia.getText().toString(), etaltura.getText().toString(), etalturatotal.getText().toString(),
-                        etalturafuste.getText().toString(), etalturacopa.getText().toString(), etisolada.getText().toString(), etfloracaofrutificacao.getText().toString());
+                        etalturafuste.getText().toString(), etalturacopa.getText().toString(), etisolada.getText().toString(), etfloracaofrutificacao.getText().toString(),
+                        etdescricao.getText().toString());
                 Toast.makeText(getContext(), "Atualizado com sucesso!", Toast.LENGTH_LONG).show();
                 for (Fragment fragment : getParentFragmentManager().getFragments()) {
                     getParentFragmentManager().beginTransaction().remove(fragment).commit();

@@ -49,11 +49,14 @@ public class CustomAdapterEpifitas extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.epifitas_model, null, true);
 
-            holder.etlatitude = (TextView) convertView.findViewById(R.id.animais_etlatitude);
-            holder.etlongitude = (TextView) convertView.findViewById(R.id.animais_etlongitude);
-            holder.etfamilia = (TextView) convertView.findViewById(R.id.animais_etfamilia);
-            holder.etgenero = (TextView) convertView.findViewById(R.id.animais_etgenero);
-            holder.etespecie = (TextView) convertView.findViewById(R.id.animais_etespecie);
+            holder.etidcontrole = (TextView) convertView.findViewById(R.id.epifitas_idcontrole);
+            holder.etidparcela = (TextView) convertView.findViewById(R.id.epifitas_idparcela);
+            holder.etlatitude = (TextView) convertView.findViewById(R.id.epifitas_etlatitude);
+            holder.etlongitude = (TextView) convertView.findViewById(R.id.epifitas_etlongitude);
+            holder.etfamilia = (TextView) convertView.findViewById(R.id.epifitas_etfamilia);
+            holder.etgenero = (TextView) convertView.findViewById(R.id.epifitas_etgenero);
+            holder.etespecie = (TextView) convertView.findViewById(R.id.epifitas_etespecie);
+            holder.etdescricao = (TextView) convertView.findViewById(R.id.epifitas_etdescricao);
 
             convertView.setTag(holder);
         }else {
@@ -61,22 +64,29 @@ public class CustomAdapterEpifitas extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
+        holder.etidcontrole.setText("Cadastro ID: " + epifitasModelArrayList.get(position).getetidcontrole());
+        holder.etidparcela.setText("Parcela: "+ epifitasModelArrayList.get(position).getetidparcela());
         holder.etlatitude.setText("Latitude: "+ epifitasModelArrayList.get(position).getetlatitude());
         holder.etlongitude.setText("Longitude: "+ epifitasModelArrayList.get(position).getetlongitude());
         holder.etfamilia.setText("Família: "+ epifitasModelArrayList.get(position).getetfamilia());
         holder.etgenero.setText("Gênero"+ epifitasModelArrayList.get(position).getetgenero());
         holder.etespecie.setText("Espécie"+ epifitasModelArrayList.get(position).getetespecie());
+        holder.etdescricao.setText("Descrição"+ epifitasModelArrayList.get(position).getetdescricao());
 
         return convertView;
     }
 
     private class ViewHolder {
 
-        protected TextView etlatitude,
+        protected TextView
+                etidcontrole,
+                etidparcela,
+                etlatitude,
                 etlongitude,
                 etfamilia,
                 etgenero,
-                etespecie;
+                etespecie,
+                etdescricao;
     }
 
 }

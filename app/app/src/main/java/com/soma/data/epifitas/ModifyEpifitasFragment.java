@@ -46,7 +46,8 @@ public class ModifyEpifitasFragment extends Fragment {
     private EpifitasModel epifitasModel;
     EditText etidcontrole,
             etlatitude,
-            etlongitude;
+            etlongitude,
+            etdescricao;
 
     Spinner spinner_parcela;
 
@@ -113,11 +114,13 @@ public class ModifyEpifitasFragment extends Fragment {
         etidcontrole = (EditText) view.findViewById(R.id.et_idcontrole);
         etlatitude = (EditText) view.findViewById(R.id.et_latitude);
         etlongitude = (EditText) view.findViewById(R.id.et_longitude);
+        etdescricao = (EditText) view.findViewById(R.id.et_descricao);
 
         etidcontrole.setText(epifitasModel.getetidcontrole());
         etidparcela.setText(epifitasModel.getetidparcela());
         etlatitude.setText(epifitasModel.getetlatitude());
         etlongitude.setText(epifitasModel.getetlongitude());
+        etdescricao.setText(epifitasModel.getetdescricao());
         selectValue(spinner_familia, epifitasModel.getetfamilia());
         selectValue(spinner_genero, epifitasModel.getetgenero());
         selectValue(spinner_especie, epifitasModel.getetespecie());
@@ -139,7 +142,8 @@ public class ModifyEpifitasFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 databaseHelperEpifitas.updateEpifitas(epifitasModel.getId(),etlatitude.getText().toString(),etlongitude.getText().toString(),spinner_familia.getSelectedItem().toString(),
-                        spinner_genero.getSelectedItem().toString(), spinner_especie.getSelectedItem().toString());
+                        spinner_genero.getSelectedItem().toString(), spinner_especie.getSelectedItem().toString(),
+                        etdescricao.getText().toString());
                 Toast.makeText(getContext(), "Atualizado com sucesso!", Toast.LENGTH_LONG).show();
                 for (Fragment fragment : getParentFragmentManager().getFragments()) {
                     getParentFragmentManager().beginTransaction().remove(fragment).commit();

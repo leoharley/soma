@@ -71,6 +71,7 @@ public class CustomMod extends BaseAdapter {
             holder.etalturacopa = (TextView) convertView.findViewById(R.id.arvoresvivas_alturacopa);
             holder.etisolada = (TextView) convertView.findViewById(R.id.arvoresvivas_isolada);
             holder.etfloracaofrutificacao = (TextView) convertView.findViewById(R.id.arvoresvivas_floracaofrutificacao);
+            holder.etdescricao = (TextView) convertView.findViewById(R.id.arvoresvivas_etdescricao);
 
             convertView.setTag(holder);
         }else {
@@ -95,6 +96,7 @@ public class CustomMod extends BaseAdapter {
         holder.etalturacopa.setText("Altura da Copa: "+ arvoresVivasModelArrayList.get(position).getetalturacopa());
         holder.etisolada.setText("Isolada: "+ arvoresVivasModelArrayList.get(position).getetisolada());
         holder.etfloracaofrutificacao.setText("Floração/Frutificação: "+ arvoresVivasModelArrayList.get(position).getetfloracaofrutificacao());
+        holder.etdescricao.setText("Descrição"+ arvoresVivasModelArrayList.get(position).getetdescricao());
 
         return convertView;
     }
@@ -118,7 +120,8 @@ public class CustomMod extends BaseAdapter {
                 etalturafuste,
                 etalturacopa,
                 etisolada,
-                etfloracaofrutificacao;
+                etfloracaofrutificacao,
+                etdescricao;
 
     }
 

@@ -76,6 +76,15 @@
             android:text="curso"
             android:layout_marginTop="10dp"/>
 
+        <TextView
+            android:id="@+id/animais_etdescricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:text="curso"
+            android:layout_marginTop="10dp"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

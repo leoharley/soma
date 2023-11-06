@@ -15,6 +15,7 @@ public class EpifitasModel implements Serializable {
     private String etfamilia;
     private String etgenero;
     private String etespecie;
+    private String etdescricao;
     private int id;
 
     public int getId() {
@@ -79,6 +80,14 @@ public class EpifitasModel implements Serializable {
 
     public void setetespecie(String etespecie) {
         this.etespecie = etespecie;
+    }
+
+    public String getetdescricao() {
+        return etdescricao;
+    }
+
+    public void setetdescricao(String etdescricao) {
+        this.etdescricao = etdescricao;
     }
 
 }

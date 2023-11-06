@@ -64,6 +64,7 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
     private EditText etisolada;
     private EditText etfloracaofrutificacao;
     private EditText etidcontrole;
+    private EditText etdescricao;
 
     LocationManager locationManager ;
     boolean GpsStatus ;
@@ -191,6 +192,7 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
         etalturacopa = (EditText) view.findViewById(R.id.et_altura_copa);
         etisolada = (EditText) view.findViewById(R.id.et_isolada);
         etfloracaofrutificacao = (EditText) view.findViewById(R.id.et_floracao_frutificacao);
+        etdescricao = (EditText) view.findViewById(R.id.et_descricao);
 
         etidcontrole.setText(Integer.toString(generateRandomNumber(1,10000)));
 
@@ -257,7 +259,8 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
                         etalturafuste.getText().toString(),
                         etalturacopa.getText().toString(),
                         etisolada.getText().toString(),
-                        etfloracaofrutificacao.getText().toString());
+                        etfloracaofrutificacao.getText().toString(),
+                        etdescricao.getText().toString());
 
                 Toast.makeText(getContext(), "Cadastro com sucesso!", Toast.LENGTH_SHORT).show();
                 for (Fragment fragment : getParentFragmentManager().getFragments()) {

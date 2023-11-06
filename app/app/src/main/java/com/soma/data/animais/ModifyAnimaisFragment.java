@@ -42,7 +42,8 @@ public class ModifyAnimaisFragment extends Fragment {
     private AnimaisModel animaisModel;
     EditText etidcontrole,
             etlatitude,
-            etlongitude;
+            etlongitude,
+            etdescricao;
     Spinner spinner_parcela;
     TextView linkLatLong;
     String latParcela,longParcela;
@@ -144,11 +145,13 @@ public class ModifyAnimaisFragment extends Fragment {
         etidcontrole = (EditText) view.findViewById(R.id.et_idcontrole);
         etlatitude = (EditText) view.findViewById(R.id.et_latitude);
         etlongitude = (EditText) view.findViewById(R.id.et_longitude);
+        etdescricao = (EditText) view.findViewById(R.id.et_descricao);
 
         etidcontrole.setText(animaisModel.getetidcontrole());
         etidparcela.setText(animaisModel.getetidparcela());
         etlatitude.setText(animaisModel.getetlatitude());
         etlongitude.setText(animaisModel.getetlongitude());
+        etdescricao.setText(animaisModel.getetdescricao());
         selectValue(spinner_familia, animaisModel.getetfamilia());
         selectValue(spinner_genero, animaisModel.getetgenero());
         selectValue(spinner_especie, animaisModel.getetespecie());
@@ -174,7 +177,7 @@ public class ModifyAnimaisFragment extends Fragment {
             public void onClick(View v) {
                 databaseHelperAnimais.updateAnimais(animaisModel.getId(),etlatitude.getText().toString(),etlongitude.getText().toString(),spinner_familia.getSelectedItem().toString(),
                         spinner_genero.getSelectedItem().toString(), spinner_especie.getSelectedItem().toString(), spinner_tpobservacao.getSelectedItem().toString(), spinner_classificacao.getSelectedItem().toString(),
-                        spinner_graudeprotecao.getSelectedItem().toString());
+                        spinner_graudeprotecao.getSelectedItem().toString(),etdescricao.getText().toString());
                 Toast.makeText(getContext(), "Atualizado com sucesso!", Toast.LENGTH_LONG).show();
                 for (Fragment fragment : getParentFragmentManager().getFragments()) {
                     getParentFragmentManager().beginTransaction().remove(fragment).commit();

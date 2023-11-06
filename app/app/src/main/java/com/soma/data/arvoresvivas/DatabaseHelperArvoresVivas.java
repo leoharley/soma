@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "campo_data";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
     private static final String TABLE_NAME = "arvoresvivas";
     private static final String KEY_ID = "id";
     private static final String KEY_ETIDPARCELA = "etidparcela";
@@ -37,7 +37,7 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
     private static final String KEY_ETALTURACOPA = "etalturacopa";
     private static final String KEY_ETISOLADA = "etisolada";
     private static final String KEY_ETFLORACAOFRUTIFICACAO = "etfloracaofrutificacao";
-
+    private static final String KEY_ETDESCRICAO = "etdescricao";
 
     private static final String CREATE_TABLE_ARVORES_VIVAS = "CREATE TABLE IF NOT EXISTS "
             + TABLE_NAME + "(" + KEY_ID
@@ -58,7 +58,8 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
             KEY_ETALTURAFUSTE + " VARCHAR, " +
             KEY_ETALTURACOPA + " VARCHAR, " +
             KEY_ETISOLADA + " VARCHAR, " +
-            KEY_ETFLORACAOFRUTIFICACAO + " VARCHAR " +
+            KEY_ETFLORACAOFRUTIFICACAO + " VARCHAR, " +
+            KEY_ETDESCRICAO + " VARCHAR " +
             "); ";
 
     public DatabaseHelperArvoresVivas(Context context) {
@@ -81,7 +82,7 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
     public long addArvoresVivasDetail(String etidparcela, String etidcontrole, String etlatitude, String etlongitude, String etfamilia, String etgenero,
                                       String etespecie, String etbiomassa, String etidentificado, String etgrauprotecao,
                                       String etcircunferencia, String etaltura, String etalturatotal, String etalturafuste,
-                                      String etalturacopa, String etisolada, String etfloracaofrutificacao) {
+                                      String etalturacopa, String etisolada, String etfloracaofrutificacao, String etdescricao) {
         SQLiteDatabase db = this.getWritableDatabase();
         // Creating content values
         ContentValues values = new ContentValues();
@@ -102,6 +103,7 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
         values.put(KEY_ETALTURACOPA, etalturacopa);
         values.put(KEY_ETISOLADA, etisolada);
         values.put(KEY_ETFLORACAOFRUTIFICACAO, etfloracaofrutificacao);
+        values.put(KEY_ETDESCRICAO, etdescricao);
         //insert row in table
         long insert = db.insert(TABLE_NAME, null, values);
 
@@ -137,6 +139,7 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
                 arvoresVivasModel.setetalturacopa(c.getString(c.getColumnIndex(KEY_ETALTURACOPA)));
                 arvoresVivasModel.setetisolada(c.getString(c.getColumnIndex(KEY_ETISOLADA)));
                 arvoresVivasModel.setetfloracaofrutificacao(c.getString(c.getColumnIndex(KEY_ETFLORACAOFRUTIFICACAO)));
+                arvoresVivasModel.setetdescricao(c.getString(c.getColumnIndex(KEY_ETDESCRICAO)));
                 // adding to list
                 arvoresVivasModelArrayList.add(arvoresVivasModel);
             } while (c.moveToNext());
@@ -147,7 +150,7 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
     public int updateArvoresVivas(int id, String etlatitude, String etlongitude, String etfamilia, String etgenero,
                                   String etespecie, String etbiomassa, String etidentificado, String etgrauprotecao,
                                   String etcircunferencia, String etaltura, String etalturatotal, String etalturafuste,
-                                  String etalturacopa, String etisolada, String etfloracaofrutificacao) {
+                                  String etalturacopa, String etisolada, String etfloracaofrutificacao, String etdescricao) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Creating content values
@@ -167,6 +170,7 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
         values.put(KEY_ETALTURACOPA, etalturacopa);
         values.put(KEY_ETISOLADA, etisolada);
         values.put(KEY_ETFLORACAOFRUTIFICACAO, etfloracaofrutificacao);
+        values.put(KEY_ETDESCRICAO, etdescricao);
         // update row in table base on students.is value
         return db.update(TABLE_NAME, values, KEY_ID + " = ?",
                 new String[]{String.valueOf(id)});

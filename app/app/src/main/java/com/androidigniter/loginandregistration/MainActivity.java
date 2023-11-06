@@ -59,11 +59,11 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         final TextView opcao_hidrologia = findViewById(R.id.opcao_hidrologia);
 
         myDB.execSQL(
-                "CREATE TABLE IF NOT EXISTS arvoresvivas(id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, etbiomassa VARCHAR, etidentificado VARCHAR, etgrauprotecao VARCHAR, etcircunferencia VARCHAR, etaltura VARCHAR, etalturatotal VARCHAR, etalturafuste VARCHAR, etalturacopa VARCHAR, etisolada VARCHAR, etfloracaofrutificacao VARCHAR)"
+                "CREATE TABLE IF NOT EXISTS arvoresvivas(id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, etbiomassa VARCHAR, etidentificado VARCHAR, etgrauprotecao VARCHAR, etcircunferencia VARCHAR, etaltura VARCHAR, etalturatotal VARCHAR, etalturafuste VARCHAR, etalturacopa VARCHAR, etisolada VARCHAR, etfloracaofrutificacao VARCHAR, etdescricao VARCHAR)"
         );
 
         myDB.execSQL(
-                "CREATE TABLE IF NOT EXISTS animais(id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, ettpobservacao VARCHAR, etclassificacao VARCHAR, etgrauprotecao VARCHAR )"
+                "CREATE TABLE IF NOT EXISTS animais(id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, ettpobservacao VARCHAR, etclassificacao VARCHAR, etgrauprotecao VARCHAR, etdescricao VARCHAR)"
         );
 
         myDB.execSQL(
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         );
 
         myDB.execSQL(
-                "CREATE TABLE IF NOT EXISTS epifitas (id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR)"
+                "CREATE TABLE IF NOT EXISTS epifitas (id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, etdescricao VARCHAR)"
         );
 
         home.setOnClickListener(new View.OnClickListener() {

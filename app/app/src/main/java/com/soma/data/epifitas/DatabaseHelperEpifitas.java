@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "campo_data";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
     private static final String TABLE_NAME = "epifitas";
     private static final String KEY_ID = "id";
     private static final String KEY_ETIDPARCELA = "etidparcela";
@@ -27,6 +27,7 @@ public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
     private static final String KEY_ETFAMILIA = "etfamilia";
     private static final String KEY_ETGENERO = "etgenero";
     private static final String KEY_ETESPECIE = "etespecie";
+    private static final String KEY_ETDESCRICAO = "etdescricao";
 
     private static final String CREATE_TABLE_EPIFITAS = "CREATE TABLE IF NOT EXISTS "
             + TABLE_NAME + "(" + KEY_ID
@@ -37,7 +38,8 @@ public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
             KEY_ETLONGITUDE + " TEXT NOT NULL, "+
             KEY_ETFAMILIA + " VARCHAR, "+
             KEY_ETGENERO + " VARCHAR, " +
-            KEY_ETESPECIE + " VARCHAR " +
+            KEY_ETESPECIE + " VARCHAR, " +
+            KEY_ETDESCRICAO + " VARCHAR " +
             "); ";
 
     public DatabaseHelperEpifitas(Context context) {
@@ -58,7 +60,7 @@ public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
     }
 
     public long addEpifitasDetail(String etidparcela, String etidcontrole, String etlatitude, String etlongitude, String etfamilia, String etgenero,
-                                      String etespecie) {
+                                      String etespecie, String etdescricao) {
         SQLiteDatabase db = this.getWritableDatabase();
         // Creating content values
         ContentValues values = new ContentValues();
@@ -69,6 +71,7 @@ public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
         values.put(KEY_ETFAMILIA, etfamilia);
         values.put(KEY_ETGENERO, etgenero);
         values.put(KEY_ETESPECIE, etespecie);
+        values.put(KEY_ETDESCRICAO, etdescricao);
         //insert row in table
         long insert = db.insert(TABLE_NAME, null, values);
 
@@ -94,6 +97,7 @@ public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
                 epifitasModel.setetfamilia(c.getString(c.getColumnIndex(KEY_ETFAMILIA)));
                 epifitasModel.setetgenero(c.getString(c.getColumnIndex(KEY_ETGENERO)));
                 epifitasModel.setetespecie(c.getString(c.getColumnIndex(KEY_ETESPECIE)));
+                epifitasModel.setetdescricao(c.getString(c.getColumnIndex(KEY_ETDESCRICAO)));
                 // adding to list
                 epifitasModelArrayList.add(epifitasModel);
             } while (c.moveToNext());
@@ -102,7 +106,7 @@ public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
     }
 
     public int updateEpifitas(int id, String etlatitude, String etlongitude, String etfamilia, String etgenero,
-                             String etespecie) {
+                             String etespecie, String etdescricao) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Creating content values
@@ -113,6 +117,7 @@ public class DatabaseHelperEpifitas extends SQLiteOpenHelper {
         values.put(KEY_ETGENERO, etgenero);
         values.put(KEY_ETESPECIE, etespecie);
         values.put(KEY_ETESPECIE, etespecie);
+        values.put(KEY_ETDESCRICAO, etdescricao);
         // update row in table base on students.is value
         return db.update(TABLE_NAME, values, KEY_ID + " = ?",
                 new String[]{String.valueOf(id)});
