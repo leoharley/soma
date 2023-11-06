@@ -304,14 +304,14 @@ $(function() {
                     <li class="treeview">
                         <a href="<?php echo base_url(); ?>principalArvoreViva/listar">
                             <i class="fa fa-leaf" style="margin-right:5px!important"></i>
-                            <span>Árvores vivas</span>
+                            <span>Flora</span>
                         </a>
                     </li>
 
                     <li class="treeview">
                         <a href="<?php echo base_url(); ?>principalAnimal/listar">
                             <i class="fa fa-paw" style="margin-right:5px!important"></i>
-                            <span>Animais</span>
+                            <span>Fauna</span>
                         </a>
                     </li>
 
