@@ -64,7 +64,6 @@ import com.soma.data.hidrologia.DatabaseHelperHidrologia;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -73,7 +72,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -260,11 +258,7 @@ public class MainFragment extends Fragment {
                     {
                         alertDialog1.show();
                         alertDialog1.setMessage("Iniciando a sincronização...");
-                        try {
-                            atualizaTudoPainel();
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
+                        atualizaTudoPainel();
                     }
                 }
         )));
@@ -1078,14 +1072,11 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void atualizaTudoPainel() throws JSONException {
+    private void atualizaTudoPainel() {
         DatabaseMainHandler db = new DatabaseMainHandler(getContext());
         SQLiteDatabase db2 = db.getWritableDatabase();
     //    alertDialog1.setMessage("Atualizando parcelas...");
         /*CARREGA PARCELA*/
-        JSONObject obj = new JSONObject();
-        obj.put("idacesso", "1");
-        obj.put("name", "myname");
         JsonArrayRequest jsArrayRequest_parcela = new JsonArrayRequest
                 (Request.Method.POST, painel_parcela_url, null, response -> {
                     try {
@@ -1093,7 +1084,7 @@ public class MainFragment extends Fragment {
                         for(int i=0; i < response.length(); i++) {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
-                            String no_propriedade    = jsonObject1.getString("no_propriedade");
+                            String no_propriedade    = jsonObject1.getString("no_propriedade")+"*"+jsonObject1.getString("id_acesso");
                             String latitude    = jsonObject1.getString("latitude_gd");
                             String longitude    = jsonObject1.getString("longitude_gd");
                             db.insertParcela(id,no_propriedade,latitude,longitude);
