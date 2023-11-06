@@ -5,16 +5,9 @@ include 'functions.php';
  
 //Get the input request parameters
 $inputJSON = file_get_contents('php://input');
-$input = $inputJSON; //convert JSON into array
+$input = json_decode($inputJSON, TRUE); //convert JSON into array
  
 //Check for Mandatory parameters
-
-$query    = "INSERT INTO teste_envia_painel(id,id_parcela,id_acesso) VALUES (3213,'18','".$input['idacesso']."')";
- 
-if($stmt = $con->prepare($query)){
-	$stmt->execute();
-	$stmt->close();
-}
 
 $query    = "SELECT Parcelas.id, Propriedades.no_propriedade, Parcelas.latitude_gd, Parcelas.longitude_gd
 			 FROM tb_parcelas as Parcelas 
