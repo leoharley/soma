@@ -1617,6 +1617,7 @@ public class MainFragment extends Fragment {
                 request.put("idgrauprotecao", String.valueOf(db.getAllAnimais().get(i).getetgrauprotecao()));
                 request.put("latitudecampogd", db.getAllAnimais().get(i).getetlatitude());
                 request.put("longitudecampogd", db.getAllAnimais().get(i).getetlongitude());
+                request.put("descricao", db.getAllAnimais().get(i).getetdescricao());
 
                 JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                         (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
@@ -1709,6 +1710,7 @@ public class MainFragment extends Fragment {
                 request.put("nualturacopa", db.getAllArvoresVivas().get(i).getetalturacopa());
                 request.put("isolada", db.getAllArvoresVivas().get(i).getetisolada());
                 request.put("floracaofrutificacao", db.getAllArvoresVivas().get(i).getetfloracaofrutificacao());
+                request.put("descricao", db.getAllArvoresVivas().get(i).getetdescricao());
 
                 JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                         (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {
@@ -1788,6 +1790,7 @@ public class MainFragment extends Fragment {
 
                 request.put("latitudecampogd", db.getAllEpifitas().get(i).getetlatitude());
                 request.put("longitudecampogd", db.getAllEpifitas().get(i).getetlongitude());
+                request.put("descricao", db.getAllEpifitas().get(i).getetdescricao());
 
                 JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                         (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {

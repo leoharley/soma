@@ -248,7 +248,7 @@ class Principal extends BaseController
 
                 $id_projeto = $this->input->post('id_projeto');
                 $nu_ano_emissao = $this->input->post('nu_ano_emissao');
-                $nu_inscricao_car = preg_replace('/[^0-9]/', '', $this->input->post('nu_inscricao_car'));
+                $nu_inscricao_car = str_replace(array('-','.'), '', $this->input->post('nu_inscricao_car'));
                 $nu_ccir = $this->input->post('nu_ccir');
                 $proprietario = $this->input->post('proprietario');
                 $no_propriedade = $this->input->post('no_propriedade');
@@ -309,7 +309,7 @@ class Principal extends BaseController
 
                 $id_projeto = $this->input->post('id_projeto');
                 $nu_ano_emissao = $this->input->post('nu_ano_emissao');
-                $nu_inscricao_car = preg_replace('/[^0-9]/', '', $this->input->post('nu_inscricao_car'));
+                $nu_inscricao_car = str_replace(array('-','.'), '', $this->input->post('nu_inscricao_car'));
                 $nu_ccir = $this->input->post('nu_ccir');
                 $proprietario = $this->input->post('proprietario');
                 $no_propriedade = $this->input->post('no_propriedade');
