@@ -575,7 +575,7 @@ class Admin extends BaseController
             $id_categoria = $this->input->post('id_categoria');
 
             $config['upload_path']          = './uploads/';
-            $config['allowed_types']        = 'doc|docx|pdf|xls|xlsx|jpg|jpeg|png|gif';
+            $config['allowed_types']        = '*';
             $config['encrypt_name']         = true;
             $config['max_size']             = 500000000;
             $this->load->library('upload', $config);
