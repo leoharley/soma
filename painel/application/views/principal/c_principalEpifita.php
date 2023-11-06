@@ -7,6 +7,7 @@ $longitude = '';
 $id_familia = '';
 $id_genero = '';
 $id_especie = '';
+$descricao = '';
 
 if ($this->uri->segment(2) == 'editar') {
 if(!empty($infoEpifita))
@@ -23,6 +24,7 @@ if(!empty($infoEpifita))
         $no_genero = $r->no_genero;
         $id_especie = $r->id_especie;
         $no_especie = $r->no_especie;
+        $descricao = $r->descricao;
     }
 }
 }
@@ -179,7 +181,18 @@ if(!empty($infoEpifita))
                                         </select>
                                     </div>
                                 </div>-->
-                            </div>                     
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="descricao">Descrição</label>
+                                        <div class="form-group">                                        
+                                            <textarea id="descricao" name="descricao" rows="5" cols="41" style="text-align:left;resize: none;" disabled>
+                                            <?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('descricao') : $descricao; ?>
+                                            </textarea>                                            
+                                        </div>
+                                </div>
+                            </div>
 
                         </div>
                         <!-- /.box-body -->

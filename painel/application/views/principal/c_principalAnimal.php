@@ -10,6 +10,7 @@ $id_classificacao  = '';
 $id_grau_protecao = '';
 $latitude = '';
 $longitude = '';
+$descricao = '';
 
 if ($this->uri->segment(2) == 'editar') {
 if(!empty($infoAnimal))
@@ -29,6 +30,7 @@ if(!empty($infoAnimal))
         $id_grau_protecao = $r->id_grau_protecao;
         $latitude = $r->latitude_campo_gms;
         $longitude = $r->longitude_campo_gms;
+        $descricao = $r->descricao;
     }
 }
 }
@@ -241,7 +243,16 @@ if(!empty($infoAnimal))
                                             ?>
                                         </select>                                        
                                     </div>
-                                </div>                                                                                                
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="descricao">Descrição</label>
+                                        <div class="form-group">                                        
+                                            <textarea id="descricao" name="descricao" rows="5" cols="41" style="text-align:left;resize: none;" disabled>
+                                            <?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('descricao') : $descricao; ?>
+                                            </textarea>                                            
+                                        </div>
+                                </div>
                             </div> 
                         </div>
                         <!-- /.box-body -->

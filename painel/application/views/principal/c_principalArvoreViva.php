@@ -17,6 +17,7 @@ $nu_altura_fuste = '';
 $nu_altura_copa = '';
 $isolada = '';
 $floracao_frutificacao = '';
+$descricao = '';
 
 if ($this->uri->segment(2) == 'editar') {
 if(!empty($infoArvoreViva))
@@ -43,6 +44,7 @@ if(!empty($infoArvoreViva))
         $nu_altura_copa = $r->nu_altura_copa;
         $isolada = $r->isolada;
         $floracao_frutificacao = $r->floracao_frutificacao;
+        $descricao = $r->descricao;
     }
 }
 }
@@ -295,6 +297,17 @@ if(!empty($infoArvoreViva))
                                         <label for="floracao_frutificacao">Floração/Frutificação</label>
                                         <input type="text" class="form-control" id="floracao_frutificacao" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('floracao_frutificacao') : $floracao_frutificacao; ?>" name="floracao_frutificacao" disabled>
                                     </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="descricao">Descrição</label>
+                                        <div class="form-group">                                        
+                                            <textarea id="descricao" name="descricao" rows="5" cols="41" style="text-align:left;resize: none;" disabled>
+                                            <?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('descricao') : $descricao; ?>
+                                            </textarea>                                            
+                                        </div>
                                 </div>
                             </div>    
 
