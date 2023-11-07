@@ -401,8 +401,8 @@ class Principal extends BaseController
                 $this->global['pageTitle'] = 'SOMA : Cadastro de parcela';
                 
                 $data['infoPropriedades'] = $this->PrincipalModel->carregaInfoPropriedades();
-                $data['infoEstagiosRegeneracao'] = $this->PrincipalModel->carregaInfoEstagiosRegeneracao();
-                $data['infoGrausEpifitismo'] = $this->PrincipalModel->carregaInfoGrausEpifitismo();
+                //$data['infoEstagiosRegeneracao'] = $this->PrincipalModel->carregaInfoEstagiosRegeneracao();
+                //$data['infoGrausEpifitismo'] = $this->PrincipalModel->carregaInfoGrausEpifitismo();
                 $data['infoTiposBioma'] = $this->PrincipalModel->carregaInfoTiposBioma();
                 $data['infoTiposParcela'] = $this->PrincipalModel->carregaInfoTiposParcela();
 
@@ -418,8 +418,8 @@ class Principal extends BaseController
                 }
                 $data['infoPropriedades'] = $this->PrincipalModel->carregaInfoPropriedades();
                 $data['infoParcela'] = $this->PrincipalModel->carregaInfoParcela($IdParcela);
-                $data['infoEstagiosRegeneracao'] = $this->PrincipalModel->carregaInfoEstagiosRegeneracao();
-                $data['infoGrausEpifitismo'] = $this->PrincipalModel->carregaInfoGrausEpifitismo();
+                //$data['infoEstagiosRegeneracao'] = $this->PrincipalModel->carregaInfoEstagiosRegeneracao();
+               // $data['infoGrausEpifitismo'] = $this->PrincipalModel->carregaInfoGrausEpifitismo();
                 $data['infoTiposBioma'] = $this->PrincipalModel->carregaInfoTiposBioma();
                 $data['infoTiposParcela'] = $this->PrincipalModel->carregaInfoTiposParcela();
 
@@ -594,6 +594,8 @@ function principalArvoreViva()
                 $data['infoFamilias'] = $this->PrincipalModel->carregaInfoFamilias();
                 $data['infoParcelas'] = $this->PrincipalModel->carregaInfoParcelas();
                 $data['infoGrausProtecao'] = $this->PrincipalModel->carregaInfoGrausProtecao();
+                $data['infoEstagiosRegeneracao'] = $this->PrincipalModel->carregaInfoEstagiosRegeneracao();
+                $data['infoGrausEpifitismo'] = $this->PrincipalModel->carregaInfoGrausEpifitismo();
 
                 $data['nextIdArvoreViva'] = $this->PrincipalModel->carregaNextIdArvoreViva();
  
@@ -612,6 +614,8 @@ function principalArvoreViva()
                 $data['infoGeneros'] = $this->PrincipalModel->carregaInfoGeneros();
                 $data['infoEspecies'] = $this->PrincipalModel->carregaInfoEspecies();
                 $data['infoGrausProtecao'] = $this->PrincipalModel->carregaInfoGrausProtecao();
+                $data['infoEstagiosRegeneracao'] = $this->PrincipalModel->carregaInfoEstagiosRegeneracao();
+                $data['infoGrausEpifitismo'] = $this->PrincipalModel->carregaInfoGrausEpifitismo();
 
                 $this->global['pageTitle'] = 'SOMA : Editar Árvore Viva';      
                 $this->loadViews("principal/c_principalArvoreViva", $this->global, $data, NULL);

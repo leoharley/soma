@@ -4,8 +4,8 @@
 $id = '';
 $id_propriedade = '';
 $nu_ano_emissao = '';
-$id_estagio_regeneracao = '';
-$id_grau_epifitismo = '';
+//$id_estagio_regeneracao = '';
+//$id_grau_epifitismo = '';
 $id_tipo_bioma = '';
 $id_tipo_parcela = '';
 $tamanho_parcela = '';
@@ -25,10 +25,9 @@ if(!empty($infoParcela))
     {
         $id = $r->id;
         $id_propriedade = $r->id_propriedade;
-        $id_estagio_regeneracao = $r->id_estagio_regeneracao;
         $nu_ano_emissao = $r->nu_ano_emissao;
-        $id_estagio_regeneracao = $r->id_estagio_regeneracao;
-        $id_grau_epifitismo = $r->id_grau_epifitismo;
+        //$id_estagio_regeneracao = $r->id_estagio_regeneracao;
+        //$id_grau_epifitismo = $r->id_grau_epifitismo;
         $id_tipo_bioma = $r->id_tipo_bioma;
         $id_tipo_parcela = $r->id_tipo_parcela;
         $tamanho_parcela = $r->tamanho_parcela;
@@ -137,13 +136,6 @@ if(!empty($infoParcela))
                                         </select>
                                     </div>
                                 </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="estagio_regeneracao">Estágio Regeneração</label>
-                                        <input type="text" class="form-control required" id="estagio_regeneracao" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('estagio_regeneracao') : $estagio_regeneracao; ?>" name="estagio_regeneracao">
-                                    </div>
-                                </div>
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -165,14 +157,7 @@ if(!empty($infoParcela))
                                             ?>
                                         </select>
                                     </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="grau_epifitismo">Grau epifitismo</label>
-                                        <input type="text" class="form-control required" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('grau_epifitismo') : $grau_epifitismo; ?>" id="grau_epifitismo" name="grau_epifitismo">
-                                    </div>
-                                </div>
+                                </div>                            
 
                             </div> -->
 
@@ -400,7 +385,7 @@ $(document).ready(function(){
         }
     );
 
-    $('#id_estagio_regeneracao').select2(
+    /*$('#id_estagio_regeneracao').select2(
         {
             placeholder: 'SELECIONE'
         }
@@ -409,7 +394,7 @@ $(document).ready(function(){
         {
             placeholder: 'SELECIONE'
         }
-    );
+    );*/
     $('#id_tipo_bioma').select2(
         {
             placeholder: 'SELECIONE'
