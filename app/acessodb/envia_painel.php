@@ -72,9 +72,9 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	
 } else if ($input['dscategoria'] == 'arvoresvivas') {
 	
-    $insertQuery  = "REPLACE INTO tb_arvores_vivas(id,id_parcela,id_acesso,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,nu_biomassa,identificacao,nu_circunferencia,nu_altura,nu_altura_total,nu_altura_fuste,nu_altura_copa,isolada,floracao_frutificacao,latitude_campo_gms,longitude_campo_gms,descricao) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $insertQuery  = "REPLACE INTO tb_arvores_vivas(id,id_parcela,id_acesso,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,nu_biomassa,identificacao,nu_circunferencia,nu_altura,nu_altura_total,nu_altura_fuste,nu_altura_copa,isolada,floracao_frutificacao,latitude_campo_gms,longitude_campo_gms,descricao,id_estagio_regeneracao,id_grau_epifitismo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("ssssssssssssssssss",$input['idcontrolearvoresvivas'],strtok($input['idparcelaarvoresvivas'], '-'),$input['idacesso'],strtok($input['idgrauprotecao'], '-'),$input['latitudecampogd'],$input['longitudecampogd'],$input['nubiomassa'],$input['identificacao'],$input['nucircunferencia'],$input['nualtura'],$input['nualturatotal'],$input['nualturafuste'],$input['nualturacopa'],$input['isolada'],$input['floracaofrutificacao'],$result[0],$result[1],$input['descricao']);
+		$stmt->bind_param("ssssssssssssssssssss",$input['idcontrolearvoresvivas'],strtok($input['idparcelaarvoresvivas'], '-'),$input['idacesso'],strtok($input['idgrauprotecao'], '-'),$input['latitudecampogd'],$input['longitudecampogd'],$input['nubiomassa'],$input['identificacao'],$input['nucircunferencia'],$input['nualtura'],$input['nualturatotal'],$input['nualturafuste'],$input['nualturacopa'],$input['isolada'],$input['floracaofrutificacao'],$result[0],$result[1],$input['descricao'],strtok($input['idestagioregeneracao'], '-'),strtok($input['idgrauepifitismo'], '-'));
 		$stmt->execute();
 		$response["status"] = 0;
 		

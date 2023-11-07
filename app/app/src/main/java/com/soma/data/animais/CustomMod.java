@@ -59,7 +59,7 @@ public class CustomMod extends BaseAdapter {
             holder.ettpobservacao = (TextView) convertView.findViewById(R.id.animais_tpobservacao);
             holder.etclassificacao = (TextView) convertView.findViewById(R.id.animais_classificacao);
             holder.etgrauprotecao = (TextView) convertView.findViewById(R.id.animais_graudeprotecao);
-            holder.etdescricao = (TextView) convertView.findViewById(R.id.animais_etdescricao);
+            holder.etdescricao = (TextView) convertView.findViewById(R.id.animais_descricao);
 
             convertView.setTag(holder);
         }else {

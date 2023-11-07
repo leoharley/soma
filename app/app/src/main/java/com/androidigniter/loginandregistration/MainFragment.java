@@ -1775,6 +1775,8 @@ public class MainFragment extends Fragment {
                 request.put("isolada", db.getAllArvoresVivas().get(i).getetisolada());
                 request.put("floracaofrutificacao", db.getAllArvoresVivas().get(i).getetfloracaofrutificacao());
                 request.put("descricao", db.getAllArvoresVivas().get(i).getetdescricao());
+                request.put("idestagioregeneracao", db.getAllArvoresVivas().get(i).getetestagioregeneracao());
+                request.put("idgrauepifitismo", db.getAllArvoresVivas().get(i).getetgrauepifitismo());
 
                 JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                         (Request.Method.POST, envia_painel_url, request, new Response.Listener<JSONObject>() {

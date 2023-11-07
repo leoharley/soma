@@ -71,9 +71,9 @@ public class CustomMod extends BaseAdapter {
             holder.etalturacopa = (TextView) convertView.findViewById(R.id.arvoresvivas_alturacopa);
             holder.etisolada = (TextView) convertView.findViewById(R.id.arvoresvivas_isolada);
             holder.etfloracaofrutificacao = (TextView) convertView.findViewById(R.id.arvoresvivas_floracaofrutificacao);
-            holder.etdescricao = (TextView) convertView.findViewById(R.id.arvoresvivas_etdescricao);
-            holder.etestagioregeneracao = (TextView) convertView.findViewById(R.id.arvoresvivas_etestagioregeneracao);
-            holder.etgrauepifitismo = (TextView) convertView.findViewById(R.id.arvoresvivas_etgrauepifitismo);
+            holder.etdescricao = (TextView) convertView.findViewById(R.id.arvoresvivas_descricao);
+            holder.etestagioregeneracao = (TextView) convertView.findViewById(R.id.arvoresvivas_estagioregeneracao);
+            holder.etgrauepifitismo = (TextView) convertView.findViewById(R.id.arvoresvivas_grauepifitismo);
 
             convertView.setTag(holder);
         }else {

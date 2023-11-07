@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class DatabaseMainHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 15;
+    private static final int DATABASE_VERSION = 17;
     private static final String DATABASE_NAME = "painel_data";
     private static final String TABLE_PARCELA_NAME = "tb_parcelas";
     private static final String TABLE_FAUNA_FAMILIA = "tb_fauna_familia";
