@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class DatabaseHelperAnimais extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "campo_data";
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 15;
     private static final String TABLE_NAME = "animais";
     private static final String KEY_ID = "id";
     private static final String KEY_ETIDPARCELA = "etidparcela";

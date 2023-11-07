@@ -57,7 +57,7 @@ public class CustomAdapterAnimais extends BaseAdapter {
             holder.ettpobservacao = (TextView) convertView.findViewById(R.id.animais_ettpobservacao);
             holder.etclassificacao = (TextView) convertView.findViewById(R.id.animais_etclassificacao);
             holder.etgrauprotecao = (TextView) convertView.findViewById(R.id.animais_etgrauprotecao);
-            holder.etdescricao = (TextView) convertView.findViewById(R.id.animais_etdescricao);
+           // holder.etdescricao = (TextView) convertView.findViewById(R.id.animais_etdescricao);
 
             convertView.setTag(holder);
         }else {
@@ -73,7 +73,7 @@ public class CustomAdapterAnimais extends BaseAdapter {
         holder.ettpobservacao.setText("Tipo de Observação"+ animaisModelArrayList.get(position).getettpobservacao());
         holder.etclassificacao.setText("Classificação"+ animaisModelArrayList.get(position).getetclassificacao());
         holder.etgrauprotecao.setText("Grau de Proteção"+ animaisModelArrayList.get(position).getetgrauprotecao());
-        holder.etdescricao.setText("Descrição"+ animaisModelArrayList.get(position).getetdescricao());
+     //   holder.etdescricao.setText("Descrição"+ animaisModelArrayList.get(position).getetdescricao());
 
         return convertView;
     }

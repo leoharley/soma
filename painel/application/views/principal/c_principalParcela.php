@@ -249,7 +249,7 @@ if(!empty($infoParcela))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="carbono_vegetacao">Carbono vegetação</label>
-                                        <input type="text" class="form-control required 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_vegetacao') : $carbono_vegetacao; ?>" id="carbono_vegetacao" name="carbono_vegetacao">
+                                        <input type="text" class="form-control 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_vegetacao') : $carbono_vegetacao; ?>" id="carbono_vegetacao" name="carbono_vegetacao">
                                     </div>
                                 </div>                                
                             </div>
@@ -258,14 +258,14 @@ if(!empty($infoParcela))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="biomassa_vegetacao_total">Biomassa vegetação total</label>
-                                        <input type="text" class="form-control required 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('biomassa_vegetacao_total') : $biomassa_vegetacao_total; ?>" id="biomassa_vegetacao_total" name="biomassa_vegetacao_total">
+                                        <input type="text" class="form-control 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('biomassa_vegetacao_total') : $biomassa_vegetacao_total; ?>" id="biomassa_vegetacao_total" name="biomassa_vegetacao_total">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="biomassa_arbustiva">Biomassa arbustiva</label>
-                                        <input type="text" class="form-control required 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('biomassa_arbustiva') : $biomassa_arbustiva; ?>" id="biomassa_arbustiva" name="biomassa_arbustiva">
+                                        <input type="text" class="form-control 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('biomassa_arbustiva') : $biomassa_arbustiva; ?>" id="biomassa_arbustiva" name="biomassa_arbustiva">
                                     </div>
                                 </div>                                
                             </div>
@@ -274,14 +274,14 @@ if(!empty($infoParcela))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="biomassa_hectare">Biomassa hectare</label>
-                                        <input type="text" class="form-control required 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('biomassa_hectare') : $biomassa_hectare; ?>" id="biomassa_hectare" name="biomassa_hectare">
+                                        <input type="text" class="form-control ....2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('biomassa_hectare') : $biomassa_hectare; ?>" id="biomassa_hectare" name="biomassa_hectare">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="carbono_total">Carbono total</label>
-                                        <input type="text" class="form-control required 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_total') : $carbono_total; ?>" id="carbono_total" name="carbono_total">
+                                        <input type="text" class="form-control 2decimais" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('carbono_total') : $carbono_total; ?>" id="carbono_total" name="carbono_total">
                                     </div>
                                 </div>   
                                 <div class="col-md-6">
