@@ -79,6 +79,8 @@
                     <th>Altura copa</th>
                     <th>Isolada</th>
                     <th>Floração frutificação</th>
+                    <th>Estágio regeneração</th>
+                    <th>Grau epifitismo</th>
                     <th>Dt. cadastro</th>           
                     <th>Ações</th>
                   </tr>
@@ -135,6 +137,12 @@
                       </td>
                       <td>
                         <?php echo $registro->floracao_frutificacao ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->nome_estagio_regeneracao ?>
+                      </td>
+                      <td>
+                        <?php echo $registro->nome_grau_epifitismo ?>
                       </td>
                       <td>
                         <?= ($registro->dt_cadastro == '0000-00-00')?'<font style="color:red;font-weight:bold;">NÃO CADASTRADO
