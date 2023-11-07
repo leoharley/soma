@@ -72,6 +72,8 @@ public class CustomMod extends BaseAdapter {
             holder.etisolada = (TextView) convertView.findViewById(R.id.arvoresvivas_isolada);
             holder.etfloracaofrutificacao = (TextView) convertView.findViewById(R.id.arvoresvivas_floracaofrutificacao);
             holder.etdescricao = (TextView) convertView.findViewById(R.id.arvoresvivas_etdescricao);
+            holder.etestagioregeneracao = (TextView) convertView.findViewById(R.id.arvoresvivas_etestagioregeneracao);
+            holder.etgrauepifitismo = (TextView) convertView.findViewById(R.id.arvoresvivas_etgrauepifitismo);
 
             convertView.setTag(holder);
         }else {
@@ -97,6 +99,8 @@ public class CustomMod extends BaseAdapter {
         holder.etisolada.setText("Isolada: "+ arvoresVivasModelArrayList.get(position).getetisolada());
         holder.etfloracaofrutificacao.setText("Floração/Frutificação: "+ arvoresVivasModelArrayList.get(position).getetfloracaofrutificacao());
         holder.etdescricao.setText("Descrição"+ arvoresVivasModelArrayList.get(position).getetdescricao());
+        holder.etestagioregeneracao.setText("Estágio Regeneração"+ arvoresVivasModelArrayList.get(position).getetestagioregeneracao());
+        holder.etgrauepifitismo.setText("Grau Epifitismo"+ arvoresVivasModelArrayList.get(position).getetgrauepifitismo());
 
         return convertView;
     }
@@ -121,7 +125,9 @@ public class CustomMod extends BaseAdapter {
                 etalturacopa,
                 etisolada,
                 etfloracaofrutificacao,
-                etdescricao;
+                etdescricao,
+                etestagioregeneracao,
+                etgrauepifitismo;
 
     }
 

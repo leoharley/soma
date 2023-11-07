@@ -74,7 +74,9 @@ public class ModifyArvoresVivasFragment extends Fragment {
             spinner_genero,
             spinner_especie,
             spinner_identificado,
-            spinner_grau_de_protecao;
+            spinner_grau_de_protecao,
+            spinner_estagio_regeneracao,
+            spinner_grau_epifitismo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -146,6 +148,28 @@ public class ModifyArvoresVivasFragment extends Fragment {
         spinner_grau_de_protecao.setPositiveButton("Fechar");
         spinner_grau_de_protecao.setAdapter(adapter_spinner_grau_de_protecao);
 
+        spinner_estagio_regeneracao = view.findViewById(R.id.spinner_estagio_regeneracao);
+        List<String> estagioregeneracao = new ArrayList<String>();
+        estagioregeneracao.add(0,"SELECIONE");
+        estagioregeneracao.addAll(db.getAllEstagioRegeneracao());
+        ArrayAdapter<String> adapter_estagio_regeneracao = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, estagioregeneracao);
+
+        adapter_estagio_regeneracao.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_estagio_regeneracao.setTitle("Pesquisar");
+        spinner_estagio_regeneracao.setPositiveButton("Fechar");
+        spinner_estagio_regeneracao.setAdapter(adapter_estagio_regeneracao);
+
+        spinner_grau_epifitismo = view.findViewById(R.id.spinner_grau_epifitismo);
+        List<String> grauepifitismo = new ArrayList<String>();
+        grauepifitismo.add(0,"SELECIONE");
+        grauepifitismo.addAll(db.getAllGrauEpifitismo());
+        ArrayAdapter<String> adapter_spinner_grau_epifitismo = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, grauepifitismo);
+
+        adapter_spinner_grau_epifitismo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_grau_epifitismo.setTitle("Pesquisar");
+        spinner_grau_epifitismo.setPositiveButton("Fechar");
+        spinner_grau_epifitismo.setAdapter(adapter_spinner_grau_epifitismo);
+
         etcircunferencia = (EditText) view.findViewById(R.id.et_circunferencia);
         etaltura = (EditText) view.findViewById(R.id.et_altura);
         etalturatotal = (EditText) view.findViewById(R.id.et_altura_total);
@@ -176,6 +200,8 @@ public class ModifyArvoresVivasFragment extends Fragment {
         etisolada.setText(arvoresVivasModel.getetisolada());
         etfloracaofrutificacao.setText(arvoresVivasModel.getetfloracaofrutificacao());
         etdescricao.setText(arvoresVivasModel.getetdescricao());
+        selectValue(spinner_estagio_regeneracao,arvoresVivasModel.getetestagioregeneracao());
+        selectValue(spinner_grau_epifitismo,arvoresVivasModel.getetgrauepifitismo());
 
         linkLatLong = (TextView) view.findViewById(R.id.et_linklatlong);
         latParcela = String.valueOf(db.getLatParcelas((String) etidparcela.getText()));
@@ -197,7 +223,7 @@ public class ModifyArvoresVivasFragment extends Fragment {
                         spinner_genero.getSelectedItem().toString(), spinner_especie.getSelectedItem().toString(), etbiomassa.getText().toString(), spinner_identificado.getSelectedItem().toString(),
                         spinner_grau_de_protecao.getSelectedItem().toString(), etcircunferencia.getText().toString(), etaltura.getText().toString(), etalturatotal.getText().toString(),
                         etalturafuste.getText().toString(), etalturacopa.getText().toString(), etisolada.getText().toString(), etfloracaofrutificacao.getText().toString(),
-                        etdescricao.getText().toString());
+                        etdescricao.getText().toString(), spinner_estagio_regeneracao.getSelectedItem().toString(),spinner_grau_epifitismo.getSelectedItem().toString());
                 Toast.makeText(getContext(), "Atualizado com sucesso!", Toast.LENGTH_LONG).show();
                 for (Fragment fragment : getParentFragmentManager().getFragments()) {
                     getParentFragmentManager().beginTransaction().remove(fragment).commit();

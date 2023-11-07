@@ -75,7 +75,9 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
             spinner_genero,
             spinner_especie,
             spinner_identificado,
-            spinner_grau_de_protecao;
+            spinner_grau_de_protecao,
+            spinner_estagio_regeneracao,
+            spinner_grau_epifitismo;
 
     String[] options;
     TextView linkLatLong;
@@ -181,6 +183,28 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
         spinner_grau_de_protecao.setPositiveButton("Fechar");
         spinner_grau_de_protecao.setAdapter(adapter_spinner_grau_de_protecao);
 
+        spinner_estagio_regeneracao = view.findViewById(R.id.spinner_estagio_regeneracao);
+        List<String> estagioregeneracao = new ArrayList<String>();
+        estagioregeneracao.add(0,"SELECIONE");
+        estagioregeneracao.addAll(db.getAllEstagioRegeneracao());
+        ArrayAdapter<String> adapter_estagio_regeneracao = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, estagioregeneracao);
+
+        adapter_estagio_regeneracao.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_estagio_regeneracao.setTitle("Pesquisar");
+        spinner_estagio_regeneracao.setPositiveButton("Fechar");
+        spinner_estagio_regeneracao.setAdapter(adapter_estagio_regeneracao);
+
+        spinner_grau_epifitismo = view.findViewById(R.id.spinner_grau_epifitismo);
+        List<String> grauepifitismo = new ArrayList<String>();
+        grauepifitismo.add(0,"SELECIONE");
+        grauepifitismo.addAll(db.getAllGrauEpifitismo());
+        ArrayAdapter<String> adapter_spinner_grau_epifitismo = new ArrayAdapter<String>(getContext(),R.layout.simple_spinner_item, grauepifitismo);
+
+        adapter_spinner_grau_epifitismo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_grau_epifitismo.setTitle("Pesquisar");
+        spinner_grau_epifitismo.setPositiveButton("Fechar");
+        spinner_grau_epifitismo.setAdapter(adapter_spinner_grau_epifitismo);
+
         /* EDITTEXT */
         etidcontrole = (EditText) view.findViewById(R.id.et_idcontrole);
         etlatitude = (EditText) view.findViewById(R.id.et_latitude);
@@ -235,13 +259,6 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-              /* String name = etlatitude.getText().toString();
-                if (TextUtils.isEmpty(name)){
-                    etlatitude.setError("Enter Name");
-                    etlatitude.requestFocus();
-                    return;
-                } */ //CAMPOS OBRIGATÓRIOS
-
                 databaseHelperArvoresVivas.addArvoresVivasDetail(
                         spinner_parcela.getSelectedItem().toString(),
                         etidcontrole.getText().toString(),
@@ -260,7 +277,9 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
                         etalturacopa.getText().toString(),
                         etisolada.getText().toString(),
                         etfloracaofrutificacao.getText().toString(),
-                        etdescricao.getText().toString());
+                        etdescricao.getText().toString(),
+                        spinner_estagio_regeneracao.getSelectedItem().toString(),
+                        spinner_grau_epifitismo.getSelectedItem().toString());
 
                 Toast.makeText(getContext(), "Cadastro com sucesso!", Toast.LENGTH_SHORT).show();
                 for (Fragment fragment : getParentFragmentManager().getFragments()) {

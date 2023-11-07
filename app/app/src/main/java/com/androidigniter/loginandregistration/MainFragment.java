@@ -101,6 +101,8 @@ public class MainFragment extends Fragment {
     private String painel_grau_protecao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_grau_protecao.php";
     private String painel_fauna_classificacao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_fauna_classificacao.php";
     private String painel_fauna_tpobservacao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_fauna_tpobservacao.php";
+    private String painel_flora_estagio_regeneracao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_estagio_regeneracao.php";
+    private String painel_flora_grau_epifitismo_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_grau_epifitismo.php";
     private String envia_painel_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/envia_painel.php";
     private AlertDialog alertDialog1;
     private static final String KEY_STATUS = "status";
@@ -1275,15 +1277,77 @@ public class MainFragment extends Fragment {
                                                                                                                                                                     catch (Exception e){
                                                                                                                                                                         e.printStackTrace();
                                                                                                                                                                     } finally {
-                                                                                                                                                                        //    alertDialog1.dismiss();
-                                                                                                                                                                        alertDialog1.setMessage("Tudo atualizado!");
-                                                                                                                                                                        Handler handler = new Handler();
-                                                                                                                                                                        handler.postDelayed(new Runnable() {
-                                                                                                                                                                            public void run() {
-                                                                                                                                                                                alertDialog1.dismiss();
-                                                                                                                                                                            }
-                                                                                                                                                                        }, 1200);
-                                                                                                                                                                        //runEnviarPainelInBackground();
+
+
+                                                                                                                                                                        /*CARREGA FLORA ESTAGIO REGENERACAO*/
+                                                                                                                                                                        JsonArrayRequest jsArrayRequest_flora_estagio_regeneracao = new JsonArrayRequest
+                                                                                                                                                                                (Request.Method.POST, painel_flora_estagio_regeneracao_url, null, response11 -> {
+                                                                                                                                                                                    try {
+                                                                                                                                                                                        if (!String.valueOf(db.CountFloraEstagioRegeneracao()).equals(response11.getJSONObject(0).getString("contador"))) {
+                                                                                                                                                                                            db.apagaTabelaEstagioRegeneracao();
+                                                                                                                                                                                            for (int i = 0; i < response11.length(); i++) {
+                                                                                                                                                                                                JSONObject jsonObject1 = response11.getJSONObject(i);
+                                                                                                                                                                                                String id = jsonObject1.getString("id");
+                                                                                                                                                                                                String nome = jsonObject1.getString("nome");
+                                                                                                                                                                                                db.insertFloraEstagioRegeneracao(id, nome);
+                                                                                                                                                                                            }
+                                                                                                                                                                                        }
+                                                                                                                                                                                        db2.close();
+                                                                                                                                                                                    }
+                                                                                                                                                                                    catch (Exception e){
+                                                                                                                                                                                        e.printStackTrace();
+                                                                                                                                                                                    } finally {
+
+
+                                                                                                                                                                                        /*CARREGA FLORA GRAU EPIFITISMO*/
+                                                                                                                                                                                        JsonArrayRequest jsArrayRequest_flora_grau_epifitismo = new JsonArrayRequest
+                                                                                                                                                                                                (Request.Method.POST, painel_flora_grau_epifitismo_url, null, response12 -> {
+                                                                                                                                                                                                    try {
+                                                                                                                                                                                                        if (!String.valueOf(db.CountFloraGrauEpifitismo()).equals(response12.getJSONObject(0).getString("contador"))) {
+                                                                                                                                                                                                            db.apagaTabelaGrauEpifitismo();
+                                                                                                                                                                                                            for (int i = 0; i < response12.length(); i++) {
+                                                                                                                                                                                                                JSONObject jsonObject1 = response12.getJSONObject(i);
+                                                                                                                                                                                                                String id = jsonObject1.getString("id");
+                                                                                                                                                                                                                String nome = jsonObject1.getString("nome");
+                                                                                                                                                                                                                db.insertFloraGrauEpifitismo(id, nome);
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                        db2.close();
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                    catch (Exception e){
+                                                                                                                                                                                                        e.printStackTrace();
+                                                                                                                                                                                                    } finally {
+
+
+                                                                                                                                                                                                        //    alertDialog1.dismiss();
+                                                                                                                                                                                                        alertDialog1.setMessage("Tudo atualizado!");
+                                                                                                                                                                                                        Handler handler = new Handler();
+                                                                                                                                                                                                        handler.postDelayed(new Runnable() {
+                                                                                                                                                                                                            public void run() {
+                                                                                                                                                                                                                alertDialog1.dismiss();
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                        }, 1200);
+                                                                                                                                                                                                        //runEnviarPainelInBackground();
+
+
+
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                }, error -> {
+                                                                                                                                                                                                    Toast.makeText(getContext(),
+                                                                                                                                                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                                });
+                                                                                                                                                                                        MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_grau_epifitismo);
+
+
+
+                                                                                                                                                                                    }
+                                                                                                                                                                                }, error -> {
+                                                                                                                                                                                    Toast.makeText(getContext(),
+                                                                                                                                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                });
+                                                                                                                                                                        MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_estagio_regeneracao);
+
+
                                                                                                                                                                     }
                                                                                                                                                                 }, error -> {
                                                                                                                                                                     Toast.makeText(getContext(),

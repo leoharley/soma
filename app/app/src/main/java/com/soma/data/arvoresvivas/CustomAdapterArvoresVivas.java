@@ -64,7 +64,9 @@ public class CustomAdapterArvoresVivas extends BaseAdapter {
             holder.etalturacopa = (TextView) convertView.findViewById(R.id.arvoresvivas_etalturacopa);
             holder.etisolada = (TextView) convertView.findViewById(R.id.arvoresvivas_etisolada);
             holder.etfloracaofrutificacao = (TextView) convertView.findViewById(R.id.arvoresvivas_etfloracaofrutificacao);
-         //   holder.etdescricao = (TextView) convertView.findViewById(R.id.arvoresvivas_etdescricao);
+            holder.etdescricao = (TextView) convertView.findViewById(R.id.arvoresvivas_etdescricao);
+            holder.etestagioregeneracao = (TextView) convertView.findViewById(R.id.arvoresvivas_etestagioregeneracao);
+            holder.etgrauepifitismo = (TextView) convertView.findViewById(R.id.arvoresvivas_etgrauepifitismo);
 
             convertView.setTag(holder);
         }else {
@@ -87,7 +89,9 @@ public class CustomAdapterArvoresVivas extends BaseAdapter {
         holder.etalturacopa.setText("Altura da Copa"+ arvoresVivasModelArrayList.get(position).getetalturacopa());
         holder.etisolada.setText("Isolada"+ arvoresVivasModelArrayList.get(position).getetisolada());
         holder.etfloracaofrutificacao.setText("Floração/Frutificação"+ arvoresVivasModelArrayList.get(position).getetfloracaofrutificacao());
-     //   holder.etdescricao.setText("Descrição"+ arvoresVivasModelArrayList.get(position).getetdescricao());
+        holder.etdescricao.setText("Descrição"+ arvoresVivasModelArrayList.get(position).getetdescricao());
+        holder.etestagioregeneracao.setText("Estágio Regeneração"+ arvoresVivasModelArrayList.get(position).getetestagioregeneracao());
+        holder.etgrauepifitismo.setText("Grau Epifitismo"+ arvoresVivasModelArrayList.get(position).getetgrauepifitismo());
 
         return convertView;
     }
@@ -109,7 +113,9 @@ public class CustomAdapterArvoresVivas extends BaseAdapter {
                 etalturacopa,
                 etisolada,
                 etfloracaofrutificacao,
-                etdescricao;
+                etdescricao,
+                etestagioregeneracao,
+                etgrauepifitismo;
     }
 
 }

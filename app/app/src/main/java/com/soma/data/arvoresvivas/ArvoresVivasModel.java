@@ -26,6 +26,8 @@ public class ArvoresVivasModel implements Serializable {
     private String etisolada;
     private String etfloracaofrutificacao;
     private String etdescricao;
+    private String etestagioregeneracao;
+    private String etgrauepifitismo;
     private int id;
 
     public int getId() {
@@ -178,6 +180,22 @@ public class ArvoresVivasModel implements Serializable {
 
     public void setetdescricao(String etdescricao) {
         this.etdescricao = etdescricao;
+    }
+
+    public String getetestagioregeneracao() {
+        return etestagioregeneracao;
+    }
+
+    public void setetestagioregeneracao(String etestagioregeneracao) {
+        this.etestagioregeneracao = etestagioregeneracao;
+    }
+
+    public String getetgrauepifitismo() {
+        return etgrauepifitismo;
+    }
+
+    public void setetgrauepifitismo(String etgrauepifitismo) {
+        this.etgrauepifitismo = etgrauepifitismo;
     }
 
 

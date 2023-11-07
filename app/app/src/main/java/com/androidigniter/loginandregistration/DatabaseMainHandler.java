@@ -27,6 +27,8 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
     private static final String TABLE_GRAU_PROTECAO = "tb_grau_protecao";
     private static final String TABLE_FAUNA_CLASSIFICACAO = "tb_fauna_classificacao";
     private static final String TABLE_FAUNA_TPOBSERVACAO = "tb_fauna_tpobservacao";
+    private static final String TABLE_ESTAGIO_REGENERACAO = "tb_estagio_regeneracao";
+    private static final String TABLE_GRAU_EPIFITISMO = "tb_grau_epifitismo";
     private static final String COLUMN_ID = "id";
     private static final String KEY_IDPARCELA = "etidparcela";
     private static final String KEY_NOPROPRIEDADE = "etnopropriedade";
@@ -41,6 +43,10 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
     private static final String KEY_NOFAUNACLASSIFICACAO = "etnofaunaclassificacao";
     private static final String KEY_IDFAUNATPOBSERVACAO = "etidfaunatpobservacao";
     private static final String KEY_NOFAUNATPOBSERVACAO = "etnofaunatpobservacao";
+    private static final String KEY_IDESTAGIOREGENERACAO = "etidestagioregeneracao";
+    private static final String KEY_NOESTAGIOREGENERACAO = "etnoestagioregeneracao";
+    private static final String KEY_IDGRAUEPIFITISMO = "etidgrauepifistimo";
+    private static final String KEY_NOGRAUEPIFITISMO = "etnograuepifistimo";
 
     public DatabaseMainHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -132,7 +138,23 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
                 KEY_NOFAUNATPOBSERVACAO + " VARCHAR " +
                 "); ";
         db.execSQL(CREATE_FAUNA_TPOBSERVACAO_TABLE);
-        
+
+        String CREATE_ESTAGIO_REGENERACAO_TABLE = "CREATE TABLE IF NOT EXISTS "
+                + TABLE_ESTAGIO_REGENERACAO + "(" + COLUMN_ID
+                + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                KEY_IDESTAGIOREGENERACAO + " VARCHAR, "+
+                KEY_NOESTAGIOREGENERACAO + " VARCHAR " +
+                "); ";
+        db.execSQL(CREATE_ESTAGIO_REGENERACAO_TABLE);
+
+        String CREATE_GRAU_EPIFITISMO_TABLE = "CREATE TABLE IF NOT EXISTS "
+                + TABLE_GRAU_EPIFITISMO + "(" + COLUMN_ID
+                + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                KEY_IDGRAUEPIFITISMO + " VARCHAR, "+
+                KEY_NOGRAUEPIFITISMO + " VARCHAR " +
+                "); ";
+        db.execSQL(CREATE_GRAU_EPIFITISMO_TABLE);
+
     }
 
     // Upgrading database
@@ -210,6 +232,18 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
     public void apagaTabelaFaunaTpObservacao(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FAUNA_TPOBSERVACAO, null, null);
+        db.close(); // Closing database connection
+    }
+
+    public void apagaTabelaEstagioRegeneracao(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_ESTAGIO_REGENERACAO, null, null);
+        db.close(); // Closing database connection
+    }
+
+    public void apagaTabelaGrauEpifitismo(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_GRAU_EPIFITISMO, null, null);
         db.close(); // Closing database connection
     }
 
@@ -332,6 +366,30 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(TABLE_FAUNA_TPOBSERVACAO, null, values);//tableName, nullColumnHack, CotentValues
+        db.close(); // Closing database connection
+    }
+
+    public void insertFloraEstagioRegeneracao(String id, String nome){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_IDESTAGIOREGENERACAO, id);//column name, column value
+        values.put(KEY_NOESTAGIOREGENERACAO, nome);//column name, column value
+
+        // Inserting Row
+        db.insert(TABLE_ESTAGIO_REGENERACAO, null, values);//tableName, nullColumnHack, CotentValues
+        db.close(); // Closing database connection
+    }
+
+    public void insertFloraGrauEpifitismo(String id, String nome){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_IDGRAUEPIFITISMO, id);//column name, column value
+        values.put(KEY_NOGRAUEPIFITISMO, nome);//column name, column value
+
+        // Inserting Row
+        db.insert(TABLE_GRAU_EPIFITISMO, null, values);//tableName, nullColumnHack, CotentValues
         db.close(); // Closing database connection
     }
 
@@ -536,6 +594,34 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         return contador;
     }
 
+    public int CountFloraEstagioRegeneracao(){
+        String selectQuery = "SELECT COUNT(*) FROM " + TABLE_ESTAGIO_REGENERACAO;
+        int contador = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            contador = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return contador;
+    }
+
+    public int CountFloraGrauEpifitismo(){
+        String selectQuery = "SELECT COUNT(*) FROM " + TABLE_GRAU_EPIFITISMO;
+        int contador = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            contador = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return contador;
+    }
+
     public List<String> getAllFaunaFamilias(){
         List<String> list = new ArrayList<String>();
 
@@ -719,6 +805,46 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         // closing connection
         cursor.close();
         db.close();
+        return list;
+    }
+
+    public List<String> getAllEstagioRegeneracao(){
+        List<String> list = new ArrayList<String>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_ESTAGIO_REGENERACAO;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            do {
+                list.add(cursor.getString(1)+" - "+cursor.getString(2));//adding 2nd column data
+            } while (cursor.moveToNext());
+        }
+        // closing connection
+        cursor.close();
+        //   db.close();
+        return list;
+    }
+
+    public List<String> getAllGrauEpifitismo(){
+        List<String> list = new ArrayList<String>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_GRAU_EPIFITISMO;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        if (cursor.moveToFirst()) {
+            do {
+                list.add(cursor.getString(1)+" - "+cursor.getString(2));//adding 2nd column data
+            } while (cursor.moveToNext());
+        }
+        // closing connection
+        cursor.close();
+        //   db.close();
         return list;
     }
 
