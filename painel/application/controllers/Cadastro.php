@@ -319,8 +319,10 @@ class Cadastro extends BaseController
                 $id_perfil = $this->input->post('id_perfil');
                 $ds_perfil = $this->input->post('ds_perfil');
                 $st_admin = $this->input->post('st_admin');
+                $st_campo = $this->input->post('st_campo');
                 
-                $infoPerfil = array('id_perfil'=> $id_perfil,'ds_perfil'=>$ds_perfil,'st_admin'=>$st_admin, 'st_registro_ativo'=>'S');
+                $infoPerfil = array('id_perfil'=> $id_perfil,'ds_perfil'=>$ds_perfil,'st_admin'=>$st_admin,
+                                    'st_campo'=>$st_campo, 'st_registro_ativo'=>'S');
                                     
                 $resultado = $this->CadastroModel->adicionaPerfil($infoPerfil);
                 
@@ -367,6 +369,7 @@ class Cadastro extends BaseController
 
                 $ds_perfil = $this->input->post('ds_perfil');
                 $st_admin = $this->input->post('st_admin');
+                $st_campo = $this->input->post('st_campo');
 
                /* foreach ($this->CadastroModel->carregaInfoPerfilExistente($IdPerfil) as $data){
                     $Tp_Ativo_Atual = ($data->Tp_Ativo);
@@ -384,7 +387,8 @@ class Cadastro extends BaseController
                 
              //   $Dt_Atualizacao = date('Y-m-d H:i:s');
                 
-                $infoPerfil = array('ds_perfil'=> $ds_perfil, 'st_admin'=>$st_admin, 'st_registro_ativo'=>'S');
+                $infoPerfil = array('ds_perfil'=> $ds_perfil, 'st_admin'=>$st_admin, 
+                                    'st_campo'=>$st_campo, 'st_registro_ativo'=>'S');
                 
                 
                 $resultado = $this->CadastroModel->editaPerfil($infoPerfil, $IdPerfil);
