@@ -917,10 +917,12 @@ function carregaInfoPermissao($IdPermissao)
 
     function listaArvoresVivas($searchText = '', $page, $segment)
     {
-        $this->db->select('ArvoresVivas.*,Parcelas.id as id_parcela, Propriedades.no_propriedade, CadastroPessoa.ds_nome, GrauProtecao.nome as nome_grau_protecao');
+        $this->db->select('ArvoresVivas.*,Parcelas.id as id_parcela, Propriedades.no_propriedade, CadastroPessoa.ds_nome, GrauProtecao.nome as nome_grau_protecao, EstagioRegeneracao.nome as nome_estagio_regeneracao, GrauEpifitismo.nome as nome_grau_epifitismo');
         $this->db->from('tb_arvores_vivas as ArvoresVivas');
         $this->db->join('tb_parcelas as Parcelas', 'Parcelas.id = ArvoresVivas.id_parcela','left');
         $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
+        $this->db->join('tb_estagio_regeneracao as EstagioRegeneracao', 'EstagioRegeneracao.id = ArvoresVivas.id_estagio_regeneracao','left');        
+        $this->db->join('tb_grau_epifitismo as GrauEpifitismo', 'GrauEpifitismo.id = ArvoresVivas.id_grau_epifitismo','left');   
         $this->db->join('tb_acesso as Acesso', 'Acesso.co_seq_acesso = ArvoresVivas.id_acesso','left'); 
         $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
         $this->db->join('tb_grau_protecao as GrauProtecao', 'GrauProtecao.id = ArvoresVivas.id_grau_protecao','left');        
