@@ -65,7 +65,10 @@ if(!empty($infoPerfil))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="st_campo">Técnico de campo?</label>
-                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('st_campo') : $st_campo ; ?>" id="st_campo" name="st_campo" maxlength="128">
+                                        <select class="form-control required" id="st_admin" name="st_admin">
+                                            <option value="S" <?php if ($this->uri->segment(2) == 'editar' && $st_campo == 'S') { echo 'selected'; } ?>>Sim</option>
+                                            <option value="N" <?php if ($this->uri->segment(2) == 'editar' && $st_campo == 'N') { echo 'selected'; } else if ($this->uri->segment(2) == 'cadastrar') { echo 'selected'; } ?>>Não</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
