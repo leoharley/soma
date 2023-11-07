@@ -80,8 +80,6 @@ function mask($val, $mask) {
                     <th>Id</th>
                     <th>Propriedade</th>
                     <th>Ano emissão</th>
-                    <th>Estágio regeneração</th>
-                    <th>Grau epifitismo</th>
                     <th>Tipo bioma</th>
                   <!--  <th>Admin?</th> -->
                   <!--  <th>Data ativo</th>
@@ -105,12 +103,6 @@ function mask($val, $mask) {
                       </td>
                       <td>
                         <?php echo $registro->nu_ano_emissao ?>
-                      </td>
-                      <td>
-                        <?php echo $registro->nome_estagio_regeneracao ?>
-                      </td>
-                      <td>
-                        <?php echo $registro->nome_grau_epifitismo ?>
                       </td>
                       <td>
                         <?php echo $registro->nome_tipo_bioma ?>
