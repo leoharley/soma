@@ -114,7 +114,7 @@ if(!empty($infoParcela))
                                         
                             </div>
 
-                            <div class="row">
+                         <!--   <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -122,7 +122,7 @@ if(!empty($infoParcela))
                                         <select id="id_estagio_regeneracao" name="id_estagio_regeneracao" required>
                                             <option></option>
                                             <?php
-                                            if(!empty($infoEstagiosRegeneracao))
+                                            /*if(!empty($infoEstagiosRegeneracao))
                                             {
                                                 foreach ($infoEstagiosRegeneracao as $registro)
                                                 {
@@ -132,18 +132,18 @@ if(!empty($infoParcela))
                                                 </option>
                                                 <?php
                                                 }
-                                            }
+                                            }*/
                                             ?>
                                         </select>
                                     </div>
                                 </div>
 
-                            <!--    <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="estagio_regeneracao">Estágio Regeneração</label>
                                         <input type="text" class="form-control required" id="estagio_regeneracao" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('estagio_regeneracao') : $estagio_regeneracao; ?>" name="estagio_regeneracao">
                                     </div>
-                                </div> -->
+                                </div>
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -151,7 +151,7 @@ if(!empty($infoParcela))
                                         <select id="id_grau_epifitismo" name="id_grau_epifitismo" required>
                                             <option></option>
                                             <?php
-                                            if(!empty($infoGrausEpifitismo))
+                                            /*if(!empty($infoGrausEpifitismo))
                                             {
                                                 foreach ($infoGrausEpifitismo as $registro)
                                                 {
@@ -161,20 +161,20 @@ if(!empty($infoParcela))
                                                 </option>
                                                 <?php
                                                 }
-                                            }
+                                            }*/
                                             ?>
                                         </select>
                                     </div>
                                 </div>
 
-                               <!-- <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="grau_epifitismo">Grau epifitismo</label>
                                         <input type="text" class="form-control required" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('grau_epifitismo') : $grau_epifitismo; ?>" id="grau_epifitismo" name="grau_epifitismo">
                                     </div>
-                                </div> -->
+                                </div>
 
-                            </div>
+                            </div> -->
 
                             <div class="row">
      
