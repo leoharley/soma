@@ -2,6 +2,7 @@ package com.soma.data.animais;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -114,10 +115,8 @@ public class AddRegistroAnimaisFragment extends Fragment {
 
         linkLatLong.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse("geo:"+latParcela+","+longParcela+""));
-                i.setClassName("com.google.android.apps.maps",
-                        "com.google.android.maps.MapsActivity");
-                startActivity(i);
+                String url = "https://www.google.com/maps/search/?api=1&query="+latParcela+","+longParcela+"";
+                startActivity( new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)));
             }
         });
 

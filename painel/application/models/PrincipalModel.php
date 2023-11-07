@@ -266,8 +266,6 @@ class PrincipalModel extends CI_Model
 
     }
 
-
-
     function listaParcelas($searchText = '', $page, $segment)
     {
         $this->db->select('Parcelas.*, Propriedades.no_propriedade, TipoBioma.nome as nome_tipo_bioma');

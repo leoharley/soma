@@ -121,10 +121,8 @@ public class AddRegistroArvoresVivasFragment extends Fragment {
 
         linkLatLong.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String uri = "geo:-"+latParcela+",-"+longParcela;
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-                startActivity(intent);
+                String url = "https://www.google.com/maps/search/?api=1&query="+latParcela+","+longParcela+"";
+                startActivity( new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)));
             }
         });
 

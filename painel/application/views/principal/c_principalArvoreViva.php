@@ -479,6 +479,18 @@ $(document).ready(function(){
         }
     );
 
+    $('#id_estagio_regeneracao').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
+    $('#id_grau_epifitismo').select2(
+        {
+            placeholder: "SELECIONE"
+        }
+    );
+
    /* var idFamilia = $('#id_familia').val();
         $.ajax({
             url: '<?php //echo base_url(); ?>consultaGenero/'+idFamilia,
