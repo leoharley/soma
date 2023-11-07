@@ -18,6 +18,8 @@ $nu_altura_copa = '';
 $isolada = '';
 $floracao_frutificacao = '';
 $descricao = '';
+$id_estagio_regeneracao;
+$id_grau_epifitismo;
 
 if ($this->uri->segment(2) == 'editar') {
 if(!empty($infoArvoreViva))
@@ -45,6 +47,8 @@ if(!empty($infoArvoreViva))
         $isolada = $r->isolada;
         $floracao_frutificacao = $r->floracao_frutificacao;
         $descricao = $r->descricao;
+        $id_estagio_regeneracao = $r->id_estagio_regeneracao;
+        $id_grau_epifitismo = $r->id_grau_epifitismo;
     }
 }
 }
