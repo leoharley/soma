@@ -61,6 +61,15 @@ if(!empty($infoPerfil))
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="st_campo">Técnico de campo?</label>
+                                        <input type="text" class="form-control required" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('st_campo') : $st_campo ; ?>" id="st_campo" name="st_campo" maxlength="128">
+                                    </div>
+                                </div>
+                            </div>
+
                             
                         </div>
                         <!-- /.box-body -->
