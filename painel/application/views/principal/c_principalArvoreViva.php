@@ -309,7 +309,7 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_estagio_regeneracao">Estágio Regeneração</label>
-                                        <select id="id_estagio_regeneracao" name="id_estagio_regeneracao" required>
+                                        <select id="id_estagio_regeneracao" name="id_estagio_regeneracao" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoEstagiosRegeneracao))
@@ -331,7 +331,7 @@ if(!empty($infoArvoreViva))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_grau_epifitismo">Grau Epifitismo</label>
-                                        <select id="id_grau_epifitismo" name="id_grau_epifitismo" required>
+                                        <select id="id_grau_epifitismo" name="id_grau_epifitismo" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoGrausEpifitismo))
