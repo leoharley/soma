@@ -271,7 +271,7 @@ class PrincipalModel extends CI_Model
         $this->db->select('Parcelas.*, Propriedades.no_propriedade, TipoBioma.nome as nome_tipo_bioma');
         $this->db->from('tb_parcelas as Parcelas');
         $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');
-        $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso= Parcelas.id_acesso','left');
+        $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso= '.$this->session->userdata('userId').'','left');
         $this->db->join('tb_perfil as Perfil', 'Perfil.id_perfil = CadastroPessoa.id_perfil','left');
        // $this->db->join('tb_estagio_regeneracao as EstagioRegeneracao', 'EstagioRegeneracao.id = Parcelas.id_estagio_regeneracao','left');        
        // $this->db->join('tb_grau_epifitismo as GrauEpifitismo', 'GrauEpifitismo.id = Parcelas.id_grau_epifitismo','left');        
@@ -288,6 +288,7 @@ class PrincipalModel extends CI_Model
         $this->db->where($likeCriteria2);
 
         $this->db->where('Parcelas.st_registro_ativo', 'S');
+
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
