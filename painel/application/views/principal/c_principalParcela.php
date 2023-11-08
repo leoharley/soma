@@ -4,6 +4,7 @@
 $id = '';
 $id_propriedade = '';
 $nu_ano_emissao = '';
+$nu_parcela = '';
 //$id_estagio_regeneracao = '';
 //$id_grau_epifitismo = '';
 $id_tipo_bioma = '';
@@ -26,6 +27,7 @@ if(!empty($infoParcela))
         $id = $r->id;
         $id_propriedade = $r->id_propriedade;
         $nu_ano_emissao = $r->nu_ano_emissao;
+        $nu_parcela =  $r->nu_parcela;
         //$id_estagio_regeneracao = $r->id_estagio_regeneracao;
         //$id_grau_epifitismo = $r->id_grau_epifitismo;
         $id_tipo_bioma = $r->id_tipo_bioma;
@@ -55,7 +57,7 @@ if(!empty($infoParcela))
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Parcelas' : 'Editar Parcelas' ; ?>
+            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Parcelas' : 'Editar Parcela Nº '.$nu_parcela ; ?>
             <small><?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Adicionar' : 'Editar' ; ?></small>
         </h1>
     </section>
