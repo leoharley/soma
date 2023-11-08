@@ -1918,6 +1918,7 @@ function carregaInfoPermissao($IdPermissao)
     {
         $this->db->select('max(nu_parcela)+1 as next_nu_parcela');        
         $this->db->from('tb_parcelas as Parcelas');
+        $this->db->where('Parcelas.id_propriedade', $id_propriedade);
         $query = $this->db->get();
         $result = $query->result();        
         return $result;
