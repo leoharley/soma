@@ -77,7 +77,7 @@ function mask($val, $mask) {
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
-                    <th>Id</th>
+                    <th>Nº Parcela</th>
                     <th>Propriedade</th>
                     <th>Ano emissão</th>
                     <th>Tipo bioma</th>
@@ -96,7 +96,7 @@ function mask($val, $mask) {
                       ?>
                     <tr>
                       <td>
-                        <?php echo $registro->id ?>
+                        <?php echo $registro->nu_parcela ?>
                       </td>
                       <td>
                         <?php echo $registro->no_propriedade ?>

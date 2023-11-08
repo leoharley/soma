@@ -1914,6 +1914,14 @@ function carregaInfoPermissao($IdPermissao)
         return $query->row();
     }
 
+    function carregaNextNuParcela($id_propriedade)
+    {
+        $this->db->select('max(nu_parcela)+1 as next_nu_parcela');        
+        $this->db->from('tb_parcelas as Parcelas');
+        $query = $this->db->get();
+        $result = $query->result();        
+        return $result;
+    }
 }
 
   
