@@ -287,7 +287,7 @@ class PrincipalModel extends CI_Model
                             OR Perfil.st_admin = 'S')";
         $this->db->where($likeCriteria2);
 
-        $this->db->where('Parcelas.st_reistro_ativo', 'S');
+        $this->db->where('Parcelas.st_registro_ativo', 'S');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
