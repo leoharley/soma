@@ -57,7 +57,7 @@ if(!empty($infoParcela))
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Parcelas' : 'Editar Parcela Nº '.$nu_parcela ; ?>
+            <i class="fa fa-users"></i> <?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Cadastrar Parcelas' : 'Editar Parcela nº '.$nu_parcela ; ?>
             <small><?php echo ($this->uri->segment(2) == 'cadastrar') ? 'Adicionar' : 'Editar' ; ?></small>
         </h1>
     </section>
@@ -86,7 +86,7 @@ if(!empty($infoParcela))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_propriedade">Propriedade</label>
-                                        <select id="id_propriedade" name="id_propriedade" required>
+                                        <select id="id_propriedade" name="id_propriedade" disabled>
                                             <option></option>
                                             <?php
                                             if(!empty($infoPropriedades))
