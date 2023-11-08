@@ -423,6 +423,8 @@ class Principal extends BaseController
                 $data['infoTiposBioma'] = $this->PrincipalModel->carregaInfoTiposBioma();
                 $data['infoTiposParcela'] = $this->PrincipalModel->carregaInfoTiposParcela();
 
+                var_dump($data['infoParcela']);exit;
+
                 $this->global['pageTitle'] = 'SOMA : Editar parcela';      
                 $this->loadViews("principal/c_principalParcela", $this->global, $data, NULL);
             }
