@@ -432,6 +432,7 @@ class Principal extends BaseController
     {
 
                 $id_propriedade = $this->input->post('id_propriedade');
+                var_dump($this->PrincipalModel->carregaNextNuParcela($id_propriedade)[0]->next_nu_parcela);exit;
                 $nu_parcela = $this->PrincipalModel->carregaNextNuParcela($id_propriedade)[0]->next_nu_parcela;
                 $nu_ano_emissao = $this->input->post('nu_ano_emissao');
                 $id_estagio_regeneracao = $this->input->post('id_estagio_regeneracao');
