@@ -39,7 +39,7 @@ if(!empty($infoParcela))
         $biomassa_hectare = $r->biomassa_hectare;
         $carbono_total = $r->carbono_total;
         $latitude = str_replace(array('"','°'), "", $r->latitude_gms);
-        $longitude = $r->longitude_gms;
+        $longitude = str_replace(array('"','°'), "", $r->longitude_gms);
 		
     }
 }
