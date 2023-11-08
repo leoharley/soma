@@ -86,7 +86,7 @@ if(!empty($infoParcela))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_propriedade">Propriedade</label>
-                                        <select id="id_propriedade" name="id_propriedade" disabled>
+                                        <select id="id_propriedade" name="id_propriedade" <?= ($this->uri->segment(2) == 'cadastrar')?'':'disabled'; ?>>
                                             <option></option>
                                             <?php
                                             if(!empty($infoPropriedades))
