@@ -431,8 +431,7 @@ class Principal extends BaseController
     function adicionaParcela() 
     {
 
-                $id_propriedade = $this->input->post('id_propriedade');
-                var_dump($this->PrincipalModel->carregaNextNuParcela($id_propriedade)[0]->next_nu_parcela);exit;
+                $id_propriedade = $this->input->post('id_propriedade');                
                 $nu_parcela = $this->PrincipalModel->carregaNextNuParcela($id_propriedade)[0]->next_nu_parcela;
                 $nu_ano_emissao = $this->input->post('nu_ano_emissao');
                 $id_estagio_regeneracao = $this->input->post('id_estagio_regeneracao');
@@ -457,7 +456,8 @@ class Principal extends BaseController
                 'nu_ano_emissao'=>$nu_ano_emissao,'id_estagio_regeneracao'=>$id_estagio_regeneracao, 'id_grau_epifitismo'=>$id_grau_epifitismo,
                 'id_tipo_bioma'=>$id_tipo_bioma,'id_tipo_parcela'=>$id_tipo_parcela,'tamanho_parcela'=>$tamanho_parcela, 'carbono_vegetacao'=>$carbono_vegetacao,
                 'biomassa_vegetacao_total'=>$biomassa_vegetacao_total,'biomassa_arbustiva'=>$biomassa_arbustiva, 'biomassa_hectare'=>$biomassa_hectare,
-                'carbono_total'=>$carbono_total, 'latitude_gms'=>$latitude, 'longitude_gms'=>$longitude, 'latitude_gd'=>$latitude_gd,'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
+                'carbono_total'=>$carbono_total, 'latitude_gms'=>$latitude, 'longitude_gms'=>$longitude, 'latitude_gd'=>$latitude_gd,'longitude_gd'=>$longitude_gd, 
+                'nu_parcela'=>$nu_parcela, 'st_registro_ativo'=>'S');
                                     
                 $resultado = $this->PrincipalModel->adicionaParcela($infoParcela);
                 
