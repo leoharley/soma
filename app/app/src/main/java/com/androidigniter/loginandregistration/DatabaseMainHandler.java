@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class DatabaseMainHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 17;
+    private static final int DATABASE_VERSION = 18;
     private static final String DATABASE_NAME = "painel_data";
     private static final String TABLE_PARCELA_NAME = "tb_parcelas";
     private static final String TABLE_FAUNA_FAMILIA = "tb_fauna_familia";
@@ -254,7 +254,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_IDPARCELA, idparcela);//column name, column value
-        values.put(KEY_NUPARCELA, nopropriedade);//column name, column value
+        values.put(KEY_NUPARCELA, nu_parcela);//column name, column value
         values.put(KEY_NOPROPRIEDADE, nopropriedade);//column name, column value
         values.put(KEY_ETLATITUDE, latitude);//column name, column value
         values.put(KEY_ETLONGITUDE, longitude);//column name, column value
@@ -406,7 +406,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                list.add(cursor.getString(1)+" - Prop: "+cursor.getString(2) +" ("+cursor.getString(3)+")");//adding 2nd column data
+                list.add(cursor.getString(2)+" - Prop: "+cursor.getString(3) +" ("+cursor.getString(1)+")");//adding 2nd column data
             } while (cursor.moveToNext());
         }
         // closing connection
