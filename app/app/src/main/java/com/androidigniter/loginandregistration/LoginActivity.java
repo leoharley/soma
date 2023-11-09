@@ -187,10 +187,11 @@ public class LoginActivity extends AppCompatActivity {
                         for(int i=0; i < response.length(); i++) {
                             JSONObject jsonObject1 = response.getJSONObject(i);
                             String id       = jsonObject1.getString("id");
+                            String nu_parcela    = jsonObject1.getString("nu_parcela");
                             String no_propriedade    = jsonObject1.getString("no_propriedade");
                             String latitude    = jsonObject1.getString("latitude_gd");
                             String longitude    = jsonObject1.getString("longitude_gd");
-                            db.insertParcela(id,no_propriedade,latitude,longitude);
+                            db.insertParcela(id,nu_parcela,no_propriedade,latitude,longitude);
                         }
                     }
                     catch (Exception e){

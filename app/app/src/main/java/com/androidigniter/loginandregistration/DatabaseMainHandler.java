@@ -31,6 +31,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
     private static final String TABLE_GRAU_EPIFITISMO = "tb_grau_epifitismo";
     private static final String COLUMN_ID = "id";
     private static final String KEY_IDPARCELA = "etidparcela";
+    private static final String KEY_NUPARCELA = "etnuparcela";
     private static final String KEY_NOPROPRIEDADE = "etnopropriedade";
     private static final String KEY_ETLATITUDE = "etlatitude";
     private static final String KEY_ETLONGITUDE = "etlongitude";
@@ -59,6 +60,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
                 + TABLE_PARCELA_NAME + "(" + COLUMN_ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 KEY_IDPARCELA + " VARCHAR, "+
+                KEY_NUPARCELA + " VARCHAR, "+
                 KEY_NOPROPRIEDADE + " VARCHAR, " +
                 KEY_ETLATITUDE + " TEXT, " +
                 KEY_ETLONGITUDE + " TEXT " +
@@ -247,11 +249,12 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    public void insertParcela(String idparcela, String nopropriedade, String latitude, String longitude){
+    public void insertParcela(String idparcela, String nu_parcela, String nopropriedade, String latitude, String longitude){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_IDPARCELA, idparcela);//column name, column value
+        values.put(KEY_NUPARCELA, nopropriedade);//column name, column value
         values.put(KEY_NOPROPRIEDADE, nopropriedade);//column name, column value
         values.put(KEY_ETLATITUDE, latitude);//column name, column value
         values.put(KEY_ETLONGITUDE, longitude);//column name, column value
@@ -403,7 +406,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                list.add(cursor.getString(1)+" - Prop: "+cursor.getString(2));//adding 2nd column data
+                list.add(cursor.getString(1)+" - Prop: "+cursor.getString(2) +" ("+cursor.getString(3)+")");//adding 2nd column data
             } while (cursor.moveToNext());
         }
         // closing connection
