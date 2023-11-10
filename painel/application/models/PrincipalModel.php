@@ -1916,7 +1916,7 @@ function carregaInfoPermissao($IdPermissao)
 
     function carregaNextNuParcela($id_propriedade)
     {
-        $this->db->select('IF(ISNULL(max(nu_parcela)+1), 0, 1) as next_nu_parcela');        
+        $this->db->select('IF(ISNULL(max(nu_parcela)+1), 1, 1) as next_nu_parcela');        
         $this->db->from('tb_parcelas as Parcelas');
         $this->db->where('Parcelas.id_propriedade', $id_propriedade);
         $query = $this->db->get();
