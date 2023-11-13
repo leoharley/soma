@@ -70,7 +70,7 @@ if ($input['dscategoria'] == 'limpatabelas') {
 		$stmt->execute();
 		$response["status"] = 0;
 		
-		$response["message"] = $input['idcontroleanimais'];
+		$response["message"] = "leonardo";
 		$stmt->close();
 	}
 	
