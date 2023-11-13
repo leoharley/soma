@@ -1125,8 +1125,6 @@ function carregaInfoPermissao($IdPermissao)
 
         $this->db->limit($page, $segment);
         $query = $this->db->get();
-
-        var_dump( $query = $this->db->last_query());exit;
 		        
         $result = $query->result();        
         return $result;
