@@ -28,7 +28,7 @@ function getBetween($string, $start = "", $end = ""){
 
 if ($modo_debug) {
 	
-$insertQuery  = "INSERT INTO tb_debug(ds_campos) VALUES (?,?)";
+$insertQuery  = "INSERT INTO tb_debug(ds_campos) VALUES (?)";
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("s",$input);
 		$stmt->execute();
