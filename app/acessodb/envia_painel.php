@@ -30,7 +30,7 @@ if ($modo_debug) {
 	
 $insertQuery  = "INSERT INTO tb_debug(ds_campos) VALUES (?)";
 	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("s",$input);
+		$stmt->bind_param("s",json_encode($input));
 		$stmt->execute();
 		$response["status"] = 0;
 		
