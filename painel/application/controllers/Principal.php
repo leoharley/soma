@@ -59,7 +59,7 @@ class Principal extends BaseController
                 
                 $count = 0;
 
-                $returns = $this->paginationCompress ( "principalProjeto/listar", $count, 10 );
+                $returns = $this->paginationCompress ( "principalProjeto/listar", $count, 1000 );
                 
                 $data['registrosProjetos'] = $this->PrincipalModel->listaProjetos($searchText, $returns["page"], $returns["segment"]);
                 
@@ -209,7 +209,7 @@ class Principal extends BaseController
                 
                 $count = 0;
 
-                $returns = $this->paginationCompress ( "principalPropriedade/listar", $count, 10 );
+                $returns = $this->paginationCompress ( "principalPropriedade/listar", $count, 1000 );
                 
                 $data['registrosPropriedades'] = $this->PrincipalModel->listaPropriedades($searchText, $returns["page"], $returns["segment"]);
                 
@@ -576,7 +576,7 @@ function principalArvoreViva()
                 
                 $count = 0;
 
-                $returns = $this->paginationCompress ( "principalArvoreViva/listar", $count, 10 );
+                $returns = $this->paginationCompress ( "principalArvoreViva/listar", $count, 1000 );
                 
                 $data['registrosArvoreViva'] = $this->PrincipalModel->listaArvoresVivas($searchText, $returns["page"], $returns["segment"]);
                 
@@ -775,7 +775,7 @@ function principalAnimal()
                 
                 $count = 0;
 
-                $returns = $this->paginationCompress ( "principalAnimal/listar", $count, 10 );
+                $returns = $this->paginationCompress ( "principalAnimal/listar", $count, 1000 );
                 
                 $data['registrosAnimal'] = $this->PrincipalModel->listaAnimais($searchText, $returns["page"], $returns["segment"]);
                 
@@ -959,7 +959,7 @@ function principalAnimal()
                 
                 $count = 0;
 
-                $returns = $this->paginationCompress ( "principalEpifita/listar", $count, 10 );
+                $returns = $this->paginationCompress ( "principalEpifita/listar", $count, 1000 );
                 
                 $data['registrosEpifitas'] = $this->PrincipalModel->listaEpifitas($searchText, $returns["page"], $returns["segment"]);
                 
@@ -1128,7 +1128,7 @@ function principalAnimal()
                 
                 $count = 0;
 
-                $returns = $this->paginationCompress ( "principalHidrologia/listar", $count, 10 );
+                $returns = $this->paginationCompress ( "principalHidrologia/listar", $count, 1000 );
                 
                 $data['registrosHidrologia'] = $this->PrincipalModel->listaHidrologia($searchText, $returns["page"], $returns["segment"]);
                 
