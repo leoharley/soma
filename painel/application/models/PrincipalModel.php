@@ -929,7 +929,8 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->join('tb_grau_epifitismo as GrauEpifitismo', 'GrauEpifitismo.id = ArvoresVivas.id_grau_epifitismo','left');   
         $this->db->join('tb_acesso as Acesso', 'Acesso.co_seq_acesso = ArvoresVivas.id_acesso','left'); 
         $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
-        $this->db->join('tb_grau_protecao as GrauProtecao', 'GrauProtecao.id = ArvoresVivas.id_grau_protecao','left');        
+        $this->db->join('tb_grau_protecao as GrauProtecao', 'GrauProtecao.id = ArvoresVivas.id_grau_protecao','left');    
+        $this->db->join('tb_perfil as Perfil', 'Perfil.id_perfil = CadastroPessoa.id_perfil','left');
    //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
         if(!empty($searchText)) {
             $likeCriteria = "(ArvoresVivas.grau_protecao LIKE '%".$searchText."%'
@@ -938,7 +939,11 @@ function carregaInfoPermissao($IdPermissao)
         }
 
         $this->db->where('ArvoresVivas.st_registro_ativo', 'S');
-        $this->db->where('ArvoresVivas.id_acesso', $this->session->userdata('userId'));
+
+        $likeCriteria2 = "(ArvoresVivas.id_acesso = ".$this->session->userdata('userId')."
+        OR Perfil.st_admin = 'S')";
+        $this->db->where($likeCriteria2);
+
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -1096,6 +1101,7 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
         $this->db->join('tb_fauna_tipo_observacao as FaunaTipoObservacao', 'FaunaTipoObservacao.id = Animais.id_tipo_observacao','left');
         $this->db->join('tb_fauna_classificacao as FaunaClassificacao', 'FaunaClassificacao.id = Animais.id_classificacao','left');
+        $this->db->join('tb_perfil as Perfil', 'Perfil.id_perfil = CadastroPessoa.id_perfil','left');
    //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
         if(!empty($searchText)) {
             $likeCriteria = "(Animais.grau_protecao LIKE '%".$searchText."%'
@@ -1105,6 +1111,11 @@ function carregaInfoPermissao($IdPermissao)
 
         $this->db->where('Animais.st_registro_ativo', 'S');
         $this->db->where('Animais.id_acesso', $this->session->userdata('userId'));
+
+        $likeCriteria2 = "(Animais.id_acesso = ".$this->session->userdata('userId')."
+        OR Perfil.st_admin = 'S')";
+        $this->db->where($likeCriteria2);
+
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -1259,6 +1270,7 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
         $this->db->join('tb_acesso as Acesso', 'Acesso.co_seq_acesso = Epifitas.id_acesso','left'); 
         $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
+        $this->db->join('tb_perfil as Perfil', 'Perfil.id_perfil = CadastroPessoa.id_perfil','left');
    //     $this->db->join('tbl_roles as Role', 'Role.roleId = Usuarios.roleId','left');
         if(!empty($searchText)) {
             $likeCriteria = "(Epifitas.latitude_gms LIKE '%".$searchText."%'
@@ -1267,7 +1279,11 @@ function carregaInfoPermissao($IdPermissao)
         }
 
         $this->db->where('Epifitas.st_registro_ativo', 'S');
-        $this->db->where('Epifitas.id_acesso', $this->session->userdata('userId'));
+
+        $likeCriteria2 = "(Epifitas.id_acesso = ".$this->session->userdata('userId')."
+        OR Perfil.st_admin = 'S')";
+        $this->db->where($likeCriteria2);
+
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        
@@ -1328,6 +1344,7 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->join('tb_propriedades as Propriedades', 'Propriedades.id = Parcelas.id_propriedade','left');        
         $this->db->join('tb_acesso as Acesso', 'Acesso.co_seq_acesso = Hidrologia.id_acesso','left'); 
         $this->db->join('tb_cadastro_pessoa as CadastroPessoa', 'CadastroPessoa.id_acesso = Acesso.co_seq_acesso','left'); 
+        $this->db->join('tb_perfil as Perfil', 'Perfil.id_perfil = CadastroPessoa.id_perfil','left');
 
         if(!empty($searchText)) {
             $likeCriteria = "(Hidrologia.latitude_gms LIKE '%".$searchText."%'
@@ -1336,7 +1353,11 @@ function carregaInfoPermissao($IdPermissao)
         }
 
         $this->db->where('Hidrologia.st_registro_ativo', 'S');
-        $this->db->where('Hidrologia.id_acesso', $this->session->userdata('userId'));
+        
+        $likeCriteria2 = "(Hidrologia.id_acesso = ".$this->session->userdata('userId')."
+        OR Perfil.st_admin = 'S')";
+        $this->db->where($likeCriteria2);
+
         $this->db->limit($page, $segment);
         $query = $this->db->get();
 		        

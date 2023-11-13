@@ -1695,9 +1695,9 @@ public class MainFragment extends Fragment {
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
-                                                ////alertdialog1.dismiss();
+                                                alertDialog1.dismiss();
                                             }
-                                        }, 1200);
+                                        }, 3200);
                                     } else if (response.getInt(KEY_STATUS) == 2) {
                                     /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
