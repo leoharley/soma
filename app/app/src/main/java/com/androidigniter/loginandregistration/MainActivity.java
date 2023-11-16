@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         final TextView opcao_animais = findViewById(R.id.opcao_animais);
         final TextView opcao_epifitas = findViewById(R.id.opcao_epifitas);
         final TextView opcao_hidrologia = findViewById(R.id.opcao_hidrologia);
+        final TextView opcao_sobre = findViewById(R.id.versaoapp);
+
+        opcao_sobre.setText((BuildConfig.VERSION_NAME).toString());
+
 
         myDB.execSQL(
                 "CREATE TABLE IF NOT EXISTS arvoresvivas(id INTEGER PRIMARY KEY AUTOINCREMENT, etidparcela VARCHAR NOT NULL, etidcontrole VARCHAR NOT NULL, etlatitude TEXT NOT NULL, etlongitude TEXT NOT NULL, etfamilia VARCHAR, etgenero VARCHAR, etespecie VARCHAR, etbiomassa VARCHAR, etidentificado VARCHAR, etgrauprotecao VARCHAR, etcircunferencia VARCHAR, etaltura VARCHAR, etalturatotal VARCHAR, etalturafuste VARCHAR, etalturacopa VARCHAR, etisolada VARCHAR, etfloracaofrutificacao VARCHAR, etdescricao VARCHAR, etestagioregeneracao VARCHAR, etgrauepifitismo VARCHAR)"

@@ -60,7 +60,7 @@ if(!empty($infoHidrologia))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_parcela">Parcela</label>
-                                        <select id="id_parcela" name="id_parcela" disabled>
+                                        <select id="id_parcela" name="id_parcela" <?php echo ($this->uri->segment(2) == 'cadastrar') ? '' : 'disabled'; ?>>
                                             <option></option>
                                             <?php
                                             if(!empty($infoParcelas))
@@ -82,7 +82,7 @@ if(!empty($infoHidrologia))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="latitude">Latitude</label>
-                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude" disabled>
+                                        <input type="text" class="form-control required" id="latitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('latitude') : $latitude; ?>" name="latitude" <?php echo ($this->uri->segment(2) == 'cadastrar') ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>                                
                             </div>
@@ -91,14 +91,14 @@ if(!empty($infoHidrologia))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="longitude">Longitude</label>
-                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude" disabled>
+                                        <input type="text" class="form-control required" id="longitude" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('longitude') : $longitude; ?>" name="longitude" <?php echo ($this->uri->segment(2) == 'cadastrar') ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-6">
                                 <label for="descricao">Descrição</label>
                                     <div class="form-group">                                        
-                                        <textarea id="descricao" name="descricao" rows="5" cols="41" style="text-align:left;resize: none;" disabled>
+                                        <textarea id="descricao" name="descricao" rows="5" cols="41" style="text-align:left;resize: none;">
                                         <?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('descricao') : $descricao; ?>
                                         </textarea>
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />

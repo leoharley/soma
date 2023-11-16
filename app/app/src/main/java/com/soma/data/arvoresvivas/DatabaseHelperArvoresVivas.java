@@ -188,6 +188,12 @@ public class DatabaseHelperArvoresVivas extends SQLiteOpenHelper {
                 new String[]{String.valueOf(id)});
     }
 
+    public void apagaTabelaFlora(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, null, null);
+        db.close(); // Closing database connection
+    }
+
     public void deleteUSer(int id) {
 
         // delete row in table based on id

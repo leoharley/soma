@@ -103,7 +103,8 @@ public class MainFragment extends Fragment {
     private String painel_fauna_tpobservacao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_fauna_tpobservacao.php";
     private String painel_flora_estagio_regeneracao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_estagio_regeneracao.php";
     private String painel_flora_grau_epifitismo_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_grau_epifitismo.php";
-    private String envia_painel_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/envia_painel.php";
+    private String painel_flora_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_grau_epifitismo.php";
+    private String envia_painel_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_arvoresvivas.php";
     private AlertDialog alertDialog1;
     private static final String KEY_STATUS = "status";
     TextView statuslabel;
@@ -111,6 +112,7 @@ public class MainFragment extends Fragment {
     int counter = 75;
     //String hoje = new SimpleDateFormat("ddMMyyyyhhmmss", Locale.getDefault()).format(new Date());
     ProgressDialog progressDialog;
+    private DatabaseHelperArvoresVivas databaseHelperArvoresVivas;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -1319,16 +1321,48 @@ public class MainFragment extends Fragment {
                                                                                                                                                                                                         e.printStackTrace();
                                                                                                                                                                                                     } finally {
 
+                                                                                                                                                                                                        databaseHelperArvoresVivas = new DatabaseHelperArvoresVivas(getContext());
 
-                                                                                                                                                                                                        //    alertDialog1.dismiss();
-                                                                                                                                                                                                        alertDialog1.setMessage("Tudo atualizado!");
-                                                                                                                                                                                                        Handler handler = new Handler();
-                                                                                                                                                                                                        handler.postDelayed(new Runnable() {
-                                                                                                                                                                                                            public void run() {
-                                                                                                                                                                                                                alertDialog1.dismiss();
-                                                                                                                                                                                                            }
-                                                                                                                                                                                                        }, 1200);
-                                                                                                                                                                                                        //runEnviarPainelInBackground();
+                                                                                                                                                                                                        /*CARREGA REGISTROS FLORA */
+                                                                                                                                                                                                        JsonArrayRequest jsArrayRequest_flora = new JsonArrayRequest
+                                                                                                                                                                                                                (Request.Method.POST, painel_flora_url, null, response13 -> {
+                                                                                                                                                                                                                    try {
+                                                                                                                                                                                                                        //if (!String.valueOf(db.CountFloraGrauEpifitismo()).equals(response12.getJSONObject(0).getString("contador"))) {
+                                                                                                                                                                                                                            databaseHelperArvoresVivas.apagaTabelaFlora();
+                                                                                                                                                                                                                            for (int i = 0; i < response13.length(); i++) {
+                                                                                                                                                                                                                                JSONObject jsonObject1 = response13.getJSONObject(i);
+                                                                                                                                                                                                                                String etidcontrole = jsonObject1.getString("id");
+                                                                                                                                                                                                                                String etidparcela = jsonObject1.getString("id_parcela");
+                                                                                                                                                                                                                                String etidparcela = jsonObject1.getString("id_parcela");
+                                                                                                                                                                                                                                databaseHelperArvoresVivas.addArvoresVivasDetail(id, nome);
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                        //}
+                                                                                                                                                                                                                        db2.close();
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                    catch (Exception e){
+                                                                                                                                                                                                                        e.printStackTrace();
+                                                                                                                                                                                                                    } finally {
+
+
+                                                                                                                                                                                                                        //    alertDialog1.dismiss();
+                                                                                                                                                                                                                        alertDialog1.setMessage("Tudo atualizado!");
+                                                                                                                                                                                                                        Handler handler = new Handler();
+                                                                                                                                                                                                                        handler.postDelayed(new Runnable() {
+                                                                                                                                                                                                                            public void run() {
+                                                                                                                                                                                                                                alertDialog1.dismiss();
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                        }, 1200);
+                                                                                                                                                                                                                        //runEnviarPainelInBackground();
+
+
+
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                }, error -> {
+                                                                                                                                                                                                                    Toast.makeText(getContext(),
+                                                                                                                                                                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                                                });
+                                                                                                                                                                                                        MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_grau_epifitismo);
+
 
 
 

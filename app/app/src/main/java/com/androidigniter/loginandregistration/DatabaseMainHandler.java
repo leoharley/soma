@@ -29,6 +29,7 @@ public class DatabaseMainHandler extends SQLiteOpenHelper {
     private static final String TABLE_FAUNA_TPOBSERVACAO = "tb_fauna_tpobservacao";
     private static final String TABLE_ESTAGIO_REGENERACAO = "tb_estagio_regeneracao";
     private static final String TABLE_GRAU_EPIFITISMO = "tb_grau_epifitismo";
+    private static final String TABLE_FLORA = "arvoresvivas";
     private static final String COLUMN_ID = "id";
     private static final String KEY_IDPARCELA = "etidparcela";
     private static final String KEY_NUPARCELA = "etnuparcela";
