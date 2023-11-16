@@ -1245,12 +1245,12 @@ function carregaInfoPermissao($IdPermissao)
 
     }
 
-    function consultaGeneroFauna($idFamilia)
+    function consultaGeneroFauna()
     {
         $this->db->select('distinct(Genero.id), Genero.nome');
         $this->db->from('tb_fauna as Fauna');
         $this->db->join('tb_fauna_genero as Genero', 'Genero.id = Fauna.id_genero','left');
-        $this->db->where('Fauna.id_familia', $idFamilia);
+    //    $this->db->where('Fauna.id_familia', $idFamilia);
         $query = $this->db->get();
 
         return $query->result();

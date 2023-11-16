@@ -88,7 +88,8 @@ $route['apagaHidrologia/:any'] = "principal/apagaHidrologia/$1";
 $route['consultaGenero/:any'] = "principal/consultaGenero/$1";
 $route['consultaEspecie/:any'] = "principal/consultaEspecie/$1";
 
-$route['consultaGeneroFauna/:any'] = "principal/consultaGeneroFauna/$1";
+//$route['consultaGeneroFauna/:any'] = "principal/consultaGeneroFauna/$1";
+$route['consultaGeneroFauna'] = "principal/consultaGeneroFauna";
 $route['consultaEspecieFauna/:any'] = "principal/consultaEspecieFauna/$1";
 
 
