@@ -240,7 +240,7 @@ if(!empty($infoArvoreViva))
                                         <label for="id_especie">Espécie</label>
                                         <input type="text" class="form-control" id="id_especie" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_especie') : $id_especie.' - '.$no_especie; ?>" name="id_especie">
                                     </div>
-                                </div>-->$_FILES
+                                </div>-->
                                 
                               <!--  <div class="col-md-6">
                                     <div class="form-group">
