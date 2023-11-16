@@ -109,9 +109,31 @@ if(!empty($infoEpifita))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
-                                        <input type="text" class="form-control" id="id_familia" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_familia') : $id_familia.' - '.$no_familia; ?>" name="id_familia">
+                                        <select id="id_familia" name="id_familia">
+                                            <option></option>
+                                            <?php
+                                            if(!empty($infoFamilias))
+                                            {
+                                                foreach ($infoFamilias as $familia)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $familia->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $familia->id  == $id_familia) { echo 'selected'; } ?>>
+                                                    <?php echo $familia->id.' - '.$familia->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
+
+                                <!--<div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_familia">Família</label>
+                                        <input type="text" class="form-control" id="id_familia" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_familia') : $id_familia.' - '.$no_familia; ?>" name="id_familia">
+                                    </div>
+                                </div>-->
                                 <!--<div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
@@ -140,16 +162,59 @@ if(!empty($infoEpifita))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
-                                        <input type="text" class="form-control" id="id_genero" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_genero') : $id_genero.' - '.$no_genero; ?>" name="id_genero">
+                                        <select id="id_genero" name="id_genero">
+                                            <option></option>
+                                            <?php
+                                            if(!empty($infoGeneros))
+                                            {
+                                                foreach ($infoGeneros as $genero)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $genero->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $genero->id  == $id_genero) { echo 'selected'; } ?>>
+                                                    <?php echo $genero->id.' - '.$genero->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_especie">Espécie</label>
-                                        <input type="text" class="form-control" id="id_especie" value="<?php echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_especie') : $id_especie.' - '.$no_especie; ?>" name="id_especie">
+                                        <select id="id_especie" name="id_especie">
+                                            <option></option>
+                                            <?php
+                                            if(!empty($infoEspecies))
+                                            {
+                                                foreach ($infoEspecies as $especie)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $especie->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $especie->id  == $id_especie) { echo 'selected'; } ?>>
+                                                    <?php echo $especie->id.' - '.$especie->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
+                                <!--<div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_genero">Gênero</label>
+                                        <input type="text" class="form-control" id="id_genero" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_genero') : $id_genero.' - '.$no_genero; ?>" name="id_genero">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_especie">Espécie</label>
+                                        <input type="text" class="form-control" id="id_especie" value="<?php //echo ($this->uri->segment(2) == 'cadastrar') ? set_value('id_especie') : $id_especie.' - '.$no_especie; ?>" name="id_especie">
+                                    </div>
+                                </div>-->
                                 
                                 <!--<div class="col-md-6">
                                     <div class="form-group">
@@ -198,8 +263,8 @@ if(!empty($infoEpifita))
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                        <!--    <input type="submit" class="btn btn-primary" value="Salvar" />
-                            <input type="reset" class="btn btn-default" value="Limpar" /> -->
+                            <input type="submit" class="btn btn-primary" value="Salvar" />
+                            <input type="reset" class="btn btn-default" value="Limpar" />
                         </div>
                     </form>
                 </div>
