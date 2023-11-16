@@ -161,10 +161,33 @@ if(!empty($infoAnimal))
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero">
-                                        <option></option>
+                                            <option></option>
+                                            <?php
+                                            if(!empty($infoGenerosFauna))
+                                            {
+                                                foreach ($infoGenerosFauna as $genero)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $genero->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $genero->id  == $id_genero) { echo 'selected'; } ?>>
+                                                    <?php echo $genero->id.' - '.$genero->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
+
+
+                              <!--  <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_genero">Gênero</label>
+                                        <select id="id_genero" name="id_genero">
+                                        <option></option>
+                                        </select>
+                                    </div>
+                                </div> -->
 
                                 <div class="col-md-6">
                                     <div class="form-group">
