@@ -73,7 +73,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_parcela">Parcela</label>
-                                        <select id="id_parcela" name="id_parcela" <?php echo ($this->uri->segment(2) == 'cadastrar') ? '' : 'disabled'; ?>>
+                                        <select id="id_parcela" name="id_parcela" <?php echo ($this->uri->segment(2) == 'cadastrar') ? '' : ''; ?>>
                                             <option></option>                                         
                                             <?php
                                             if(!empty($infoParcelas))
@@ -160,7 +160,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
-                                        <select id="id_genero" name="id_genero" disabled>
+                                        <select id="id_genero" name="id_genero">
                                         <option></option>
                                         </select>
                                     </div>
