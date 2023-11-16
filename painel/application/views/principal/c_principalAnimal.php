@@ -189,14 +189,36 @@ if(!empty($infoAnimal))
                                     </div>
                                 </div> -->
 
-                                <div class="col-md-6">
+                               <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_especie">Espécie</label>                                    
                                         <select id="id_especie" name="id_especie" disabled>
                                         <option></option>
                                         </select>
                                     </div>
+                                </div>-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_especie">Espécie</label>
+                                        <select id="id_especie" name="id_especie">
+                                            <option></option>
+                                            <?php
+                                            if(!empty($infoEspeciesFauna))
+                                            {
+                                                foreach ($infoEspeciesFauna as $especie)
+                                                {
+                                                    ?>
+                                                <option value="<?php echo $especie->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $especie->id  == $id_especie) { echo 'selected'; } ?>>
+                                                    <?php echo $especie->id.' - '.$especie->nome ?>
+                                                </option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
                                 </div>
+
                             </div>
                                                     
 
