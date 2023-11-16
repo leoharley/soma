@@ -459,7 +459,7 @@ $(document).ready(function(){
     });
 
 
- /*   var idGenero = $('#id_genero').val();
+    var idGenero = $('#id_genero').val();
         $.ajax({
             url: '<?php //echo base_url(); ?>consultaEspecieFauna/'+idGenero,
             type: "GET",
@@ -474,7 +474,7 @@ $(document).ready(function(){
                     }
                 });  
             }
-        });*/
+        });
 
     $('select[name="id_genero"]').on('change', function() {
         $('select[name="id_genero"]').on('click', function() {
