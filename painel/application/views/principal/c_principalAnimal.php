@@ -434,21 +434,8 @@ $(document).ready(function(){
                 });
             }
         });
-
-        $.ajax({
-                    url: '<?php //echo base_url(); ?>consultaGeneroFauna/',
-                    type: "GET",
-                    dataType: "json",
-                    success:function(data) {
-                        $("#id_genero").select2("val", null);
-                        $("#id_especie").select2("val", null);
-                        $.each(data, function(key, value) {
-                            $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
-                        });
-                    }
-                });
                 
-  /*  $('select[name="id_familia"]').on('change', function() {
+    $('select[name="id_familia"]').on('change', function() {
         $('select[name="id_familia"]').on('click', function() {*/
             var idFamilia = $(this).val();
             if(idFamilia) {
@@ -468,11 +455,11 @@ $(document).ready(function(){
         //      $('select[name="id_genero"]').empty();
         //     $('select[name="id_especie"]').empty();
             }
-   /*     });
-    });*/
+        });
+    });
 
 
-    var idGenero = $('#id_genero').val();
+ /*   var idGenero = $('#id_genero').val();
         $.ajax({
             url: '<?php //echo base_url(); ?>consultaEspecieFauna/'+idGenero,
             type: "GET",
@@ -487,7 +474,7 @@ $(document).ready(function(){
                     }
                 });  
             }
-        });
+        });*/
 
     $('select[name="id_genero"]').on('change', function() {
         $('select[name="id_genero"]').on('click', function() {
