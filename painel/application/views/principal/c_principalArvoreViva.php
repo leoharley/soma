@@ -219,9 +219,9 @@ if(!empty($infoArvoreViva))
                                         <select id="id_especie" name="id_especie">
                                             <option></option>
                                             <?php
-                                            if(!empty($infoEspeciesFauna))
+                                            if(!empty($infoEspecies))
                                             {
-                                                foreach ($infoEspeciesFauna as $especie)
+                                                foreach ($infoEspecies as $especie)
                                                 {
                                                     ?>
                                                 <option value="<?php echo $especie->id ?>" <?php if ($this->uri->segment(2) == 'editar' && $especie->id  == $id_especie) { echo 'selected'; } ?>>
