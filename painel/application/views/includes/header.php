@@ -238,9 +238,9 @@ $(function() {
             // if($role == ROLE_ADMIN)
            //  {
             ?>
-            <hr style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+            <hr style="<?= $this->session->userdata('stadmin')=='N'?'display:none':''; ?>">
 
-            <li class="treeview" data-toggle="collapse" data-target="#cadastro" style="margin-bottom: 10px!important;cursor: pointer!important;<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+            <li class="treeview" data-toggle="collapse" data-target="#cadastro" style="margin-bottom: 10px!important;cursor: pointer!important;<?= $this->session->userdata('stadmin')=='N'?'display:none':''; ?>">
                     
                     <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  CADASTRO</b></h4>
 
@@ -280,21 +280,21 @@ $(function() {
 
                     <ul class="nav nav-list collapse" style="margin-top:10px" id="principal">
 
-                    <li class="treeview" style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+                    <li class="treeview" style="<?= $this->session->userdata('stadmin')=='N'?'display:none':''; ?>">
                       <a href="<?php echo base_url(); ?>principalProjeto/listar">
                           <i class="fa fa-paste" style="margin-right:5px!important"></i>
                           <span>Projetos</span>
                       </a>
                     </li>
 
-                    <li class="treeview" style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+                    <li class="treeview" style="<?= $this->session->userdata('stadmin')=='N'?'display:none':''; ?>">
                         <a href="<?php echo base_url(); ?>principalPropriedade/listar">
                             <i class="fa fa-list" style="margin-right:5px!important"></i>
                             <span>Propriedades</span>
                         </a>
                     </li>
 
-                    <li class="treeview" style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+                    <li class="treeview" style="<?= $this->session->userdata('stadmin')=='N'?'display:none':''; ?>">
                         <a href="<?php echo base_url(); ?>principalParcela/listar">
                             <i class="fa fa-th" style="margin-right:5px!important"></i>
                             <span>Parcelas</span>
@@ -331,9 +331,9 @@ $(function() {
                   </ul>
                   </li>
 
-                  <hr style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+                  <hr style="<?= $this->session->userdata('stadmin')=='N'?'display:none':''; ?>">
                   
-                  <li class="treeview" data-toggle="collapse" data-target="#relatorio" style="margin-bottom: 10px!important;cursor: pointer!important;<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+                  <li class="treeview" data-toggle="collapse" data-target="#relatorio" style="margin-bottom: 10px!important;cursor: pointer!important;<?= $this->session->userdata('stadmin')=='N'?'display:none':''; ?>">
                     
                     <h4 style="margin-left:18px!important;color:white"><b><i class="fa fa-chevron-circle-down" style="margin-right:5px"></i>  RELATÓRIO</b></h4>
 
@@ -407,7 +407,7 @@ $(function() {
 
                   </ul>
                   </li>
-              <hr style="<?= $this->session->userdata('roleText')=='Engenheiro'?'display:none':''; ?>">
+              <hr style="<?= $this->session->userdata('stadmin')=='N'?'display:none':''; ?>">
 
             
         </ul>

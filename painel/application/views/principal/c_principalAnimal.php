@@ -376,7 +376,7 @@ $(document).ready(function(){
         }
     );
 
-   /* var idFamilia = $('#id_familia').val();
+    var idFamilia = $('#id_familia').val();
         $.ajax({
             url: '<?php //echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
             type: "GET",
@@ -458,11 +458,11 @@ $(document).ready(function(){
     });
 
     setTimeout(function(){
-        selectElement('#id_genero', '<?php //echo $id_genero ?>');
+        selectElement('#id_genero', '<?php echo $id_genero ?>');
     }, 1000);
     setTimeout(function(){
         selectElement('#id_especie', '<?php //echo $id_especie ?>');
-    }, 1000);  */
+    }, 1000); 
 
 });
 
