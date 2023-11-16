@@ -391,18 +391,18 @@ $(document).ready(function(){
         });
 
         $.ajax({
-            url: '<?php //echo base_url(); ?>consultaGeneroFauna/',
-            type: "GET",
-            dataType: "json",
-            success:function(data) {
-                $("#id_genero").select2("val", null);
-                $("#id_especie").select2("val", null);
-                $.each(data, function(key, value) {
-                    $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                    url: '<?php //echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $("#id_genero").select2("val", null);
+                        $("#id_especie").select2("val", null);
+                        $.each(data, function(key, value) {
+                            $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
+                        });
+                    }
                 });
-            }
-        });
-
+                
   /*  $('select[name="id_familia"]').on('change', function() {
         $('select[name="id_familia"]').on('click', function() {*/
             var idFamilia = $(this).val();
