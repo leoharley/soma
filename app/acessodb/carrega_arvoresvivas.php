@@ -10,7 +10,8 @@ $input = json_decode($inputJSON, TRUE); //convert JSON into array
 //Check for Mandatory parameters
 			 
 $query    = "SELECT *
-			 FROM tb_arvores_vivas as ArvoresVivas			 
+			 FROM tb_arvores_vivas as ArvoresVivas
+			 LEFT JOIN rl_flora_familia_genero_especie as rl ON rl.id_arvores_vivas = ArvoresVivas.id
 			 WHERE ArvoresVivas.st_registro_ativo = 'S'";
  
 if($stmt = $con->prepare($query)){
