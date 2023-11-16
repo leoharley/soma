@@ -519,7 +519,7 @@ $(document).ready(function(){
         }
     );
 
-   /* $('#id_familia').select2(
+    $('#id_familia').select2(
         {
             placeholder: "SELECIONE"
         }
@@ -535,7 +535,7 @@ $(document).ready(function(){
         {
             placeholder: "SELECIONE"
         }
-    );*/
+    );
 
     $('#identificacao').select2(
         {
