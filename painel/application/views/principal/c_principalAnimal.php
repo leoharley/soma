@@ -391,7 +391,7 @@ $(document).ready(function(){
         });
 
         $.ajax({
-                    url: '<?php //echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
+                    url: '<?php //echo base_url(); ?>consultaGeneroFauna/',
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
