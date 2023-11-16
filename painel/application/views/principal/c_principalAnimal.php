@@ -519,7 +519,7 @@ $(document).ready(function(){
         selectElement('#id_genero', '<?php echo $id_genero ?>');
     }, 1000);
     setTimeout(function(){
-        selectElement('#id_especie', '<?php //echo $id_especie ?>');
+        selectElement('#id_especie', '<?php echo $id_especie ?>');
     }, 1000); 
 
 });
