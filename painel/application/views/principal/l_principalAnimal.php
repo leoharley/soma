@@ -27,7 +27,7 @@
   <section class="content">
     <div class="col-xs-12">
       <div class="text-left">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>principalAnimal/cadastrar" style="display:none">
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>principalAnimal/cadastrar">
           <i class="fa fa-plus"></i> Adicionar animal</a>
       </div>
       <br/>
