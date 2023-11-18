@@ -138,18 +138,16 @@ if ($input['dscategoria'] == 'limpatabelas') {
 		$stmt->close();
 	}
 	
-	$logFilePath = './errorlog.log';
+	$logFilePath = 'errorlog.log';
 	ob_start();
 
 	// if you want to concatenate:
 	if (file_exists($logFilePath)) {
 		include($logFilePath);
 	}
-	// for timestamp
-	$currentTime = date(DATE_RSS);
 
 	// echo log statement(s) here
-	echo "\n\n$input['idcontroleepifitas']";
+	echo $input['idcontroleepifitas'];
 
 	$logFile = fopen($logFilePath, 'w');
 	fwrite($logFile, ob_get_contents());
