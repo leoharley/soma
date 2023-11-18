@@ -25,9 +25,6 @@ function getBetween($string, $start = "", $end = ""){
         return '';
     }
 }
-
-$file = 'hidrologia.txt';
-	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
 	
 if ($modo_debug) {
 	
@@ -79,6 +76,21 @@ if ($input['dscategoria'] == 'limpatabelas') {
 			$stmt->close();
 		}
 	
+} else if ($input['dscategoria'] == 'hidrologia') {
+	
+    $file = 'hidrologia.txt';
+	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
+	
+	$insertQuery  = "REPLACE INTO tb_hidrologia(id,id_parcela,id_acesso,descricao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms,st_registro_ativo) VALUES (?,?,?,?,?,?,?,?,?)";
+	if($stmt = $con->prepare($insertQuery)){
+		$stmt->bind_param("sssssssss",$input['idcontrolehidrologia'],getBetween($input['idparcelahidrologia'],"(",")"),$input['idacesso'],$input['descricao'],$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1],'S');
+		$stmt->execute();
+		$response["status"] = 0;
+		
+		$response["message"] = "Enviado com sucesso!";
+		$stmt->close();
+	}
+
 } else if ($input['dscategoria'] == 'animais') {
 	
 	//$file = 'animais.txt';
@@ -155,19 +167,6 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	$insertQuery  = "REPLACE INTO rl_epifitas_familia_genero_especie(id_epifitas,id_familia,id_genero,id_especie) VALUES (?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("ssss",$input['idcontroleepifitas'],strtok($input['idfamilia'], '-'),strtok($input['idgenero'], '-'),strtok($input['idespecie'], '-'));
-		$stmt->execute();
-		$response["status"] = 0;
-		
-		$response["message"] = "Enviado com sucesso!";
-		$stmt->close();
-	}
-
-} else if ($input['dscategoria'] == 'hidrologia') {
-	
-    
-	$insertQuery  = "REPLACE INTO tb_hidrologia(id,id_parcela,id_acesso,descricao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms,st_registro_ativo) VALUES (?,?,?,?,?,?,?,?,?)";
-	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("sssssssss",$input['idcontrolehidrologia'],getBetween($input['idparcelahidrologia'],"(",")"),$input['idacesso'],$input['descricao'],$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1],'S');
 		$stmt->execute();
 		$response["status"] = 0;
 		
