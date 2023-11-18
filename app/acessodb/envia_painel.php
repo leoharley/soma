@@ -6,7 +6,7 @@ include 'functions.php';
 //Get the input request parameters
 $inputJSON = file_get_contents('php://input');
 $input = json_decode($inputJSON, TRUE); //convert JSON into array
-$modo_debug = false;
+$modo_debug = true;
 
 $latitudecampogd  = $input['latitudecampogd'];
 $longitudecampogd = $input['longitudecampogd'];
@@ -82,9 +82,9 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	if (strtok($input['idclassificacao'], '-') == 'SELECIONE'){$idclassificacao = null;} else {$idclassificacao = strtok($input['idclassificacao'], '-');}
 	if (strtok($input['idgrauprotecao'], '-') == 'SELECIONE'){$idgrauprotecao = null;} else {$idgrauprotecao = strtok($input['idgrauprotecao'], '-');}
 	
-	$insertQuery  = "REPLACE INTO tb_animais(id,id_parcela,id_acesso,id_tipo_observacao,id_classificacao,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms,descricao,st_registro_ativo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+	$insertQuery  = "REPLACE INTO tb_animais(id,id_parcela,id_acesso,id_tipo_observacao,id_classificacao,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms,descricao) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("ssssssssssss",$input['idcontroleanimais'],getBetween($input['idparcelaanimais'],"(",")"),$input['idacesso'],$idtpobservacao,$idclassificacao,$idgrauprotecao,$input['latitudecampogd'] ,$input['longitudecampogd'],$result[0],$result[1],$input['descricao'],'S');
+		$stmt->bind_param("sssssssssss",$input['idcontroleanimais'],getBetween($input['idparcelaanimais'],"(",")"),$input['idacesso'],$idtpobservacao,$idclassificacao,$idgrauprotecao,$input['latitudecampogd'] ,$input['longitudecampogd'],$result[0],$result[1],$input['descricao']);
 		$stmt->execute();
 		$response["status"] = 0;
 		
