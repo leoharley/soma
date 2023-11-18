@@ -133,12 +133,28 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("sssssssss",$input['idcontroleepifitas'],$input['idacesso'],getBetween($input['idparcelaepifitas'],"(",")"),$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1],$input['descricao'],'S');
 		$stmt->execute();
-		$response["status"] = 0;
-		error_log ($input['idcontroleepifitas'], 3, 'errorlog.log');
-		
+		$response["status"] = 0;		
 		$response["message"] = "Enviado com sucesso!";
 		$stmt->close();
 	}
+	
+	$logFilePath = './errorlog.log';
+	ob_start();
+
+	// if you want to concatenate:
+	if (file_exists($logFilePath)) {
+		include($logFilePath);
+	}
+	// for timestamp
+	$currentTime = date(DATE_RSS);
+
+	// echo log statement(s) here
+	echo "\n\n$input['idcontroleepifitas']";
+
+	$logFile = fopen($logFilePath, 'w');
+	fwrite($logFile, ob_get_contents());
+	fclose($logFile);
+	ob_end_flush();
 	
 	$insertQuery  = "REPLACE INTO rl_epifitas_familia_genero_especie(id_epifitas,id_familia,id_genero,id_especie) VALUES (?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
