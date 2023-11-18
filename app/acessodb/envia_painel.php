@@ -134,7 +134,7 @@ if ($input['dscategoria'] == 'limpatabelas') {
 		$stmt->bind_param("sssssssss",$input['idcontroleepifitas'],$input['idacesso'],getBetween($input['idparcelaepifitas'],"(",")"),$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1],$input['descricao'],'S');
 		$stmt->execute();
 		$response["status"] = 0;
-		error_log(print_r($input['idcontroleepifitas'], TRUE)); 
+		error_log ($input['idcontroleepifitas'], 3, 'errorlog.log');
 		
 		$response["message"] = "Enviado com sucesso!";
 		$stmt->close();
