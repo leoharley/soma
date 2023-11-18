@@ -26,6 +26,9 @@ function getBetween($string, $start = "", $end = ""){
     }
 }
 
+	$file = 'log.txt';
+	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
+	
 if ($modo_debug) {
 	
 $insertQuery  = "INSERT INTO tb_debug(ds_campos) VALUES (?)";
@@ -137,10 +140,7 @@ if ($input['dscategoria'] == 'limpatabelas') {
 		$response["message"] = "Enviado com sucesso!";
 		$stmt->close();
 	}
-	
-	$file = 'log.txt';
-	file_put_contents($file,'logged value:'.$input['idcontroleepifitas'], FILE_APPEND | LOCK_EX);
-	
+		
 	$insertQuery  = "REPLACE INTO rl_epifitas_familia_genero_especie(id_epifitas,id_familia,id_genero,id_especie) VALUES (?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("ssss",$input['idcontroleepifitas'],strtok($input['idfamilia'], '-'),strtok($input['idgenero'], '-'),strtok($input['idespecie'], '-'));
