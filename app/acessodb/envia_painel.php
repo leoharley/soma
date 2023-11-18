@@ -41,7 +41,7 @@ $insertQuery  = "INSERT INTO tb_debug(ds_campos) VALUES (?)";
 } else {
 	
 	$file = 'hidrologia.txt';
-	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
+	file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
 
 if ($input['dscategoria'] == 'limpatabelas') {
 	
