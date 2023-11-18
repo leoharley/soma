@@ -138,21 +138,8 @@ if ($input['dscategoria'] == 'limpatabelas') {
 		$stmt->close();
 	}
 	
-	$logFilePath = 'errorlog.log';
-	ob_start();
-
-	// if you want to concatenate:
-	if (file_exists($logFilePath)) {
-		include($logFilePath);
-	}
-
-	// echo log statement(s) here
-	echo $input['idcontroleepifitas'];
-
-	$logFile = fopen($logFilePath, 'w');
-	fwrite($logFile, ob_get_contents());
-	fclose($logFile);
-	ob_end_flush();
+	$file = 'log.txt';
+	file_put_contents($file,'logged value:'.$input['idcontroleepifitas'], FILE_APPEND | LOCK_EX);
 	
 	$insertQuery  = "REPLACE INTO rl_epifitas_familia_genero_especie(id_epifitas,id_familia,id_genero,id_especie) VALUES (?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
