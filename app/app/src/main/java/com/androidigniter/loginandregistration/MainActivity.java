@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         final TextView opcao_hidrologia = findViewById(R.id.opcao_hidrologia);
         final TextView opcao_sobre = findViewById(R.id.versaoapp);
 
-        opcao_sobre.setText((BuildConfig.VERSION_NAME).toString());
+        opcao_sobre.setText("Versão: "+(BuildConfig.VERSION_NAME).toString());
 
 
         myDB.execSQL(

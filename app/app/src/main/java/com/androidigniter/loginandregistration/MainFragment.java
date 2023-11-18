@@ -103,8 +103,8 @@ public class MainFragment extends Fragment {
     private String painel_fauna_tpobservacao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_fauna_tpobservacao.php";
     private String painel_flora_estagio_regeneracao_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_estagio_regeneracao.php";
     private String painel_flora_grau_epifitismo_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_grau_epifitismo.php";
-    private String painel_flora_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_grau_epifitismo.php";
-    private String envia_painel_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_arvoresvivas.php";
+    private String painel_flora_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/carrega_arvoresvivas.php";
+    private String envia_painel_url = "https://somasustentabilidade.com.br/homologacao/inventario/app/acessodb/envia_painel.php";
     private AlertDialog alertDialog1;
     private static final String KEY_STATUS = "status";
     TextView statuslabel;
@@ -1321,15 +1321,15 @@ public class MainFragment extends Fragment {
                                                                                                                                                                                                         e.printStackTrace();
                                                                                                                                                                                                     } finally {
 
-                                                                                                                                                                                                        databaseHelperArvoresVivas = new DatabaseHelperArvoresVivas(getContext());
+                                                                                                                                                                                                      //  databaseHelperArvoresVivas = new DatabaseHelperArvoresVivas(getContext());
 
                                                                                                                                                                                                         /*CARREGA REGISTROS FLORA */
-                                                                                                                                                                                                        JsonArrayRequest jsArrayRequest_flora = new JsonArrayRequest
-                                                                                                                                                                                                                (Request.Method.POST, painel_flora_url, null, response13 -> {
-                                                                                                                                                                                                                    try {
-                                                                                                                                                                                                                        //if (!String.valueOf(db.CountFloraGrauEpifitismo()).equals(response12.getJSONObject(0).getString("contador"))) {
-                                                                                                                                                                                                                            databaseHelperArvoresVivas.apagaTabelaFlora();
-                                                                                                                                                                                                                            for (int i = 0; i < response13.length(); i++) {
+                                                                                                                                                                                                      //  JsonArrayRequest jsArrayRequest_arvoreviva = new JsonArrayRequest
+                                                                                                                                                                                                           //     (Request.Method.POST, painel_flora_url, null, response13 -> {
+                                                                                                                                                                                                           //         try {
+                                                                                                                                                                                                          //              //if (!String.valueOf(db.CountFloraGrauEpifitismo()).equals(response12.getJSONObject(0).getString("contador"))) {
+                                                                                                                                                                                                            //                databaseHelperArvoresVivas.apagaTabelaFlora();
+                                                                                                                                                                                                            /*                for (int i = 0; i < response13.length(); i++) {
                                                                                                                                                                                                                                 JSONObject jsonObject1 = response13.getJSONObject(i);
                                                                                                                                                                                                                                 String etidparcela = jsonObject1.getString("id_parcela");
                                                                                                                                                                                                                                 String etidcontrole = jsonObject1.getString("id");
@@ -1351,14 +1351,17 @@ public class MainFragment extends Fragment {
                                                                                                                                                                                                                                 String etdescricao = jsonObject1.getString("descricao");
                                                                                                                                                                                                                                 String etestagioregeneracao = jsonObject1.getString("id_estagio_regeneracao");
                                                                                                                                                                                                                                 String etgrauepifitismo = jsonObject1.getString("id_grau_epifitismo");
-                                                                                                                                                                                                                                databaseHelperArvoresVivas.addArvoresVivasDetail(id, nome);
-                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                databaseHelperArvoresVivas.addArvoresVivasDetail(etidparcela,etidcontrole,etlatitude,
+                                                                                                                                                                                                                                        etlongitude,etfamilia,etgenero,etespecie,etbiomassa,etidentificado,etgrauprotecao,
+                                                                                                                                                                                                                                        etcircunferencia,etaltura,etalturatotal,etalturafuste,etalturacopa,etisolada,
+                                                                                                                                                                                                                                        etfloracaofrutificacao,etdescricao,etestagioregeneracao,etgrauepifitismo);
+                                                                                                                                                                                                                            }*/
                                                                                                                                                                                                                         //}
-                                                                                                                                                                                                                        db2.close();
-                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                    catch (Exception e){
-                                                                                                                                                                                                                        e.printStackTrace();
-                                                                                                                                                                                                                    } finally {
+                                                                                                                                                                                                                  //      databaseHelperArvoresVivas.close();
+                                                                                                                                                                                                                  //  }
+                                                                                                                                                                                                                  //  catch (Exception e){
+                                                                                                                                                                                                                  //      e.printStackTrace();
+                                                                                                                                                                                                                  //  } finally {
 
 
                                                                                                                                                                                                                         //    alertDialog1.dismiss();
@@ -1373,15 +1376,12 @@ public class MainFragment extends Fragment {
 
 
 
-                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                }, error -> {
-                                                                                                                                                                                                                    Toast.makeText(getContext(),
-                                                                                                                                                                                                                            "Banco de dados offline!", Toast.LENGTH_SHORT).show();
-                                                                                                                                                                                                                });
-                                                                                                                                                                                                        MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_flora_grau_epifitismo);
-
-
-
+                                                                                                                                                                                                                  //  }
+                                                                                                                                                                                                               // }, error -> {
+                                                                                                                                                                                                              //      Toast.makeText(getContext(),
+                                                                                                                                                                                                              //              "Banco de dados offline!", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                                              //  });
+                                                                                                                                                                                                       // MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest_arvoreviva);*/
 
                                                                                                                                                                                                     }
                                                                                                                                                                                                 }, error -> {
