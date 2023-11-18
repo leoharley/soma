@@ -39,6 +39,9 @@ $insertQuery  = "INSERT INTO tb_debug(ds_campos) VALUES (?)";
 	}
 	
 } else {
+	
+	$file = 'hidrologia.txt';
+	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
 
 if ($input['dscategoria'] == 'limpatabelas') {
 	
@@ -160,10 +163,7 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	}
 
 } else if ($input['dscategoria'] == 'hidrologia') {
-	
-	$file = 'hidrologia.txt';
-	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
-	
+		
 	$insertQuery  = "REPLACE INTO tb_hidrologia(id,id_parcela,id_acesso,descricao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("ssssssss",$input['idcontrolehidrologia'],getBetween($input['idparcelahidrologia'],"(",")"),$input['idacesso'],$input['descricao'],$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1]);
