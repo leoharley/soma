@@ -25,9 +25,6 @@ function getBetween($string, $start = "", $end = ""){
         return '';
     }
 }
-
-	$file = 'log.txt';
-	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
 	
 if ($modo_debug) {
 	
@@ -80,6 +77,8 @@ if ($input['dscategoria'] == 'limpatabelas') {
 		}
 	
 } else if ($input['dscategoria'] == 'animais') {
+	$file = 'animais.txt';
+	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
 	//	$input['latitudecampogd'] e $input['longitudecampogd']//AQUI SERGIONE, PEGA OS CAMPOS QUE VEM DO APP, TRANSFORMA AQUI PRA GMS E JOGA NOS CAMPOS DE GMS NO PAINEL
 	if (strtok($input['idtpobservacao'], '-') == 'SELECIONE'){$idtpobservacao = null;} else {$idtpobservacao = strtok($input['idtpobservacao'], '-');}
 	if (strtok($input['idclassificacao'], '-') == 'SELECIONE'){$idclassificacao = null;} else {$idclassificacao = strtok($input['idclassificacao'], '-');}
@@ -106,6 +105,9 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	}
 	
 } else if ($input['dscategoria'] == 'arvoresvivas') {
+	$file = 'arvoresvivas.txt';
+	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
+	
     if (strtok($input['idestagioregeneracao'], '-') == 'SELECIONE'){$idestagioregeneracao = null;} else {$idestagioregeneracao = strtok($input['idestagioregeneracao'], '-');}
 	if (strtok($input['idgrauepifitismo'], '-') == 'SELECIONE'){$idgrauepifitismo = null;} else {$idgrauepifitismo = strtok($input['idgrauepifitismo'], '-');}
 	if (strtok($input['idgrauprotecao'], '-') == 'SELECIONE'){$idgrauprotecao = null;} else {$idgrauprotecao = strtok($input['idgrauprotecao'], '-');}
@@ -131,7 +133,8 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	}
 	
 } else if ($input['dscategoria'] == 'epifitas') {
-	
+	$file = 'epifitas.txt';
+	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
     $insertQuery  = "REPLACE INTO tb_epifitas(id,id_acesso,id_parcela,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms,descricao,st_registro_ativo) VALUES (?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("sssssssss",$input['idcontroleepifitas'],$input['idacesso'],getBetween($input['idparcelaepifitas'],"(",")"),$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1],$input['descricao'],'S');
@@ -152,7 +155,8 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	}
 
 } else if ($input['dscategoria'] == 'hidrologia') {
-		
+	$file = 'hidrologia.txt';
+	file_put_contents($file,'logged value:dsdsad', FILE_APPEND | LOCK_EX);
     $insertQuery  = "REPLACE INTO tb_hidrologia(id,id_parcela,id_acesso,descricao,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms,st_registro_ativo) VALUES (?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("sssssssss",$input['idcontrolehidrologia'],getBetween($input['idparcelahidrologia'],"(",")"),$input['idacesso'],$input['descricao'],$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1],'S');
