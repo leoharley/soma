@@ -6,7 +6,7 @@ include 'functions.php';
 //Get the input request parameters
 $inputJSON = file_get_contents('php://input');
 $input = json_decode($inputJSON, TRUE); //convert JSON into array
-$modo_debug = true;
+$modo_debug = false;
 
 $latitudecampogd  = $input['latitudecampogd'];
 $longitudecampogd = $input['longitudecampogd'];
@@ -40,8 +40,8 @@ $insertQuery  = "INSERT INTO tb_debug(ds_campos) VALUES (?)";
 	
 } else {
 	
-//	$file = 'hidrologia.txt';
-//	file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
+	$file = 'debug.txt';
+	file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
 
 if ($input['dscategoria'] == 'limpatabelas') {
 	
