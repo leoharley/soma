@@ -1686,7 +1686,7 @@ public class MainFragment extends Fragment {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 } finally {
-                                    enviaAnimaisPainel();
+                                //    enviaAnimaisPainel();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -1787,9 +1787,7 @@ public class MainFragment extends Fragment {
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
-
             }
-            enviaArvoresVivasPainel();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1881,9 +1879,7 @@ public class MainFragment extends Fragment {
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
-
             }
-            enviaEpifitasPainel();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1945,7 +1941,7 @@ public class MainFragment extends Fragment {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 } finally {
-                                    enviaHidrologiaPainel();
+                                //    enviaHidrologiaPainel();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -1961,9 +1957,7 @@ public class MainFragment extends Fragment {
                             }
                         });
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
-
             }
-            enviaHidrologiaPainel();
         } catch (JSONException e) {
             e.printStackTrace();
         }
