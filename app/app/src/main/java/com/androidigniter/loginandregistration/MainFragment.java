@@ -1666,6 +1666,7 @@ public class MainFragment extends Fragment {
                                                 ////alertdialog1.dismiss();
                                             }
                                         }, 1200);*/
+                                        enviaAnimaisPainel();
                                     } else if (response.getInt(KEY_STATUS) == 2) {
                                     /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
@@ -1706,7 +1707,6 @@ public class MainFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        enviaAnimaisPainel();
     }
 
     private void enviaAnimaisPainel() {
@@ -1743,13 +1743,14 @@ public class MainFragment extends Fragment {
                                 try {
                                     //Check if user got registered successfully
                                     if (response.getInt(KEY_STATUS) == 0) {
-                                        alertDialog1.setMessage(response.getString("message"));
+                                     /*   alertDialog1.setMessage(response.getString("message"));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             public void run() {
                                                 alertDialog1.dismiss();
                                             }
-                                        }, 3200);
+                                        }, 3200);*/
+                                        enviaArvoresVivasPainel();
                                     } else if (response.getInt(KEY_STATUS) == 2) {
                                     /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
@@ -1770,7 +1771,7 @@ public class MainFragment extends Fragment {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 } finally {
-                                    enviaArvoresVivasPainel();
+                                //    enviaArvoresVivasPainel();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -1843,6 +1844,7 @@ public class MainFragment extends Fragment {
                                             //    //alertdialog1.dismiss();
                                             }
                                         }, 1200);*/
+                                        enviaEpifitasPainel();
                                     } else if (response.getInt(KEY_STATUS) == 2) {
                                     /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
@@ -1863,7 +1865,7 @@ public class MainFragment extends Fragment {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 } finally {
-                                    enviaEpifitasPainel();
+                                //    enviaEpifitasPainel();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -1921,6 +1923,7 @@ public class MainFragment extends Fragment {
                                              //   //alertdialog1.dismiss();
                                             }
                                         }, 1200);*/
+                                        enviaHidrologiaPainel();
                                     } else if (response.getInt(KEY_STATUS) == 2) {
                                     /*    alertDialog1.setMessage("Faltando parâmetros obrigatórios!");
                                         Handler handler = new Handler();
