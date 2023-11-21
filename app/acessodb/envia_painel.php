@@ -6,7 +6,7 @@ include 'functions.php';
 //Get the input request parameters
 $inputJSON = file_get_contents('php://input');
 $input = json_decode($inputJSON, TRUE); //convert JSON into array
-$modo_debug = false;
+$modo_debug = true;
 
 $latitudecampogd  = $input['latitudecampogd'];
 $longitudecampogd = $input['longitudecampogd'];
@@ -31,9 +31,9 @@ if ($modo_debug) {
 $file = 'debug.txt';
 file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
 	
-$insertQuery  = "INSERT INTO tb_backup(ds_campos) VALUES (?)";
+$insertQuery  = "INSERT INTO tb_backup(ds_campos,latitude_campo_gms,longitude_campo_gms) VALUES (?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
-		$stmt->bind_param("s",json_encode($input));
+		$stmt->bind_param("sss",json_encode($input),$result[0],$result[1]);
 		$stmt->execute();
 		$response["status"] = 0;
 		
