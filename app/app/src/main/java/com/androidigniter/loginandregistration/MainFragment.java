@@ -1706,6 +1706,7 @@ public class MainFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        enviaAnimaisPainel();
     }
 
     private void enviaAnimaisPainel() {
@@ -1963,7 +1964,7 @@ public class MainFragment extends Fragment {
 
             }
 
-            enviaHidrologiaPainel();
+          //  enviaHidrologiaPainel();
 
         } catch (JSONException e) {
             e.printStackTrace();
