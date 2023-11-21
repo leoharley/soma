@@ -1963,6 +1963,8 @@ public class MainFragment extends Fragment {
 
             }
 
+            enviaHidrologiaPainel();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
