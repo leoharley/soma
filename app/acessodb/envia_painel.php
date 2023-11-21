@@ -31,7 +31,7 @@ if ($modo_debug) {
 $file = 'debug.txt';
 file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
 	
-$insertQuery  = "INSERT INTO tb_backup(ds_campos,latitude_campo_gms,longitude_campo_gms,id_acesso) VALUES (?,?,?,?)";
+/*$insertQuery  = "INSERT INTO tb_backup(ds_campos,latitude_campo_gms,longitude_campo_gms,id_acesso) VALUES (?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("ssss",json_encode($input),$result[0],$result[1],$input['idacesso']);
 		$stmt->execute();
@@ -39,7 +39,7 @@ $insertQuery  = "INSERT INTO tb_backup(ds_campos,latitude_campo_gms,longitude_ca
 		
 		$response["message"] = "Enviado com sucesso!";
 		$stmt->close();
-	}
+	}*/
 	
 } else {	
 
