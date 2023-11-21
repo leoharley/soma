@@ -1789,7 +1789,7 @@ public class MainFragment extends Fragment {
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
 
             }
-
+            enviaArvoresVivasPainel();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1883,7 +1883,7 @@ public class MainFragment extends Fragment {
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
 
             }
-
+            enviaEpifitasPainel();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1963,9 +1963,7 @@ public class MainFragment extends Fragment {
                 MySingleton.getInstance(getContext()).addToRequestQueue(jsArrayRequest);
 
             }
-
-          //  enviaHidrologiaPainel();
-
+            enviaHidrologiaPainel();
         } catch (JSONException e) {
             e.printStackTrace();
         }
