@@ -6,7 +6,7 @@ include 'functions.php';
 //Get the input request parameters
 $inputJSON = file_get_contents('php://input');
 $input = json_decode($inputJSON, TRUE); //convert JSON into array
-$modo_debug = true;
+$modo_debug = false;
 
 $latitudecampogd  = $input['latitudecampogd'];
 $longitudecampogd = $input['longitudecampogd'];
@@ -28,10 +28,10 @@ function getBetween($string, $start = "", $end = ""){
 	
 if ($modo_debug) {
 	
-$file = 'debug.txt';
-file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
+//$file = 'debug.txt';
+//file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
 	
-/*$insertQuery  = "INSERT INTO tb_debug(ds_campos,latitude_campo_gms,longitude_campo_gms,id_acesso) VALUES (?,?,?,?)";
+$insertQuery  = "INSERT INTO tb_debug(ds_campos,latitude_campo_gms,longitude_campo_gms,id_acesso) VALUES (?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("ssss",json_encode($input),$result[0],$result[1],$input['idacesso']);
 		$stmt->execute();
