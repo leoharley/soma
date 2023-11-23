@@ -39,7 +39,7 @@ $insertQuery  = "INSERT INTO tb_debug(ds_campos,latitude_campo_gms,longitude_cam
 		
 		$response["message"] = "Enviado com sucesso!";
 		$stmt->close();
-	}*/
+	}
 	
 $response["status"] = 0;
 	
