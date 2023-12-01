@@ -31,7 +31,7 @@ if ($modo_debug) {
 $file = 'debug.txt';
 unlink($file);
 
-file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
+file_put_contents($file,json_decode($input), FILE_APPEND | LOCK_EX);
 	
 /*$insertQuery  = "INSERT INTO tb_debug(ds_campos,latitude_campo_gms,longitude_campo_gms,id_acesso) VALUES (?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
