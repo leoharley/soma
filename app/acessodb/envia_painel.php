@@ -29,7 +29,7 @@ function getBetween($string, $start = "", $end = ""){
 if ($modo_debug) {
 	
 $file = 'debug.txt';
-unlink($file);
+//unlink($file);
 
 file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
 	
