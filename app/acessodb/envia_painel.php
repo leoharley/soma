@@ -29,6 +29,12 @@ function getBetween($string, $start = "", $end = ""){
 if ($modo_debug) {
 	
 $file = 'debug.txt';
+if (unlink($file)) {
+	echo 'The file ' . $filename . ' was deleted successfully!';
+} else {
+	echo 'There was a error deleting the file ' . $filename;
+}
+
 file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
 	
 /*$insertQuery  = "INSERT INTO tb_debug(ds_campos,latitude_campo_gms,longitude_campo_gms,id_acesso) VALUES (?,?,?,?)";
