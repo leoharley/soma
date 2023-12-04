@@ -142,9 +142,9 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	
 } else if ($input['dscategoria'] == 'epifitas') {
 		
-	$insertQuery  = "REPLACE INTO tb_epifitas(id,id_acesso,id_parcela,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms,descricao,st_registro_ativo) VALUES (?,?,?,?,?,?,?,?,?)";
+	$insertQuery  = "REPLACE INTO tb_epifitas(id,id_acesso,id_parcela,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms,descricao) VALUES (?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){		
-		$stmt->bind_param("sssssssss",$input['idcontroleepifitas'],$input['idacesso'],getBetween($input['idparcelaepifitas'],"(",")"),$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1],$input['descricao'],'S');
+		$stmt->bind_param("ssssssss",$input['idcontroleepifitas'],$input['idacesso'],getBetween($input['idparcelaepifitas'],"(",")"),$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1],$input['descricao']);
 		$file = 'epifitas.txt';
 		file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
 		$stmt->execute();
