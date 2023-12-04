@@ -141,14 +141,13 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	}
 	
 } else if ($input['dscategoria'] == 'epifitas') {
-	
-	$file = 'epifitas.txt';
-	file_put_contents($file,json_encode($input), FILE_APPEND | LOCK_EX);
-	
+		
 	$insertQuery  = "REPLACE INTO tb_epifitas(id,id_acesso,id_parcela,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms,descricao,st_registro_ativo) VALUES (?,?,?,?,?,?,?,?,?)";
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("sssssssss",$input['idcontroleepifitas'],$input['idacesso'],getBetween($input['idparcelaepifitas'],"(",")"),$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1],$input['descricao'],'S');
 		$stmt->execute();
+		$file = 'epifitas.txt';
+		file_put_contents($file,$con->prepare($insertQuery), FILE_APPEND | LOCK_EX);
 		$response["status"] = 0;		
 		$response["message"] = "Enviado com sucesso!";
 		$stmt->close();
