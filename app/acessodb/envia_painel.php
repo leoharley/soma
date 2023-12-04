@@ -121,6 +121,11 @@ if ($input['dscategoria'] == 'limpatabelas') {
 	if (strtok($input['idgrauprotecao'], '-') == 'SELECIONE'){$idgrauprotecao = null;} else {$idgrauprotecao = strtok($input['idgrauprotecao'], '-');}
 	
     $insertQuery  = "REPLACE INTO tb_arvores_vivas(id,id_parcela,id_acesso,id_grau_protecao,latitude_campo_gd,longitude_campo_gd,nu_biomassa,identificacao,nu_circunferencia,nu_altura,nu_altura_total,nu_altura_fuste,nu_altura_copa,isolada,floracao_frutificacao,latitude_campo_gms,longitude_campo_gms,descricao,id_estagio_regeneracao,id_grau_epifitismo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	
+	$file = 'epifitas.txt';
+	file_put_contents($file,$con->prepare($insertQuery), FILE_APPEND | LOCK_EX);
+		
+		
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("ssssssssssssssssssss",$input['idcontrolearvoresvivas'],getBetween($input['idparcelaarvoresvivas'],"(",")"),$input['idacesso'],$idgrauprotecao,$input['latitudecampogd'],$input['longitudecampogd'],$input['nubiomassa'],$input['identificacao'],$input['nucircunferencia'],$input['nualtura'],$input['nualturatotal'],$input['nualturafuste'],$input['nualturacopa'],$input['isolada'],$input['floracaofrutificacao'],$result[0],$result[1],$input['descricao'],$idestagioregeneracao,$idgrauepifitismo);
 		$stmt->execute();
@@ -144,9 +149,6 @@ if ($input['dscategoria'] == 'limpatabelas') {
 		
 	$insertQuery  = "REPLACE INTO tb_epifitas(id,id_acesso,id_parcela,latitude_campo_gd,longitude_campo_gd,latitude_campo_gms,longitude_campo_gms,descricao,st_registro_ativo) VALUES (?,?,?,?,?,?,?,?,?)";
 	
-	$file = 'epifitas.txt';
-	file_put_contents($file,$con->prepare($insertQuery), FILE_APPEND | LOCK_EX);
-		
 	if($stmt = $con->prepare($insertQuery)){
 		$stmt->bind_param("sssssssss",$input['idcontroleepifitas'],$input['idacesso'],getBetween($input['idparcelaepifitas'],"(",")"),$input['latitudecampogd'],$input['longitudecampogd'],$result[0],$result[1],$input['descricao'],'S');
 		$stmt->execute();
