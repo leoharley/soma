@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -24,6 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidigniter.loginandregistration.R;
@@ -45,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
     String currentPhotoPath;
     String idcontrole;
     String dscategoria;
-    int scaleSize =1024;
+    int scaleSize = 1024;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,32 +73,33 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.fecharCamera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // if (dscategoria.equals("arvoresvivas")) {
-                    finish();
-               // }
+                // if (dscategoria.equals("arvoresvivas")) {
+                finish();
+                // }
             }
         });
 
     }
 
-    private void verifyPermissions(){
+    private void verifyPermissions() {
         String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA};
 
-        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 permissions[0]) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 permissions[1]) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                permissions[2]) == PackageManager.PERMISSION_GRANTED){
+                permissions[2]) == PackageManager.PERMISSION_GRANTED) {
             dispatchTakePictureIntent();
-        }else{
+        } else {
             ActivityCompat.requestPermissions(this,
                     permissions,
                     CAMERA_PERM_CODE);
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -111,17 +115,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CAMERA_REQUEST_CODE){
-            if(resultCode == Activity.RESULT_OK){
+        //Log.d("tag", "Absolute Url of Image is " + Uri.fromFile(f));
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            if (resultCode == Activity.RESULT_OK) {
                 File f = new File(currentPhotoPath);
                 selectedImage.setImageURI(Uri.fromFile(f));
+              //  selectedImage.setImageURI(Uri.fromFile(f));
                 //Log.d("tag", "Absolute Url of Image is " + Uri.fromFile(f));
 
-                Bitmap b= BitmapFactory.decodeFile(currentPhotoPath);
+                Bitmap b = BitmapFactory.decodeFile(currentPhotoPath);
                 Bitmap out = resizeImageForImageView(b);
                 //Bitmap out = Bitmap.createScaledBitmap(b, 100, auto, true);
 
-                File file = new File(Environment.getExternalStorageDirectory()+File.separator+"images/"+dscategoria, f.getName());
+                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "images/" + dscategoria, f.getName());
                 FileOutputStream fOut;
                 try {
                     fOut = new FileOutputStream(file);
@@ -130,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
                     fOut.close();
                     b.recycle();
                     out.recycle();
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
 
               /*  Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                 Uri contentUri = Uri.fromFile(f);
@@ -152,17 +159,17 @@ public class MainActivity extends AppCompatActivity {
         int newWidth = -1;
         int newHeight = -1;
         float multFactor = -1.0F;
-        if(originalHeight > originalWidth) {
-            newHeight = scaleSize ;
-            multFactor = (float) originalWidth/(float) originalHeight;
-            newWidth = (int) (newHeight*multFactor);
-        } else if(originalWidth > originalHeight) {
-            newWidth = scaleSize ;
-            multFactor = (float) originalHeight/ (float)originalWidth;
-            newHeight = (int) (newWidth*multFactor);
-        } else if(originalHeight == originalWidth) {
-            newHeight = scaleSize ;
-            newWidth = scaleSize ;
+        if (originalHeight > originalWidth) {
+            newHeight = scaleSize;
+            multFactor = (float) originalWidth / (float) originalHeight;
+            newWidth = (int) (newHeight * multFactor);
+        } else if (originalWidth > originalHeight) {
+            newWidth = scaleSize;
+            multFactor = (float) originalHeight / (float) originalWidth;
+            newHeight = (int) (newWidth * multFactor);
+        } else if (originalHeight == originalWidth) {
+            newHeight = scaleSize;
+            newWidth = scaleSize;
         }
         resizedBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false);
         rotatedBitmap = Bitmap.createBitmap(resizedBitmap, 0, 0, resizedBitmap.getWidth(), resizedBitmap.getHeight(), matrix, true);
@@ -184,8 +191,8 @@ public class MainActivity extends AppCompatActivity {
             // use directory.mkdirs(); here instead.
         }*/
 
-        File storageDir = new File(Environment.getExternalStorageDirectory()+File.separator+"images/"+dscategoria);
-        if (!storageDir.exists()){
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "images/" + dscategoria);
+        if (!storageDir.exists()) {
             storageDir.mkdirs();
             // If you require it to make the entire directory path including parents,
             // use directory.mkdirs(); here instead.
@@ -193,68 +200,76 @@ public class MainActivity extends AppCompatActivity {
 
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
-                dscategoria+"-"+idcontrole+".jpg",         /* suffix */
+                dscategoria + "-" + idcontrole + ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
 
         // Save a file: path for use with ACTION_VIEW intents
+       // System.out.println("AQUI LEO:"+image.getAbsolutePath());
         currentPhotoPath = image.getAbsolutePath();
+
+        File f = new File(currentPhotoPath);
 
         return image;
     }
 
     private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
-                        photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
-            }
-
-        }
-
-       /* Intent galleryintent = new Intent(Intent.ACTION_GET_CONTENT, null);
-        galleryintent.setType("image/*");
 
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        Intent chooser = new Intent(Intent.ACTION_CHOOSER);
-        chooser.putExtra(Intent.EXTRA_INTENT, galleryintent);
-        chooser.putExtra(Intent.EXTRA_TITLE, "Select from:");
-
-        Intent[] intentArray = { cameraIntent, galleryintent };
-        chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
-        if (chooser.resolveActivity(getPackageManager()) != null) {
+        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
-
+                // Error occurred while creating the File
+               // Log.i(TAG, "IOException");
             }
+           // selectedImage.setImageURI(Uri.fromFile(photoFile));
             // Continue only if the File was successfully created
             if (photoFile != null) {
+                /*selectedImage.setImageURI(Uri.fromFile(photoFile));
+                System.out.println("AQUI LEO:"+image.getAbsolutePath());*/
+
                 Uri photoURI = FileProvider.getUriForFile(this,
                         "com.example.android.fileprovider",
                         photoFile);
-                chooser.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
             }
-        }*/
+        }
 
-    }
+        /*Uri mPhotoUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new ContentValues());
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, mPhotoUri);
+        startActivityForResult(intent,CAMERA_REQUEST_CODE);*/
+
+        //Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        //if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+        // Create the File where the photo should go
+      /*  Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File photoFile = null;
+        try {
+            photoFile = createImageFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (photoFile != null) {
+            intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File("/sdcard/tmp")));
+        } else {
+            intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        }
+        startActivityForResult(intent, CAMERA_REQUEST_CODE);*/
+
+
+
+            }
+       // }
+
+
 
 
 }

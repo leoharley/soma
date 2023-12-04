@@ -220,7 +220,7 @@ public class MainFragment extends Fragment {
         Button btnUploadArquivos = view.findViewById(R.id.btnUploadArquivos);
         btnUploadArquivos.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas/");
+                File directory = new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/arvoresvivas/");
 
                 // get all the files from a directory
                 File[] fList = directory.listFiles();
@@ -421,7 +421,7 @@ public class MainFragment extends Fragment {
 
         new upload_arvoresvivas().execute();
 
-        final File folder_arvores_vivas = new File(Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas");
+        final File folder_arvores_vivas = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/arvoresvivas");
 
         if (folder_arvores_vivas.listFiles() != null) {
             for (final File fileEntry : folder_arvores_vivas.listFiles()) {
@@ -436,7 +436,7 @@ public class MainFragment extends Fragment {
 
         new upload_animais().execute();
 
-        final File folder_animais = new File(Environment.getExternalStorageDirectory()+File.separator+"images/animais");
+        final File folder_animais = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/animais");
 
         if (folder_animais.listFiles() != null) {
             for (final File fileEntry : folder_animais.listFiles()) {
@@ -451,7 +451,7 @@ public class MainFragment extends Fragment {
 
         new upload_epifitas().execute();
 
-        final File folder_epifitas = new File(Environment.getExternalStorageDirectory()+File.separator+"images/epifitas");
+        final File folder_epifitas = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/epifitas");
 
         if (folder_epifitas.listFiles() != null) {
             for (final File fileEntry : folder_epifitas.listFiles()) {
@@ -466,7 +466,7 @@ public class MainFragment extends Fragment {
 
         new upload_hidrologia().execute();
 
-        final File folder_hidrologia= new File(Environment.getExternalStorageDirectory()+File.separator+"images/hidrologia");
+        final File folder_hidrologia= new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/hidrologia");
 
         if (folder_hidrologia.listFiles() != null) {
             for (final File fileEntry : folder_hidrologia.listFiles()) {
@@ -497,7 +497,7 @@ public class MainFragment extends Fragment {
     }
 
     private void runUploadArquivosInBackground0() {
-        File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas/");
+        File directory = new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/arvoresvivas/");
 
         try {
             // get all the files from a directory
@@ -572,7 +572,7 @@ public class MainFragment extends Fragment {
                     mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
                     mFTPClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
 
-                    final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/arvoresvivas");
+                    final File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/arvoresvivas");
                     final String remotePath = "homologacao/inventario/painel/uploads/";
 
                     for (final File fileEntry : folder.listFiles()) {
@@ -614,7 +614,7 @@ public class MainFragment extends Fragment {
                     mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
                     mFTPClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
 
-                    final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/animais");
+                    final File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/animais");
                     final String remotePath = "homologacao/inventario/painel/uploads/";
 
                     for (final File fileEntry : folder.listFiles()) {
@@ -657,7 +657,7 @@ public class MainFragment extends Fragment {
                     mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
                     mFTPClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
 
-                    final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/epifitas");
+                    final File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/epifitas");
                     final String remotePath = "homologacao/inventario/painel/uploads/";
 
                     for (final File fileEntry : folder.listFiles()) {
@@ -700,7 +700,7 @@ public class MainFragment extends Fragment {
                     mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
                     mFTPClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
 
-                    final File folder = new File(Environment.getExternalStorageDirectory()+File.separator+"images/hidrologia");
+                    final File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/hidrologia");
                     final String remotePath = "homologacao/inventario/painel/uploads/";
 
                     for (final File fileEntry : folder.listFiles()) {
@@ -775,7 +775,7 @@ public class MainFragment extends Fragment {
 
 
     private void runUploadArquivosInBackground3() {
-        File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/animais/");
+        File directory = new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/animais/");
 
         try {
             // get all the files from a directory
@@ -875,7 +875,7 @@ public class MainFragment extends Fragment {
     }
 
     private void runUploadArquivosInBackground6() {
-        File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/epifitas/");
+        File directory = new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/epifitas/");
 
         try {
             // get all the files from a directory
@@ -976,7 +976,7 @@ public class MainFragment extends Fragment {
     }
 
     private void runUploadArquivosInBackground9() {
-        File directory = new File( Environment.getExternalStorageDirectory()+File.separator+"images/hidrologia/");
+        File directory = new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+File.separator+"images/hidrologia/");
 
         try {
             // get all the files from a directory

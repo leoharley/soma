@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList.clear();
        // String filePath = "/storage/emulated/0/inshot";
        // File file = new File(filePath);
-        File file = new File(Environment.getExternalStorageDirectory()+File.separator+"images/"+dscategoria);
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "images/" + dscategoria);
         if (! file.exists()){
             file.mkdir();
             // If you require it to make the entire directory path including parents,
