@@ -449,11 +449,11 @@ if(!empty($infoArvoreViva))
             </div>
         </div>
         
-        <section class="content-header" style="margin-bottom:1000px!important">
+        <section class="content-header">
         <h1><i class="fa fa-paperclip"></i> Gerenciador de Anexos</h1>
         </section>
         <br/>   
-        <iframe style="width:82%;height:800px;border-top: 3px solid #3c8dbc;border-left:none;" src="<?php echo base_url(); ?>admin/arvoresvivas/<?= $this->uri->segment(2) == 'cadastrar'?$nextIdArvoreViva->id:$id ?>" title="" ></iframe>
+        <iframe style="width:82%;height:800px;border-top: 3px solid #3c8dbc;border-left:none;margin-bottom:1000px!important" src="<?php echo base_url(); ?>admin/arvoresvivas/<?= $this->uri->segment(2) == 'cadastrar'?$nextIdArvoreViva->id:$id ?>" title="" ></iframe>
     </section>
 </div>
 <script src="<?php echo base_url(); ?>assets/js/<?php echo ($this->uri->segment(2) == 'cadastrar') ?'addUser.js':'addUserEditar.js';?>" type="text/javascript"></script>
