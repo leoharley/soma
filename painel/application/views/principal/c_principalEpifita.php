@@ -33,7 +33,7 @@ if(!empty($infoEpifita))
 
 <style>
     .content-wrapper{
-      height:1140px!important;
+      height:1190px!important;
     }
 </style>    
 
