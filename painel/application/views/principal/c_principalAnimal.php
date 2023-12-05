@@ -423,7 +423,7 @@ $(document).ready(function(){
 
     var idFamilia = $('#id_familia').val();
         $.ajax({
-            url: '<?php //echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
+            url: '<?php echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
             type: "GET",
             dataType: "json",
             success:function(data) {
@@ -436,7 +436,7 @@ $(document).ready(function(){
         });
 
         $.ajax({
-                    url: '<?php //echo base_url(); ?>consultaGeneroFauna/',
+                    url: '<?php echo base_url(); ?>consultaGeneroFauna/',
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
@@ -453,7 +453,7 @@ $(document).ready(function(){
             var idFamilia = $(this).val();
             if(idFamilia) {
                 $.ajax({
-                    url: '<?php //echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
+                    url: '<?php echo base_url(); ?>consultaGeneroFauna/'+idFamilia,
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
@@ -465,8 +465,8 @@ $(document).ready(function(){
                     }
                 });
             }else{
-        //      $('select[name="id_genero"]').empty();
-        //     $('select[name="id_especie"]').empty();
+             //$('select[name="id_genero"]').empty();
+             //$('select[name="id_especie"]').empty();
             }
         });
     });
@@ -474,7 +474,7 @@ $(document).ready(function(){
 
     var idGenero = $('#id_genero').val();
         $.ajax({
-            url: '<?php //echo base_url(); ?>consultaEspecieFauna/'+idGenero,
+            url: '<?php echo base_url(); ?>consultaEspecieFauna/'+idGenero,
             type: "GET",
             dataType: "json",
             success:function(data) {
@@ -494,7 +494,7 @@ $(document).ready(function(){
             var idGenero = $(this).val();
             if(idGenero) {
                 $.ajax({
-                    url: '<?php //echo base_url(); ?>consultaEspecieFauna/'+idGenero,
+                    url: '<?php echo base_url(); ?>consultaEspecieFauna/'+idGenero,
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
