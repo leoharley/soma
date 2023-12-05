@@ -1274,9 +1274,9 @@ function principalAnimal()
 
     function consultaGeneroFauna()
     {
-           // $idFamilia = $this->uri->segment(2);
+            $idFamilia = $this->uri->segment(2);
                        
-            $resultado = $this->PrincipalModel->consultaGeneroFauna();
+            $resultado = $this->PrincipalModel->consultaGeneroFauna($idFamilia);
             
             echo json_encode($resultado);
     }
