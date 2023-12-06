@@ -406,6 +406,7 @@ $(document).ready(function(){
     $('#id_tipo_observacao').select2(
         {
             placeholder: "SELECIONE"
+            
         }
     );
 
