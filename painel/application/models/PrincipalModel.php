@@ -1143,6 +1143,8 @@ function carregaInfoPermissao($IdPermissao)
 
     function adicionaAnimal($infoAnimal)
     {
+
+        var_dump($infoAnimal);exit;
         $this->db->reconnect();
         $this->db->start_cache();
         $sql = "INSERT INTO \"tb_animais\" (\"id\", \"id_parcela\", \"id_acesso\", \"latitude_gms\",
