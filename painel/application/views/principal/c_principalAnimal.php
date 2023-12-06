@@ -157,7 +157,7 @@ if(!empty($infoAnimal))
                                     </div>
                                 </div> -->
 
-                               /* <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero">
@@ -443,7 +443,7 @@ $(document).ready(function(){
                     success:function(data) {
                         $("#id_genero").select2("val", null);
                         $("#id_especie").select2("val", null);
-                        
+
                         $.each(data, function(key, value) {
                             $('select[name="id_genero"]').append('<option value="'+ value.id +'">'+ value.id +' - '+ value.nome +'</option>');
                         });
