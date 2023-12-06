@@ -1147,9 +1147,9 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->start_cache();
         $sql = "INSERT INTO \"tb_animais\" (\"id\", \"id_parcela\", \"id_acesso\", \"latitude_gms\",
         \"longitude_gms\", \"id_tipo_observacao\", \"id_classificacao\", \"id_grau_protecao\", \"descricao\", \"latitude_gd\", \"longitude_gd\",
-        \"st_registro_ativo\") VALUES ({$info[0]->id}, {$info[0]->id_parcela}, '{$info[0]->id_acesso}', '{$info[0]->latitude_gms}', 
-        '{$info[0]->longitude_gms}', {$info[0]->id_tipo_observacao}, {$info[0]->id_classificacao}, '{$info[0]->id_grau_protecao}', 
-        '{$info[0]->descricao}', '{$info[0]->latitude_gd}', '{$info[0]->longitude_gd}')";
+        \"st_registro_ativo\") VALUES ({$infoAnimal[0]->id}, {$infoAnimal[0]->id_parcela}, '{$infoAnimal[0]->id_acesso}', '{$infoAnimal[0]->latitude_gms}', 
+        '{$infoAnimal[0]->longitude_gms}', {$infoAnimal[0]->id_tipo_observacao}, {$infoAnimal[0]->id_classificacao}, '{$infoAnimal[0]->id_grau_protecao}', 
+        '{$infoAnimal[0]->descricao}', '{$infoAnimal[0]->latitude_gd}', '{$infoAnimal[0]->longitude_gd}')";
         $query = $this->db->query($sql);
         $this->db->stop_cache();
         $this->db->flush_cache();
