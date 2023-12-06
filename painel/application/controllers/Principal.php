@@ -829,8 +829,8 @@ function principalAnimal()
     {
             $id_parcela  = $this->input->post('id_parcela');
             $id_familia  = $this->input->post('id_familia');
-            $id_genero  = $this->input->post('id_genero');
-            $id_especie  = $this->input->post('id_especie');
+            $id_genero  = ($this->input->post('id_genero')!='')?$this->input->post('id_genero'):'999999';
+            $id_especie  = ($this->input->post('id_especie')!='')?$this->input->post('id_especie'):'999999';
             $id_tipo_observacao  = ($this->input->post('id_tipo_observacao')!='')?$this->input->post('id_tipo_observacao'):'99';
             $id_classificacao  = ($this->input->post('id_classificacao')!='')?$this->input->post('id_classificacao'):'99';
             $id_grau_protecao = ($this->input->post('id_grau_protecao')!='')?$this->input->post('id_grau_protecao'):'99';
@@ -882,11 +882,11 @@ function principalAnimal()
 
             $id_parcela  = $this->input->post('id_parcela');
             $id_familia  = $this->input->post('id_familia');
-            $id_genero  = $this->input->post('id_genero');
-            $id_especie  = $this->input->post('id_especie');
-            $id_tipo_observacao  = $this->input->post('id_tipo_observacao');
-            $id_classificacao  = $this->input->post('id_classificacao');
-            $id_grau_protecao = $this->input->post('id_grau_protecao');
+            $id_genero  = ($this->input->post('id_genero')!='')?$this->input->post('id_genero'):'999999';
+            $id_especie  = ($this->input->post('id_especie')!='')?$this->input->post('id_especie'):'999999';
+            $id_tipo_observacao  = ($this->input->post('id_tipo_observacao')!='')?$this->input->post('id_tipo_observacao'):'99';
+            $id_classificacao  = ($this->input->post('id_classificacao')!='')?$this->input->post('id_classificacao'):'99';
+            $id_grau_protecao = ($this->input->post('id_grau_protecao')!='')?$this->input->post('id_grau_protecao'):'99';
             $latitude = preg_replace('/-+/', '', $this->input->post('latitude'));
             $longitude = preg_replace('/-+/', '', $this->input->post('longitude'));
 
