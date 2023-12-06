@@ -453,6 +453,8 @@ $(document).ready(function(){
         $('select[name="id_especie"]').empty();
 
         $('select[name="id_familia"]').on('click', function() {
+            $('select[name="id_genero"]').empty();
+            $('select[name="id_especie"]').empty();
             var idFamilia = $(this).val();
             if(idFamilia) {
                 $.ajax({
@@ -468,8 +470,8 @@ $(document).ready(function(){
                     }
                 });
             }else{
-             $('select[name="id_genero"]').empty();
-             $('select[name="id_especie"]').empty();
+             //$('select[name="id_genero"]').empty();
+             //$('select[name="id_especie"]').empty();
             }
         });
     });
@@ -494,7 +496,7 @@ $(document).ready(function(){
 
     $('select[name="id_genero"]').on('change', function() {
         $('select[name="id_especie"]').empty();
-
+        
         $('select[name="id_genero"]').on('click', function() {
             var idGenero = $(this).val();
             if(idGenero) {
