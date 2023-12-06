@@ -120,7 +120,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_familia">Família</label>
-                                        <select id="id_familia" name="id_familia" required>
+                                        <select id="id_familia" name="id_familia" class="form-control required">
                                             <option></option>
                                             <?php
                                             if(!empty($infoFamiliasFauna))
@@ -160,7 +160,7 @@ if(!empty($infoAnimal))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
-                                        <select id="id_genero" name="id_genero" class="required">
+                                        <select id="id_genero" name="id_genero">
                                             <option></option>
                                             <?php
                                             if(!empty($infoGenerosFauna))
