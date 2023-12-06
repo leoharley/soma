@@ -857,10 +857,6 @@ function principalAnimal()
                                 
             $resultRl = $this->PrincipalModel->adicionaRlFaunaFamiliaGeneroEspecie($infoRlFaunaFamiliaGeneroEspecie);
             
-            var_dump($result);
-            var_dump($resultRl);
-            exit;
-
             if($result > 0 && $resultRl > 0)
             {
                 $process = 'Adicionar animal';
