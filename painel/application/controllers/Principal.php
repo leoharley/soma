@@ -827,6 +827,8 @@ function principalAnimal()
 
     function adicionaAnimal() 
     {
+            $id = rand(1000, 9999); //ID ALEATORIO
+
             $id_parcela  = $this->input->post('id_parcela');
             $id_familia  = $this->input->post('id_familia');
             $id_genero  = ($this->input->post('id_genero')!='')?$this->input->post('id_genero'):'999999';
@@ -842,14 +844,14 @@ function principalAnimal()
             
             $descricao  = $this->input->post('descricao');
             
-            $infoAnimal = array('id'=>rand(1000, 9999), 'id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude_gms'=>$latitude, 
+            $infoAnimal = array('id'=>$id, 'id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude_gms'=>$latitude, 
                                 'longitude_gms'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
                                 'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao, 'descricao'=>$descricao,
                                 'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');
                                 
             $result = $this->PrincipalModel->adicionaAnimal($infoAnimal);
             
-            $infoRlFaunaFamiliaGeneroEspecie = array('id_animais'=> $result, 'id_familia'=>$id_familia,
+            $infoRlFaunaFamiliaGeneroEspecie = array('id_animais'=> $id, 'id_familia'=>$id_familia,
                                                     'id_genero '=> $id_genero, 'id_especie'=>$id_especie, 
                                                     'st_registro_ativo'=>'S');
                                 
