@@ -157,13 +157,13 @@ if(!empty($infoAnimal))
                                     </div>
                                 </div> -->
 
-                                <div class="col-md-6">
+                               <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero">
                                             <option></option>
                                             <?php
-                                            if(!empty($infoGenerosFauna))
+                                            /*if(!empty($infoGenerosFauna))
                                             {
                                                 foreach ($infoGenerosFauna as $genero)
                                                 {
@@ -173,21 +173,21 @@ if(!empty($infoAnimal))
                                                 </option>
                                                 <?php
                                                 }
-                                            }
+                                            }*/
                                             ?>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
 
 
-                              <!--  <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="id_genero">Gênero</label>
                                         <select id="id_genero" name="id_genero">
                                         <option></option>
                                         </select>
                                     </div>
-                                </div> -->
+                                </div>
 
                                <!-- <div class="col-md-6">
                                     <div class="form-group">
@@ -475,9 +475,9 @@ $(document).ready(function(){
     });
 
 
-   /* var idGenero = $('#id_genero').val();
+    var idGenero = $('#id_genero').val();
         $.ajax({
-            url: '<?php //echo base_url(); ?>consultaEspecieFauna/'+idGenero,
+            url: '<?php echo base_url(); ?>consultaEspecieFauna/'+idGenero,
             type: "GET",
             dataType: "json",
             success:function(data) {
@@ -490,7 +490,7 @@ $(document).ready(function(){
                     }
                 });  
             }
-        });*/
+        });
 
     $('select[name="id_genero"]').on('change', function() {
         $('select[name="id_especie"]').empty();
