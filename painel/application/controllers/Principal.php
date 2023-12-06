@@ -842,7 +842,7 @@ function principalAnimal()
             
             $descricao  = $this->input->post('descricao');
             
-            $infoAnimal = array('id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude_gms'=>$latitude, 
+            $infoAnimal = array('id'=>rand(1000, 9999), 'id_parcela'=> $id_parcela, 'id_acesso'=>$this->session->userdata('userId'), 'latitude_gms'=>$latitude, 
                                 'longitude_gms'=>$longitude,'id_tipo_observacao'=> $id_tipo_observacao,
                                 'id_classificacao'=>$id_classificacao, 'id_grau_protecao'=>$id_grau_protecao, 'descricao'=>$descricao,
                                 'latitude_gd'=>$latitude_gd, 'longitude_gd'=>$longitude_gd, 'st_registro_ativo'=>'S');

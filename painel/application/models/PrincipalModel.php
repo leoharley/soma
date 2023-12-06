@@ -1129,7 +1129,7 @@ function carregaInfoPermissao($IdPermissao)
         return $result;
     }
 
-    function adicionaAnimal($infoAnimal)
+    /*function adicionaAnimal($infoAnimal)
     {
         $this->db->trans_start();
         $this->db->insert('tb_animais', $infoAnimal);
@@ -1139,7 +1139,24 @@ function carregaInfoPermissao($IdPermissao)
         $this->db->trans_complete();
         
         return $insert_id;
+    }*/
+
+    function adicionaAnimal($infoAnimal)
+    {
+        $this->db->reconnect();
+        $this->db->start_cache();
+        $sql = "INSERT INTO \"tb_animais\" (\"id\", \"id_parcela\", \"id_acesso\", \"latitude_gms\",
+        \"longitude_gms\", \"id_tipo_observacao\", \"id_classificacao\", \"id_grau_protecao\", \"descricao\", \"latitude_gd\", \"longitude_gd\",
+        \"st_registro_ativo\") VALUES ({$info[0]->id}, {$info[0]->id_parcela}, '{$info[0]->id_acesso}', '{$info[0]->latitude_gms}', 
+        '{$info[0]->longitude_gms}', {$info[0]->id_tipo_observacao}, {$info[0]->id_classificacao}, '{$info[0]->id_grau_protecao}', 
+        '{$info[0]->descricao}', '{$info[0]->latitude_gd}', '{$info[0]->longitude_gd}')";
+        $query = $this->db->query($sql);
+        $this->db->stop_cache();
+        $this->db->flush_cache();
+        return $this->db->affected_rows();
+    //    return $query;
     }
+
 
     function editaAnimal($infoAnimal, $IdAnimal)
     {
